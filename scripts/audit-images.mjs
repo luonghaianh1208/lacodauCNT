@@ -13,11 +13,12 @@ const OUT = "lib/slides/image-audit.json";
 const WHITE_LIMIT = 0.25;
 const FLAT_LIMIT = 0.65;
 
-const files = fs.readdirSync(DIR).filter((f) => /\.(jpe?g|png)$/i.test(f));
-const page = path.join(process.cwd(), DIR, "__audit.html");
+function main() {
+  const files = fs.readdirSync(DIR).filter((f) => /\.(jpe?g|png)$/i.test(f));
+  const page = path.join(process.cwd(), DIR, "__audit.html");
 
-try {
-  fs.writeFileSync(page, `<!doctype html><meta charset="utf-8"><pre id="o"></pre><script>
+  try {
+    fs.writeFileSync(page, `<!doctype html><meta charset="utf-8"><pre id="o"></pre><script>
 const files = ${JSON.stringify(files)};
 function stats(img) {
   const W = 220, H = Math.round(W * img.naturalHeight / img.naturalWidth);
@@ -45,30 +46,37 @@ files.forEach((f) => {
 });
 </script>`);
 
-  const dom = execFileSync(CHROME, [
-    "--headless", "--disable-gpu", "--allow-file-access-from-files",
-    "--virtual-time-budget=60000", "--dump-dom",
-    `file:///${path.join(process.cwd(), DIR, "__audit.html").replace(/\\/g, "/")}`,
-  ], { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 });
+    const dom = execFileSync(CHROME, [
+      "--headless", "--disable-gpu", "--allow-file-access-from-files",
+      "--virtual-time-budget=60000", "--dump-dom",
+      `file:///${path.join(process.cwd(), DIR, "__audit.html").replace(/\\/g, "/")}`,
+    ], { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 });
 
-  const raw = dom.match(/JSON:(\{.*?\})<\/pre>/s);
-  if (!raw) {
-    console.error("Không đọc được kết quả đo. Kiểm tra đường dẫn Chrome.");
-    process.exit(1);
-  }
+    const raw = dom.match(/JSON:(\{.*?\})<\/pre>/s);
+    if (!raw) {
+      throw new Error("Không đọc được kết quả đo. Kiểm tra đường dẫn Chrome.");
+    }
 
-  const measured = JSON.parse(raw[1]);
-  const result = {};
-  for (const [file, m] of Object.entries(measured)) {
-    result[file] = { ...m, screenshot: m.white > WHITE_LIMIT || m.flat > FLAT_LIMIT };
-  }
+    const measured = JSON.parse(raw[1]);
+    const result = {};
+    for (const [file, m] of Object.entries(measured)) {
+      result[file] = { ...m, screenshot: m.white > WHITE_LIMIT || m.flat > FLAT_LIMIT };
+    }
 
-  fs.writeFileSync(OUT, `${JSON.stringify(result, null, 2)}\n`);
-  const shots = Object.values(result).filter((r) => r.screenshot).length;
-  console.log(`Đã đo ${Object.keys(result).length} ảnh, trong đó ${shots} ảnh màn hình bị loại khỏi vai trò ảnh nền.`);
-} finally {
-  // Dọn file tạm, kể cả khi có lỗi
-  if (fs.existsSync(page)) {
-    fs.rmSync(page);
+    fs.writeFileSync(OUT, `${JSON.stringify(result, null, 2)}\n`);
+    const shots = Object.values(result).filter((r) => r.screenshot).length;
+    console.log(`Đã đo ${Object.keys(result).length} ảnh, trong đó ${shots} ảnh màn hình bị loại khỏi vai trò ảnh nền.`);
+  } finally {
+    // Dọn file tạm, kể cả khi có lỗi — finally luôn chạy trước khi throw/return
+    if (fs.existsSync(page)) {
+      fs.rmSync(page);
+    }
   }
+}
+
+try {
+  main();
+} catch (e) {
+  console.error(e.message);
+  process.exit(1);
 }
