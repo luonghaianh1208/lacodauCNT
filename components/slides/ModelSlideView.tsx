@@ -77,7 +77,7 @@ export function ModelSlideView({
           </div>
         ) : null}
       </div>
-      <SlideChrome slide={slide} footAlign={side === "left" ? "right" : "left"} />
+      <SlideChrome slide={slide} side={side} />
       <div className="model-head">
         <h1 className="serif">
           <Phrase value={slide.title} />

@@ -75,7 +75,7 @@ export function ContentSlideView({
       data-on-dark={side === "left" ? "true" : "false"}
     >
       <MediaPanel images={slide.images} />
-      <SlideChrome slide={slide} footAlign={side === "left" ? "right" : "left"} />
+      <SlideChrome slide={slide} side={side} />
       <div className="content-text">
         <h1 className="content-title serif">
           <Phrase value={slide.title} />

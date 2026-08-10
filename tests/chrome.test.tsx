@@ -28,4 +28,21 @@ describe("SlideChrome", () => {
     render(<SlideChrome slide={{ ...slide, footnote: undefined }} />);
     expect(screen.queryByText(/Phần B.I/)).not.toBeInTheDocument();
   });
+
+  // Chặn tái diễn: số trang và chú thích chân trang thuộc cùng cột chữ, phải luôn cùng
+  // bên — bên đối diện panel ảnh (`side`). Kiểm qua thuộc tính `data-align`, không đọc
+  // style nội tuyến, để test không giòn trước cách CSS hiện thực hoá vị trí.
+  it("side mặc định 'right' (panel phải): số trang và chân trang cùng nằm bên trái", () => {
+    const { container } = render(<SlideChrome slide={slide} />);
+
+    expect(container.querySelector(".slide-num")).toHaveAttribute("data-align", "left");
+    expect(container.querySelector(".slide-foot")).toHaveAttribute("data-align", "left");
+  });
+
+  it("side='left' (panel trái): số trang và chân trang cùng nằm bên phải", () => {
+    const { container } = render(<SlideChrome slide={slide} side="left" />);
+
+    expect(container.querySelector(".slide-num")).toHaveAttribute("data-align", "right");
+    expect(container.querySelector(".slide-foot")).toHaveAttribute("data-align", "right");
+  });
 });

@@ -58,6 +58,7 @@ const model: ModelSlide = {
   effects: [["Dữ liệu tập trung."]],
   images: [{ src: "/media/slides/f.png", alt: "Giao diện", caption: ["Giao diện"], role: "phu" }],
   videoSrc: "/media/platform-demo.mp4",
+  footnote: ["Phần C.7 – Mô hình 1."],
 };
 
 const outro: OutroSlide = {
@@ -105,5 +106,20 @@ describe("năm khuôn còn lại", () => {
     render(<OutroSlideView slide={outro} />);
     expect(screen.getByRole("heading", { name: "Tuổi trẻ Chuyên Nguyễn Trãi" })).toBeInTheDocument();
     expect(screen.getAllByTestId("outro-stat")).toHaveLength(1);
+  });
+
+  // Chặn tái diễn: khuôn mô hình cũng dùng panel navy đổi bên như khuôn nội dung, nên
+  // gánh chung lỗi số trang không đổi bên theo panel (SlideChrome). Số trang và chú thích
+  // chân trang phải luôn cùng bên, ngược bên với panel ảnh.
+  it("khuôn mô hình: số trang và chú thích chân trang luôn cùng bên, ngược bên với panel ảnh", () => {
+    const { container: right } = render(<ModelSlideView slide={model} side="right" />);
+    expect((right.querySelector(".slide-stage") as HTMLElement).dataset.side).toBe("right");
+    expect(right.querySelector(".slide-num")).toHaveAttribute("data-align", "left");
+    expect(right.querySelector(".slide-foot")).toHaveAttribute("data-align", "left");
+
+    const { container: left } = render(<ModelSlideView slide={model} side="left" />);
+    expect((left.querySelector(".slide-stage") as HTMLElement).dataset.side).toBe("left");
+    expect(left.querySelector(".slide-num")).toHaveAttribute("data-align", "right");
+    expect(left.querySelector(".slide-foot")).toHaveAttribute("data-align", "right");
   });
 });

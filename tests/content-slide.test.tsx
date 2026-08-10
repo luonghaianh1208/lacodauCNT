@@ -130,4 +130,19 @@ describe("ContentSlideView", () => {
     expect(container.querySelectorAll("figure")).toHaveLength(5);
     expect(container.querySelector(".media-grid")).not.toBeNull();
   });
+
+  // Chặn tái diễn: số trang từng đè lên panel ảnh (side="right") hoặc lẫn màu với panel
+  // (side="left") vì không đổi bên theo panel như chú thích chân trang đã làm. Giờ cả hai
+  // phải luôn cùng bên, và bên đó luôn ngược với bên của panel ảnh.
+  it("số trang và chú thích chân trang luôn cùng bên, ngược bên với panel ảnh", () => {
+    const { container: right } = render(<ContentSlideView slide={slide} side="right" />);
+    expect((right.querySelector(".slide-stage") as HTMLElement).dataset.side).toBe("right");
+    expect(right.querySelector(".slide-num")).toHaveAttribute("data-align", "left");
+    expect(right.querySelector(".slide-foot")).toHaveAttribute("data-align", "left");
+
+    const { container: left } = render(<ContentSlideView slide={slide} side="left" />);
+    expect((left.querySelector(".slide-stage") as HTMLElement).dataset.side).toBe("left");
+    expect(left.querySelector(".slide-num")).toHaveAttribute("data-align", "right");
+    expect(left.querySelector(".slide-foot")).toHaveAttribute("data-align", "right");
+  });
 });

@@ -130,6 +130,31 @@
   text-shadow: 0 0.1cqw 0.45cqw rgba(3, 14, 28, 0.85);
 }
 
+/*
+ * Khuôn có panel ảnh (nội dung, mô hình) gắn `data-side` lên `.slide-stage` để lật panel.
+ * Số trang và chú thích chân trang thuộc CỘT CHỮ nên phải đi cùng nhau, luôn ở bên đối
+ * diện panel — nếu không, số trang sẽ đè lên panel navy (hoặc lẫn màu với panel do kế
+ * thừa `--chrome-sub` vốn chỉ đúng cho `.slide-brand` ở góc panel). Khoá cả hai luật dưới
+ * theo `.slide-stage[data-side]` (chỉ khớp khi ancestor thật sự gắn thuộc tính này) để
+ * khuôn không có panel (số liệu, phân mục — không gắn `data-side`) không bị ảnh hưởng,
+ * giữ nguyên số trang góc phải-trên như hiện tại.
+ */
+.slide-stage[data-side] .slide-num[data-align="left"] {
+  right: auto;
+  left: 4.6cqw;
+}
+.slide-stage[data-side] .slide-foot[data-align="right"] {
+  left: auto;
+  right: 3.4cqw;
+  text-align: right;
+}
+/* Cả hai luôn rơi vào cột chữ trên vùng giấy (không phải panel navy), nên tô màu cố định
+   như trên nền sáng — bất kể `data-on-dark` của khung (biến đó chỉ đúng cho slide-brand). */
+.slide-stage[data-side] .slide-num,
+.slide-stage[data-side] .slide-foot {
+  color: var(--muted);
+}
+
 /* Mỗi cụm từ tiếng Việt là một khối không được ngắt giữa chừng. */
 .ph {
   white-space: nowrap;
