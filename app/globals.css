@@ -122,12 +122,19 @@
   font-size: var(--fs-foot);
 }
 
-/* Chữ khung nằm trên ảnh thì phải có bóng, vì ảnh có thể sáng bất kỳ chỗ nào. */
+/*
+ * Chữ khung nằm trên ảnh thì phải có bóng, vì ảnh có thể sáng bất kỳ chỗ nào.
+ * Hai lớp bóng chứ không phải một: số trang ở góc phải-trên của trang phân mục hay rơi
+ * đúng vùng trần nhà/tường trắng, một lớp bóng nhạt không đủ tách chữ trắng khỏi nền
+ * trắng (slide 2, 5, 33 gần như không đọc được số trang).
+ */
 .slide-stage[data-over-photo="true"] .slide-brand strong,
 .slide-stage[data-over-photo="true"] .slide-brand span,
 .slide-stage[data-over-photo="true"] .slide-num {
   color: #fff;
-  text-shadow: 0 0.1cqw 0.45cqw rgba(3, 14, 28, 0.85);
+  text-shadow:
+    0 0.08cqw 0.3cqw rgba(3, 14, 28, 0.95),
+    0 0 0.85cqw rgba(3, 14, 28, 0.9);
 }
 
 /*
@@ -180,6 +187,16 @@
   width: 43cqw;
   align-content: start;
   gap: 1.5cqw;
+  /*
+   * BẮT BUỘC có minmax(0, 1fr). Cột ngầm của lưới mặc định là `auto`, mà `auto` lấy
+   * min-content của ô rộng nhất làm sàn — cụm `.ph` mang `white-space: nowrap` không
+   * ngắt được nên min-content của tiêu đề chính là bề rộng cả cụm. Thiếu dòng này, cột
+   * chữ phình quá 43cqw và KÉO THEO cả lead lẫn gạch đầu dòng: panel bên phải thì chữ
+   * màu --ink (#0b315d) trườn lên panel navy (#0b315d) rồi tàng hình (slide 10, 22, 24);
+   * panel bên trái thì cột neo theo mép phải nên phần phình chạy ra ngoài slide và bị
+   * `overflow: hidden` của .slide-shell cắt cụt (slide 9, 21, 23, 25).
+   */
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .content-media {
@@ -270,6 +287,28 @@
   border-top: 0.3cqw solid var(--red);
 }
 
+/*
+ * Panel HAI ảnh: hai khung 16:9 xếp dọc cao tổng cộng ~676px, gần kín 720px của slide, nên
+ * ảnh dâng lên tận đỉnh và cụm nhận diện (chữ trắng) rơi thẳng lên ảnh — vừa khó đọc vừa
+ * bôi bẩn ảnh (slide 7, 27). Chừa khoảng an toàn phía trên cho cụm nhận diện rồi chia đôi
+ * chiều cao còn lại, cho ảnh lấp đầy ô thay vì tự cao theo tỉ lệ — đúng cách băng ba ảnh
+ * của trang bìa đang làm.
+ */
+.content-media--duo {
+  align-content: stretch;
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  padding-block: 7.6cqw 2.4cqw;
+}
+.content-media--duo figure {
+  display: grid;
+  min-height: 0;
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+.content-media--duo figure > div {
+  min-height: 0;
+  aspect-ratio: auto;
+}
+
 .media-pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.3cqw; }
 .media-pair figure > div { overflow: hidden; aspect-ratio: 3 / 2; border-top: 0.3cqw solid var(--blue); }
 .media-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.3cqw; }
@@ -279,11 +318,17 @@
 /* Khuôn trang phân mục — panel ảnh tràn viền, chữ cái phần cỡ lớn. */
 .divider-stage { color: #fff; background: var(--navy); }
 .divider-bg { position: absolute; inset: 0; }
-/* Ảnh nền KHÔNG giảm opacity — chỉ một lớp veil, nếu không ảnh sẽ tối gấp đôi. */
+/*
+ * Ảnh nền KHÔNG giảm opacity — chỉ một lớp veil, nếu không ảnh sẽ tối gấp đôi.
+ * Sàn bên phải là 0.46 chứ không phải 0.16: ảnh trang phân mục toàn là ảnh hội nghị có
+ * băng rôn chữ lớn ("ĐẢNG CỘNG SẢN VIỆT NAM QUANG VINH MUÔN NĂM", "ĐẠI HỘI ĐẠI BIỂU"),
+ * với sàn 0.16 thì băng rôn đọc rõ như một tiêu đề thứ hai chọi với tiêu đề thật của
+ * slide (slide 2 rõ nhất). 0.46 vẫn thấy được cảnh và người, nhưng chữ trong ảnh chìm hẳn.
+ */
 .divider-veil {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(7, 26, 48, 0.92) 0%, rgba(7, 26, 48, 0.88) 40%, rgba(7, 26, 48, 0.38) 70%, rgba(7, 26, 48, 0.16) 100%);
+  background: linear-gradient(90deg, rgba(7, 26, 48, 0.94) 0%, rgba(7, 26, 48, 0.9) 42%, rgba(7, 26, 48, 0.62) 72%, rgba(7, 26, 48, 0.46) 100%);
 }
 .divider-wrap {
   position: absolute;
@@ -296,18 +341,27 @@
 .divider-part { display: flex; flex-direction: column; align-items: flex-start; gap: 0.6cqw; }
 .divider-part span { color: #e4eef8; font-size: 1.5cqw; font-weight: 800; letter-spacing: 0.28em; text-shadow: 0 0.1cqw 0.45cqw rgba(3, 14, 28, 0.7); }
 .divider-part b { color: var(--yellow); font-size: 11cqw; font-weight: 700; line-height: 0.8; text-shadow: 0 0.2cqw 0.9cqw rgba(3, 14, 28, 0.6); }
-.divider-wrap h1 { max-width: 62cqw; margin: 2.4cqw 0 0; font-size: 4.4cqw; font-weight: 700; line-height: 1.06; text-shadow: 0 0.12cqw 0.5cqw rgba(3, 14, 28, 0.55); }
+/* 66cqw chứ không phải 62cqw: cụm "THPT CHUYÊN NGUYỄN TRÃI" (slide 2) và
+   "TRONG NĂM HỌC 2025 – 2026" (slide 5) ở cỡ 4.4cqw rộng hơn 62cqw nên vẫn tràn ra ngoài
+   dù có max-width; nới vừa đủ để chữ nằm gọn mà tiêu đề vẫn giữ ba dòng như thiết kế. */
+.divider-wrap h1 { max-width: 66cqw; margin: 2.4cqw 0 0; font-size: 4.4cqw; font-weight: 700; line-height: 1.06; text-shadow: 0 0.12cqw 0.5cqw rgba(3, 14, 28, 0.55); }
 .divider-rule { width: 9cqw; height: 0.5cqw; margin: 2.4cqw 0 1.8cqw; border-radius: 99px; background: var(--red); }
 .divider-toc { max-width: 58cqw; margin: 0; color: #d4e4f2; font-size: 1.7cqw; line-height: 1.5; text-shadow: 0 0.1cqw 0.4cqw rgba(3, 14, 28, 0.6); }
 
 /* Khuôn bìa (slide 1) — bố cục riêng, không dùng chung .content-* hay .divider-*. */
 .coverpage-stage { color: #fff; background: var(--navy); }
 .coverpage-hero { position: absolute; inset: 0 0 36% 0; }
-/* Ảnh nền có chữ lớn đè trên màn LED nên veil vùng tiêu đề tăng đậm hơn mức thường (.97/.93 thay vì .96/.9). */
+/*
+ * Ảnh nền có chữ lớn đè trên màn LED nên veil vùng tiêu đề tăng đậm hơn mức thường.
+ * Chặn đậm phải kéo tới 56% — đúng mép phải của khối copy (`inset: 0 44% 36% 0`) — chứ
+ * không dừng ở 40%: dừng sớm thì dòng "CÔNG TRÌNH THANH NIÊN / NỀN TẢNG SỐ QUẢN LÝ CÔNG
+ * TÁC ĐOÀN KHỐI THPT" trên màn LED hiện rõ ngay sau tiêu đề và đọc lên như hai tiêu đề
+ * chồng nhau.
+ */
 .coverpage-veil {
   position: absolute;
   inset: 0 0 36% 0;
-  background: linear-gradient(95deg, rgba(7, 26, 48, 0.97) 0%, rgba(7, 26, 48, 0.93) 40%, rgba(7, 26, 48, 0.3) 72%, rgba(7, 26, 48, 0.15) 100%);
+  background: linear-gradient(95deg, rgba(7, 26, 48, 0.97) 0%, rgba(7, 26, 48, 0.95) 56%, rgba(7, 26, 48, 0.42) 78%, rgba(7, 26, 48, 0.18) 100%);
 }
 .coverpage-copy {
   position: absolute;
@@ -432,6 +486,12 @@
 .model-video img { object-fit: cover; }
 
 .model-shots { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.4cqw; }
+/*
+ * Ba ảnh phụ mà xếp hai cột thì thành hai hàng, ruột panel cao ~739px > 720px của slide:
+ * chú thích hàng dưới bị `overflow: hidden` cắt cụt và ảnh hàng trên dâng lên đè cụm nhận
+ * diện (slide 35, 36, 37). Ba ảnh thì xếp một hàng ba cột.
+ */
+.model-shots[data-count="3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .model-shots figure > div { overflow: hidden; aspect-ratio: 16 / 10; border-top: 0.3cqw solid var(--blue); }
 .model-shots img { object-fit: cover; object-position: top; }
 
@@ -459,10 +519,15 @@
 /* Khuôn kết luận (slide 38) — như bìa, không có slide-brand; tái dùng .slide-bar/.slide-num/.slide-foot dùng chung. */
 .outro-stage { color: #fff; background: var(--navy); }
 .outro-bg { position: absolute; inset: 0 0 34% 0; }
+/*
+ * Chặn trên là 0.8 chứ không phải 0.55: ảnh nền là phông sân khấu có dòng "TỔNG KẾT ...
+ * PHONG TRÀO THANH THIẾU NHI" cỡ lớn, ở mức 0.55 nó hiện rõ ngay sau dòng tiêu đề
+ * "TUỔI TRẺ CHUYÊN NGUYỄN TRÃI" và đọc lên như hai tiêu đề chồng nhau.
+ */
 .outro-veil {
   position: absolute;
   inset: 0 0 34% 0;
-  background: linear-gradient(180deg, rgba(7, 26, 48, 0.55) 0%, rgba(7, 26, 48, 0.78) 60%, rgba(11, 49, 93, 1) 100%);
+  background: linear-gradient(180deg, rgba(7, 26, 48, 0.8) 0%, rgba(7, 26, 48, 0.87) 60%, rgba(11, 49, 93, 1) 100%);
 }
 .outro-msg { position: absolute; z-index: 5; left: 4.6cqw; right: 4.6cqw; top: 9cqw; text-align: center; }
 .outro-kicker { margin: 0; color: var(--yellow); font-size: 1.4cqw; font-weight: 800; letter-spacing: 0.22em; }

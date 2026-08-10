@@ -62,8 +62,10 @@ export function ModelSlideView({
             </figcaption>
           ) : null}
         </figure>
+        {/* `data-count` để CSS xếp ba ảnh phụ thành một hàng ba cột; hai cột sẽ thành hai
+            hàng, làm ruột panel cao hơn slide và cắt mất chú thích hàng dưới. */}
         {shots.length > 0 ? (
-          <div className="model-shots">
+          <div className="model-shots" data-count={shots.length}>
             {shots.map((image) => (
               <figure key={image.src}>
                 <div>

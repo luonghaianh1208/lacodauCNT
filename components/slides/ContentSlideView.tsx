@@ -31,8 +31,10 @@ function MediaPanel({ images }: { images: readonly SlideImage[] }) {
     );
   }
   if (images.length === 2) {
+    // `--duo` chia đôi chiều cao và chừa chỗ cho cụm nhận diện; hai khung 16:9 xếp dọc
+    // theo tỉ lệ gốc sẽ cao gần kín slide và đẩy ảnh lên đè cụm nhận diện.
     return (
-      <div className="content-media">
+      <div className="content-media content-media--duo">
         <Figure image={images[0]} className="media-lead" />
         <Figure image={images[1]} className="media-lead" />
       </div>

@@ -139,7 +139,8 @@ export const SLIDES = [
         alt: "Tập huấn nâng cao nghiệp vụ công tác Đoàn năm học 2025 – 2026",
         caption: [
           "Tập huấn nâng cao nghiệp vụ",
-          "công tác Đoàn năm học 2025 – 2026",
+          "công tác Đoàn",
+          "năm học 2025 – 2026",
         ],
         role: "phu",
       },
@@ -206,7 +207,8 @@ export const SLIDES = [
         alt: "Tập huấn nâng cao nghiệp vụ công tác Đoàn năm học 2025 – 2026",
         caption: [
           "Tập huấn nâng cao nghiệp vụ",
-          "công tác Đoàn năm học 2025 – 2026",
+          "công tác Đoàn",
+          "năm học 2025 – 2026",
         ],
         role: "phu",
       },
@@ -354,9 +356,12 @@ export const SLIDES = [
   },
   {
     kind: "content",
+    // Mật độ "vua" chứ không phải "thoang" như số gạch đầu dòng gợi ý: trang này có tiêu
+    // đề ba dòng và đoạn dẫn bốn dòng, để "thoang" thì gạch đầu dòng cuối chạm chú thích
+    // chân trang.
     number: 8,
-    density: "thoang",
-    title: ["1.3. Giáo dục truyền thống", "cách mạng, lòng yêu nước"],
+    density: "vua",
+    title: ["1.3. Giáo dục", "truyền thống cách mạng,", "lòng yêu nước"],
     lead: [
       "Đoàn trường tổ chức nhiều",
       "hoạt động lịch sử – nghệ thuật",
@@ -406,7 +411,7 @@ export const SLIDES = [
     kind: "content",
     number: 9,
     density: "thoang",
-    title: ["1.4. Giáo dục đạo đức,", "lối sống văn hóa và pháp luật"],
+    title: ["1.4. Giáo dục đạo đức,", "lối sống văn hóa", "và pháp luật"],
     lead: [
       "Hơn 400 ĐVTN tham gia",
       "thi tìm hiểu pháp luật;",
@@ -440,7 +445,7 @@ export const SLIDES = [
       {
         src: "/media/slides/s9_img5.jpg",
         alt: "Thực hành phòng cháy, chữa cháy và cứu nạn cứu hộ",
-        caption: ["Thực hành phòng cháy, chữa cháy", "và cứu nạn cứu hộ"],
+        caption: ["Thực hành phòng cháy,", "chữa cháy", "và cứu nạn cứu hộ"],
         role: "phu",
       },
     ],
@@ -455,7 +460,7 @@ export const SLIDES = [
     number: 10,
     density: "thoang",
     continued: true,
-    title: ["1.4. Giáo dục đạo đức,", "lối sống văn hóa và pháp luật"],
+    title: ["1.4. Giáo dục đạo đức,", "lối sống văn hóa", "và pháp luật"],
     bullets: [
       [
         "Ngoại khóa PCCC,",
@@ -485,7 +490,7 @@ export const SLIDES = [
       {
         src: "/media/slides/s10_img5.jpg",
         alt: "Thực hành phòng cháy, chữa cháy và cứu nạn cứu hộ",
-        caption: ["Thực hành phòng cháy, chữa cháy", "và cứu nạn cứu hộ"],
+        caption: ["Thực hành phòng cháy,", "chữa cháy", "và cứu nạn cứu hộ"],
         role: "phu",
       },
       {
@@ -749,7 +754,7 @@ export const SLIDES = [
     kind: "content",
     number: 16,
     density: "thoang",
-    title: ["Chiến dịch Hoa phượng đỏ"],
+    title: ["Chiến dịch", "Hoa phượng đỏ"],
     lead: [
       "Chiến dịch thành lập",
       "05 đội hình,",
@@ -795,7 +800,7 @@ export const SLIDES = [
     number: 17,
     density: "thoang",
     continued: true,
-    title: ["Chiến dịch Hoa phượng đỏ"],
+    title: ["Chiến dịch", "Hoa phượng đỏ"],
     bullets: [
       ["Hơn 130 lượt TNV tham gia", "các hoạt động đền ơn đáp nghĩa."],
       ["Trao 05 suất quà", "cho thương binh,", "cựu chiến binh khó khăn."],
@@ -1001,7 +1006,7 @@ export const SLIDES = [
     kind: "content",
     number: 21,
     density: "thoang",
-    title: ["3.1. Đồng hành với thanh niên", "trong học tập"],
+    title: ["3.1. Đồng hành", "với thanh niên", "trong học tập"],
     lead: [
       "Đoàn trường tuyên dương",
       "29 \"Học sinh 3 tốt\",",
@@ -1045,7 +1050,7 @@ export const SLIDES = [
     number: 22,
     density: "thoang",
     continued: true,
-    title: ["3.1. Đồng hành với thanh niên", "trong học tập"],
+    title: ["3.1. Đồng hành", "với thanh niên", "trong học tập"],
     bullets: [
       ["14 suất Học bổng Sao Khuê,", "trị giá 10 triệu đồng/suất."],
       ["Hỗ trợ 15 triệu đồng", "cho học sinh khó khăn", "tham gia đội tuyển."],
@@ -1071,9 +1076,12 @@ export const SLIDES = [
   },
   {
     kind: "content",
+    // Mật độ "vua" chứ không phải "thoang" như số gạch đầu dòng gợi ý: trang này còn có
+    // tiêu đề dài và đoạn dẫn ba dòng, để "thoang" thì gạch đầu dòng cuối tụt xuống đè
+    // lên chú thích chân trang.
     number: 23,
-    density: "thoang",
-    title: ["3.2. Đồng hành với thanh niên", "khởi nghiệp, lập nghiệp"],
+    density: "vua",
+    title: ["3.2. Đồng hành", "với thanh niên", "khởi nghiệp, lập nghiệp"],
     lead: [
       "Học sinh được tiếp cận",
       "gần 90 gian tư vấn",
@@ -1137,7 +1145,7 @@ export const SLIDES = [
     kind: "content",
     number: 24,
     density: "thoang",
-    title: ["Đa dạng các loại hình", "hoạt động văn hóa, nghệ thuật"],
+    title: ["Đa dạng các loại hình", "hoạt động văn hóa,", "nghệ thuật"],
     lead: [
       "Hàng loạt sự kiện",
       "quy mô toàn trường",
@@ -1188,7 +1196,7 @@ export const SLIDES = [
     number: 25,
     density: "thoang",
     continued: true,
-    title: ["Đa dạng các loại hình", "hoạt động văn hóa, nghệ thuật"],
+    title: ["Đa dạng các loại hình", "hoạt động văn hóa,", "nghệ thuật"],
     bullets: [
       ["Chương trình chào Tết", "\"Phi mã khai xuân\"."],
       ["Cuộc thi gói bánh chưng", "\"Gói trọn vị nhà\"."],
@@ -1198,6 +1206,10 @@ export const SLIDES = [
         "và thể thao.",
       ],
     ],
+    // Bản gốc không có ảnh nào cho trang này (bộ ảnh trích từ PPTX không có file s25_*)
+    // nên panel navy trống trơn nửa slide — xem mục "còn tồn đọng" trong
+    // docs/superpowers/references/render-check/NOTES.md. Không tự lấy ảnh của trang khác
+    // sang: ứng viên duy nhất khớp chú thích (s24_img6) lại là ảnh có chú thích sai.
     images: [],
     footnote: [
       "Phần B.I – Mục 3.3.",
@@ -1415,7 +1427,8 @@ export const SLIDES = [
         alt: "Tập huấn nâng cao nghiệp vụ công tác Đoàn năm học 2025 – 2026",
         caption: [
           "Tập huấn nâng cao nghiệp vụ",
-          "công tác Đoàn năm học 2025 – 2026",
+          "công tác Đoàn",
+          "năm học 2025 – 2026",
         ],
         role: "phu",
       },

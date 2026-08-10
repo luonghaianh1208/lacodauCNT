@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 
 import { SlideCanvas } from "@/components/SlideCanvas";
 import { transitionKindFor, type MotionMode } from "@/lib/motion";
@@ -9,7 +9,7 @@ import {
   type PresentationState,
   type VideoCommand,
 } from "@/lib/presentation";
-import { slideAt } from "@/lib/slides";
+import { clampIndex, slideAt } from "@/lib/slides";
 import { usePresentationChannel } from "@/lib/usePresentationChannel";
 
 type ProjectorState = PresentationState & {
@@ -79,6 +79,38 @@ export function PresentationScreen() {
 
   const applyMotion = useCallback((mode: MotionMode) => {
     setMotion(mode);
+  }, []);
+
+  /**
+   * Mở thẳng một slide qua `?slide=N` (0-based) và, khi có thêm `?capture=1`, bỏ lớp che
+   * "SẴN SÀNG TRÌNH CHIẾU" rồi tắt chuyển động để chụp ảnh kiểm tra thị giác.
+   *
+   * Hai tham số TÁCH RỜI nhau có chủ đích: lớp che tồn tại để một cú nhấn của người dùng
+   * mở khoá quyền phát video kèm tiếng, nên không được tự bỏ chỉ vì có `?slide=` — người
+   * thuyết trình vẫn có thể mở thẳng một trang giữa bộ mà giữ nguyên quyền phát tiếng.
+   * Chỉ `capture=1` (dùng cho `scripts/render-check.mjs`) mới bỏ lớp che.
+   *
+   * Dự án xuất tĩnh (`output: "export"`) nên không có `searchParams` phía server; phải đọc
+   * `location.search` SAU khi mount, đúng cách `ControlDeck` đọc localStorage: đọc ngay
+   * trong lần render đầu sẽ lệch với HTML đã render sẵn lúc build (hydration).
+   */
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get("slide");
+    if (raw !== null) {
+      const parsed = Number.parseInt(raw, 10);
+      if (Number.isFinite(parsed)) {
+        // Kẹp về biên: `?slide=-5` ra trang đầu, `?slide=999` ra trang cuối.
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setView({ slideIndex: clampIndex(parsed), sequence: -1, direction: "forward" });
+      }
+    }
+    if (params.get("capture") === "1") {
+      // Chỉ dùng cho `scripts/render-check.mjs`: bỏ lớp che và tắt chuyển động để ảnh
+      // chụp ra đúng trạng thái nghỉ của slide.
+      setReady(true);
+      setMotion("off");
+    }
   }, []);
 
   usePresentationChannel({
