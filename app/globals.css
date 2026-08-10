@@ -138,10 +138,21 @@
  * theo `.slide-stage[data-side]` (chỉ khớp khi ancestor thật sự gắn thuộc tính này) để
  * khuôn không có panel (số liệu, phân mục — không gắn `data-side`) không bị ảnh hưởng,
  * giữ nguyên số trang góc phải-trên như hiện tại.
+ *
+ * QUAN TRỌNG — số trang phải neo vào mép NGOÀI của cột giấy (đối diện panel), KHÔNG PHẢI
+ * `left: 4.6cqw`: đó chính là toạ độ của `.slide-brand` (logo trường, x:[4.6, 8.2]cqw,
+ * y:[2.6, 6.2]cqw) — nếu đặt số trang ở đó thì `top: 3.1cqw` của nó rơi lọt vào vùng logo
+ * và (cùng z-index, sau brand trong JSX) vẽ đè lên logo. Panel rộng 48cqw nên mép ngoài
+ * cột giấy — khi panel ở bên phải — là `right: 50cqw` (biên panel + đệm 2cqw, lấy từ
+ * `03-so-lieu-mo-hinh.html`). Số trang vẫn ở TRÊN (không dời xuống dưới như mockup gốc
+ * từng làm cho trường hợp này) để không lấn vùng chú thích chân trang ở đáy.
+ * jsdom KHÔNG nạp file CSS này (xem `vitest.config.ts`) nên không có test nào kiểm được
+ * hình học thật (toạ độ, có đè lên logo/chân trang hay không) — việc xác minh trực quan
+ * thuộc về bước chụp ảnh headless ở Task 13, không phải bộ test ở đây.
  */
 .slide-stage[data-side] .slide-num[data-align="left"] {
-  right: auto;
-  left: 4.6cqw;
+  right: 50cqw;
+  left: auto;
 }
 .slide-stage[data-side] .slide-foot[data-align="right"] {
   left: auto;
