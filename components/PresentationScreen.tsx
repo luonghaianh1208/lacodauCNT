@@ -9,7 +9,7 @@ import {
   type PresentationState,
   type VideoCommand,
 } from "@/lib/presentation";
-import { clampIndex, SLIDES, type Slide } from "@/lib/slides";
+import { slideAt } from "@/lib/slides";
 import { usePresentationChannel } from "@/lib/usePresentationChannel";
 
 type ProjectorState = PresentationState & {
@@ -30,8 +30,7 @@ export function PresentationScreen() {
   const applyState = useCallback((incoming: PresentationState) => {
     // Chỉ slide mô hình có video mới cần khoá "video bị chặn"; dựa vào slide
     // SẮP hiện ra (incoming), không phải chỉ số cố định như bản demo 3 slide cũ.
-    // Ép kiểu về `Slide` — lý do xem chú thích tương tự trong ControlDeck.tsx.
-    const incomingSlide = SLIDES[clampIndex(incoming.slideIndex)] as Slide;
+    const incomingSlide = slideAt(incoming.slideIndex);
     const incomingHasVideo = incomingSlide.kind === "model" && Boolean(incomingSlide.videoSrc);
     if (!incomingHasVideo) {
       setVideoBlocked(false);
@@ -96,12 +95,13 @@ export function PresentationScreen() {
     request?.catch(() => undefined);
   };
 
-  const slide = SLIDES[clampIndex(view.slideIndex)];
+  const slide = slideAt(view.slideIndex);
 
   return (
-    <main className="presentation-page" data-motion={motion}>
+    <main className="presentation-page">
       <div
         className="projector-stage slide-live"
+        data-motion={motion}
         data-transition={transitionKindFor(slide)}
         style={{ "--dir": view.direction === "forward" ? "4cqw" : "-4cqw" } as CSSProperties}
         key={`${view.slideIndex}-${view.sequence}`}

@@ -103,15 +103,19 @@ describe("two-window presentation channel", () => {
     const control = render(<ControlDeck />);
     const projector = render(<PresentationScreen />);
 
-    const page = projector.container.querySelector(".presentation-page") as HTMLElement;
-    expect(page.dataset.motion).toBe("force");
+    // `data-motion` gắn trên `.projector-stage.slide-live` (cùng node với
+    // `data-transition`) — node này mang `key` theo slideIndex-sequence nên
+    // REMOUNT ngay sau khi bắt tay kênh lần đầu (STATE đồng bộ từ control).
+    // Không giữ tham chiếu DOM cũ qua remount — truy vấn lại mỗi lần kiểm tra.
+    const readMotion = () =>
+      (projector.container.querySelector(".projector-stage") as HTMLElement).dataset.motion;
+
+    await waitFor(() => expect(readMotion()).toBe("force"));
 
     // Bấm một lần: force → auto
     fireEvent.click(control.getByRole("button", { name: "Chế độ chuyển động" }));
 
-    await waitFor(() => {
-      expect(page.dataset.motion).toBe("auto");
-    });
+    await waitFor(() => expect(readMotion()).toBe("auto"));
 
     expect(window.localStorage.getItem("cnt-motion-mode")).toBe("auto");
   });

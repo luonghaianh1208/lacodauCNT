@@ -6,7 +6,7 @@ import { SlideCanvas } from "@/components/SlideCanvas";
 import { phrasesToText } from "@/lib/phrases";
 import { MOTION_STORAGE_KEY, readMotionMode, type MotionMode } from "@/lib/motion";
 import { type PresentationState, type VideoCommand } from "@/lib/presentation";
-import { clampIndex, SLIDES, type Slide } from "@/lib/slides";
+import { clampIndex, slideAt, SLIDES, type Slide } from "@/lib/slides";
 import { usePresentationChannel } from "@/lib/usePresentationChannel";
 
 const MOTION_LABELS: Record<MotionMode, string> = {
@@ -14,6 +14,29 @@ const MOTION_LABELS: Record<MotionMode, string> = {
   auto: "CHUYỂN ĐỘNG: THEO MÁY",
   off: "CHUYỂN ĐỘNG: TẮT",
 };
+
+/**
+ * Ghi chú thuyết trình: ưu tiên `note`; nếu thiếu, rơi về `lead` — mọi khuôn có
+ * trường này (content/kpi/model/outro), không riêng khuôn nội dung. 3/4 slide
+ * mô hình trong data.ts không có `note` nên nếu chỉ rơi về `lead` cho khuôn
+ * "content" thì ba slide đó mất trắng ghi chú dù `lead` sẵn nội dung hữu ích.
+ * Không có cả hai mới hiện dấu gạch ngang.
+ */
+function presenterNote(slide: Slide): string {
+  if (slide.note) {
+    return phrasesToText(slide.note);
+  }
+  if (
+    (slide.kind === "content" ||
+      slide.kind === "kpi" ||
+      slide.kind === "model" ||
+      slide.kind === "outro") &&
+    slide.lead
+  ) {
+    return phrasesToText(slide.lead);
+  }
+  return "—";
+}
 
 function formatClock(date: Date) {
   return new Intl.DateTimeFormat("vi-VN", {
@@ -77,11 +100,7 @@ export function ControlDeck() {
     postMotion(next);
   };
 
-  // Ép kiểu về `Slide` (kiểu union trừu tượng của Task 7): `SLIDES` là tuple
-  // `as const` nên chỉ số số học (không phải literal) trả về hợp của 38 kiểu
-  // object chính xác — trường tuỳ chọn thiếu hẳn khoá ở một số phần tử khiến
-  // TS không cho truy cập `note`/`lead`/`videoSrc` dù mọi phần tử đều khớp `Slide`.
-  const slide = SLIDES[state.slideIndex] as Slide;
+  const slide = slideAt(state.slideIndex);
   const videoEnabled = slide.kind === "model" && Boolean(slide.videoSrc);
 
   useEffect(() => {
@@ -173,13 +192,7 @@ export function ControlDeck() {
           <div className="notes-icon" aria-hidden="true">✎</div>
           <div>
             <h2>GHI CHÚ THUYẾT TRÌNH</h2>
-            <p>
-              {slide.note
-                ? phrasesToText(slide.note)
-                : slide.kind === "content" && slide.lead
-                  ? phrasesToText(slide.lead)
-                  : "—"}
-            </p>
+            <p>{presenterNote(slide)}</p>
           </div>
         </section>
       </div>

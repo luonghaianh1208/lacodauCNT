@@ -11,6 +11,9 @@ const kpiIndex = SLIDES.findIndex((slide) => slide.kind === "kpi");
 const modelWithVideoIndex = SLIDES.findIndex(
   (slide: Slide) => slide.kind === "model" && Boolean(slide.videoSrc),
 );
+const modelWithoutNoteIndex = SLIDES.findIndex(
+  (slide: Slide) => slide.kind === "model" && !slide.note,
+);
 
 describe("SlideCanvas", () => {
   it("renders the approved cover copy, logos, and three gallery captions", () => {
@@ -79,6 +82,23 @@ describe("ControlDeck", () => {
     expect(screen.getByText(`SLIDE 3 / ${SLIDES.length}`)).toBeInTheDocument();
     const notesRegion = screen.getByRole("region", { name: "Ghi chú thuyết trình" });
     expect(within(notesRegion).getByText(/Đoàn trường quản lý 37 chi đoàn/)).toBeInTheDocument();
+  });
+
+  it("falls back to the lead paragraph on a model slide with no presenter note", () => {
+    render(<ControlDeck />);
+
+    // 3/4 slide mô hình trong data.ts không có `note` — ghi chú thuyết trình
+    // phải rơi về `lead` của chính slide đó (không riêng khuôn "content"),
+    // và KHÔNG được hiện dấu gạch ngang dù đây là khuôn "model".
+    for (let i = 0; i < modelWithoutNoteIndex; i += 1) {
+      fireEvent.click(screen.getByRole("button", { name: "Tiếp" }));
+    }
+
+    const notesRegion = screen.getByRole("region", { name: "Ghi chú thuyết trình" });
+    expect(
+      within(notesRegion).getByText(/WebApp số hóa toàn bộ quy trình/),
+    ).toBeInTheDocument();
+    expect(within(notesRegion).queryByText("—")).not.toBeInTheDocument();
   });
 
   it("navigates to the model slide with video and enables video actions", () => {
