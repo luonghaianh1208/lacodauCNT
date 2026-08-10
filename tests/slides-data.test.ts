@@ -73,7 +73,8 @@ describe("dữ liệu 38 slide", () => {
 
     for (const slide of SLIDES) {
       const images = "images" in slide ? slide.images : [];
-      for (const image of images) {
+      const background = "background" in slide && slide.background ? [slide.background] : [];
+      for (const image of [...images, ...background]) {
         if (image.role !== "nen") continue;
         const file = image.src.split("/").pop() as string;
         expect(

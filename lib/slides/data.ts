@@ -570,7 +570,7 @@ export const SLIDES = [
       "các đối tượng khó khăn.",
     ],
     bullets: [
-      ["60.700.000 đồng hỗ trợ", "nạn nhân chất độc", "da cam/dioxin."],
+      ["60.700.000 đồng hỗ trợ", "nạn nhân chất độc da cam/dioxin."],
       ["26.661.000 đồng và 53 suất quà", "hỗ trợ học sinh vùng lũ."],
       ["14.200.000 đồng từ chương trình", "\"Đông ấm vùng cao\"."],
     ],
@@ -1535,13 +1535,8 @@ export const SLIDES = [
     kind: "kpi",
     number: 32,
     density: "thoang",
-    title: ["6. Kết quả thực hiện", "chỉ tiêu năm học (tiếp)"],
-    lead: [
-      "Nhóm chỉ tiêu đạt kế hoạch",
-      "tập trung vào tập huấn cán bộ,",
-      "nâng cao năng lực số",
-      "và hội nhập quốc tế.",
-    ],
+    title: ["6. Kết quả thực hiện", "chỉ tiêu năm học"],
+    continued: true,
     headline: "100%",
     headlineLabel: ["CÁN BỘ ĐOÀN ĐƯỢC", "HỌC TẬP, TẬP HUẤN"],
     metrics: [

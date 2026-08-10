@@ -61,10 +61,12 @@ export type KpiMetric = {
 export type KpiSlide = BaseSlide & {
   kind: "kpi";
   title: Phrases;
-  lead: Phrases;
+  lead?: Phrases;
   headline: string;
   headlineLabel: Phrases;
   metrics: readonly KpiMetric[];
+  /** Trang thứ hai của một mục trải 2 trang: bỏ `lead`, tiêu đề thêm "(tiếp)". */
+  continued?: boolean;
 };
 
 export type ModelSlide = BaseSlide & {
