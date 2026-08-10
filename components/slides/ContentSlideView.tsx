@@ -52,7 +52,7 @@ function MediaPanel({ images }: { images: readonly SlideImage[] }) {
   return (
     <div className="content-media">
       <div className="media-grid">
-        {images.slice(0, 4).map((image) => (
+        {images.map((image) => (
           <Figure key={image.src} image={image} />
         ))}
       </div>

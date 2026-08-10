@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { ContentSlideView } from "@/components/slides/ContentSlideView";
-import type { ContentSlide } from "@/lib/slides/types";
+import type { ContentSlide, SlideImage } from "@/lib/slides/types";
 
 const slide: ContentSlide = {
   kind: "content",
@@ -21,6 +21,16 @@ const slide: ContentSlide = {
   ],
   footnote: ["Phần B.I – Mục 1.3."],
 };
+
+/** Sinh N ảnh giả để dựng fixture cho từng nhánh bố trí panel. */
+function makeImages(count: number): SlideImage[] {
+  return Array.from({ length: count }, (_, index) => ({
+    src: `/media/slides/fake-${index}.jpg`,
+    alt: `Ảnh ${index}`,
+    caption: [`Ảnh ${index}`] as const,
+    role: "phu" as const,
+  }));
+}
 
 describe("ContentSlideView", () => {
   it("render tiêu đề, dòng khái quát, đủ gạch đầu dòng và đủ ảnh", () => {
@@ -50,5 +60,62 @@ describe("ContentSlideView", () => {
 
     expect(screen.getByRole("heading", { name: /\(tiếp\)$/ })).toBeInTheDocument();
     expect(screen.queryByText(/Đoàn trường tổ chức/)).not.toBeInTheDocument();
+  });
+
+  it("0 ảnh: không render figure nào nhưng panel navy vẫn còn", () => {
+    const { container } = render(
+      <ContentSlideView slide={{ ...slide, images: [] }} side="right" />,
+    );
+
+    expect(container.querySelectorAll("figure")).toHaveLength(0);
+    expect(container.querySelector(".content-media")).not.toBeNull();
+    expect(container.querySelector(".media-solo")).toBeNull();
+    expect(container.querySelector(".media-pair")).toBeNull();
+    expect(container.querySelector(".media-grid")).toBeNull();
+  });
+
+  it("1 ảnh: ảnh tràn kín qua class media-solo", () => {
+    const { container } = render(
+      <ContentSlideView slide={{ ...slide, images: makeImages(1) }} side="right" />,
+    );
+
+    expect(container.querySelectorAll("figure")).toHaveLength(1);
+    expect(container.querySelector(".media-solo")).not.toBeNull();
+    expect(container.querySelector(".media-lead")).toBeNull();
+    expect(container.querySelector(".media-pair")).toBeNull();
+    expect(container.querySelector(".media-grid")).toBeNull();
+  });
+
+  it("2 ảnh: xếp dọc qua hai figure media-lead", () => {
+    const { container } = render(
+      <ContentSlideView slide={{ ...slide, images: makeImages(2) }} side="right" />,
+    );
+
+    expect(container.querySelectorAll("figure")).toHaveLength(2);
+    expect(container.querySelectorAll(".media-lead")).toHaveLength(2);
+    expect(container.querySelector(".media-solo")).toBeNull();
+    expect(container.querySelector(".media-pair")).toBeNull();
+    expect(container.querySelector(".media-grid")).toBeNull();
+  });
+
+  it("4 ảnh trở lên: lưới 2 cột qua class media-grid", () => {
+    const { container } = render(
+      <ContentSlideView slide={{ ...slide, images: makeImages(4) }} side="right" />,
+    );
+
+    expect(container.querySelectorAll("figure")).toHaveLength(4);
+    expect(container.querySelector(".media-grid")).not.toBeNull();
+    expect(container.querySelector(".media-solo")).toBeNull();
+    expect(container.querySelector(".media-lead")).toBeNull();
+    expect(container.querySelector(".media-pair")).toBeNull();
+  });
+
+  it("5 ảnh: render đủ cả 5, không âm thầm cắt bớt", () => {
+    const { container } = render(
+      <ContentSlideView slide={{ ...slide, images: makeImages(5) }} side="right" />,
+    );
+
+    expect(container.querySelectorAll("figure")).toHaveLength(5);
+    expect(container.querySelector(".media-grid")).not.toBeNull();
   });
 });
