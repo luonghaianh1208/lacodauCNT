@@ -1569,15 +1569,35 @@ button {
 .slide-live[data-transition="slide"] { animation: cnt-tr-slide 520ms cubic-bezier(0.22, 0.85, 0.26, 1) both; }
 .slide-live[data-transition="depth"] { animation: cnt-tr-depth 620ms cubic-bezier(0.22, 0.85, 0.26, 1) both; }
 .slide-live[data-transition="curtain"] { animation: cnt-tr-fade 440ms ease both; }
-.slide-live[data-transition="curtain"] .content-media { animation: cnt-tr-curtain 560ms cubic-bezier(0.3, 0.9, 0.25, 1) both; }
-.slide-stage[data-side="left"] .content-media { --from: -100%; }
+/* Nhắm cả .content-media (khuôn nội dung) LẪN .model-media (khuôn mô hình) — cả
+   hai đều rơi vào nhánh curtain (xem transitionKindFor), nhưng .model-media là
+   class riêng của ModelSlideView nên nếu chỉ chọn .content-media thì 4 slide mô
+   hình mất hẳn hiệu ứng rèm, chỉ còn fade nguyên khối. */
+.slide-live[data-transition="curtain"] .content-media,
+.slide-live[data-transition="curtain"] .model-media {
+  animation: cnt-tr-curtain 560ms cubic-bezier(0.3, 0.9, 0.25, 1) both;
+}
+.slide-stage[data-side="left"] .content-media,
+.slide-stage[data-side="left"] .model-media {
+  --from: -100%;
+}
 
 /* ===== Công tắc chuyển động =====
    Mặc định BẬT vì đây là công cụ chạy trên máy người thuyết trình; nhiều máy tắt
    hiệu ứng Windows để chạy nhẹ chứ không phải vì nhạy cảm tiền đình. Ai cần thì
    chuyển về "auto" để tôn trọng thiết lập hệ điều hành. */
 @media (prefers-reduced-motion: reduce) {
-  [data-motion="auto"] * { animation-duration: 1ms !important; animation-delay: 0ms !important; }
+  [data-motion="auto"],
+  [data-motion="auto"] * {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+  }
 }
 
-[data-motion="off"] * { animation: none !important; }
+/* Không chỉ hậu duệ (dấu cách trước "*" bỏ sót chính node mang data-motion) —
+   Task 12 gắn data-motion và data-transition lên CÙNG một node khung bọc, nên
+   animation chuyển cảnh đặt trực tiếp trên node đó phải tắt được luôn. */
+[data-motion="off"],
+[data-motion="off"] * {
+  animation: none !important;
+}
