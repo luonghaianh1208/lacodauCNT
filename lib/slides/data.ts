@@ -55,8 +55,8 @@ export const SLIDES = [
       },
       {
         src: "/media/slides/s1_img6.png",
-        alt: "WebApp Nền nếp CNT",
-        caption: ["WebApp \"Nền nếp CNT\""],
+        alt: "Giao diện WebApp Nền nếp CNT",
+        caption: ["Giao diện WebApp", "\"Nền nếp CNT\""],
         role: "phu",
       },
     ],
@@ -77,8 +77,12 @@ export const SLIDES = [
     ],
     background: {
       src: "/media/slides/s2_img3.jpg",
-      alt: "Đại hội đại biểu Đoàn trường THPT chuyên Nguyễn Trãi",
-      caption: ["Đại hội đại biểu Đoàn trường", "THPT chuyên Nguyễn Trãi"],
+      alt: "Tặng hoa chúc mừng BCH Đoàn trường tại Đại hội đại biểu nhiệm kỳ 2025 – 2026",
+      caption: [
+        "Tặng hoa chúc mừng BCH Đoàn trường",
+        "tại Đại hội đại biểu",
+        "nhiệm kỳ 2025 – 2026",
+      ],
       role: "nen",
     },
     footnote: ["Phần A – Sơ lược đặc điểm,", "tình hình Đoàn trường."],
@@ -113,20 +117,30 @@ export const SLIDES = [
     images: [
       {
         src: "/media/slides/s3_img3.jpg",
-        alt: "Ban Chấp hành Đoàn trường tại Đại hội đại biểu",
-        caption: ["Ban Chấp hành Đoàn trường", "tại Đại hội đại biểu"],
+        alt: "Tặng hoa chúc mừng BCH Đoàn trường tại Đại hội đại biểu nhiệm kỳ 2025 – 2026",
+        caption: [
+          "Tặng hoa chúc mừng BCH Đoàn trường",
+          "tại Đại hội đại biểu",
+          "nhiệm kỳ 2025 – 2026",
+        ],
         role: "chinh",
       },
       {
         src: "/media/slides/s3_img4.jpg",
-        alt: "Sơ đồ tổ chức Đoàn trường",
-        caption: ["Sơ đồ tổ chức Đoàn trường"],
+        alt: "Hội nghị tập huấn nghiệp vụ công tác Đoàn cho cán bộ chi đoàn",
+        caption: [
+          "Hội nghị tập huấn nghiệp vụ",
+          "công tác Đoàn cho cán bộ chi đoàn",
+        ],
         role: "phu",
       },
       {
         src: "/media/slides/s3_img5.jpg",
-        alt: "Tập thể học sinh toàn trường",
-        caption: ["Tập thể học sinh toàn trường"],
+        alt: "Tập huấn nâng cao nghiệp vụ công tác Đoàn năm học 2025 – 2026",
+        caption: [
+          "Tập huấn nâng cao nghiệp vụ",
+          "công tác Đoàn năm học 2025 – 2026",
+        ],
         role: "phu",
       },
     ],
@@ -170,20 +184,30 @@ export const SLIDES = [
     images: [
       {
         src: "/media/slides/s4_img3.jpg",
-        alt: "Họp Ban Chấp hành Đoàn trường",
-        caption: ["Họp Ban Chấp hành", "Đoàn trường"],
+        alt: "Tặng hoa chúc mừng BCH Đoàn trường tại Đại hội đại biểu nhiệm kỳ 2025 – 2026",
+        caption: [
+          "Tặng hoa chúc mừng BCH Đoàn trường",
+          "tại Đại hội đại biểu",
+          "nhiệm kỳ 2025 – 2026",
+        ],
         role: "chinh",
       },
       {
         src: "/media/slides/s4_img4.jpg",
-        alt: "Triển khai kế hoạch công tác Đoàn",
-        caption: ["Triển khai kế hoạch", "công tác Đoàn"],
+        alt: "Hội nghị tập huấn nghiệp vụ công tác Đoàn cho cán bộ chi đoàn",
+        caption: [
+          "Hội nghị tập huấn nghiệp vụ",
+          "công tác Đoàn cho cán bộ chi đoàn",
+        ],
         role: "phu",
       },
       {
         src: "/media/slides/s4_img5.jpg",
-        alt: "Hoạt động trong điều kiện cơ sở vật chất thực tế",
-        caption: ["Hoạt động trong điều kiện", "cơ sở vật chất thực tế"],
+        alt: "Tập huấn nâng cao nghiệp vụ công tác Đoàn năm học 2025 – 2026",
+        caption: [
+          "Tập huấn nâng cao nghiệp vụ",
+          "công tác Đoàn năm học 2025 – 2026",
+        ],
         role: "phu",
       },
     ],
@@ -264,8 +288,8 @@ export const SLIDES = [
       },
       {
         src: "/media/slides/s6_img4.jpg",
-        alt: "Phát thanh học đường",
-        caption: ["Phát thanh học đường"],
+        alt: "Đoàn viên dự buổi học tập, quán triệt nghị quyết",
+        caption: ["Đoàn viên dự buổi học tập,", "quán triệt nghị quyết"],
         role: "phu",
       },
       {
@@ -317,8 +341,8 @@ export const SLIDES = [
       },
       {
         src: "/media/slides/s7_img4.jpg",
-        alt: "Chương trình Khi tôi 18",
-        caption: ["Chương trình \"Khi tôi 18\""],
+        alt: "Đoàn viên dự buổi học tập, quán triệt nghị quyết",
+        caption: ["Đoàn viên dự buổi học tập,", "quán triệt nghị quyết"],
         role: "phu",
       },
     ],
@@ -409,14 +433,14 @@ export const SLIDES = [
       },
       {
         src: "/media/slides/s9_img4.jpg",
-        alt: "Thực hành phòng cháy, chữa cháy và cứu nạn cứu hộ",
-        caption: ["Thực hành phòng cháy, chữa cháy", "và cứu nạn cứu hộ"],
+        alt: "Ngoại khóa hướng dẫn kỹ năng lái xe gắn máy an toàn",
+        caption: ["Ngoại khóa hướng dẫn kỹ năng", "lái xe gắn máy an toàn"],
         role: "phu",
       },
       {
         src: "/media/slides/s9_img5.jpg",
-        alt: "Hướng dẫn kỹ năng lái xe an toàn",
-        caption: ["Hướng dẫn kỹ năng", "lái xe an toàn"],
+        alt: "Thực hành phòng cháy, chữa cháy và cứu nạn cứu hộ",
+        caption: ["Thực hành phòng cháy, chữa cháy", "và cứu nạn cứu hộ"],
         role: "phu",
       },
     ],
@@ -448,8 +472,8 @@ export const SLIDES = [
     images: [
       {
         src: "/media/slides/s10_img3.jpg",
-        alt: "Thực hành phòng cháy, chữa cháy và cứu nạn cứu hộ",
-        caption: ["Thực hành phòng cháy, chữa cháy", "và cứu nạn cứu hộ"],
+        alt: "Ngoại khóa hướng dẫn kỹ năng lái xe gắn máy an toàn",
+        caption: ["Ngoại khóa hướng dẫn kỹ năng", "lái xe gắn máy an toàn"],
         role: "chinh",
       },
       {
@@ -460,8 +484,8 @@ export const SLIDES = [
       },
       {
         src: "/media/slides/s10_img5.jpg",
-        alt: "Hướng dẫn kỹ năng lái xe an toàn",
-        caption: ["Hướng dẫn kỹ năng", "lái xe an toàn"],
+        alt: "Thực hành phòng cháy, chữa cháy và cứu nạn cứu hộ",
+        caption: ["Thực hành phòng cháy, chữa cháy", "và cứu nạn cứu hộ"],
         role: "phu",
       },
       {
@@ -503,26 +527,26 @@ export const SLIDES = [
     images: [
       {
         src: "/media/slides/s11_img3.jpg",
-        alt: "Đội hình tình nguyện áo xanh của Đoàn trường",
-        caption: ["Đội hình tình nguyện", "áo xanh của Đoàn trường"],
+        alt: "Đoàn viên thanh niên trao quà tại gia đình chính sách",
+        caption: ["Đoàn viên thanh niên trao quà", "tại gia đình chính sách"],
         role: "chinh",
       },
       {
         src: "/media/slides/s11_img4.jpg",
-        alt: "Đội hình tình nguyện tại địa bàn dân cư",
-        caption: ["Đội hình tình nguyện", "tại địa bàn dân cư"],
+        alt: "Tình nguyện viên hỗ trợ người cao tuổi làm thủ tục",
+        caption: ["Tình nguyện viên hỗ trợ", "người cao tuổi làm thủ tục"],
         role: "phu",
       },
       {
         src: "/media/slides/s11_img5.jpg",
-        alt: "Đội hình tình nguyện hỗ trợ hoạt động nhà trường",
-        caption: ["Đội hình tình nguyện", "hỗ trợ hoạt động nhà trường"],
+        alt: "Hướng dẫn người dân sử dụng điện thoại thông minh",
+        caption: ["Hướng dẫn người dân", "sử dụng điện thoại thông minh"],
         role: "phu",
       },
       {
         src: "/media/slides/s11_img6.jpg",
-        alt: "Đội hình tình nguyện trong màu áo xanh thanh niên",
-        caption: ["Đội hình tình nguyện", "trong màu áo xanh thanh niên"],
+        alt: "Đoàn viên thanh niên chụp ảnh chung trước sân trường",
+        caption: ["Đoàn viên thanh niên", "chụp ảnh chung trước sân trường"],
         role: "phu",
       },
     ],
@@ -559,8 +583,12 @@ export const SLIDES = [
       },
       {
         src: "/media/slides/s12_img4.jpg",
-        alt: "Thăm mái ấm Tâm An tại Thái Nguyên",
-        caption: ["Thăm mái ấm Tâm An", "tại Thái Nguyên"],
+        alt: "Trao tặng hiện vật trị giá 25 triệu đồng cho Trung tâm Bảo trợ xã hội Hải Phòng",
+        caption: [
+          "Trao tặng hiện vật trị giá",
+          "25 triệu đồng cho Trung tâm",
+          "Bảo trợ xã hội Hải Phòng",
+        ],
         role: "phu",
       },
       {
@@ -599,20 +627,24 @@ export const SLIDES = [
       },
       {
         src: "/media/slides/s13_img4.jpg",
-        alt: "Thăm và trao quà tại mái ấm",
-        caption: ["Thăm và trao quà tại mái ấm"],
+        alt: "Đoàn viên thanh niên trao quà tại gia đình chính sách",
+        caption: ["Đoàn viên thanh niên trao quà", "tại gia đình chính sách"],
         role: "phu",
       },
       {
         src: "/media/slides/s13_img5.jpg",
-        alt: "Trao biển hỗ trợ trên sân khấu sự kiện",
-        caption: ["Trao biển hỗ trợ", "trên sân khấu sự kiện"],
+        alt: "Tình nguyện viên hỗ trợ người cao tuổi làm thủ tục",
+        caption: ["Tình nguyện viên hỗ trợ", "người cao tuổi làm thủ tục"],
         role: "phu",
       },
       {
         src: "/media/slides/s13_img6.jpg",
-        alt: "Thăm mái ấm Tâm An tại Thái Nguyên",
-        caption: ["Thăm mái ấm Tâm An", "tại Thái Nguyên"],
+        alt: "Trao tặng hiện vật trị giá 25 triệu đồng cho Trung tâm Bảo trợ xã hội Hải Phòng",
+        caption: [
+          "Trao tặng hiện vật trị giá",
+          "25 triệu đồng cho Trung tâm",
+          "Bảo trợ xã hội Hải Phòng",
+        ],
         role: "phu",
       },
     ],
@@ -690,8 +722,8 @@ export const SLIDES = [
     images: [
       {
         src: "/media/slides/s15_img3.jpg",
-        alt: "Tình nguyện viên hướng dẫn thí sinh",
-        caption: ["Tình nguyện viên", "hướng dẫn thí sinh"],
+        alt: "Đoàn viên thanh niên chụp ảnh chung trước sân trường",
+        caption: ["Đoàn viên thanh niên", "chụp ảnh chung trước sân trường"],
         role: "chinh",
       },
       {
@@ -735,20 +767,20 @@ export const SLIDES = [
     images: [
       {
         src: "/media/slides/s16_img3.jpg",
-        alt: "Lớp học tiếng Anh miễn phí cho học sinh tiểu học",
-        caption: ["Lớp học tiếng Anh miễn phí", "cho học sinh tiểu học"],
+        alt: "Poster dự án The unsaid của CLB Tiếng Anh Nguyễn Trãi",
+        caption: ["Poster dự án \"The unsaid\"", "của CLB Tiếng Anh Nguyễn Trãi"],
         role: "chinh",
       },
       {
         src: "/media/slides/s16_img4.jpg",
-        alt: "Hỗ trợ người dân sử dụng dịch vụ công",
-        caption: ["Hỗ trợ người dân", "sử dụng dịch vụ công"],
+        alt: "Đoàn viên thanh niên trao quà tại gia đình chính sách",
+        caption: ["Đoàn viên thanh niên trao quà", "tại gia đình chính sách"],
         role: "phu",
       },
       {
         src: "/media/slides/s16_img5.jpg",
-        alt: "Bữa cơm nghĩa tình – Gắn kết các thế hệ",
-        caption: ["Bữa cơm nghĩa tình", "– Gắn kết các thế hệ"],
+        alt: "Hướng dẫn người dân sử dụng điện thoại thông minh",
+        caption: ["Hướng dẫn người dân", "sử dụng điện thoại thông minh"],
         role: "phu",
       },
     ],
@@ -778,14 +810,14 @@ export const SLIDES = [
       },
       {
         src: "/media/slides/s17_img4.jpg",
-        alt: "Bữa cơm nghĩa tình – Gắn kết các thế hệ",
-        caption: ["Bữa cơm nghĩa tình", "– Gắn kết các thế hệ"],
+        alt: "Tình nguyện viên hỗ trợ người cao tuổi làm thủ tục",
+        caption: ["Tình nguyện viên hỗ trợ", "người cao tuổi làm thủ tục"],
         role: "phu",
       },
       {
         src: "/media/slides/s17_img5.jpg",
-        alt: "Trao quà cho thương binh, cựu chiến binh khó khăn",
-        caption: ["Trao quà cho thương binh,", "cựu chiến binh khó khăn"],
+        alt: "Đoàn viên thanh niên trao quà tại gia đình chính sách",
+        caption: ["Đoàn viên thanh niên trao quà", "tại gia đình chính sách"],
         role: "phu",
       },
     ],
@@ -822,8 +854,12 @@ export const SLIDES = [
     images: [
       {
         src: "/media/slides/s18_img3.jpg",
-        alt: "Đội dự án nhận giải chuyển đổi số – chuyển đổi xanh",
-        caption: ["Đội dự án nhận giải", "chuyển đổi số – chuyển đổi xanh"],
+        alt: "Trao giải chung kết cuộc thi Thanh niên Hải Phòng với chuyển đổi số, chuyển đổi xanh",
+        caption: [
+          "Trao giải chung kết cuộc thi",
+          "Thanh niên Hải Phòng với",
+          "chuyển đổi số, chuyển đổi xanh",
+        ],
         role: "chinh",
       },
       {
@@ -840,8 +876,8 @@ export const SLIDES = [
       },
       {
         src: "/media/slides/s18_img6.jpg",
-        alt: "Đội dự án nhận giải sản phẩm sáng tạo",
-        caption: ["Đội dự án nhận giải", "sản phẩm sáng tạo"],
+        alt: "Học sinh nhận giấy chứng nhận cuộc thi khoa học, công nghệ",
+        caption: ["Học sinh nhận giấy chứng nhận", "cuộc thi khoa học, công nghệ"],
         role: "phu",
       },
     ],
@@ -890,14 +926,18 @@ export const SLIDES = [
       },
       {
         src: "/media/slides/s19_img5.jpg",
-        alt: "Sản phẩm tranh 3D trong Người gieo chữ",
-        caption: ["Sản phẩm tranh 3D", "trong \"Người gieo chữ\""],
+        alt: "Học sinh nhận giấy chứng nhận cuộc thi khoa học, công nghệ",
+        caption: ["Học sinh nhận giấy chứng nhận", "cuộc thi khoa học, công nghệ"],
         role: "phu",
       },
       {
         src: "/media/slides/s19_img6.jpg",
-        alt: "Hậu trường làm phim ngắn về thầy cô và mái trường",
-        caption: ["Hậu trường làm phim ngắn", "về thầy cô và mái trường"],
+        alt: "Trao giải chung kết cuộc thi Thanh niên Hải Phòng với chuyển đổi số, chuyển đổi xanh",
+        caption: [
+          "Trao giải chung kết cuộc thi",
+          "Thanh niên Hải Phòng với",
+          "chuyển đổi số, chuyển đổi xanh",
+        ],
         role: "phu",
       },
     ],
@@ -1206,8 +1246,8 @@ export const SLIDES = [
       },
       {
         src: "/media/slides/s26_img5.jpg",
-        alt: "Sinh hoạt câu lạc bộ của học sinh",
-        caption: ["Sinh hoạt câu lạc bộ", "của học sinh"],
+        alt: "Chương trình đối thoại CNT's Open Talk",
+        caption: ["Chương trình đối thoại", "\"CNT's Open Talk\""],
         role: "phu",
       },
     ],
@@ -1236,8 +1276,8 @@ export const SLIDES = [
     images: [
       {
         src: "/media/slides/s27_img3.jpg",
-        alt: "Sinh hoạt câu lạc bộ của học sinh",
-        caption: ["Sinh hoạt câu lạc bộ", "của học sinh"],
+        alt: "Chương trình đối thoại CNT's Open Talk",
+        caption: ["Chương trình đối thoại", "\"CNT's Open Talk\""],
         role: "chinh",
       },
       {
@@ -1302,8 +1342,8 @@ export const SLIDES = [
       },
       {
         src: "/media/slides/s28_img5.jpg",
-        alt: "Workshop ngôn ngữ và văn hóa quốc tế",
-        caption: ["Workshop ngôn ngữ", "và văn hóa quốc tế"],
+        alt: "Poster dự án The unsaid của CLB Tiếng Anh Nguyễn Trãi",
+        caption: ["Poster dự án \"The unsaid\"", "của CLB Tiếng Anh Nguyễn Trãi"],
         role: "phu",
       },
       {
@@ -1347,14 +1387,21 @@ export const SLIDES = [
     images: [
       {
         src: "/media/slides/s29_img3.jpg",
-        alt: "Hội nghị tập huấn cán bộ Đoàn",
-        caption: ["Hội nghị tập huấn", "cán bộ Đoàn"],
+        alt: "Tặng hoa chúc mừng BCH Đoàn trường tại Đại hội đại biểu nhiệm kỳ 2025 – 2026",
+        caption: [
+          "Tặng hoa chúc mừng BCH Đoàn trường",
+          "tại Đại hội đại biểu",
+          "nhiệm kỳ 2025 – 2026",
+        ],
         role: "chinh",
       },
       {
         src: "/media/slides/s29_img4.jpg",
-        alt: "Lớp cảm tình Đoàn",
-        caption: ["Lớp cảm tình Đoàn"],
+        alt: "Hội nghị tập huấn nghiệp vụ công tác Đoàn cho cán bộ chi đoàn",
+        caption: [
+          "Hội nghị tập huấn nghiệp vụ",
+          "công tác Đoàn cho cán bộ chi đoàn",
+        ],
         role: "phu",
       },
       {
@@ -1365,8 +1412,11 @@ export const SLIDES = [
       },
       {
         src: "/media/slides/s29_img6.jpg",
-        alt: "Hội nghị tập huấn công tác Đoàn đầu năm",
-        caption: ["Hội nghị tập huấn", "công tác Đoàn đầu năm"],
+        alt: "Tập huấn nâng cao nghiệp vụ công tác Đoàn năm học 2025 – 2026",
+        caption: [
+          "Tập huấn nâng cao nghiệp vụ",
+          "công tác Đoàn năm học 2025 – 2026",
+        ],
         role: "phu",
       },
     ],
@@ -1821,11 +1871,6 @@ export const SLIDES = [
         value: "27",
         label: ["đoàn viên", "được kết nạp Đảng"],
         tone: "red",
-      },
-      {
-        value: "04",
-        label: ["mô hình mới hiệu quả,", "có khả năng nhân rộng"],
-        tone: "blue",
       },
     ],
     background: {
