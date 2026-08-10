@@ -1539,3 +1539,45 @@ button {
     transition-duration: 1ms !important;
   }
 }
+
+/* ===== Dàn nhạc vào ===== */
+.slide-live .anim {
+  animation-delay: var(--d, 0ms);
+  animation-duration: 520ms;
+  animation-timing-function: cubic-bezier(0.22, 0.85, 0.26, 1);
+  animation-fill-mode: both;
+}
+
+.slide-live .a-rise { animation-name: cnt-rise; }
+.slide-live .a-fade { animation-name: cnt-fade; }
+.slide-live .a-grow { animation-name: cnt-grow; animation-duration: 420ms; }
+.slide-live .a-bar { animation-name: cnt-bar; animation-duration: 420ms; }
+.slide-live .a-media { animation-name: cnt-media; animation-duration: 640ms; }
+
+@keyframes cnt-rise { from { opacity: 0; transform: translateY(1.1cqw); } to { opacity: 1; transform: none; } }
+@keyframes cnt-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes cnt-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes cnt-bar { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes cnt-media { from { opacity: 0; transform: scale(1.035); } to { opacity: 1; transform: none; } }
+
+/* ===== Chuyển cảnh theo loại slide ===== */
+@keyframes cnt-tr-slide { from { opacity: 0; transform: translateX(var(--dir, 4cqw)); } to { opacity: 1; transform: none; } }
+@keyframes cnt-tr-depth { from { opacity: 0; transform: scale(1.045); } to { opacity: 1; transform: none; } }
+@keyframes cnt-tr-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes cnt-tr-curtain { from { transform: translateX(var(--from, 100%)); } to { transform: none; } }
+
+.slide-live[data-transition="slide"] { animation: cnt-tr-slide 520ms cubic-bezier(0.22, 0.85, 0.26, 1) both; }
+.slide-live[data-transition="depth"] { animation: cnt-tr-depth 620ms cubic-bezier(0.22, 0.85, 0.26, 1) both; }
+.slide-live[data-transition="curtain"] { animation: cnt-tr-fade 440ms ease both; }
+.slide-live[data-transition="curtain"] .content-media { animation: cnt-tr-curtain 560ms cubic-bezier(0.3, 0.9, 0.25, 1) both; }
+.slide-stage[data-side="left"] .content-media { --from: -100%; }
+
+/* ===== Công tắc chuyển động =====
+   Mặc định BẬT vì đây là công cụ chạy trên máy người thuyết trình; nhiều máy tắt
+   hiệu ứng Windows để chạy nhẹ chứ không phải vì nhạy cảm tiền đình. Ai cần thì
+   chuyển về "auto" để tôn trọng thiết lập hệ điều hành. */
+@media (prefers-reduced-motion: reduce) {
+  [data-motion="auto"] * { animation-duration: 1ms !important; animation-delay: 0ms !important; }
+}
+
+[data-motion="off"] * { animation: none !important; }
