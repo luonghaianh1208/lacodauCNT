@@ -1,0 +1,587 @@
+{
+  "s10_img3.jpg": {
+    "flat": 0.481,
+    "white": 0.009,
+    "screenshot": false
+  },
+  "s29_img6.jpg": {
+    "flat": 0.367,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "s2_img3.jpg": {
+    "flat": 0.257,
+    "white": 0.004,
+    "screenshot": false
+  },
+  "s2_img4.jpg": {
+    "flat": 0.462,
+    "white": 0.043,
+    "screenshot": false
+  },
+  "s2_img5.jpg": {
+    "flat": 0.267,
+    "white": 0.008,
+    "screenshot": false
+  },
+  "s2_img6.jpg": {
+    "flat": 0.507,
+    "white": 0,
+    "screenshot": false
+  },
+  "s30_img3.jpg": {
+    "flat": 0.377,
+    "white": 0.014,
+    "screenshot": false
+  },
+  "s30_img4.jpg": {
+    "flat": 0.334,
+    "white": 0.008,
+    "screenshot": false
+  },
+  "s30_img5.jpg": {
+    "flat": 0.424,
+    "white": 0.022,
+    "screenshot": false
+  },
+  "s33_img3.jpg": {
+    "flat": 0.309,
+    "white": 0,
+    "screenshot": false
+  },
+  "s33_img4.jpg": {
+    "flat": 0.504,
+    "white": 0,
+    "screenshot": false
+  },
+  "s33_img5.jpg": {
+    "flat": 0.448,
+    "white": 0.005,
+    "screenshot": false
+  },
+  "s33_img6.jpg": {
+    "flat": 0.442,
+    "white": 0,
+    "screenshot": false
+  },
+  "s34_img3.jpg": {
+    "flat": 0.504,
+    "white": 0,
+    "screenshot": false
+  },
+  "s34_img4.png": {
+    "flat": 0.717,
+    "white": 0.654,
+    "screenshot": true
+  },
+  "s34_img5.png": {
+    "flat": 0.744,
+    "white": 0.436,
+    "screenshot": true
+  },
+  "s35_img3.png": {
+    "flat": 0.856,
+    "white": 0.673,
+    "screenshot": true
+  },
+  "s10_img5.jpg": {
+    "flat": 0.367,
+    "white": 0.055,
+    "screenshot": false
+  },
+  "s10_img6.jpg": {
+    "flat": 0.295,
+    "white": 0,
+    "screenshot": false
+  },
+  "s10_img4.jpg": {
+    "flat": 0.349,
+    "white": 0,
+    "screenshot": false
+  },
+  "s35_img4.png": {
+    "flat": 0.884,
+    "white": 0.905,
+    "screenshot": true
+  },
+  "s35_img5.png": {
+    "flat": 0.889,
+    "white": 0.711,
+    "screenshot": true
+  },
+  "s35_img6.png": {
+    "flat": 0.879,
+    "white": 0.849,
+    "screenshot": true
+  },
+  "s36_img3.jpg": {
+    "flat": 0.539,
+    "white": 0.031,
+    "screenshot": false
+  },
+  "s36_img4.jpg": {
+    "flat": 0.428,
+    "white": 0.082,
+    "screenshot": false
+  },
+  "s36_img5.jpg": {
+    "flat": 0.55,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "s36_img6.jpg": {
+    "flat": 0.388,
+    "white": 0,
+    "screenshot": false
+  },
+  "s37_img3.jpg": {
+    "flat": 0.211,
+    "white": 0.011,
+    "screenshot": false
+  },
+  "s37_img4.jpg": {
+    "flat": 0.285,
+    "white": 0.011,
+    "screenshot": false
+  },
+  "s37_img5.jpg": {
+    "flat": 0.296,
+    "white": 0,
+    "screenshot": false
+  },
+  "s37_img6.jpg": {
+    "flat": 0.15,
+    "white": 0.031,
+    "screenshot": false
+  },
+  "s38_img3.jpg": {
+    "flat": 0.317,
+    "white": 0.101,
+    "screenshot": false
+  },
+  "s38_img4.jpg": {
+    "flat": 0.349,
+    "white": 0.071,
+    "screenshot": false
+  },
+  "s38_img5.jpg": {
+    "flat": 0.257,
+    "white": 0.004,
+    "screenshot": false
+  },
+  "s3_img3.jpg": {
+    "flat": 0.257,
+    "white": 0.004,
+    "screenshot": false
+  },
+  "s3_img4.jpg": {
+    "flat": 0.264,
+    "white": 0.072,
+    "screenshot": false
+  },
+  "s3_img5.jpg": {
+    "flat": 0.367,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "s4_img3.jpg": {
+    "flat": 0.257,
+    "white": 0.004,
+    "screenshot": false
+  },
+  "s4_img4.jpg": {
+    "flat": 0.264,
+    "white": 0.072,
+    "screenshot": false
+  },
+  "s4_img5.jpg": {
+    "flat": 0.367,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "s5_img3.jpg": {
+    "flat": 0.259,
+    "white": 0.014,
+    "screenshot": false
+  },
+  "s5_img4.jpg": {
+    "flat": 0.279,
+    "white": 0.01,
+    "screenshot": false
+  },
+  "s5_img5.jpg": {
+    "flat": 0.349,
+    "white": 0.071,
+    "screenshot": false
+  },
+  "s6_img3.jpg": {
+    "flat": 0.355,
+    "white": 0.035,
+    "screenshot": false
+  },
+  "s6_img4.jpg": {
+    "flat": 0.438,
+    "white": 0.007,
+    "screenshot": false
+  },
+  "s6_img5.jpg": {
+    "flat": 0.467,
+    "white": 0,
+    "screenshot": false
+  },
+  "s11_img4.jpg": {
+    "flat": 0.362,
+    "white": 0.052,
+    "screenshot": false
+  },
+  "s11_img5.jpg": {
+    "flat": 0.253,
+    "white": 0.032,
+    "screenshot": false
+  },
+  "s11_img6.jpg": {
+    "flat": 0.449,
+    "white": 0,
+    "screenshot": false
+  },
+  "s12_img3.jpg": {
+    "flat": 0.283,
+    "white": 0,
+    "screenshot": false
+  },
+  "s12_img4.jpg": {
+    "flat": 0.273,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "s11_img3.jpg": {
+    "flat": 0.462,
+    "white": 0.043,
+    "screenshot": false
+  },
+  "s12_img5.jpg": {
+    "flat": 0.418,
+    "white": 0,
+    "screenshot": false
+  },
+  "s7_img3.jpg": {
+    "flat": 0.541,
+    "white": 0.002,
+    "screenshot": false
+  },
+  "s7_img4.jpg": {
+    "flat": 0.438,
+    "white": 0.007,
+    "screenshot": false
+  },
+  "s8_img3.jpg": {
+    "flat": 0.361,
+    "white": 0.056,
+    "screenshot": false
+  },
+  "s8_img4.jpg": {
+    "flat": 0.387,
+    "white": 0.001,
+    "screenshot": false
+  },
+  "s8_img5.jpg": {
+    "flat": 0.3,
+    "white": 0.105,
+    "screenshot": false
+  },
+  "s9_img3.jpg": {
+    "flat": 0.314,
+    "white": 0.097,
+    "screenshot": false
+  },
+  "s9_img4.jpg": {
+    "flat": 0.481,
+    "white": 0.009,
+    "screenshot": false
+  },
+  "s9_img5.jpg": {
+    "flat": 0.367,
+    "white": 0.055,
+    "screenshot": false
+  },
+  "s13_img3.jpg": {
+    "flat": 0.383,
+    "white": 0.002,
+    "screenshot": false
+  },
+  "s13_img4.jpg": {
+    "flat": 0.462,
+    "white": 0.043,
+    "screenshot": false
+  },
+  "s13_img5.jpg": {
+    "flat": 0.362,
+    "white": 0.052,
+    "screenshot": false
+  },
+  "s13_img6.jpg": {
+    "flat": 0.273,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "s14_img3.jpg": {
+    "flat": 0.096,
+    "white": 0.014,
+    "screenshot": false
+  },
+  "s14_img4.jpg": {
+    "flat": 0.16,
+    "white": 0.03,
+    "screenshot": false
+  },
+  "s14_img5.jpg": {
+    "flat": 0.306,
+    "white": 0.007,
+    "screenshot": false
+  },
+  "s14_img6.jpg": {
+    "flat": 0.169,
+    "white": 0.103,
+    "screenshot": false
+  },
+  "s15_img3.jpg": {
+    "flat": 0.449,
+    "white": 0,
+    "screenshot": false
+  },
+  "s15_img4.jpg": {
+    "flat": 0.209,
+    "white": 0,
+    "screenshot": false
+  },
+  "s15_img5.jpg": {
+    "flat": 0.4,
+    "white": 0.022,
+    "screenshot": false
+  },
+  "s16_img3.jpg": {
+    "flat": 0.507,
+    "white": 0,
+    "screenshot": false
+  },
+  "s16_img4.jpg": {
+    "flat": 0.462,
+    "white": 0.043,
+    "screenshot": false
+  },
+  "s16_img5.jpg": {
+    "flat": 0.253,
+    "white": 0.032,
+    "screenshot": false
+  },
+  "s17_img3.jpg": {
+    "flat": 0.406,
+    "white": 0.059,
+    "screenshot": false
+  },
+  "s17_img4.jpg": {
+    "flat": 0.362,
+    "white": 0.052,
+    "screenshot": false
+  },
+  "s17_img5.jpg": {
+    "flat": 0.462,
+    "white": 0.043,
+    "screenshot": false
+  },
+  "s18_img3.jpg": {
+    "flat": 0.316,
+    "white": 0.107,
+    "screenshot": false
+  },
+  "s18_img4.jpg": {
+    "flat": 0.347,
+    "white": 0.041,
+    "screenshot": false
+  },
+  "s18_img5.jpg": {
+    "flat": 0.359,
+    "white": 0.008,
+    "screenshot": false
+  },
+  "s18_img6.jpg": {
+    "flat": 0.459,
+    "white": 0.012,
+    "screenshot": false
+  },
+  "s19_img3.jpg": {
+    "flat": 0.273,
+    "white": 0,
+    "screenshot": false
+  },
+  "s19_img4.jpg": {
+    "flat": 0.383,
+    "white": 0.022,
+    "screenshot": false
+  },
+  "s19_img5.jpg": {
+    "flat": 0.459,
+    "white": 0.012,
+    "screenshot": false
+  },
+  "s19_img6.jpg": {
+    "flat": 0.316,
+    "white": 0.107,
+    "screenshot": false
+  },
+  "s1_img4.jpg": {
+    "flat": 0.504,
+    "white": 0,
+    "screenshot": false
+  },
+  "s1_img5.jpg": {
+    "flat": 0.448,
+    "white": 0.005,
+    "screenshot": false
+  },
+  "s1_img3.jpg": {
+    "flat": 0.309,
+    "white": 0,
+    "screenshot": false
+  },
+  "s1_img6.png": {
+    "flat": 0.856,
+    "white": 0.673,
+    "screenshot": true
+  },
+  "s20_img3.jpg": {
+    "flat": 0.233,
+    "white": 0,
+    "screenshot": false
+  },
+  "s20_img4.jpg": {
+    "flat": 0.349,
+    "white": 0.119,
+    "screenshot": false
+  },
+  "s20_img5.jpg": {
+    "flat": 0.764,
+    "white": 0,
+    "screenshot": true
+  },
+  "s21_img3.jpg": {
+    "flat": 0.267,
+    "white": 0.008,
+    "screenshot": false
+  },
+  "s21_img4.jpg": {
+    "flat": 0.113,
+    "white": 0.001,
+    "screenshot": false
+  },
+  "s21_img5.jpg": {
+    "flat": 0.335,
+    "white": 0.075,
+    "screenshot": false
+  },
+  "s22_img3.jpg": {
+    "flat": 0.293,
+    "white": 0,
+    "screenshot": false
+  },
+  "s23_img3.jpg": {
+    "flat": 0.292,
+    "white": 0.001,
+    "screenshot": false
+  },
+  "s23_img4.jpg": {
+    "flat": 0.464,
+    "white": 0,
+    "screenshot": false
+  },
+  "s23_img5.jpg": {
+    "flat": 0.402,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "s23_img6.jpg": {
+    "flat": 0.442,
+    "white": 0,
+    "screenshot": false
+  },
+  "s24_img3.jpg": {
+    "flat": 0.194,
+    "white": 0.012,
+    "screenshot": false
+  },
+  "s24_img5.jpg": {
+    "flat": 0.372,
+    "white": 0.02,
+    "screenshot": false
+  },
+  "s24_img6.jpg": {
+    "flat": 0.495,
+    "white": 0.277,
+    "screenshot": true
+  },
+  "s24_img4.jpg": {
+    "flat": 0.424,
+    "white": 0.007,
+    "screenshot": false
+  },
+  "s26_img3.jpg": {
+    "flat": 0.173,
+    "white": 0.001,
+    "screenshot": false
+  },
+  "s26_img4.jpg": {
+    "flat": 0.132,
+    "white": 0.018,
+    "screenshot": false
+  },
+  "s26_img5.jpg": {
+    "flat": 0.253,
+    "white": 0,
+    "screenshot": false
+  },
+  "s27_img3.jpg": {
+    "flat": 0.253,
+    "white": 0,
+    "screenshot": false
+  },
+  "s27_img4.jpg": {
+    "flat": 0.25,
+    "white": 0,
+    "screenshot": false
+  },
+  "s28_img3.jpg": {
+    "flat": 0.275,
+    "white": 0.016,
+    "screenshot": false
+  },
+  "s28_img4.jpg": {
+    "flat": 0.336,
+    "white": 0.007,
+    "screenshot": false
+  },
+  "s28_img5.jpg": {
+    "flat": 0.507,
+    "white": 0,
+    "screenshot": false
+  },
+  "s28_img6.jpg": {
+    "flat": 0.24,
+    "white": 0.009,
+    "screenshot": false
+  },
+  "s29_img3.jpg": {
+    "flat": 0.257,
+    "white": 0.004,
+    "screenshot": false
+  },
+  "s29_img4.jpg": {
+    "flat": 0.264,
+    "white": 0.072,
+    "screenshot": false
+  },
+  "s29_img5.jpg": {
+    "flat": 0.14,
+    "white": 0.004,
+    "screenshot": false
+  }
+}
