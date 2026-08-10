@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import audit from "@/lib/slides/image-audit.json";
+import auditRaw from "@/lib/slides/image-audit.json";
+
+// Khai báo kiểu tường minh để tránh lỗi TypeScript khi dùng biến string index
+type ImageMetrics = { flat: number; white: number; screenshot: boolean };
+const audit = auditRaw as Record<string, ImageMetrics>;
 
 describe("bộ lọc ảnh màn hình", () => {
   it("mọi ảnh đều đo được, không ảnh nào lỗi giải mã", () => {
@@ -41,7 +45,7 @@ describe("bộ lọc ảnh màn hình", () => {
     // Khi có ảnh rơi vào vùng này, một thay đổi nhỏ trong phép đo sẽ lật kết quả.
     // Nếu test này đỏ, cần mở ảnh ra nhìn thủ công, chứ không phải nới ngưỡng.
 
-    const nearBoundary = Object.entries(audit).filter(([_, m]) => {
+    const nearBoundary = Object.entries(audit).filter(([, m]) => {
       const whiteDistance = Math.abs(m.white - 0.25);
       const flatDistance = Math.abs(m.flat - 0.65);
       return whiteDistance < 0.05 || flatDistance < 0.05;
