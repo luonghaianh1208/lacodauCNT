@@ -1,0 +1,80 @@
+<style>@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Archivo:wght@400;500;600;700;800&display=swap');
+* { box-sizing: border-box; }
+
+.stage {
+  container-type: inline-size; position: relative; width: 100%; aspect-ratio: 16/9;
+  overflow: hidden; background: #0b315d; color: #fff; font-family: 'Archivo', sans-serif;
+  --red: #e32420; --yellow: #ffd500;
+  --fs-brand: 1.15cqw; --fs-brandsub: .95cqw; --fs-num: 1.15cqw;
+}
+.stage img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ph { white-space: nowrap; }
+.serif { font-family: 'Source Serif 4', serif; }
+.bar { position: absolute; left: 0; top: 0; bottom: 0; width: 1.5cqw; background: var(--red); box-shadow: .5cqw 0 0 var(--yellow); z-index: 8; }
+.brand { position: absolute; top: 2.6cqw; left: 4.6cqw; display: flex; align-items: center; gap: .9cqw; height: 3.6cqw; z-index: 7; }
+.brand img { width: auto; height: 100%; object-fit: contain; }
+.brand div { display: flex; flex-direction: column; gap: .2cqw; }
+.brand strong { font-size: var(--fs-brand); letter-spacing: .07em; text-shadow: 0 .1cqw .45cqw rgba(3,14,28,.85); }
+.brand span { font-size: var(--fs-brandsub); color: #cfe0f0; text-shadow: 0 .1cqw .45cqw rgba(3,14,28,.85); }
+.snum { position: absolute; right: 3.4cqw; top: 3.1cqw; font-size: var(--fs-num); font-weight: 700; color: #fff; letter-spacing: .1em; z-index: 7; text-shadow: 0 .1cqw .45cqw rgba(3,14,28,.85), 0 0 .9cqw rgba(3,14,28,.6); }
+.lbl { position: absolute; z-index: 9; right: 0; top: 0; background: #ffd500; color: #07213e; font-size: 12px; font-weight: 800; letter-spacing: .1em; padding: 5px 11px; }
+
+.bg { position: absolute; inset: 0; }
+.veil { position: absolute; inset: 0; }
+.wrap { position: absolute; left: 4.6cqw; right: 8cqw; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; z-index: 5; }
+.part { display: flex; flex-direction: column; align-items: flex-start; gap: .6cqw; }
+.part b { font-family: 'Source Serif 4', serif; font-size: 11cqw; line-height: .8; color: var(--yellow); font-weight: 700; letter-spacing: -.03em; text-shadow: 0 .2cqw .9cqw rgba(3,14,28,.6); }
+.part span { font-size: 1.5cqw; font-weight: 800; letter-spacing: .28em; color: #e4eef8; text-shadow: 0 .1cqw .45cqw rgba(3,14,28,.7); }
+h1 { margin: 2.4cqw 0 0; font-size: 4.4cqw; line-height: 1.06; letter-spacing: -.02em; font-weight: 700; max-width: 62cqw; text-shadow: 0 .12cqw .5cqw rgba(3,14,28,.55); }
+.rule { width: 9cqw; height: .5cqw; border-radius: 99px; background: var(--red); margin: 2.4cqw 0 1.8cqw; }
+.toc { font-size: 1.7cqw; line-height: 1.5; color: #d4e4f2; margin: 0; max-width: 58cqw; text-shadow: 0 .1cqw .4cqw rgba(3,14,28,.6); }
+
+/* BA MUC VEIL */
+.L1 .veil { background: linear-gradient(90deg, rgba(7,26,48,.94) 0%, rgba(7,26,48,.91) 40%, rgba(7,26,48,.52) 70%, rgba(7,26,48,.30) 100%); }
+.L2 .veil { background: linear-gradient(90deg, rgba(7,26,48,.92) 0%, rgba(7,26,48,.88) 40%, rgba(7,26,48,.38) 70%, rgba(7,26,48,.16) 100%); }
+.L3 .veil { background: linear-gradient(90deg, rgba(7,26,48,.90) 0%, rgba(7,26,48,.84) 38%, rgba(7,26,48,.26) 68%, rgba(7,26,48,.05) 100%); }
+.sw{max-width:1080px;margin:0 auto}.sw .stage+.stage{margin-top:30px}</style><h2>Ba mức lộ ảnh cho trang phân mục</h2><p class="subtitle">Đã bỏ hẳn lớp giảm opacity trên ảnh. Giờ chỉ còn một lớp veil chuyển sắc: đậm bên trái nơi có chữ, nhạt dần sang phải nơi ảnh được nhìn rõ. Bấm chọn mức bạn muốn.</p><div class="sw">
+
+<div class="stage L1">
+  <div class="lbl">MỨC 1 · GIỮ CHỮ AN TOÀN NHẤT</div>
+  <div class="bg"><img src="/files/s5_img3.jpg" alt=""></div>
+  <div class="veil"></div><div class="bar"></div>
+  <div class="brand"><img src="/files/school-logo.png" alt=""><img src="/files/youth-union-logo.png" alt=""><div><strong><span class="ph">ĐOÀN TRƯỜNG THPT CHUYÊN NGUYỄN TRÃI</span></strong><span>Năm học 2025–2026</span></div></div>
+  <div class="snum">5</div>
+  <div class="wrap">
+    <div class="part"><span><span class="ph">PHẦN</span></span><b class="serif">B</b></div>
+    <h1 class="serif"><span class="ph">THÀNH TÍCH ĐẠT ĐƯỢC</span> <span class="ph">TRONG NĂM HỌC 2025–2026</span></h1>
+    <div class="rule"></div>
+    <p class="toc"><span class="ph">Công tác giáo dục</span> · <span class="ph">Phong trào hành động cách mạng</span> · <span class="ph">Đồng hành với thanh niên</span> · <span class="ph">Hội nhập quốc tế</span> · <span class="ph">Xây dựng Đoàn, tham gia xây dựng Đảng</span></p>
+  </div>
+</div>
+
+<div class="stage L2">
+  <div class="lbl">MỨC 2 · CÂN BẰNG (KHUYẾN NGHỊ)</div>
+  <div class="bg"><img src="/files/s5_img3.jpg" alt=""></div>
+  <div class="veil"></div><div class="bar"></div>
+  <div class="brand"><img src="/files/school-logo.png" alt=""><img src="/files/youth-union-logo.png" alt=""><div><strong><span class="ph">ĐOÀN TRƯỜNG THPT CHUYÊN NGUYỄN TRÃI</span></strong><span>Năm học 2025–2026</span></div></div>
+  <div class="snum">5</div>
+  <div class="wrap">
+    <div class="part"><span><span class="ph">PHẦN</span></span><b class="serif">B</b></div>
+    <h1 class="serif"><span class="ph">THÀNH TÍCH ĐẠT ĐƯỢC</span> <span class="ph">TRONG NĂM HỌC 2025–2026</span></h1>
+    <div class="rule"></div>
+    <p class="toc"><span class="ph">Công tác giáo dục</span> · <span class="ph">Phong trào hành động cách mạng</span> · <span class="ph">Đồng hành với thanh niên</span> · <span class="ph">Hội nhập quốc tế</span> · <span class="ph">Xây dựng Đoàn, tham gia xây dựng Đảng</span></p>
+  </div>
+</div>
+
+<div class="stage L3">
+  <div class="lbl">MỨC 3 · ẢNH RÕ NHẤT</div>
+  <div class="bg"><img src="/files/s5_img3.jpg" alt=""></div>
+  <div class="veil"></div><div class="bar"></div>
+  <div class="brand"><img src="/files/school-logo.png" alt=""><img src="/files/youth-union-logo.png" alt=""><div><strong><span class="ph">ĐOÀN TRƯỜNG THPT CHUYÊN NGUYỄN TRÃI</span></strong><span>Năm học 2025–2026</span></div></div>
+  <div class="snum">5</div>
+  <div class="wrap">
+    <div class="part"><span><span class="ph">PHẦN</span></span><b class="serif">B</b></div>
+    <h1 class="serif"><span class="ph">THÀNH TÍCH ĐẠT ĐƯỢC</span> <span class="ph">TRONG NĂM HỌC 2025–2026</span></h1>
+    <div class="rule"></div>
+    <p class="toc"><span class="ph">Công tác giáo dục</span> · <span class="ph">Phong trào hành động cách mạng</span> · <span class="ph">Đồng hành với thanh niên</span> · <span class="ph">Hội nhập quốc tế</span> · <span class="ph">Xây dựng Đoàn, tham gia xây dựng Đảng</span></p>
+  </div>
+</div>
+
+</div>

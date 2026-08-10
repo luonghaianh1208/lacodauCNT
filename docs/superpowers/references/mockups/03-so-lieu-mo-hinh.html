@@ -1,0 +1,183 @@
+<style>@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Archivo:wght@400;500;600;700;800&display=swap');
+* { box-sizing: border-box; }
+
+
+:root {
+  --navy: #0b315d; --paper: #f4f7fb; --line: #c4d5e5; --ink: #0b315d; --muted: #52708c;
+  --red: #e32420; --blue: #006ebb; --green: #0e7a43; --yellow: #ffd500;
+}
+
+.stage {
+  container-type: inline-size; position: relative; width: 100%; aspect-ratio: 16/9;
+  overflow: hidden; background: var(--paper); color: var(--ink); font-family: 'Archivo', sans-serif;
+  /* NUM DIEU KHIEN MAT DO — chi mot bien nay thay doi giua cac slide */
+  --s: 1;
+  /* THANG CHU NOI DUNG (co gian theo --s) */
+  --fs-display: calc(8.3cqw * var(--s));
+  --fs-h1:      calc(2.9cqw * var(--s));
+  --fs-metric:  calc(2.6cqw * var(--s));
+  --fs-lead:    calc(1.55cqw * var(--s));
+  --fs-body:    calc(1.42cqw * var(--s));
+  --fs-label:   calc(1.25cqw * var(--s));
+  --fs-cap:     calc(1.1cqw * var(--s));
+  /* KHUNG — KHONG co gian, giu on dinh ca bo slide */
+  --fs-brand: 1.15cqw; --fs-brandsub: .95cqw; --fs-foot: 1cqw; --fs-num: 1.15cqw;
+}
+.stage.thoang { --s: 1.2; }
+.stage.vua    { --s: 1; }
+.stage.day    { --s: .87; }
+
+.stage img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ph { white-space: nowrap; }
+.serif { font-family: 'Source Serif 4', serif; }
+.bar { position: absolute; left: 0; top: 0; bottom: 0; width: 1.5cqw; background: var(--red); box-shadow: .5cqw 0 0 var(--yellow); z-index: 6; }
+
+.brand { position: absolute; top: 2.6cqw; left: 4.6cqw; display: flex; align-items: center; gap: .9cqw; height: 3.6cqw; z-index: 7; }
+.brand img { width: auto; height: 100%; object-fit: contain; }
+.brand div { display: flex; flex-direction: column; gap: .2cqw; }
+.brand strong { font-size: var(--fs-brand); letter-spacing: .07em; }
+.brand span { font-size: var(--fs-brandsub); color: var(--muted); }
+.snum { position: absolute; font-size: var(--fs-num); font-weight: 700; color: var(--muted); letter-spacing: .1em; z-index: 7; right: 3.4cqw; top: 3.1cqw; }
+.foot { position: absolute; left: 4.6cqw; right: 3.4cqw; bottom: 1.8cqw; font-size: var(--fs-foot); color: var(--muted); z-index: 7; }
+
+/* ========= KHUON "SO LIEU" ========= */
+.s31-head { position: absolute; top: 8.6cqw; left: 4.6cqw; right: 3.4cqw; display: grid; grid-template-columns: 50% 1fr; gap: 3cqw; align-items: start; }
+.s31-head h1 { margin: 0; font-size: var(--fs-h1); line-height: 1.08; letter-spacing: -.02em; font-weight: 700; }
+.s31-head .sum { margin: .3cqw 0 0; font-size: var(--fs-lead); line-height: 1.42; color: var(--muted); }
+.s31-rule { position: absolute; top: 17.4cqw; left: 4.6cqw; width: 7cqw; height: .42cqw; border-radius: 99px; background: var(--red); }
+
+.s31-hero { position: absolute; top: 19.8cqw; left: 4.6cqw; right: 3.4cqw; display: flex; align-items: center; gap: 3cqw; }
+.s31-hero b { font-size: var(--fs-display); line-height: .86; letter-spacing: -.035em; color: var(--red); font-weight: 700; }
+.s31-hero .txt { border-left: .1cqw solid var(--line); padding-left: 3cqw; }
+.s31-hero .lb { display: block; font-size: var(--fs-label); font-weight: 800; letter-spacing: .1em; line-height: 1.4; }
+.s31-hero .sb { display: block; margin-top: .6cqw; font-size: var(--fs-body); color: var(--muted); line-height: 1.35; }
+
+.s31-grid { position: absolute; top: 30.2cqw; left: 4.6cqw; right: 3.4cqw; bottom: 5.4cqw; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 1cqw; }
+.cell { background: #fff; border: .08cqw solid var(--line); border-left: .32cqw solid var(--blue); border-radius: .6cqw; padding: 1.1cqw 1.2cqw; display: grid; grid-template-rows: auto minmax(0, 1fr); align-content: start; }
+.cell b { font-family: 'Source Serif 4', serif; font-weight: 700; font-size: var(--fs-metric); line-height: 1.05; letter-spacing: -.015em; color: var(--blue); }
+.cell span { font-size: var(--fs-body); line-height: 1.34; margin-top: .55cqw; color: #26476a; }
+.cell.red { border-left-color: var(--red); } .cell.red b { color: var(--red); }
+.cell.green { border-left-color: var(--green); } .cell.green b { color: var(--green); }
+
+/* ========= KHUON "SAN PHAM + MEDIA" ========= */
+.s34-head { position: absolute; top: 8.4cqw; left: 4.6cqw; width: 43cqw; }
+.s34-head h1 { margin: 0; font-size: var(--fs-h1); line-height: 1.08; letter-spacing: -.02em; font-weight: 700; }
+.s34-url { margin: .9cqw 0 0; font-size: calc(var(--fs-lead) * 1.13); font-weight: 700; color: var(--blue); letter-spacing: -.01em; }
+.s34-sum { margin: .8cqw 0 0; font-size: var(--fs-lead); line-height: 1.42; color: var(--muted); }
+
+.s34-lists { position: absolute; top: 25.4cqw; left: 4.6cqw; width: 43cqw; }
+.s34-lists section + section { margin-top: 1.9cqw; }
+.s34-lists h2 { margin: 0 0 .7cqw; font-size: var(--fs-label); letter-spacing: .12em; font-weight: 800; }
+.s34-lists h2.fn { color: var(--blue); }
+.s34-lists h2.ef { color: var(--green); }
+.s34-lists ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .5cqw 1.6cqw; }
+.s34-lists ul.two { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, auto); grid-auto-flow: column; }
+.s34-lists li { position: relative; padding-left: 1.3cqw; font-size: var(--fs-body); line-height: 1.34; }
+.s34-lists li::before { position: absolute; left: 0; top: .5em; width: .46cqw; height: .46cqw; border-radius: 50%; content: ""; }
+.s34-lists .fnlist li::before { background: var(--blue); }
+.s34-lists .eflist li::before { background: var(--green); }
+
+.s34-media { position: absolute; right: 0; top: 0; bottom: 0; width: 48cqw; background: var(--navy); color: #fff; display: grid; align-content: center; gap: 1.5cqw; padding: 0 3cqw; }
+.s34-video { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #041424; }
+.s34-veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,26,48,.1), rgba(7,26,48,.5)); }
+.s34-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); display: flex; align-items: center; gap: 1.1cqw; }
+.s34-play i { width: 0; height: 0; border-top: 1.2cqw solid transparent; border-bottom: 1.2cqw solid transparent; border-left: 2cqw solid var(--yellow); }
+.s34-play span { font-size: var(--fs-label); font-weight: 800; letter-spacing: .1em; }
+.s34-media figcaption { font-size: var(--fs-cap); line-height: 1.3; color: #d6e6f4; padding-top: .7cqw; }
+.s34-media figure { margin: 0; min-width: 0; }
+.s34-shots { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4cqw; }
+.s34-shots figure > div { aspect-ratio: 16/10; overflow: hidden; border-top: .3cqw solid var(--blue); }
+.s34-shots img { object-position: top; }
+.sw{max-width:1080px;margin:0 auto}.sw .stage+.stage{margin-top:28px}</style><h2>Slide 31 và 34 — thang chữ đã phóng theo chuẩn trình chiếu</h2><p class="subtitle">Chữ thân bài trước đây tương đương cỡ 10pt của PowerPoint. Giờ slide 31 ở mức 21pt, slide 34 ở mức 17,5pt. Điều khiển bằng một biến duy nhất cho mỗi slide.</p><div class="sw">
+
+<!-- ============ SLIDE 31 · mat do THOANG ============ -->
+<div class="stage thoang">
+  <div class="bar"></div>
+  <div class="brand">
+    <img src="/files/school-logo.png" alt=""><img src="/files/youth-union-logo.png" alt="">
+    <div><strong><span class="ph">ĐOÀN TRƯỜNG THPT CHUYÊN NGUYỄN TRÃI</span></strong><span>Năm học 2025–2026</span></div>
+  </div>
+  <div class="snum">31</div>
+
+  <div class="s31-head">
+    <h1 class="serif"><span class="ph">6. Kết quả thực hiện</span> <span class="ph">chỉ tiêu năm học</span></h1>
+    <p class="sum"><span class="ph">Đoàn trường hoàn thành</span> <span class="ph">15/15 nhóm chỉ tiêu,</span> <span class="ph">trong đó nhiều chỉ tiêu</span> <span class="ph">về tình nguyện,</span> <span class="ph">công trình thanh niên</span> <span class="ph">và phát triển Đảng</span> <span class="ph">vượt kế hoạch.</span></p>
+  </div>
+  <div class="s31-rule"></div>
+
+  <div class="s31-hero">
+    <b class="serif">15/15</b>
+    <div class="txt">
+      <span class="lb"><span class="ph">NHÓM CHỈ TIÊU HOÀN THÀNH</span></span>
+      <span class="sb"><span class="ph">Kết quả thực hiện chỉ tiêu</span> <span class="ph">năm học 2025–2026</span></span>
+    </div>
+  </div>
+
+  <div class="s31-grid">
+    <div class="cell"><b>05 · 11</b><span><span class="ph">05 công trình,</span> <span class="ph">11 phần việc thanh niên.</span></span></div>
+    <div class="cell green"><b>Trên 1.000</b><span><span class="ph">Trên 1.000 lượt ĐVTN</span> <span class="ph">tham gia tình nguyện.</span></span></div>
+    <div class="cell"><b>05</b><span><span class="ph">05 đội hình</span> <span class="ph">Hoa phượng đỏ.</span></span></div>
+    <div class="cell green"><b>14</b><span><span class="ph">Hỗ trợ 14 học sinh</span> <span class="ph">khó khăn.</span></span></div>
+    <div class="cell"><b>03 · 01</b><span><span class="ph">03 chương trình hướng nghiệp</span> <span class="ph">và 01 giải pháp tư vấn số.</span></span></div>
+    <div class="cell red"><b>80 · 27</b><span><span class="ph">Giới thiệu 80 đoàn viên ưu tú;</span> <span class="ph">27 đồng chí kết nạp Đảng.</span></span></div>
+  </div>
+  <p class="foot"><span class="ph">Phần B.I – Mục 6.</span> <span class="ph">Đánh giá kết quả thực hiện</span> <span class="ph">các chỉ tiêu cơ bản năm học 2025–2026.</span></p>
+</div>
+
+<!-- ============ SLIDE 34 · mat do VUA ============ -->
+<div class="stage vua">
+  <div class="s34-media">
+    <figure>
+      <div class="s34-video">
+        <img src="/files/platform-launch.jpg" alt="">
+        <div class="s34-veil"></div>
+        <div class="s34-play"><i></i><span>CLIP 25 GIÂY</span></div>
+      </div>
+      <figcaption><span class="ph">Ra mắt nền tảng số</span> <span class="ph">quản lý công tác Đoàn</span></figcaption>
+    </figure>
+    <div class="s34-shots">
+      <figure><div><img src="/files/platform-member-management.png" alt=""></div><figcaption><span class="ph">Giao diện quản lý đoàn viên</span></figcaption></figure>
+      <figure><div><img src="/files/platform-dashboard.png" alt=""></div><figcaption><span class="ph">Trang quản lý công tác Đoàn</span></figcaption></figure>
+    </div>
+  </div>
+
+  <div class="bar"></div>
+  <div class="brand">
+    <img src="/files/school-logo.png" alt=""><img src="/files/youth-union-logo.png" alt="">
+    <div><strong><span class="ph">ĐOÀN TRƯỜNG THPT CHUYÊN NGUYỄN TRÃI</span></strong><span>Năm học 2025–2026</span></div>
+  </div>
+
+  <div class="s34-head">
+    <h1 class="serif"><span class="ph">1. Mô hình 1 – Nền tảng số</span> <span class="ph">quản lý công tác Đoàn</span></h1>
+    <p class="s34-url"><span class="ph">https://doantruong.chuyennguyentrai.edu.vn</span></p>
+    <p class="s34-sum"><span class="ph">Nền tảng tích hợp 06 nhóm chức năng,</span> <span class="ph">hỗ trợ quản lý tập trung</span> <span class="ph">và giảm đáng kể khối lượng tổng hợp thủ công.</span></p>
+  </div>
+
+  <div class="s34-lists">
+    <section>
+      <h2 class="fn"><span class="ph">CÁC CHỨC NĂNG CHÍNH</span></h2>
+      <ul class="fnlist two">
+        <li><span class="ph">Quản lý nền nếp.</span></li>
+        <li><span class="ph">Khen thưởng.</span></li>
+        <li><span class="ph">Quản lý đoàn viên.</span></li>
+        <li><span class="ph">Ngoại khóa – sự kiện.</span></li>
+        <li><span class="ph">Hoạt động câu lạc bộ.</span></li>
+        <li><span class="ph">Cập nhật cuộc thi,</span> <span class="ph">chương trình</span> <span class="ph">đang triển khai.</span></li>
+      </ul>
+    </section>
+    <section>
+      <h2 class="ef"><span class="ph">HIỆU QUẢ</span></h2>
+      <ul class="eflist">
+        <li><span class="ph">Dữ liệu được cập nhật tập trung.</span></li>
+        <li><span class="ph">Tăng tính chính xác, minh bạch.</span></li>
+        <li><span class="ph">Hỗ trợ BCH theo dõi và điều hành</span> <span class="ph">theo thời gian thực.</span></li>
+        <li><span class="ph">Có khả năng phát triển</span> <span class="ph">thành công cụ dùng chung</span> <span class="ph">cho khối THPT.</span></li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="snum" style="right:50cqw; top:auto; bottom:1.7cqw">34</div>
+  <p class="foot" style="right:54cqw"><span class="ph">Phần C.7. Mô hình 1:</span> <span class="ph">Nền tảng số quản lý công tác Đoàn khối THPT.</span></p>
+</div>
+
+</div>

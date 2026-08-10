@@ -1,0 +1,199 @@
+<style>@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Archivo:wght@400;500;600;700;800&display=swap');
+* { box-sizing: border-box; }
+
+
+.stage {
+  container-type: inline-size; position: relative; width: 100%; aspect-ratio: 16/9;
+  overflow: hidden; background: #f4f7fb; color: #0b315d; font-family: 'Archivo', sans-serif;
+  --navy: #0b315d; --paper: #f4f7fb; --muted: #52708c;
+  --red: #e32420; --blue: #006ebb; --green: #0e7a43; --yellow: #ffd500;
+  --s: 1.1;
+  --fs-h1: calc(2.9cqw * var(--s));
+  --fs-lead: calc(1.55cqw * var(--s));
+  --fs-body: calc(1.42cqw * var(--s));
+  --fs-cap: calc(1.1cqw * var(--s));
+  --fs-brand: 1.15cqw; --fs-brandsub: .95cqw; --fs-foot: 1cqw; --fs-num: 1.15cqw;
+  /* mau chu cua KHUNG — dao khi khung nam tren nen navy */
+  --chrome-ink: var(--navy); --chrome-sub: var(--muted);
+}
+.stage.flip { --chrome-ink: #fff; --chrome-sub: #a9c6de; }
+
+.stage img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ph { white-space: nowrap; }
+.serif { font-family: 'Source Serif 4', serif; }
+
+/* KHUNG — vi tri co dinh tuyet doi o moi slide, chi doi mau */
+.bar { position: absolute; left: 0; top: 0; bottom: 0; width: 1.5cqw; background: var(--red); box-shadow: .5cqw 0 0 var(--yellow); z-index: 8; }
+.brand { position: absolute; top: 2.6cqw; left: 4.6cqw; display: flex; align-items: center; gap: .9cqw; height: 3.6cqw; z-index: 7; color: var(--chrome-ink); }
+.brand img { width: auto; height: 100%; object-fit: contain; }
+.brand div { display: flex; flex-direction: column; gap: .2cqw; }
+.brand strong { font-size: var(--fs-brand); letter-spacing: .07em; }
+.brand span { font-size: var(--fs-brandsub); color: var(--chrome-sub); }
+.foot { position: absolute; left: 4.6cqw; bottom: 1.8cqw; max-width: 44cqw; font-size: var(--fs-foot); color: var(--chrome-sub); z-index: 7; }
+.snum { position: absolute; right: 3.4cqw; top: 3.1cqw; font-size: var(--fs-num); font-weight: 700; color: var(--chrome-sub); letter-spacing: .1em; z-index: 7; }
+.stage.flip .snum { color: var(--muted); }
+.stage.flip .foot { color: #a9c6de; }
+
+/* NOI DUNG — doi ben */
+.txt { position: absolute; top: 8.4cqw; width: 43cqw; display: grid; gap: 1.5cqw; align-content: start; z-index: 5; }
+.media { position: absolute; top: 0; bottom: 0; width: 48cqw; background: var(--navy); color: #fff; display: grid; align-content: center; gap: 1.4cqw; padding: 0 3cqw; z-index: 1; }
+.stage:not(.flip) .txt { left: 4.6cqw; }
+.stage:not(.flip) .media { right: 0; }
+.stage.flip .txt { right: 3.4cqw; }
+.stage.flip .media { left: 0; padding-left: 4.6cqw; }
+.stage.flip .foot { left: auto; right: 3.4cqw; text-align: right; }
+
+.media figure { margin: 0; min-width: 0; }
+.media figcaption { font-size: var(--fs-cap); line-height: 1.3; color: #d6e6f4; padding-top: .6cqw; }
+.media .big > div { aspect-ratio: 16/9; overflow: hidden; border-top: .3cqw solid var(--red); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3cqw; }
+.pair figure > div { aspect-ratio: 3/2; overflow: hidden; border-top: .3cqw solid var(--blue); }
+
+h1.t { margin: 0; font-size: var(--fs-h1); line-height: 1.08; letter-spacing: -.02em; font-weight: 700; }
+.rule { width: 7cqw; height: .42cqw; border-radius: 99px; background: var(--red); }
+.lead { font-size: var(--fs-lead); line-height: 1.42; color: var(--muted); margin: 0; }
+.lead b { font-weight: 700; }
+.lead b.n-blue { color: var(--blue); } .lead b.n-green { color: var(--green); }
+ul.bl { margin: 0; padding: 0; list-style: none; display: grid; gap: .55cqw; }
+ul.bl li { position: relative; padding-left: 1.35cqw; font-size: var(--fs-body); line-height: 1.34; }
+ul.bl li::before { position: absolute; left: 0; top: .5em; width: .46cqw; height: .46cqw; border-radius: 50%; background: var(--blue); content: ""; }
+
+.lbl { position: absolute; z-index: 9; right: 0; top: 0; background: #ffd500; color: #07213e; font-size: 12px; font-weight: 800; letter-spacing: .1em; padding: 5px 11px; }
+.stage.flip .lbl { right: 0; }
+
+.stage.D, .stage.O { background:#0b315d; color:#fff; --chrome-ink:#fff; --chrome-sub:#a9c6de; }
+.D .bg { position: absolute; inset: 0; }
+.D .bg img { opacity: .22; }
+.D .veil { position: absolute; inset: 0; background: linear-gradient(85deg, rgba(7,26,48,.96) 30%, rgba(7,26,48,.72) 100%); }
+.D .wrap { position: absolute; left: 4.6cqw; right: 8cqw; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; z-index: 5; }
+.D .part { display: flex; flex-direction: column; align-items: flex-start; gap: .6cqw; }
+.D .part b { font-family: 'Source Serif 4', serif; font-size: 11cqw; line-height: .8; color: var(--yellow); font-weight: 700; letter-spacing: -.03em; }
+.D .part span { font-size: 1.5cqw; font-weight: 800; letter-spacing: .28em; color: #cfe0f0; }
+.D h1 { margin: 2.4cqw 0 0; font-size: 4.4cqw; line-height: 1.06; letter-spacing: -.02em; font-weight: 700; max-width: 62cqw; }
+.D .rule { width: 9cqw; height: .5cqw; border-radius: 99px; background: var(--red); margin: 2.4cqw 0 1.8cqw; }
+.D .toc { font-size: var(--fs-lead); line-height: 1.5; color: #bcd4e8; margin: 0; max-width: 58cqw; }
+.O .bg { position: absolute; inset: 0 0 34% 0; }
+.O .veil { position: absolute; inset: 0 0 34% 0; background: linear-gradient(180deg, rgba(7,26,48,.55) 0%, rgba(7,26,48,.78) 60%, rgba(11,49,93,1) 100%); }
+.O .msg { position: absolute; left: 4.6cqw; right: 4.6cqw; top: 9cqw; z-index: 5; text-align: center; }
+.O .msg .k { font-size: 1.4cqw; font-weight: 800; letter-spacing: .22em; color: var(--yellow); margin: 0; }
+.O .msg h1 { font-family: 'Source Serif 4', serif; margin: 1.6cqw 0 0; font-size: 5.4cqw; line-height: 1.06; letter-spacing: -.02em; font-weight: 700; }
+.O .msg .slogan { margin: 1.8cqw 0 0; font-size: 2.05cqw; font-weight: 700; letter-spacing: .06em; color: #e6f0f9; }
+.O .msg .slogan i { font-style: normal; color: var(--yellow); }
+.O .lead { position: absolute; left: 4.6cqw; right: 4.6cqw; top: 27.5cqw; z-index: 5; text-align: center; font-size: var(--fs-lead); line-height: 1.42; color: #cfe0f0; margin: 0; }
+.O .stats { position: absolute; left: 4.6cqw; right: 4.6cqw; bottom: 5.4cqw; z-index: 5; display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 1.2cqw; }
+.O .st { border-top: .3cqw solid var(--blue); padding-top: 1cqw; }
+.O .st b { display: block; font-family: 'Source Serif 4', serif; font-size: 3.1cqw; line-height: 1.02; letter-spacing: -.02em; color: #7dc4ff; font-weight: 700; }
+.O .st span { display: block; margin-top: .5cqw; font-size: var(--fs-cap); line-height: 1.3; color: #cfe0f0; }
+.O .st.green { border-top-color: var(--green); }
+.O .st.red { border-top-color: var(--red); }
+.O .foot { position: absolute; left: 4.6cqw; bottom: 1.8cqw; font-size: var(--fs-foot); color: #9db9d2; z-index: 7; margin: 0; }
+.sw{max-width:1080px;margin:0 auto}.sw .stage+.stage{margin-top:30px}</style><h2>Trọn bộ khuôn cho 38 slide</h2><p class="subtitle">Bốn khuôn dưới đây cộng với khuôn bìa, khuôn số liệu và khuôn mô hình+media đã duyệt là đủ phủ cả 38 slide. Nội dung và ảnh đều lấy thật từ tài liệu nguồn của bạn.</p><div class="sw">
+
+<!-- ===== SLIDE LE: panel PHAI ===== -->
+<div class="stage">
+  <div class="lbl">SLIDE LẺ · PANEL PHẢI</div>
+  <div class="media">
+    <figure class="big"><div><img src="/files/s8_img3.jpg" alt=""></div><figcaption><span class="ph">Triển lãm tranh chủ đề</span> <span class="ph">"Độc lập – Tự do – Hạnh phúc"</span></figcaption></figure>
+    <div class="pair">
+      <figure><div><img src="/files/s8_img4.jpg" alt=""></div><figcaption><span class="ph">Giao lưu</span> <span class="ph">nhân chứng lịch sử</span></figcaption></figure>
+      <figure><div><img src="/files/s8_img5.jpg" alt=""></div><figcaption><span class="ph">Dâng hương</span> <span class="ph">nghĩa trang liệt sĩ</span></figcaption></figure>
+    </div>
+  </div>
+  <div class="bar"></div>
+  <div class="brand">
+    <img src="/files/school-logo.png" alt=""><img src="/files/youth-union-logo.png" alt="">
+    <div><strong><span class="ph">ĐOÀN TRƯỜNG THPT CHUYÊN NGUYỄN TRÃI</span></strong><span>Năm học 2025–2026</span></div>
+  </div>
+  <div class="txt">
+    <h1 class="t serif"><span class="ph">1.3. Giáo dục truyền thống</span> <span class="ph">cách mạng, lòng yêu nước</span></h1>
+    <div class="rule"></div>
+    <p class="lead"><span class="ph">Đoàn trường tổ chức nhiều hoạt động</span> <span class="ph">lịch sử – nghệ thuật – trải nghiệm,</span> <span class="ph">trong đó có hơn <b class="n-blue">35</b> tác phẩm hội họa</span> <span class="ph">và <b class="n-green">08</b> hoạt động đền ơn đáp nghĩa.</span></p>
+    <ul class="bl">
+      <li><span class="ph">Cuộc thi kiến thức</span> <span class="ph">"Dưới Ánh Sao Vàng".</span></li>
+      <li><span class="ph">Triển lãm tranh chủ đề</span> <span class="ph">"Độc lập" "Tự do" "Hạnh phúc".</span></li>
+      <li><span class="ph">Phim ngắn</span> <span class="ph">"Mùa gió ngược".</span></li>
+      <li><span class="ph">Giao lưu nhân chứng lịch sử</span> <span class="ph">trong "Câu chuyện thời hoa lửa".</span></li>
+      <li><span class="ph">Dâng hương, vệ sinh</span> <span class="ph">các đài tưởng niệm,</span> <span class="ph">nghĩa trang liệt sĩ.</span></li>
+    </ul>
+  </div>
+  <div class="snum">8</div>
+  <p class="foot"><span class="ph">Phần B.I – Mục 1.3.</span> <span class="ph">Giáo dục truyền thống cách mạng,</span> <span class="ph">lòng yêu nước, tự hào dân tộc.</span></p>
+</div>
+
+<!-- ===== SLIDE CHAN: panel TRAI, khung dao mau ===== -->
+<div class="stage flip">
+  <div class="lbl">SLIDE CHẴN · PANEL TRÁI · KHUNG ĐẢO MÀU</div>
+  <div class="media">
+    <figure class="big"><div><img src="/files/s9_img3.jpg" alt=""></div><figcaption><span class="ph">Phiên tòa giả định</span> <span class="ph">về bạo lực học đường</span></figcaption></figure>
+    <div class="pair">
+      <figure><div><img src="/files/s9_img4.jpg" alt=""></div><figcaption><span class="ph">Ngoại khóa PCCC,</span> <span class="ph">cứu nạn cứu hộ</span></figcaption></figure>
+      <figure><div><img src="/files/s9_img5.jpg" alt=""></div><figcaption><span class="ph">Hướng dẫn</span> <span class="ph">lái xe an toàn</span></figcaption></figure>
+    </div>
+  </div>
+  <div class="bar"></div>
+  <div class="brand">
+    <img src="/files/school-logo.png" alt=""><img src="/files/youth-union-logo.png" alt="">
+    <div><strong><span class="ph">ĐOÀN TRƯỜNG THPT CHUYÊN NGUYỄN TRÃI</span></strong><span>Năm học 2025–2026</span></div>
+  </div>
+  <div class="txt">
+    <h1 class="t serif"><span class="ph">1.4. Giáo dục đạo đức,</span> <span class="ph">lối sống văn hóa và pháp luật</span></h1>
+    <div class="rule"></div>
+    <p class="lead"><span class="ph">Hơn <b class="n-blue">400</b> ĐVTN tham gia</span> <span class="ph">thi tìm hiểu pháp luật;</span> <span class="ph">nhiều mô hình trực quan giúp học sinh</span> <span class="ph">nâng cao kỹ năng tự bảo vệ</span> <span class="ph">và ứng xử văn minh.</span></p>
+    <ul class="bl">
+      <li><span class="ph">Diễn đàn "Xây dựng tình bạn đẹp</span> <span class="ph">– Nói không với bạo lực học đường".</span></li>
+      <li><span class="ph">"Phiên tòa giả định" về</span> <span class="ph">phòng, chống bạo lực học đường.</span></li>
+      <li><span class="ph">Hướng dẫn kỹ năng lái xe an toàn</span> <span class="ph">cho gần 1.500 lượt ĐVTN.</span></li>
+      <li><span class="ph">Ngoại khóa PCCC, cứu nạn cứu hộ</span> <span class="ph">và phòng chống đuối nước.</span></li>
+      <li><span class="ph">Lễ ra mắt mô hình</span> <span class="ph">"Trường học không ma túy".</span></li>
+      <li><span class="ph">Đội tuyên truyền phòng, chống</span> <span class="ph">mua bán người đạt Giải Nhì</span> <span class="ph">cấp thành phố.</span></li>
+    </ul>
+  </div>
+  <div class="snum">9</div>
+  <p class="foot"><span class="ph">Phần B.I – Mục 1.4 và 1.5.</span> <span class="ph">Giáo dục đạo đức, lối sống;</span> <span class="ph">tuyên truyền, phổ biến pháp luật.</span></p>
+</div>
+
+
+
+<!-- ===== TRANG PHAN MUC (slide 5) ===== -->
+<div class="stage D">
+  <div class="lbl">KHUÔN TRANG PHÂN MỤC · SLIDE 2, 5, 33</div>
+  <div class="bg"><img src="/files/s5_img3.jpg" alt=""></div>
+  <div class="veil"></div>
+  <div class="bar"></div>
+  <div class="brand">
+    <img src="/files/school-logo.png" alt=""><img src="/files/youth-union-logo.png" alt="">
+    <div><strong><span class="ph">ĐOÀN TRƯỜNG THPT CHUYÊN NGUYỄN TRÃI</span></strong><span>Năm học 2025–2026</span></div>
+  </div>
+  <div class="snum">5</div>
+  <div class="wrap">
+    <div class="part"><span><span class="ph">PHẦN</span></span><b class="serif">B</b></div>
+    <h1 class="serif"><span class="ph">THÀNH TÍCH ĐẠT ĐƯỢC</span> <span class="ph">TRONG NĂM HỌC 2025–2026</span></h1>
+    <div class="rule"></div>
+    <p class="toc"><span class="ph">Công tác giáo dục</span> · <span class="ph">Phong trào hành động cách mạng</span> · <span class="ph">Đồng hành với thanh niên</span> · <span class="ph">Hội nhập quốc tế</span> · <span class="ph">Xây dựng Đoàn, tham gia xây dựng Đảng</span> · <span class="ph">Kết quả thực hiện chỉ tiêu</span></p>
+  </div>
+</div>
+
+<!-- ===== KET LUAN (slide 38) ===== -->
+<div class="stage O">
+  <div class="lbl">KHUÔN KẾT LUẬN · SLIDE 38</div>
+  <div class="bg"><img src="/files/s38_img3.jpg" alt=""></div>
+  <div class="veil"></div>
+  <div class="bar"></div>
+  <div class="snum">38</div>
+  <div class="msg">
+    <p class="k"><span class="ph">KẾT LUẬN</span></p>
+    <h1><span class="ph">Tuổi trẻ Chuyên Nguyễn Trãi</span></h1>
+    <p class="slogan"><span class="ph">Bản lĩnh</span> <i>–</i> <span class="ph">Trí tuệ</span> <i>–</i> <span class="ph">Sáng tạo</span> <i>–</i> <span class="ph">Cống hiến</span></p>
+  </div>
+  <p class="lead"><span class="ph">Năm học 2025–2026, Đoàn trường hoàn thành toàn diện nhiệm vụ,</span> <span class="ph">tạo dấu ấn nổi bật trong giáo dục, tình nguyện,</span> <span class="ph">sáng tạo, chuyển đổi số và xây dựng Đảng.</span></p>
+  <div class="stats">
+    <div class="st"><b>37</b><span><span class="ph">chi đoàn</span> <span class="ph">được phủ hoạt động</span></span></div>
+    <div class="st green"><b>Trên 1.000</b><span><span class="ph">lượt ĐVTN</span> <span class="ph">tham gia tình nguyện</span></span></div>
+    <div class="st"><b>05 · 11</b><span><span class="ph">công trình</span> <span class="ph">và phần việc thanh niên</span></span></div>
+    <div class="st green"><b>255</b><span><span class="ph">đoàn viên mới</span></span></div>
+    <div class="st red"><b>27</b><span><span class="ph">đoàn viên</span> <span class="ph">được kết nạp Đảng</span></span></div>
+  </div>
+  <p class="foot"><span class="ph">Kết luận Báo cáo công tác Đoàn</span> <span class="ph">và phong trào thanh niên trường học</span> <span class="ph">năm học 2025–2026.</span></p>
+</div>
+
+</div>

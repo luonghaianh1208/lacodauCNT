@@ -1,0 +1,313 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Archivo:wght@400;500;600;700;800&display=swap');
+
+.mo-wrap { max-width: 1080px; margin: 0 auto; }
+.mo-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 14px; }
+.mo-bar button { font: inherit; font-size: 13px; font-weight: 700; padding: 9px 15px; border-radius: 7px; border: 1px solid rgba(128,150,175,.4); background: rgba(255,255,255,.06); color: inherit; cursor: pointer; }
+.mo-bar button:hover { border-color: #ffd500; }
+.mo-bar button.on { background: #ffd500; color: #07213e; border-color: #ffd500; }
+.mo-bar .sp { width: 14px; }
+.mo-now { font-size: 12px; margin: 0 0 16px; opacity: .8; }
+.mo-now b { color: #ffd500; }
+
+.stage {
+  container-type: inline-size; position: relative; width: 100%; aspect-ratio: 16/9;
+  overflow: hidden; background: #f4f7fb; color: #0b315d; font-family: 'Archivo', sans-serif;
+  --navy: #0b315d; --muted: #52708c; --red: #e32420; --blue: #006ebb; --green: #0e7a43; --yellow: #ffd500;
+  --s: 1.1;
+  --fs-h1: calc(2.9cqw * var(--s)); --fs-lead: calc(1.55cqw * var(--s));
+  --fs-body: calc(1.42cqw * var(--s)); --fs-cap: calc(1.1cqw * var(--s));
+  --fs-brand: 1.15cqw; --fs-brandsub: .95cqw; --fs-foot: 1cqw; --fs-num: 1.15cqw;
+  --chrome-ink: var(--navy); --chrome-sub: var(--muted);
+}
+.stage img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ph { white-space: nowrap; }
+.serif { font-family: 'Source Serif 4', serif; }
+.slide { position: absolute; inset: 0; display: none; }
+.slide.live { display: block; }
+.slide.flip { --chrome-ink: #fff; --chrome-sub: #a9c6de; }
+
+.kbar { position: absolute; left: 0; top: 0; bottom: 0; width: 1.5cqw; background: var(--red); box-shadow: .5cqw 0 0 var(--yellow); z-index: 8; transform-origin: top; }
+.brand { position: absolute; top: 2.6cqw; left: 4.6cqw; display: flex; align-items: center; gap: .9cqw; height: 3.6cqw; z-index: 7; color: var(--chrome-ink); }
+.brand img { width: auto; height: 100%; object-fit: contain; }
+.brand div { display: flex; flex-direction: column; gap: .2cqw; }
+.brand strong { font-size: var(--fs-brand); letter-spacing: .07em; }
+.brand span { font-size: var(--fs-brandsub); color: var(--chrome-sub); }
+.snum { position: absolute; right: 3.4cqw; top: 3.1cqw; font-size: var(--fs-num); font-weight: 700; color: var(--chrome-sub); letter-spacing: .1em; z-index: 7; }
+
+h1.t { margin: 0; font-size: var(--fs-h1); line-height: 1.08; letter-spacing: -.02em; font-weight: 700; }
+.rule { width: 7cqw; height: .42cqw; border-radius: 99px; background: var(--red); transform-origin: left; }
+.lead { font-size: var(--fs-lead); line-height: 1.42; color: var(--muted); margin: 0; }
+.lead b.n-blue { color: var(--blue); } .lead b.n-green { color: var(--green); }
+ul.bl { margin: 0; padding: 0; list-style: none; display: grid; gap: .55cqw; }
+ul.bl li { position: relative; padding-left: 1.35cqw; font-size: var(--fs-body); line-height: 1.34; }
+ul.bl li::before { position: absolute; left: 0; top: .5em; width: .46cqw; height: .46cqw; border-radius: 50%; background: var(--blue); content: ""; }
+
+.txt { position: absolute; top: 8.4cqw; width: 43cqw; display: grid; gap: 1.5cqw; align-content: start; z-index: 5; }
+.media { position: absolute; top: 0; bottom: 0; width: 48cqw; background: var(--navy); color: #fff; display: grid; align-content: center; gap: 1.4cqw; padding: 0 3cqw; z-index: 1; }
+.slide:not(.flip) .txt { left: 4.6cqw; } .slide:not(.flip) .media { right: 0; }
+.slide.flip .txt { right: 3.4cqw; } .slide.flip .media { left: 0; padding-left: 4.6cqw; }
+.media figure { margin: 0; min-width: 0; }
+.media figcaption { font-size: var(--fs-cap); line-height: 1.3; color: #d6e6f4; padding-top: .6cqw; }
+.media .big > div { aspect-ratio: 16/9; overflow: hidden; border-top: .3cqw solid var(--red); }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3cqw; }
+.pair figure > div { aspect-ratio: 3/2; overflow: hidden; border-top: .3cqw solid var(--blue); }
+
+/* --- bia --- */
+.cv { background: #0b315d; color: #fff; }
+.cv .hero { position: absolute; inset: 0 0 36% 0; }
+.cv .veil { position: absolute; inset: 0 0 36% 0; background: linear-gradient(95deg, rgba(7,26,48,.96) 0%, rgba(7,26,48,.9) 40%, rgba(7,26,48,.3) 72%, rgba(7,26,48,.15) 100%); }
+.cv .copy { position: absolute; z-index: 5; inset: 0 44% 36% 0; padding: 3.2cqw 2.4cqw 1.8cqw 4.6cqw; display: flex; flex-direction: column; justify-content: center; }
+.cv .logos { display: flex; align-items: center; gap: 1.1cqw; height: 4.2cqw; margin-bottom: 1.5cqw; }
+.cv .logos img { width: auto; height: 100%; object-fit: contain; }
+.cv .eyebrow { font-size: 1.12cqw; font-weight: 700; letter-spacing: .16em; color: var(--yellow); margin: 0; }
+.cv h1 { font-family: 'Source Serif 4', serif; font-weight: 700; font-size: 2.85cqw; line-height: 1.06; margin: 1.4cqw 0 0; }
+.cv .rule { margin: 1.5cqw 0; }
+.cv .sub { font-size: 1.2cqw; line-height: 1.4; color: #cfe0f0; margin: 0; }
+.cv .band { position: absolute; z-index: 5; left: 4.6cqw; right: 3cqw; bottom: 2cqw; top: 64%; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: minmax(0,1fr); column-gap: 1.2cqw; }
+.cv .band figure { margin: 0; min-width: 0; min-height: 0; display: grid; grid-template-rows: minmax(0,1fr) auto; row-gap: .7cqw; }
+.cv .band figure > div { overflow: hidden; border-top: .3cqw solid var(--red); min-height: 0; }
+.cv .band figcaption { font-size: 1cqw; line-height: 1.3; color: #eaf2fa; }
+
+/* --- trang phan muc --- */
+.dv { background: #0b315d; color: #fff; }
+.dv .bg { position: absolute; inset: 0; }
+.dv .veil { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(7,26,48,.92) 0%, rgba(7,26,48,.88) 40%, rgba(7,26,48,.38) 70%, rgba(7,26,48,.16) 100%); }
+.dv .wrap { position: absolute; left: 4.6cqw; right: 8cqw; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; z-index: 5; }
+.dv .part { display: flex; flex-direction: column; align-items: flex-start; gap: .6cqw; }
+.dv .part b { font-family: 'Source Serif 4', serif; font-size: 11cqw; line-height: .8; color: var(--yellow); font-weight: 700; text-shadow: 0 .2cqw .9cqw rgba(3,14,28,.6); }
+.dv .part span { font-size: 1.5cqw; font-weight: 800; letter-spacing: .28em; color: #e4eef8; text-shadow: 0 .1cqw .45cqw rgba(3,14,28,.7); }
+.dv h1 { margin: 2.4cqw 0 0; font-size: 4.4cqw; line-height: 1.06; font-weight: 700; max-width: 62cqw; text-shadow: 0 .12cqw .5cqw rgba(3,14,28,.55); }
+.dv .rule { width: 9cqw; height: .5cqw; margin: 2.4cqw 0 1.8cqw; }
+.dv .toc { font-size: 1.7cqw; line-height: 1.5; color: #d4e4f2; margin: 0; max-width: 58cqw; text-shadow: 0 .1cqw .4cqw rgba(3,14,28,.6); }
+.dv .brand strong, .dv .brand span, .dv .snum { text-shadow: 0 .1cqw .45cqw rgba(3,14,28,.85); }
+.dv .snum { color: #fff; }
+
+/* --- so lieu --- */
+.kp .head { position: absolute; top: 8.6cqw; left: 4.6cqw; right: 3.4cqw; display: grid; grid-template-columns: 50% 1fr; gap: 3cqw; align-items: start; }
+.kp .rule { position: absolute; top: 17.4cqw; left: 4.6cqw; }
+.kp .khero { position: absolute; top: 19.8cqw; left: 4.6cqw; right: 3.4cqw; display: flex; align-items: center; gap: 3cqw; }
+.kp .khero b { font-size: calc(8.3cqw * var(--s)); line-height: .86; letter-spacing: -.035em; color: var(--red); font-weight: 700; }
+.kp .khero .txt2 { border-left: .1cqw solid #c4d5e5; padding-left: 3cqw; }
+.kp .khero .lb { display: block; font-size: calc(1.25cqw * var(--s)); font-weight: 800; letter-spacing: .1em; }
+.kp .grid { position: absolute; top: 30.2cqw; left: 4.6cqw; right: 3.4cqw; bottom: 5.4cqw; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); grid-template-rows: repeat(2, minmax(0,1fr)); gap: 1cqw; }
+.cell { background: #fff; border: .08cqw solid #c4d5e5; border-left: .32cqw solid var(--blue); border-radius: .6cqw; padding: 1.1cqw 1.2cqw; }
+.cell b { font-family: 'Source Serif 4', serif; font-weight: 700; font-size: calc(2.6cqw * var(--s)); line-height: 1.05; color: var(--blue); display: block; }
+.cell span { font-size: var(--fs-body); line-height: 1.34; margin-top: .55cqw; display: block; color: #26476a; }
+.cell.red { border-left-color: var(--red); } .cell.red b { color: var(--red); }
+.cell.green { border-left-color: var(--green); } .cell.green b { color: var(--green); }
+
+/* ============ DAN NHAC VAO ============ */
+.slide.live .anim { animation-duration: 520ms; animation-timing-function: cubic-bezier(.22,.85,.26,1); animation-fill-mode: both; animation-delay: var(--d, 0ms); }
+.slide.live .a-rise { animation-name: mo-rise; }
+.slide.live .a-fade { animation-name: mo-fade; }
+.slide.live .a-grow { animation-name: mo-grow; animation-duration: 420ms; }
+.slide.live .a-bar { animation-name: mo-bar; animation-duration: 420ms; }
+.slide.live .a-media { animation-name: mo-media; animation-duration: 640ms; }
+@keyframes mo-rise { from { opacity: 0; transform: translateY(1.1cqw); } to { opacity: 1; transform: none; } }
+@keyframes mo-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes mo-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes mo-bar { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes mo-media { from { opacity: 0; transform: scale(1.035); } to { opacity: 1; transform: none; } }
+
+/* ============ CHUYEN CANH ============ */
+@keyframes tr-slide { from { opacity: 0; transform: translateX(var(--dir, 4cqw)); } to { opacity: 1; transform: none; } }
+@keyframes tr-depth { from { opacity: 0; transform: scale(1.045); } to { opacity: 1; transform: none; } }
+@keyframes tr-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes tr-curtain { from { transform: translateX(var(--from, 100%)); } to { transform: none; } }
+
+/* che do TRON: kieu chuyen canh do LOAI slide quyet dinh */
+.stage[data-tr="mix"] .slide.live[data-kind="slide"] { animation: tr-slide 520ms cubic-bezier(.22,.85,.26,1) both; }
+.stage[data-tr="mix"] .slide.live[data-kind="depth"] { animation: tr-depth 620ms cubic-bezier(.22,.85,.26,1) both; }
+.stage[data-tr="mix"] .slide.live[data-kind="curtain"] { animation: tr-fade 440ms ease both; }
+.stage[data-tr="mix"] .slide.live[data-kind="curtain"] .media { animation: tr-curtain 560ms cubic-bezier(.3,.9,.25,1) both; }
+.slide.flip .media { --from: -100%; }
+
+/* che do MOT KIEU */
+.stage[data-tr="A"] .slide.live { animation: tr-slide 520ms cubic-bezier(.22,.85,.26,1) both; }
+.stage[data-tr="B"] .slide.live { animation: tr-fade 440ms ease both; }
+.stage[data-tr="B"] .slide.live .media { animation: tr-curtain 560ms cubic-bezier(.3,.9,.25,1) both; }
+.stage[data-tr="C"] .slide.live { animation: tr-depth 560ms cubic-bezier(.22,.85,.26,1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .stage[data-motion="auto"] *, .stage[data-motion="auto"] { animation-duration: 1ms !important; animation-delay: 0ms !important; }
+}
+.stage[data-motion="off"] *, .stage[data-motion="off"] { animation: none !important; }
+</style>
+
+<h2>Trộn ba kiểu chuyển cảnh theo loại slide</h2>
+<p class="subtitle">Năm slide dưới đây đi qua đủ ba loại. Bấm Tiếp/Lùi hoặc phím ← →, và so sánh chế độ "Trộn theo loại" với từng kiểu đơn lẻ.</p>
+
+<div class="mo-wrap">
+  <div class="mo-bar">
+    <button id="mx-prev">← Lùi</button>
+    <button id="mx-next">Tiếp →</button>
+    <button id="mx-replay">Phát lại</button>
+    <span class="sp"></span>
+    <button class="tr on" data-tr="mix">TRỘN THEO LOẠI</button>
+    <button class="tr" data-tr="A">Chỉ A</button>
+    <button class="tr" data-tr="B">Chỉ B</button>
+    <button class="tr" data-tr="C">Chỉ C</button>
+  </div>
+  <p class="mo-now" id="mx-now"></p>
+
+  <div class="stage" id="mx-stage" data-tr="mix" data-motion="force">
+
+    <section class="slide cv live" data-kind="slide" data-label="Bìa · không có panel → A · Trượt &amp; mờ">
+      <div class="hero anim a-media"><img src="/files/cover-youth-project.jpg" alt=""></div>
+      <div class="veil"></div>
+      <div class="kbar anim a-bar"></div>
+      <div class="copy">
+        <div class="logos anim a-fade" style="--d:80ms"><img src="/files/school-logo.png" alt=""><img src="/files/youth-union-logo.png" alt=""></div>
+        <p class="eyebrow anim a-rise" style="--d:140ms"><span class="ph">BCH ĐOÀN TRƯỜNG</span> <span class="ph">THPT CHUYÊN NGUYỄN TRÃI</span></p>
+        <h1 class="anim a-rise" style="--d:200ms"><span class="ph">BÁO CÁO KẾT QUẢ</span> <span class="ph">ĐƠN VỊ ĐĂNG KÝ</span> <span class="ph">LÁ CỜ ĐẦU</span></h1>
+        <div class="rule anim a-grow" style="--d:320ms"></div>
+        <p class="sub anim a-rise" style="--d:380ms"><span class="ph">trong công tác Đoàn</span> <span class="ph">và phong trào thanh niên</span> <span class="ph">trường học năm học 2025–2026</span></p>
+      </div>
+      <div class="band">
+        <figure class="anim a-media" style="--d:420ms"><div><img src="/files/platform-launch.jpg" alt=""></div><figcaption><span class="ph">Ra mắt nền tảng số</span></figcaption></figure>
+        <figure class="anim a-media" style="--d:510ms"><div><img src="/files/eco-vision.jpg" alt=""></div><figcaption><span class="ph">Eco Vision – Ước mơ xanh</span></figcaption></figure>
+        <figure class="anim a-media" style="--d:600ms"><div><img src="/files/discipline-webapp.png" alt=""></div><figcaption><span class="ph">WebApp Nền nếp CNT</span></figcaption></figure>
+      </div>
+    </section>
+
+    <section class="slide dv" data-kind="depth" data-label="Trang phân mục → C · Chiều sâu (chỉ dùng 3 lần trong cả bộ)">
+      <div class="bg anim a-media"><img src="/files/s5_img3.jpg" alt=""></div>
+      <div class="veil"></div>
+      <div class="kbar anim a-bar"></div>
+      <div class="brand anim a-fade" style="--d:80ms"><img src="/files/school-logo.png" alt=""><img src="/files/youth-union-logo.png" alt=""><div><strong><span class="ph">ĐOÀN TRƯỜNG THPT CHUYÊN NGUYỄN TRÃI</span></strong><span>Năm học 2025–2026</span></div></div>
+      <div class="snum">5</div>
+      <div class="wrap">
+        <div class="part"><span class="anim a-rise" style="--d:200ms"><span class="ph">PHẦN</span></span><b class="serif anim a-rise" style="--d:260ms">B</b></div>
+        <h1 class="serif anim a-rise" style="--d:380ms"><span class="ph">THÀNH TÍCH ĐẠT ĐƯỢC</span> <span class="ph">TRONG NĂM HỌC 2025–2026</span></h1>
+        <div class="rule anim a-grow" style="--d:480ms"></div>
+        <p class="toc anim a-rise" style="--d:540ms"><span class="ph">Công tác giáo dục</span> · <span class="ph">Phong trào hành động cách mạng</span> · <span class="ph">Đồng hành với thanh niên</span></p>
+      </div>
+    </section>
+
+    <section class="slide" data-kind="curtain" data-label="Nội dung, panel PHẢI → B · Rèm kéo từ phải">
+      <div class="media">
+        <figure class="big anim a-media" style="--d:260ms"><div><img src="/files/s8_img3.jpg" alt=""></div><figcaption><span class="ph">Triển lãm tranh</span> <span class="ph">"Độc lập – Tự do – Hạnh phúc"</span></figcaption></figure>
+        <div class="pair">
+          <figure class="anim a-media" style="--d:350ms"><div><img src="/files/s8_img4.jpg" alt=""></div><figcaption><span class="ph">Giao lưu</span> <span class="ph">nhân chứng lịch sử</span></figcaption></figure>
+          <figure class="anim a-media" style="--d:440ms"><div><img src="/files/s8_img5.jpg" alt=""></div><figcaption><span class="ph">Dâng hương</span> <span class="ph">nghĩa trang liệt sĩ</span></figcaption></figure>
+        </div>
+      </div>
+      <div class="kbar anim a-bar"></div>
+      <div class="brand anim a-fade" style="--d:80ms"><img src="/files/school-logo.png" alt=""><img src="/files/youth-union-logo.png" alt=""><div><strong><span class="ph">ĐOÀN TRƯỜNG THPT CHUYÊN NGUYỄN TRÃI</span></strong><span>Năm học 2025–2026</span></div></div>
+      <div class="txt">
+        <h1 class="t serif anim a-rise" style="--d:160ms"><span class="ph">1.3. Giáo dục truyền thống</span> <span class="ph">cách mạng, lòng yêu nước</span></h1>
+        <div class="rule anim a-grow" style="--d:280ms"></div>
+        <p class="lead anim a-rise" style="--d:330ms"><span class="ph">Đoàn trường tổ chức nhiều hoạt động</span> <span class="ph">lịch sử – nghệ thuật – trải nghiệm,</span> <span class="ph">trong đó có hơn <b class="n-blue">35</b> tác phẩm hội họa.</span></p>
+        <ul class="bl">
+          <li class="anim a-rise" style="--d:400ms"><span class="ph">Cuộc thi kiến thức</span> <span class="ph">"Dưới Ánh Sao Vàng".</span></li>
+          <li class="anim a-rise" style="--d:470ms"><span class="ph">Triển lãm tranh chủ đề</span> <span class="ph">"Độc lập" "Tự do" "Hạnh phúc".</span></li>
+          <li class="anim a-rise" style="--d:540ms"><span class="ph">Phim ngắn</span> <span class="ph">"Mùa gió ngược".</span></li>
+          <li class="anim a-rise" style="--d:610ms"><span class="ph">Dâng hương, vệ sinh</span> <span class="ph">các đài tưởng niệm.</span></li>
+        </ul>
+      </div>
+      <div class="snum">8</div>
+    </section>
+
+    <section class="slide flip" data-kind="curtain" data-label="Nội dung, panel TRÁI → B · Rèm kéo từ trái">
+      <div class="media">
+        <figure class="big anim a-media" style="--d:260ms"><div><img src="/files/s9_img3.jpg" alt=""></div><figcaption><span class="ph">Phiên tòa giả định</span> <span class="ph">về bạo lực học đường</span></figcaption></figure>
+        <div class="pair">
+          <figure class="anim a-media" style="--d:350ms"><div><img src="/files/s9_img4.jpg" alt=""></div><figcaption><span class="ph">Ngoại khóa PCCC</span></figcaption></figure>
+          <figure class="anim a-media" style="--d:440ms"><div><img src="/files/s9_img5.jpg" alt=""></div><figcaption><span class="ph">Lái xe an toàn</span></figcaption></figure>
+        </div>
+      </div>
+      <div class="kbar anim a-bar"></div>
+      <div class="brand anim a-fade" style="--d:80ms"><img src="/files/school-logo.png" alt=""><img src="/files/youth-union-logo.png" alt=""><div><strong><span class="ph">ĐOÀN TRƯỜNG THPT CHUYÊN NGUYỄN TRÃI</span></strong><span>Năm học 2025–2026</span></div></div>
+      <div class="txt">
+        <h1 class="t serif anim a-rise" style="--d:160ms"><span class="ph">1.4. Giáo dục đạo đức,</span> <span class="ph">lối sống văn hóa và pháp luật</span></h1>
+        <div class="rule anim a-grow" style="--d:280ms"></div>
+        <p class="lead anim a-rise" style="--d:330ms"><span class="ph">Hơn <b class="n-blue">400</b> ĐVTN tham gia</span> <span class="ph">thi tìm hiểu pháp luật.</span></p>
+        <ul class="bl">
+          <li class="anim a-rise" style="--d:400ms"><span class="ph">Diễn đàn</span> <span class="ph">"Xây dựng tình bạn đẹp".</span></li>
+          <li class="anim a-rise" style="--d:470ms"><span class="ph">"Phiên tòa giả định"</span> <span class="ph">về bạo lực học đường.</span></li>
+          <li class="anim a-rise" style="--d:540ms"><span class="ph">Ngoại khóa PCCC,</span> <span class="ph">cứu nạn cứu hộ.</span></li>
+          <li class="anim a-rise" style="--d:610ms"><span class="ph">Lễ ra mắt mô hình</span> <span class="ph">"Trường học không ma túy".</span></li>
+        </ul>
+      </div>
+      <div class="snum">9</div>
+    </section>
+
+    <section class="slide kp" data-kind="slide" data-label="Số liệu · không có panel → A · Trượt &amp; mờ" style="--s:1.2">
+      <div class="kbar anim a-bar"></div>
+      <div class="brand anim a-fade" style="--d:80ms"><img src="/files/school-logo.png" alt=""><img src="/files/youth-union-logo.png" alt=""><div><strong><span class="ph">ĐOÀN TRƯỜNG THPT CHUYÊN NGUYỄN TRÃI</span></strong><span>Năm học 2025–2026</span></div></div>
+      <div class="head">
+        <h1 class="t serif anim a-rise" style="--d:160ms"><span class="ph">6. Kết quả thực hiện</span> <span class="ph">chỉ tiêu năm học</span></h1>
+        <p class="lead anim a-rise" style="--d:230ms"><span class="ph">Đoàn trường hoàn thành</span> <span class="ph">15/15 nhóm chỉ tiêu.</span></p>
+      </div>
+      <div class="rule anim a-grow" style="--d:300ms"></div>
+      <div class="khero">
+        <b class="serif anim a-rise" style="--d:340ms"><span id="mx-count">15/15</span></b>
+        <div class="txt2 anim a-rise" style="--d:420ms"><span class="lb"><span class="ph">NHÓM CHỈ TIÊU HOÀN THÀNH</span></span></div>
+      </div>
+      <div class="grid">
+        <div class="cell anim a-rise" style="--d:470ms"><b>05 · 11</b><span><span class="ph">05 công trình,</span> <span class="ph">11 phần việc thanh niên.</span></span></div>
+        <div class="cell green anim a-rise" style="--d:530ms"><b>Trên 1.000</b><span><span class="ph">lượt ĐVTN tình nguyện.</span></span></div>
+        <div class="cell anim a-rise" style="--d:590ms"><b>05</b><span><span class="ph">05 đội hình</span> <span class="ph">Hoa phượng đỏ.</span></span></div>
+        <div class="cell green anim a-rise" style="--d:650ms"><b>14</b><span><span class="ph">Hỗ trợ 14 học sinh</span> <span class="ph">khó khăn.</span></span></div>
+        <div class="cell anim a-rise" style="--d:710ms"><b>03 · 01</b><span><span class="ph">03 chương trình hướng nghiệp.</span></span></div>
+        <div class="cell red anim a-rise" style="--d:770ms"><b>80 · 27</b><span><span class="ph">Giới thiệu 80 đoàn viên ưu tú;</span> <span class="ph">27 kết nạp Đảng.</span></span></div>
+      </div>
+      <div class="snum">31</div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  var stage = document.getElementById('mx-stage');
+  if (!stage || stage.dataset.wired) { return; }
+  stage.dataset.wired = '1';
+  var slides = [].slice.call(stage.querySelectorAll('.slide'));
+  var now = document.getElementById('mx-now');
+  var i = 0;
+
+  function countUp() {
+    var el = document.getElementById('mx-count');
+    if (!el) { return; }
+    var t0 = null;
+    function step(ts) {
+      if (t0 === null) { t0 = ts; }
+      var p = Math.min(1, (ts - t0) / 900);
+      el.textContent = Math.round(p * 15) + '/15';
+      if (p < 1) { requestAnimationFrame(step); }
+    }
+    el.textContent = '0/15';
+    requestAnimationFrame(step);
+  }
+
+  function show(n, dir) {
+    slides.forEach(function (s) { s.classList.remove('live'); });
+    i = (n + slides.length) % slides.length;
+    var s = slides[i];
+    s.style.setProperty('--dir', dir < 0 ? '-4cqw' : '4cqw');
+    void s.offsetWidth;
+    s.classList.add('live');
+    now.innerHTML = 'Slide ' + (i + 1) + '/' + slides.length + ' — <b>' + s.dataset.label + '</b>';
+    if (s.classList.contains('kp')) { setTimeout(countUp, 340); }
+  }
+
+  document.getElementById('mx-next').onclick = function () { show(i + 1, 1); };
+  document.getElementById('mx-prev').onclick = function () { show(i - 1, -1); };
+  document.getElementById('mx-replay').onclick = function () { show(i, 1); };
+  [].slice.call(document.querySelectorAll('.mo-bar .tr')).forEach(function (b) {
+    b.onclick = function () {
+      document.querySelectorAll('.mo-bar .tr').forEach(function (x) { x.classList.remove('on'); });
+      b.classList.add('on');
+      stage.dataset.tr = b.dataset.tr;
+      show(i, 1);
+    };
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { show(i + 1, 1); }
+    if (e.key === 'ArrowLeft') { show(i - 1, -1); }
+  });
+  show(0, 1);
+})();
+</script>
