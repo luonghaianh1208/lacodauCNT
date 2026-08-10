@@ -11,6 +11,11 @@
   --line: #c4d5e5;
 }
 
+/* Mỗi cụm từ tiếng Việt là một khối không được ngắt giữa chừng. */
+.ph {
+  white-space: nowrap;
+}
+
 @property --kpi-value {
   syntax: "<integer>";
   initial-value: 0;
