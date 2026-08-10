@@ -1,14 +1,133 @@
 :root {
   --navy: #0b315d;
   --navy-deep: #071a30;
-  --navy-mid: #114a7d;
-  --blue: #006ebb;
-  --red: #e32420;
-  --yellow: #ffd500;
   --paper: #f4f7fb;
-  --ink: #0b315d;
-  --muted: #526f8c;
   --line: #c4d5e5;
+  --ink: #0b315d;
+  --muted: #52708c;
+  --red: #e32420;
+  --red-ink: #c81e1a;
+  --blue: #006ebb;
+  --green: #0e7a43;
+  --yellow: #ffd500;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.ph {
+  white-space: nowrap;
+}
+
+.slide-stage {
+  container-type: inline-size;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans), Arial, sans-serif;
+
+  /* Núm mật độ: chỉ biến này đổi giữa các slide. */
+  --s: 1;
+
+  --fs-display: calc(8.3cqw * var(--s));
+  --fs-h1: calc(2.9cqw * var(--s));
+  --fs-metric: calc(2.6cqw * var(--s));
+  --fs-lead: calc(1.55cqw * var(--s));
+  --fs-body: calc(1.42cqw * var(--s));
+  --fs-label: calc(1.25cqw * var(--s));
+  --fs-cap: calc(1.1cqw * var(--s));
+
+  /* Khung không co giãn theo mật độ, giữ ổn định suốt bộ slide. */
+  --fs-brand: 1.15cqw;
+  --fs-brandsub: 0.95cqw;
+  --fs-foot: 1cqw;
+  --fs-num: 1.15cqw;
+
+  --chrome-ink: var(--navy);
+  --chrome-sub: var(--muted);
+}
+
+.slide-stage[data-density="thoang"] { --s: 1.2; }
+.slide-stage[data-density="vua"] { --s: 1; }
+.slide-stage[data-density="day"] { --s: 0.87; }
+
+.slide-stage[data-on-dark="true"] {
+  --chrome-ink: #fff;
+  --chrome-sub: #a9c6de;
+}
+
+.slide-stage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.serif {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+.slide-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 8;
+  width: 1.5cqw;
+  background: var(--red);
+  box-shadow: 0.5cqw 0 0 var(--yellow);
+  transform-origin: top;
+}
+
+.slide-brand {
+  position: absolute;
+  top: 2.6cqw;
+  left: 4.6cqw;
+  z-index: 7;
+  display: flex;
+  height: 3.6cqw;
+  align-items: center;
+  gap: 0.9cqw;
+  color: var(--chrome-ink);
+}
+
+.slide-brand img { width: auto; height: 100%; object-fit: contain; }
+.slide-brand div { display: flex; flex-direction: column; gap: 0.2cqw; }
+.slide-brand strong { font-size: var(--fs-brand); letter-spacing: 0.07em; }
+.slide-brand span { font-size: var(--fs-brandsub); color: var(--chrome-sub); }
+
+.slide-num {
+  position: absolute;
+  right: 3.4cqw;
+  top: 3.1cqw;
+  z-index: 7;
+  color: var(--chrome-sub);
+  font-size: var(--fs-num);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.slide-foot {
+  position: absolute;
+  left: 4.6cqw;
+  bottom: 1.8cqw;
+  z-index: 7;
+  max-width: 44cqw;
+  margin: 0;
+  color: var(--chrome-sub);
+  font-size: var(--fs-foot);
+}
+
+/* Chữ khung nằm trên ảnh thì phải có bóng, vì ảnh có thể sáng bất kỳ chỗ nào. */
+.slide-stage[data-over-photo="true"] .slide-brand strong,
+.slide-stage[data-over-photo="true"] .slide-brand span,
+.slide-stage[data-over-photo="true"] .slide-num {
+  color: #fff;
+  text-shadow: 0 0.1cqw 0.45cqw rgba(3, 14, 28, 0.85);
 }
 
 /* Mỗi cụm từ tiếng Việt là một khối không được ngắt giữa chừng. */
