@@ -19,6 +19,25 @@ const work = fs.mkdtempSync(path.join(process.cwd(), ".pptx-"));
 // Giải nén slides, relationships, và media. _rels phải được nêu tường minh vì unzip không chọn thư mục con tự động.
 execFileSync("unzip", ["-qo", PPTX, "ppt/slides/*", "ppt/slides/_rels/*", "ppt/media/*", "-d", work]);
 
+// Kiểm tra tất cả file .rels tồn tại. Nếu thiếu, thoát với lỗi rõ ràng thay vì âm thầm tạo bản đồ sai.
+const relsDir = path.join(work, "ppt", "slides", "_rels");
+const missing = [];
+for (let slide = 1; slide <= TOTAL_SLIDES; slide += 1) {
+  const relPath = path.join(relsDir, `slide${slide}.xml.rels`);
+  if (!fs.existsSync(relPath)) {
+    missing.push(slide);
+  }
+}
+if (missing.length > 0) {
+  fs.rmSync(work, { recursive: true, force: true });
+  console.error(
+    `Lỗi: Thiếu file relationships cho ${missing.length} slide: ${missing.join(", ")}\n` +
+    "Nguyên nhân: Lệnh unzip có thể không giải nén được thư mục con _rels.\n" +
+    "Kiểm tra xem PPTX có hợp lệ và unzip có bao gồm pattern 'ppt/slides/_rels/*'."
+  );
+  process.exit(1);
+}
+
 // Đếm số lần mỗi ảnh xuất hiện để nhận ra logo dùng chung.
 const mediaDir = path.join(work, "ppt", "media");
 const hashCount = new Map();
@@ -36,7 +55,8 @@ const map = {};
 for (let slide = 1; slide <= TOTAL_SLIDES; slide += 1) {
   const relPath = path.join(work, "ppt", "slides", "_rels", `slide${slide}.xml.rels`);
   const xml = fs.readFileSync(path.join(work, "ppt", "slides", `slide${slide}.xml`), "utf8");
-  const rels = fs.existsSync(relPath) ? fs.readFileSync(relPath, "utf8") : "";
+  // Tại thời điểm này, tất cả file .rels đã được xác nhận tồn tại ở bước kiểm tra trước.
+  const rels = fs.readFileSync(relPath, "utf8");
 
   const idToFile = {};
   for (const m of rels.matchAll(/Id="(rId\d+)"[^>]*Target="\.\.\/media\/([^"]+)"/g)) {
