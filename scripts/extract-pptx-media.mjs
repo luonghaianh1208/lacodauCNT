@@ -1,6 +1,7 @@
 // Rút ảnh từ file PPTX và dựng bản đồ slide -> danh sách ảnh nội dung.
-// Hai ảnh đầu của mỗi slide luôn là hai logo (s{N}_img1 và s{N}_img2) nên bị loại.
+// Hai ảnh đầu của mỗi slide luôn là hai logo (lặp lại đủ 38 lần) nên bị loại.
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -15,41 +16,47 @@ if (!PPTX || !fs.existsSync(PPTX)) {
 }
 
 const work = fs.mkdtempSync(path.join(process.cwd(), ".pptx-"));
-execFileSync("unzip", ["-qo", PPTX, "ppt/media/*", "-d", work]);
+// Giải nén slides, relationships, và media. _rels phải được nêu tường minh vì unzip không chọn thư mục con tự động.
+execFileSync("unzip", ["-qo", PPTX, "ppt/slides/*", "ppt/slides/_rels/*", "ppt/media/*", "-d", work]);
+
+// Đếm số lần mỗi ảnh xuất hiện để nhận ra logo dùng chung.
+const mediaDir = path.join(work, "ppt", "media");
+const hashCount = new Map();
+const hashOf = new Map();
+for (const file of fs.readdirSync(mediaDir)) {
+  const hash = createHash("md5").update(fs.readFileSync(path.join(mediaDir, file))).digest("hex");
+  hashOf.set(file, hash);
+  hashCount.set(hash, (hashCount.get(hash) ?? 0) + 1);
+}
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
 fs.mkdirSync(path.dirname(MAP_FILE), { recursive: true });
 
-const mediaDir = path.join(work, "ppt", "media");
 const map = {};
-
-// Tìm tất cả ảnh, nhóm theo slide
-const imagesBySlide = new Map();
-for (const file of fs.readdirSync(mediaDir)) {
-  const match = file.match(/^s(\d+)_img(\d+)\./);
-  if (!match) continue;
-
-  const slideNum = parseInt(match[1], 10);
-  const imgIndex = parseInt(match[2], 10);
-
-  if (!imagesBySlide.has(slideNum)) {
-    imagesBySlide.set(slideNum, []);
-  }
-  imagesBySlide.get(slideNum).push({ imgIndex, file });
-}
-
-// Xử lý từng slide: lấy tất cả ảnh trừ img1 và img2 (hai logo)
 for (let slide = 1; slide <= TOTAL_SLIDES; slide += 1) {
-  const images = imagesBySlide.get(slide) || [];
-  const contentImages = images
-    .filter(img => img.imgIndex > 2) // Bỏ logo
-    .sort((a, b) => a.imgIndex - b.imgIndex)
-    .map(img => img.file);
+  const relPath = path.join(work, "ppt", "slides", "_rels", `slide${slide}.xml.rels`);
+  const xml = fs.readFileSync(path.join(work, "ppt", "slides", `slide${slide}.xml`), "utf8");
+  const rels = fs.existsSync(relPath) ? fs.readFileSync(relPath, "utf8") : "";
 
-  for (const file of contentImages) {
+  const idToFile = {};
+  for (const m of rels.matchAll(/Id="(rId\d+)"[^>]*Target="\.\.\/media\/([^"]+)"/g)) {
+    idToFile[m[1]] = m[2];
+  }
+
+  const used = [];
+  for (const m of xml.matchAll(/r:embed="(rId\d+)"/g)) {
+    const file = idToFile[m[1]];
+    // Ảnh xuất hiện ở gần như mọi slide là logo dùng chung, không phải ảnh nội dung.
+    if (!file || used.includes(file) || hashCount.get(hashOf.get(file)) >= TOTAL_SLIDES) {
+      continue;
+    }
+    used.push(file);
+  }
+
+  for (const file of used) {
     fs.copyFileSync(path.join(mediaDir, file), path.join(OUT_DIR, file));
   }
-  map[slide] = contentImages;
+  map[slide] = used;
 }
 
 fs.writeFileSync(MAP_FILE, `${JSON.stringify(map, null, 2)}\n`);
