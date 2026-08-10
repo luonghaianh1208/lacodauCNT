@@ -98,6 +98,18 @@ describe("ContentSlideView", () => {
     expect(container.querySelector(".media-grid")).toBeNull();
   });
 
+  it("3 ảnh: 1 lớn media-lead cộng cặp media-pair", () => {
+    const { container } = render(
+      <ContentSlideView slide={{ ...slide, images: makeImages(3) }} side="right" />,
+    );
+
+    expect(container.querySelectorAll("figure")).toHaveLength(3);
+    expect(container.querySelector(".media-lead")).not.toBeNull();
+    expect(container.querySelector(".media-pair")).not.toBeNull();
+    expect(container.querySelector(".media-solo")).toBeNull();
+    expect(container.querySelector(".media-grid")).toBeNull();
+  });
+
   it("4 ảnh trở lên: lưới 2 cột qua class media-grid", () => {
     const { container } = render(
       <ContentSlideView slide={{ ...slide, images: makeImages(4) }} side="right" />,
