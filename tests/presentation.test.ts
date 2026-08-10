@@ -1,22 +1,31 @@
 import { describe, expect, it } from "vitest";
 
-import {
-  CHANNEL_NAME,
-  SLIDES,
-  clampSlideIndex,
-  reducePresentationState,
-} from "@/lib/presentation";
+import { CHANNEL_NAME, clampSlideIndex, reducePresentationState } from "@/lib/presentation";
+import { SLIDES } from "@/lib/slides";
+import type { KpiSlide, ModelSlide, Slide } from "@/lib/slides/types";
+
+// `SLIDES` là tuple `as const` nên phần tử của nó là hợp của 38 kiểu object
+// literal chính xác, hẹp hơn kiểu `Slide` trừu tượng — .find() với type predicate
+// chỉ thu hẹp đúng khi phần tử mảng đã có kiểu `Slide`. Ép kiểu một lần ở đây.
+const slides: readonly Slide[] = SLIDES;
 
 describe("source-faithful presentation data", () => {
-  it("contains exactly the three approved source slides", () => {
-    expect(SLIDES.map((slide) => slide.sourceNumber)).toEqual([1, 31, 34]);
+  it("contains all 38 slides in source order", () => {
+    expect(SLIDES.map((slide) => slide.number)).toEqual(
+      Array.from({ length: 38 }, (_, index) => index + 1),
+    );
     expect(CHANNEL_NAME).toBe("cnt-presentation-demo-v1");
   });
 
-  it("keeps the approved cover, KPI, and platform copy", () => {
-    expect(SLIDES[0].title).toBe("BÁO CÁO KẾT QUẢ ĐƠN VỊ ĐĂNG KÝ LÁ CỜ ĐẦU");
-    expect(SLIDES[1].headline).toBe("15/15");
-    expect(SLIDES[1].metrics.map((metric) => metric.value)).toEqual([
+  it("keeps the approved cover, KPI, and model copy", () => {
+    const kpiSlide = slides.find((slide): slide is KpiSlide => slide.kind === "kpi");
+    const modelSlide = slides.find(
+      (slide): slide is ModelSlide => slide.kind === "model" && Boolean(slide.videoSrc),
+    );
+
+    expect(SLIDES[0].kind).toBe("cover");
+    expect(kpiSlide?.headline).toBe("15/15");
+    expect(kpiSlide?.metrics.map((metric) => metric.value)).toEqual([
       "05 · 11",
       "Trên 1.000",
       "05",
@@ -24,17 +33,17 @@ describe("source-faithful presentation data", () => {
       "03 · 01",
       "80 · 27",
     ]);
-    expect(SLIDES[2].url).toBe("https://doantruong.chuyennguyentrai.edu.vn");
-    expect(SLIDES[2].functions).toHaveLength(6);
-    expect(SLIDES[2].effects).toHaveLength(4);
+    expect(modelSlide?.url).toBe("https://doantruong.chuyennguyentrai.edu.vn");
+    expect(modelSlide?.functions).toHaveLength(6);
+    expect(modelSlide?.effects).toHaveLength(4);
   });
 });
 
 describe("presentation state", () => {
-  it("clamps navigation to the three-slide range", () => {
+  it("clamps navigation to the 38-slide range", () => {
     expect(clampSlideIndex(-1)).toBe(0);
     expect(clampSlideIndex(1)).toBe(1);
-    expect(clampSlideIndex(8)).toBe(2);
+    expect(clampSlideIndex(999)).toBe(37);
   });
 
   it("accepts newer state and ignores stale state", () => {

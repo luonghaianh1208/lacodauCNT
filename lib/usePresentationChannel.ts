@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import type { MotionMode } from "@/lib/motion";
 import {
   CHANNEL_NAME,
   type PresentationMessage,
@@ -14,6 +15,7 @@ type UsePresentationChannelOptions = {
   currentState: PresentationState;
   onState?: (state: PresentationState) => void;
   onCommand?: (command: VideoCommand) => void;
+  onMotion?: (mode: MotionMode) => void;
 };
 
 export function usePresentationChannel({
@@ -21,11 +23,13 @@ export function usePresentationChannel({
   currentState,
   onState,
   onCommand,
+  onMotion,
 }: UsePresentationChannelOptions) {
   const channelRef = useRef<BroadcastChannel | null>(null);
   const stateRef = useRef(currentState);
   const onStateRef = useRef(onState);
   const onCommandRef = useRef(onCommand);
+  const onMotionRef = useRef(onMotion);
   const [projectorConnected, setProjectorConnected] = useState(false);
 
   useEffect(() => {
@@ -39,6 +43,10 @@ export function usePresentationChannel({
   useEffect(() => {
     onCommandRef.current = onCommand;
   }, [onCommand]);
+
+  useEffect(() => {
+    onMotionRef.current = onMotion;
+  }, [onMotion]);
 
   useEffect(() => {
     if (!("BroadcastChannel" in window)) {
@@ -69,6 +77,10 @@ export function usePresentationChannel({
         onCommandRef.current?.(message.command);
       }
 
+      if (message.type === "MOTION" && role === "present") {
+        onMotionRef.current?.(message.mode);
+      }
+
       if (message.type === "PRESENTER_READY" && role === "control") {
         setProjectorConnected(true);
       }
@@ -97,9 +109,14 @@ export function usePresentationChannel({
     } satisfies PresentationMessage);
   }, []);
 
+  const postMotion = useCallback((mode: MotionMode) => {
+    channelRef.current?.postMessage({ type: "MOTION", mode } satisfies PresentationMessage);
+  }, []);
+
   return {
     projectorConnected,
     postState,
     postCommand,
+    postMotion,
   };
 }

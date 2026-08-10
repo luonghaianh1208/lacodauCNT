@@ -3,13 +3,17 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { SlideCanvas } from "@/components/SlideCanvas";
-import {
-  SLIDES,
-  clampSlideIndex,
-  type PresentationState,
-  type VideoCommand,
-} from "@/lib/presentation";
+import { phrasesToText } from "@/lib/phrases";
+import { MOTION_STORAGE_KEY, readMotionMode, type MotionMode } from "@/lib/motion";
+import { type PresentationState, type VideoCommand } from "@/lib/presentation";
+import { clampIndex, SLIDES, type Slide } from "@/lib/slides";
 import { usePresentationChannel } from "@/lib/usePresentationChannel";
+
+const MOTION_LABELS: Record<MotionMode, string> = {
+  force: "CHUYỂN ĐỘNG: BẬT",
+  auto: "CHUYỂN ĐỘNG: THEO MÁY",
+  off: "CHUYỂN ĐỘNG: TẮT",
+};
 
 function formatClock(date: Date) {
   return new Intl.DateTimeFormat("vi-VN", {
@@ -23,15 +27,16 @@ function formatClock(date: Date) {
 export function ControlDeck() {
   const [state, setState] = useState<PresentationState>({ slideIndex: 0, sequence: 0 });
   const [clock, setClock] = useState(() => formatClock(new Date()));
+  const [motion, setMotion] = useState<MotionMode>("force");
   const sequenceRef = useRef(0);
-  const { projectorConnected, postState, postCommand } = usePresentationChannel({
+  const { projectorConnected, postState, postCommand, postMotion } = usePresentationChannel({
     role: "control",
     currentState: state,
   });
 
   const navigate = useCallback(
     (target: number) => {
-      const nextIndex = clampSlideIndex(target);
+      const nextIndex = clampIndex(target);
       if (nextIndex === state.slideIndex) {
         return;
       }
@@ -58,6 +63,28 @@ export function ControlDeck() {
   }, []);
 
   useEffect(() => {
+    // Đọc localStorage (chỉ có ở client) sau khi mount để tránh lệch giữa
+    // HTML render sẵn trên server và lần render đầu ở client (hydration).
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMotion(readMotionMode());
+  }, []);
+
+  const cycleMotion = () => {
+    const order: MotionMode[] = ["force", "auto", "off"];
+    const next = order[(order.indexOf(motion) + 1) % order.length];
+    setMotion(next);
+    window.localStorage.setItem(MOTION_STORAGE_KEY, next);
+    postMotion(next);
+  };
+
+  // Ép kiểu về `Slide` (kiểu union trừu tượng của Task 7): `SLIDES` là tuple
+  // `as const` nên chỉ số số học (không phải literal) trả về hợp của 38 kiểu
+  // object chính xác — trường tuỳ chọn thiếu hẳn khoá ở một số phần tử khiến
+  // TS không cho truy cập `note`/`lead`/`videoSrc` dù mọi phần tử đều khớp `Slide`.
+  const slide = SLIDES[state.slideIndex] as Slide;
+  const videoEnabled = slide.kind === "model" && Boolean(slide.videoSrc);
+
+  useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowLeft") {
         event.preventDefault();
@@ -67,7 +94,7 @@ export function ControlDeck() {
         event.preventDefault();
         navigate(state.slideIndex + 1);
       }
-      if (event.key === " " && state.slideIndex === 2) {
+      if (event.key === " " && videoEnabled) {
         event.preventDefault();
         sendVideoCommand("play");
       }
@@ -75,12 +102,10 @@ export function ControlDeck() {
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [navigate, sendVideoCommand, state.slideIndex]);
+  }, [navigate, sendVideoCommand, state.slideIndex, videoEnabled]);
 
-  const slide = SLIDES[state.slideIndex];
   const nextIndex = state.slideIndex + 1;
   const nextSlide = SLIDES[nextIndex];
-  const videoEnabled = state.slideIndex === 2;
 
   return (
     <main className="control-deck">
@@ -89,14 +114,22 @@ export function ControlDeck() {
           <span className="presenter-mark" aria-hidden="true" />
           <div>
             <strong>PRESENTER</strong>
-            <span>Báo cáo Lá cờ đầu · Demo 3 slide</span>
+            <span>Báo cáo Lá cờ đầu · 38 slide</span>
           </div>
         </div>
-        <div className="control-progress">SLIDE {state.slideIndex + 1} / 3</div>
+        <div className="control-progress">SLIDE {state.slideIndex + 1} / {SLIDES.length}</div>
         <div className="control-status">
           <time>{clock}</time>
           <span className={projectorConnected ? "status-dot status-dot--live" : "status-dot"} />
           <span>{projectorConnected ? "ĐÃ KẾT NỐI" : "ĐANG CHỜ MÀN CHIẾU"}</span>
+          <button
+            className="open-projector"
+            type="button"
+            aria-label="Chế độ chuyển động"
+            onClick={cycleMotion}
+          >
+            {MOTION_LABELS[motion]}
+          </button>
           <button
             className="open-projector"
             type="button"
@@ -112,7 +145,7 @@ export function ControlDeck() {
         <section className="current-panel" aria-label="Slide hiện tại">
           <div className="panel-label">
             <span>HIỆN TẠI</span>
-            <span>SLIDE {slide.sourceNumber}</span>
+            <span>SLIDE {slide.number}</span>
           </div>
           <div className="preview-stage preview-stage--current">
             <SlideCanvas index={state.slideIndex} mode="preview" />
@@ -122,7 +155,7 @@ export function ControlDeck() {
         <section className="next-panel" aria-label="Slide tiếp theo">
           <div className="panel-label">
             <span>TIẾP THEO</span>
-            <span>{nextSlide ? `SLIDE ${nextSlide.sourceNumber}` : "KẾT THÚC"}</span>
+            <span>{nextSlide ? `SLIDE ${nextSlide.number}` : "KẾT THÚC"}</span>
           </div>
           <div className="preview-stage preview-stage--next">
             {nextSlide ? (
@@ -130,7 +163,7 @@ export function ControlDeck() {
             ) : (
               <div className="end-card">
                 <strong>HOÀN THÀNH DEMO</strong>
-                <span>3 slide tiêu biểu</span>
+                <span>{SLIDES.length} slide báo cáo</span>
               </div>
             )}
           </div>
@@ -140,7 +173,13 @@ export function ControlDeck() {
           <div className="notes-icon" aria-hidden="true">✎</div>
           <div>
             <h2>GHI CHÚ THUYẾT TRÌNH</h2>
-            <p>{slide.note}</p>
+            <p>
+              {slide.note
+                ? phrasesToText(slide.note)
+                : slide.kind === "content" && slide.lead
+                  ? phrasesToText(slide.lead)
+                  : "—"}
+            </p>
           </div>
         </section>
       </div>
