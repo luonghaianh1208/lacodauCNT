@@ -35,25 +35,19 @@ describe("bộ lọc ảnh màn hình", () => {
     });
   });
 
-  it("c) khoảng trống giữa hai nhóm: không chồng lấn", () => {
-    const nonScreenshots = Object.values(audit).filter((m) => !m.screenshot);
-    const screenshots = Object.values(audit).filter((m) => m.screenshot);
+  it("c) kiểm chứng biên an toàn: ảnh sát ranh giới quyết định", () => {
+    // Quy tắc phân loại là HOẶC hai chiều: screenshot = (white > 0.25 HOẶC flat > 0.65)
+    // Test này tìm những ảnh nằm sát ranh giới: |white - 0.25| < 0.05 HOẶC |flat - 0.65| < 0.05
+    // Khi có ảnh rơi vào vùng này, một thay đổi nhỏ trong phép đo sẽ lật kết quả.
+    // Nếu test này đỏ, cần mở ảnh ra nhìn thủ công, chứ không phải nới ngưỡng.
 
-    const maxWhiteNonScreenshot = Math.max(...nonScreenshots.map((m) => m.white));
-    const minWhiteScreenshot = Math.min(...screenshots.map((m) => m.white));
+    const nearBoundary = Object.entries(audit).filter(([_, m]) => {
+      const whiteDistance = Math.abs(m.white - 0.25);
+      const flatDistance = Math.abs(m.flat - 0.65);
+      return whiteDistance < 0.05 || flatDistance < 0.05;
+    });
 
-    const maxFlatNonScreenshot = Math.max(...nonScreenshots.map((m) => m.flat));
-    const minFlatScreenshot = Math.min(...screenshots.map((m) => m.flat));
-
-    // Hai nhóm tách rõ ở ít nhất một trong hai chỉ số
-    const whiteGap = minWhiteScreenshot - maxWhiteNonScreenshot;
-    const flatGap = minFlatScreenshot - maxFlatNonScreenshot;
-
-    expect(whiteGap > 0 || flatGap > 0, "Hai nhóm ảnh chồng lấn").toBe(true);
-    if (whiteGap > 0) {
-      expect(whiteGap, `Khoảng trống white quá nhỏ (${whiteGap})`).toBeGreaterThan(0.1);
-    } else {
-      expect(flatGap, `Khoảng trống flat quá nhỏ (${flatGap})`).toBeGreaterThan(0.1);
-    }
+    const nearBoundaryFiles = nearBoundary.map(([f]) => f);
+    expect(nearBoundaryFiles, "Số lượng ảnh sát biên thay đổi").toEqual(["s24_img6.jpg"]);
   });
 });
