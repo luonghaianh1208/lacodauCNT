@@ -51,7 +51,7 @@ describe("SlideCanvas", () => {
     expect(
       screen.getByText("https://doantruong.chuyennguyentrai.edu.vn"),
     ).toBeInTheDocument();
-    expect(screen.getAllByTestId("model-function")).toHaveLength(6);
+    expect(screen.getAllByTestId("model-function")).toHaveLength(5);
     expect(screen.getByAltText("Giao diện quản lý đoàn viên")).toBeInTheDocument();
     expect(screen.getByTestId("model-video")).toHaveAttribute(
       "src",
@@ -75,7 +75,7 @@ describe("ControlDeck", () => {
     // Bấm Tiếp một lần để sang slide 1 (bìa báo cáo) — nội dung báo cáo thật bắt đầu ở đây.
     fireEvent.click(screen.getByRole("button", { name: "Tiếp" }));
 
-    expect(screen.getByText("SLIDE 1 / 38")).toBeInTheDocument();
+    expect(screen.getByText("SLIDE 1 / 44")).toBeInTheDocument();
     expect(screen.getByText(/Mở đầu báo cáo/)).toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: "Mở màn hình trình chiếu" }),
@@ -91,7 +91,7 @@ describe("ControlDeck", () => {
     fireEvent.click(screen.getByRole("button", { name: "Tiếp" }));
     fireEvent.click(screen.getByRole("button", { name: "Tiếp" }));
 
-    expect(screen.getByText("SLIDE 3 / 38")).toBeInTheDocument();
+    expect(screen.getByText("SLIDE 3 / 44")).toBeInTheDocument();
     const notesRegion = screen.getByRole("region", { name: "Ghi chú thuyết trình" });
     expect(within(notesRegion).getByText(/Đoàn trường quản lý 37 chi đoàn/)).toBeInTheDocument();
   });
@@ -99,7 +99,7 @@ describe("ControlDeck", () => {
   it("falls back to the lead paragraph on a model slide with no presenter note", () => {
     render(<ControlDeck />);
 
-    // 3/4 slide mô hình trong data.ts không có `note` — ghi chú thuyết trình
+    // 9/10 slide mô hình trong data.ts không có `note` — ghi chú thuyết trình
     // phải rơi về `lead` của chính slide đó (không riêng khuôn "content"),
     // và KHÔNG được hiện dấu gạch ngang dù đây là khuôn "model".
     for (let i = 0; i < modelWithoutNoteIndex; i += 1) {
@@ -108,7 +108,7 @@ describe("ControlDeck", () => {
 
     const notesRegion = screen.getByRole("region", { name: "Ghi chú thuyết trình" });
     expect(
-      within(notesRegion).getByText(/WebApp số hóa toàn bộ quy trình/),
+      within(notesRegion).getByText(/Mô hình kết hợp/),
     ).toBeInTheDocument();
     expect(within(notesRegion).queryByText("—")).not.toBeInTheDocument();
   });
@@ -122,7 +122,7 @@ describe("ControlDeck", () => {
 
     // `number === index` cho mọi slide từ index 1 trở đi (trang 0 chờ chèn ở đầu không lệch
     // số trang của các slide còn lại), nên slide mô hình có video hiện đúng SLIDE {index}.
-    expect(screen.getByText(`SLIDE ${modelWithVideoIndex} / 38`)).toBeInTheDocument();
+    expect(screen.getByText(`SLIDE ${modelWithVideoIndex} / 44`)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Phát video" })).toBeEnabled();
     expect(screen.getByRole("button", { name: "Tạm dừng" })).toBeEnabled();
     expect(screen.getByRole("button", { name: "Phát lại" })).toBeEnabled();

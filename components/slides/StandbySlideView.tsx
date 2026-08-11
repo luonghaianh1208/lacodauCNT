@@ -25,7 +25,7 @@ const STANDBY_DELAY = {
  * mỏi mắt. Chỉ mang logo Đoàn (đơn vị kiểm tra là Thành đoàn Hải Phòng) — KHÔNG dùng logo
  * trường như `SlideChrome`, nên khuôn này không gọi `SlideChrome` mà tự dựng thanh cờ và bố
  * cục riêng, căn giữa theo cả hai chiều. Không số trang, không chú thích chân trang: trang
- * này đứng ngoài 38 trang đánh số của báo cáo.
+ * này đứng ngoài 44 trang đánh số của báo cáo.
  */
 export function StandbySlideView({ slide }: { slide: StandbySlide }) {
   const eager = useSlideRenderEager();

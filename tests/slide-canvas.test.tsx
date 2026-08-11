@@ -71,7 +71,7 @@ const model: Slide = {
 
 const outro: Slide = {
   kind: "outro",
-  number: 38,
+  number: 44,
   density: "vua",
   kicker: ["KẾT LUẬN"],
   title: ["Tiêu đề kết luận"],
@@ -81,12 +81,12 @@ const outro: Slide = {
 };
 
 describe("SlideCanvas", () => {
-  it("render được cả 39 slide mà không văng lỗi", () => {
+  it("render được cả 45 slide mà không văng lỗi", () => {
     for (let index = 0; index < SLIDES.length; index += 1) {
       const { unmount } = render(<SlideCanvas index={index} mode="preview" />);
       unmount();
     }
-    expect(SLIDES).toHaveLength(39);
+    expect(SLIDES).toHaveLength(45);
   });
 
   it("slide đầu tiên (trang 0) là trang chờ, slide thứ hai là bìa báo cáo", () => {
@@ -108,7 +108,7 @@ describe("transitionKindFor", () => {
     const count = (k: string) => kinds.filter((x) => x === k).length;
 
     expect(count("depth")).toBe(3);
-    expect(count("curtain")).toBe(31);
+    expect(count("curtain")).toBe(37);
     expect(count("slide")).toBe(5);
   });
 

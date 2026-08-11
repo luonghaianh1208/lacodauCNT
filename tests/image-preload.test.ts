@@ -163,7 +163,7 @@ describe("collectImagePaths", () => {
     expect(collectImagePaths(slides)).toEqual([]);
   });
 
-  it("gom đủ ảnh của toàn bộ 39 slide thật, không rỗng", () => {
+  it("gom đủ ảnh của toàn bộ 45 slide thật, không rỗng", () => {
     // Neo an toàn: nếu ai đó lỡ tay sửa collectImagePaths làm nó trả về rỗng cho dữ liệu
     // thật, bộ nạp trước sẽ coi như "đã xong" ngay lập tức và mất hết tác dụng bảo vệ.
     expect(collectImagePaths(SLIDES).length).toBeGreaterThan(0);

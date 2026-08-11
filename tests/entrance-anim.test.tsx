@@ -1,8 +1,28 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
+import { OutroSlideView } from "@/components/slides/OutroSlideView";
 import { SlideCanvas } from "@/components/SlideCanvas";
 import { SLIDES } from "@/lib/slides";
+import type { OutroSlide } from "@/lib/slides/types";
+
+/** Slide kết luận CÓ ảnh nền — dữ liệu thật chưa có ảnh nào nên phải dựng fixture. */
+const outroWithBackground: OutroSlide = {
+  kind: "outro",
+  number: 44,
+  density: "vua",
+  kicker: ["KẾT LUẬN"],
+  title: ["Tuổi trẻ Chuyên Nguyễn Trãi"],
+  slogan: [["Bản lĩnh"]],
+  lead: ["Đoàn trường hoàn thành", "toàn diện nhiệm vụ."],
+  stats: [],
+  background: {
+    src: "/media/slides/s34_img3.jpg",
+    alt: "Ảnh nền",
+    caption: ["Ảnh nền"],
+    role: "nen",
+  },
+};
 
 /**
  * "Dàn nhạc vào" (spec §7.1) sống ở CSS `.slide-live .anim` — jsdom KHÔNG nạp
@@ -44,8 +64,8 @@ describe("dàn nhạc vào — cả bảy khuôn đều phát class anim", () =>
   });
 
   // Thanh cờ mở màn ở MỌI khuôn. Ba khuôn bìa, kết luận và trang chờ không gọi `SlideChrome`
-  // mà tự render thanh cờ, nên đây là chỗ dễ sót nhất — quét cả 39 slide chứ không chỉ một mẫu.
-  it("thanh cờ của cả 39 slide đều dựng từ trên qua a-bar", () => {
+  // mà tự render thanh cờ, nên đây là chỗ dễ sót nhất — quét cả 45 slide chứ không chỉ một mẫu.
+  it("thanh cờ của cả 45 slide đều dựng từ trên qua a-bar", () => {
     for (let index = 0; index < SLIDES.length; index += 1) {
       const { container, unmount } = render(<SlideCanvas index={index} mode="preview" />);
       const bar = container.querySelector(".slide-bar");
@@ -168,7 +188,9 @@ describe("dàn nhạc vào — cả bảy khuôn đều phát class anim", () =>
   it("kết luận: dòng dẫn, tiêu đề, khẩu hiệu, chữ khái quát rồi dải chỉ số", () => {
     const container = renderKind("outro");
 
-    expect(container.querySelector(".outro-bg")?.className).toContain("a-media");
+    // Slide kết luận của bộ 44 slide còn CHỜ ảnh nền nhà trường gửi, nên `.outro-bg` không
+    // tồn tại ở dữ liệu thật — nhịp của ảnh nền kiểm riêng bằng fixture ở test dưới.
+    expect(container.querySelector(".outro-bg")).toBeNull();
     expect(delayOf(container.querySelector(".outro-kicker"))).toBe("140ms");
     expect(delayOf(container.querySelector(".outro-msg h1"))).toBe("200ms");
     expect(delayOf(container.querySelector(".outro-slogan"))).toBe("300ms");
@@ -180,6 +202,12 @@ describe("dàn nhạc vào — cả bảy khuôn đều phát class anim", () =>
       expect(stat.className).toContain("a-rise");
       expect(delayOf(stat)).toBe(`${460 + 70 * index}ms`);
     });
+  });
+
+  it("kết luận có ảnh nền: ảnh nền vào bằng a-media", () => {
+    const { container } = render(<OutroSlideView slide={outroWithBackground} />);
+
+    expect(container.querySelector(".outro-bg")?.className).toContain("a-media");
   });
 
   // Cụm nhận diện dùng chung `SlideChrome` cho bốn khuôn; số trang và chú thích chân trang

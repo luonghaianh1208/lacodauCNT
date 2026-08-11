@@ -52,7 +52,7 @@ describe("con số chủ đạo đếm tăng (spec §5.4)", () => {
     expect(screen.getByText("Trên 1.000")).toBeInTheDocument();
   });
 
-  // Spec §3.1: tiêu đề VÀ con số dùng Source Serif 4. Đây là glyph lớn nhất cả bộ 38 slide
+  // Spec §3.1: tiêu đề VÀ con số dùng Source Serif 4. Đây là glyph lớn nhất cả bộ 44 slide
   // nên sai font là thấy ngay; `.figures-hero-value` không tự khai font, chữ serif đến từ
   // class này (mockup 03 cũng dùng `<b class="serif">15/15</b>`).
   it("con số chủ đạo mang class serif", () => {

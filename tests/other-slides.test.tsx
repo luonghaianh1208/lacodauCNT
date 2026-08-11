@@ -62,7 +62,7 @@ const model: ModelSlide = {
 };
 
 const outro: OutroSlide = {
-  kind: "outro", number: 38, density: "vua",
+  kind: "outro", number: 44, density: "vua",
   kicker: ["KẾT LUẬN"],
   title: ["Tuổi trẻ Chuyên Nguyễn Trãi"],
   slogan: [["Bản lĩnh"], ["Trí tuệ"], ["Sáng tạo"], ["Cống hiến"]],

@@ -19,13 +19,13 @@ const MOTION_LABELS: Record<MotionMode, string> = {
 
 /**
  * Ghi chú thuyết trình: ưu tiên `note`; nếu thiếu, rơi về `lead` — mọi khuôn có
- * trường này (content/kpi/model/outro), không riêng khuôn nội dung. 3/4 slide
+ * trường này (content/kpi/model/outro), không riêng khuôn nội dung. 9/10 slide
  * mô hình trong data.ts không có `note` nên nếu chỉ rơi về `lead` cho khuôn
  * "content" thì ba slide đó mất trắng ghi chú dù `lead` sẵn nội dung hữu ích.
  * Không có cả hai mới hiện dấu gạch ngang.
  */
-// Trang chờ (standby, số 0) đứng ngoài 38 trang đánh số của báo cáo, nên tổng số ở đây KHÔNG
-// đếm nó — tránh đếm bằng SLIDES.length (39) khiến người bấm máy hiểu nhầm báo cáo có 39 trang.
+// Trang chờ (standby, số 0) đứng ngoài 44 trang đánh số của báo cáo, nên tổng số ở đây KHÔNG
+// đếm nó — tránh đếm bằng SLIDES.length (45) khiến người bấm máy hiểu nhầm báo cáo có 45 trang.
 const REPORT_SLIDE_COUNT = SLIDES.filter((s) => s.kind !== "standby").length;
 
 /** Nhãn ngắn cho một slide: "TRANG 0" cho trang chờ, "SLIDE n" cho các trang còn lại. */
@@ -162,7 +162,7 @@ export function ControlDeck() {
           <span className="presenter-mark" aria-hidden="true" />
           <div>
             <strong>PRESENTER</strong>
-            <span>Báo cáo Lá cờ đầu · 38 slide</span>
+            <span>Báo cáo Lá cờ đầu · 44 slide</span>
           </div>
         </div>
         <div className="control-progress">
