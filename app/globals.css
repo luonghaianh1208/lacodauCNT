@@ -569,8 +569,15 @@
 .model-video img { object-fit: cover; }
 /* `fit="contain"` — cùng cơ chế với `.content-media [data-fit="contain"]` ở trên, dùng cho
    ảnh dẫn dắt (role "chinh") không được cắt, vd. infographic ghép khung (slide 35). Nền
-   `#041424` đã đặt sẵn ở `.model-video` phía trên nên không cần lặp lại ở đây. */
-.model-video[data-fit="contain"] img { object-fit: contain; object-position: center; }
+   `#041424` đã đặt sẵn ở `.model-video` phía trên nên không cần lặp lại ở đây.
+
+   Bỏ luôn `aspect-ratio: 16 / 9` và để ảnh tự quyết chiều cao: giữ khung 16:9 thì ảnh
+   3:2 bị đóng khuôn hai bên (pillarbox) và co lại nhỏ hơn cả lúc còn cắt — mất chữ vì
+   ảnh nhỏ, đúng thứ `contain` định cứu. `.model-media` là cột định vị tuyệt đối căn
+   giữa theo chiều dọc nên khung cao thêm KHÔNG đẩy chữ cột bên cạnh; ảnh 3:2 rộng
+   trọn panel chỉ cao ~358px, còn rất xa 720px của slide. */
+.model-video[data-fit="contain"] { aspect-ratio: auto; }
+.model-video[data-fit="contain"] img { height: auto; object-fit: contain; object-position: center; }
 
 .model-shots { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.4cqw; }
 /*
