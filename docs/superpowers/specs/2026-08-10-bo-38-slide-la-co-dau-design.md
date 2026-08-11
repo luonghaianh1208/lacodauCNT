@@ -93,8 +93,10 @@ Component `<Phrase>` nối các cụm bằng dấu cách thường, mỗi cụm 
 | Trang phân mục | 3 | 2, 5, 33 | — |
 | Nội dung + ảnh minh chứng | 27 | 3–4, 6–30 | theo số gạch đầu dòng, xem dưới |
 | Số liệu | 2 | 31, 32 | thoang |
-| Mô hình + media | 4 | 34–37 | vua |
+| Mô hình + media | 4 | 34–37 | day |
 | Kết luận | 1 | 38 | vua |
+
+> **Sửa so với bản gốc (10/08/2026).** Bốn slide mô hình dùng `day`, không phải `vua`. Khuôn này chồng nhiều khối lên cùng một cột chữ — tiêu đề, URL, dòng khái quát và hai danh sách tổng cộng tới chín mục — nên ở mức `vua` phần cuối danh sách hiệu quả đè lên chú thích chân trang.
 
 ### 5.1 Bìa
 
@@ -104,9 +106,11 @@ Component `<Phrase>` nối các cụm bằng dấu cách thường, mỗi cụm 
 
 ### 5.2 Trang phân mục
 
-Nền là ảnh sự kiện để nguyên độ sáng, phủ một lớp veil ngang **mức 2**: `rgba(7,26,48,.92)` → `.88` tại 40% → `.38` tại 70% → `.16` tại 100%. Chữ cái phần (A/B/C) cỡ 11cqw màu vàng, dưới nhãn "PHẦN". Ba trang này lấy đúng cấu trúc Phần A / B / C mà chú thích chân trang của báo cáo đang dẫn.
+Nền là ảnh sự kiện để nguyên độ sáng, phủ một lớp veil ngang **mức 2**: `rgba(7,26,48,.94)` → `.90` tại 42% → `.62` tại 72% → `.46` tại 100%. Chữ cái phần (A/B/C) cỡ 11cqw màu vàng, dưới nhãn "PHẦN". Ba trang này lấy đúng cấu trúc Phần A / B / C mà chú thích chân trang của báo cáo đang dẫn.
 
-Mọi chữ khung trên khuôn này có `text-shadow` vì nền ảnh có thể sáng bất kỳ chỗ nào.
+> **Sửa so với bản gốc (10/08/2026).** Mức veil đã ghi (`.92` → `.88`@40% → `.38`@70% → `.16`@100%) không dùng được với ảnh thật: cả ba ảnh trang phân mục đều là ảnh hội nghị có băng rôn chữ lớn ("ĐẢNG CỘNG SẢN VIỆT NAM QUANG VINH MUÔN NĂM", "ĐẠI HỘI ĐẠI BIỂU"). Ở sàn `.16` băng rôn đọc rõ như một tiêu đề thứ hai chọi với tiêu đề thật của slide, rõ nhất ở slide 2. Sàn `.46` vẫn thấy được cảnh và người nhưng chữ trong ảnh chìm hẳn.
+
+Mọi chữ khung trên khuôn này có `text-shadow` vì nền ảnh có thể sáng bất kỳ chỗ nào — gồm cả chú thích chân trang. Riêng chú thích chân trang chỉ thêm bóng mà **không** đổi sang trắng như cụm nhận diện và số trang: nó là chữ phụ, tô trắng lên là chọi ngang hàng với mục lục phần ngay phía trên.
 
 ### 5.3 Nội dung + ảnh minh chứng
 
@@ -116,7 +120,9 @@ Cột chữ rộng 43cqw, panel navy rộng 48cqw tràn mép. Trong panel: một
 
 **Panel đổi bên xen kẽ** theo thứ tự các slide nội dung liên tiếp, **không theo số trang chẵn lẻ** — nếu theo số trang thì các trang phân mục chen vào sẽ làm hai slide liền nhau cùng panel một bên.
 
-Khi panel nằm bên trái: thanh cờ, cụm logo và số trang **giữ nguyên vị trí**, chỉ đảo màu chữ sang trắng. Chú thích chân trang đi theo cột chữ vì nó là chú thích nguồn của phần chữ.
+Khi panel nằm bên trái: thanh cờ và cụm logo **giữ nguyên vị trí**, chỉ đảo màu chữ sang trắng. **Số trang và chú thích chân trang đều đi theo cột chữ** — cả hai luôn nằm bên đối diện panel.
+
+> **Sửa so với bản gốc (10/08/2026).** Bản gốc cho số trang giữ nguyên vị trí góc phải-trên. Giữ nguyên thì với panel bên phải, số trang rơi thẳng lên nền navy của panel; nó tô theo `--chrome-sub` (màu dành cho cụm logo ở góc panel) nên hoặc đè lên panel hoặc lẫn màu với panel. Số trang và chú thích chân trang thuộc cùng một cột chữ nên phải đi cùng nhau. Số trang neo vào mép **ngoài** của cột giấy (`right: 50cqw` khi panel bên phải), **không** phải `left: 4.6cqw` — đó là toạ độ của cụm logo, đặt vào đó là vẽ đè lên logo trường.
 
 ### 5.4 Số liệu
 
@@ -124,7 +130,9 @@ Con số chủ đạo nằm ngang cạnh nhãn, lưới 3×2 thẻ chỉ tiêu b
 
 ### 5.5 Mô hình + media
 
-Panel navy phải rộng 48cqw chứa video đúng tỷ lệ 16:9 (không cắt), chú thích, và hai ảnh chụp màn hình bên dưới. Cột chữ trái chứa tiêu đề, URL màu xanh Đoàn, dòng khái quát và hai danh sách: chức năng (chấm xanh Đoàn), hiệu quả (chấm xanh lá).
+Panel navy rộng 48cqw chứa video đúng tỷ lệ 16:9 (không cắt), chú thích, và các ảnh chụp màn hình bên dưới. Cột chữ đối diện chứa tiêu đề, URL màu xanh Đoàn, dòng khái quát và hai danh sách: chức năng (chấm xanh Đoàn), hiệu quả (chấm xanh lá).
+
+> **Sửa so với bản gốc (10/08/2026).** Bản gốc ghi panel "phải" nằm bên phải, tự mâu thuẫn với §7.2: khuôn mô hình nằm trong nhóm 31 slide "có panel" chạy rèm theo nhịp xen kẽ trái–phải. Panel của khuôn này theo **đúng quy tắc xen kẽ ở §7.2** như khuôn nội dung, không cố định một bên. Nhịp xen kẽ đếm theo thứ tự các slide **có panel** liên tiếp, không theo số trang chẵn lẻ.
 
 ### 5.6 Kết luận
 
