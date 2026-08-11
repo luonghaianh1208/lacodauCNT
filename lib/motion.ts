@@ -11,6 +11,9 @@ export type TransitionKind = "slide" | "depth" | "curtain";
 export function transitionKindFor(slide: Slide): TransitionKind {
   if (slide.kind === "divider") return "depth";
   if (slide.kind === "content" || slide.kind === "model") return "curtain";
+  // Còn lại (bìa, số liệu, kết luận, VÀ trang chờ "standby") dùng chuyển động trung tính:
+  // trang chờ đứng ngoài 38 trang đánh số, có thể chiếu lặp lại giữa các phần nghỉ, nên
+  // không mang ý nghĩa "sắp sang phần mới" (depth) hay "lật trang nội dung" (curtain).
   return "slide";
 }
 

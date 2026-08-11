@@ -20,7 +20,7 @@ export type SlideImage = {
 };
 
 type BaseSlide = {
-  /** Số trang thật trong báo cáo, 1–38. Hiện ở góc slide. */
+  /** Số trang thật trong báo cáo, 1–38 (riêng khuôn "standby" cố định 0). Hiện ở góc slide. */
   number: number;
   density: Density;
   footnote?: Phrases;
@@ -37,6 +37,20 @@ export type CoverSlide = BaseSlide & {
   date: Phrases;
   footer: Phrases;
   images: readonly SlideImage[];
+};
+
+/**
+ * Trang bìa đứng chiếu xuyên suốt chương trình (trước giờ khai mạc, giữa các phần nghỉ) —
+ * mang nhận diện của ĐƠN VỊ KIỂM TRA (Thành đoàn Hải Phòng), không phải của nhà trường,
+ * nên chỉ có logo Đoàn, không có logo trường. Số trang cố định 0: không thuộc 38 trang
+ * đánh số của báo cáo, không có số trang hiển thị và không có chú thích chân trang.
+ */
+export type StandbySlide = BaseSlide & {
+  kind: "standby";
+  eyebrow: Phrases;
+  title: Phrases;
+  program: Phrases;
+  place: Phrases;
 };
 
 export type DividerSlide = BaseSlide & {
@@ -97,6 +111,7 @@ export type OutroSlide = BaseSlide & {
 };
 
 export type Slide =
+  | StandbySlide
   | CoverSlide
   | DividerSlide
   | ContentSlide

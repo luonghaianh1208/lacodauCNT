@@ -18,7 +18,7 @@ type SlidePickerGridProps = {
 
 /**
  * Lưới chọn slide phủ toàn màn — cho người thuyết trình nhảy tới bất kỳ slide nào thay vì
- * chỉ Tiếp/Lùi từng bước. KHÔNG dựng gì khi đóng (return null): 38 ô nghĩa là 38 lần render
+ * chỉ Tiếp/Lùi từng bước. KHÔNG dựng gì khi đóng (return null): 39 ô nghĩa là 39 lần render
  * `SlideCanvas` đầy đủ, để mặc định mount sẵn dù đóng sẽ tốn không cần thiết.
  *
  * Bấm vào ô chỉ gọi `onSelect` — không tự viết cơ chế chuyển slide riêng. `onSelect` ở
@@ -61,7 +61,11 @@ export function SlidePickerGrid({ open, currentIndex, onSelect, onClose }: Slide
                 className={
                   isCurrent ? "slide-picker-cell slide-picker-cell--current" : "slide-picker-cell"
                 }
-                aria-label={`Slide ${slide.number}: ${slideShortTitle(slide)}`}
+                aria-label={
+                  slide.kind === "standby"
+                    ? `Trang 0: ${slideShortTitle(slide)}`
+                    : `Slide ${slide.number}: ${slideShortTitle(slide)}`
+                }
                 aria-current={isCurrent ? "true" : undefined}
                 onClick={() => onSelect(index)}
               >

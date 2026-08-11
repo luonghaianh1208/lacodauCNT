@@ -6,8 +6,8 @@ import { SLIDES } from "@/lib/slides";
 
 /**
  * jsdom không nạp CSS nên không kiểm được hình học (kích thước ô, cuộn, content-visibility).
- * Test ở đây chỉ khoá: có dựng gì khi đóng hay không, số ô có đủ 38, class đánh dấu ô hiện
- * tại có đúng ô hay không, và bấm ô có nhảy đúng chỉ số hay không.
+ * Test ở đây chỉ khoá: có dựng gì khi đóng hay không, số ô có đủ 39 (38 trang báo cáo + trang
+ * 0 chờ), class đánh dấu ô hiện tại có đúng ô hay không, và bấm ô có nhảy đúng chỉ số hay không.
  */
 describe("Lưới chọn slide", () => {
   it("không dựng gì khi đóng", () => {
@@ -15,7 +15,7 @@ describe("Lưới chọn slide", () => {
     expect(container.querySelector(".slide-picker-overlay")).not.toBeInTheDocument();
   });
 
-  it("bấm CHỌN SLIDE mở lưới với đủ 38 ô, ô slide hiện tại được đánh dấu", () => {
+  it("bấm CHỌN SLIDE mở lưới với đủ 39 ô, ô slide hiện tại được đánh dấu", () => {
     const { container } = render(<ControlDeck />);
     fireEvent.click(screen.getByRole("button", { name: "Chọn slide" }));
 
@@ -32,9 +32,9 @@ describe("Lưới chọn slide", () => {
     fireEvent.click(screen.getByRole("button", { name: "Chọn slide" }));
 
     const cells = container.querySelectorAll(".slide-picker-cell");
-    fireEvent.click(cells[29]); // index 29 = slide số 30
+    fireEvent.click(cells[30]); // trang 0 chờ chiếm ô đầu, nên ô index 30 mới là slide số 30
 
-    expect(screen.getByText(`SLIDE 30 / ${SLIDES.length}`)).toBeInTheDocument();
+    expect(screen.getByText("SLIDE 30 / 38")).toBeInTheDocument();
     expect(container.querySelector(".slide-picker-overlay")).not.toBeInTheDocument();
   });
 

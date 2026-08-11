@@ -24,6 +24,15 @@ const MOTION_LABELS: Record<MotionMode, string> = {
  * "content" thì ba slide đó mất trắng ghi chú dù `lead` sẵn nội dung hữu ích.
  * Không có cả hai mới hiện dấu gạch ngang.
  */
+// Trang chờ (standby, số 0) đứng ngoài 38 trang đánh số của báo cáo, nên tổng số ở đây KHÔNG
+// đếm nó — tránh đếm bằng SLIDES.length (39) khiến người bấm máy hiểu nhầm báo cáo có 39 trang.
+const REPORT_SLIDE_COUNT = SLIDES.filter((s) => s.kind !== "standby").length;
+
+/** Nhãn ngắn cho một slide: "TRANG 0" cho trang chờ, "SLIDE n" cho các trang còn lại. */
+function slideBadge(slide: Slide): string {
+  return slide.kind === "standby" ? "TRANG 0" : `SLIDE ${slide.number}`;
+}
+
 function presenterNote(slide: Slide): string {
   if (slide.note) {
     return phrasesToText(slide.note);
@@ -156,7 +165,9 @@ export function ControlDeck() {
             <span>Báo cáo Lá cờ đầu · 38 slide</span>
           </div>
         </div>
-        <div className="control-progress">SLIDE {state.slideIndex + 1} / {SLIDES.length}</div>
+        <div className="control-progress">
+          {slide.kind === "standby" ? "TRANG 0" : `SLIDE ${slide.number} / ${REPORT_SLIDE_COUNT}`}
+        </div>
         <div className="control-status">
           {!preload.done ? (
             <span className="control-preload" aria-live="polite">
@@ -189,7 +200,7 @@ export function ControlDeck() {
         <section className="current-panel" aria-label="Slide hiện tại">
           <div className="panel-label">
             <span>HIỆN TẠI</span>
-            <span>SLIDE {slide.number}</span>
+            <span>{slideBadge(slide)}</span>
           </div>
           <div className="preview-stage preview-stage--current">
             <SlideCanvas index={state.slideIndex} mode="preview" />
@@ -199,7 +210,7 @@ export function ControlDeck() {
         <section className="next-panel" aria-label="Slide tiếp theo">
           <div className="panel-label">
             <span>TIẾP THEO</span>
-            <span>{nextSlide ? `SLIDE ${nextSlide.number}` : "KẾT THÚC"}</span>
+            <span>{nextSlide ? slideBadge(nextSlide) : "KẾT THÚC"}</span>
           </div>
           <div className="preview-stage preview-stage--next">
             {nextSlide ? (

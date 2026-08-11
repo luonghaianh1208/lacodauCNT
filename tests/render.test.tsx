@@ -17,7 +17,8 @@ const modelWithoutNoteIndex = SLIDES.findIndex(
 
 describe("SlideCanvas", () => {
   it("renders the approved cover copy, logos, and three gallery captions", () => {
-    render(<SlideCanvas index={0} mode="full" />);
+    // index 1: trang 0 (đầu mảng) là khuôn "standby" của Thành đoàn, bìa báo cáo lùi xuống index 1.
+    render(<SlideCanvas index={1} mode="full" />);
 
     expect(
       screen.getByRole("heading", {
@@ -63,26 +64,34 @@ describe("ControlDeck", () => {
   it("shows current and next previews, notes, progress, and large controls", () => {
     render(<ControlDeck />);
 
-    expect(screen.getByText(`SLIDE 1 / ${SLIDES.length}`)).toBeInTheDocument();
+    // Mặc định mở ở trang 0 (trang chờ của Thành đoàn Hải Phòng) — biên đầu của chuỗi slide.
+    // "TRANG 0" hiện ở cả tiến độ đầu trang lẫn nhãn "HIỆN TẠI" nên phải dùng getAllByText.
+    expect(screen.getAllByText("TRANG 0")).toHaveLength(2);
     expect(screen.getByRole("region", { name: "Slide hiện tại" })).toBeInTheDocument();
     expect(screen.getByRole("region", { name: "Slide tiếp theo" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Lùi" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Tiếp" })).toBeEnabled();
+
+    // Bấm Tiếp một lần để sang slide 1 (bìa báo cáo) — nội dung báo cáo thật bắt đầu ở đây.
+    fireEvent.click(screen.getByRole("button", { name: "Tiếp" }));
+
+    expect(screen.getByText("SLIDE 1 / 38")).toBeInTheDocument();
     expect(screen.getByText(/Mở đầu báo cáo/)).toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: "Mở màn hình trình chiếu" }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Lùi" })).toBeDisabled();
-    expect(screen.getByRole("button", { name: "Tiếp" })).toBeEnabled();
   });
 
   it("falls back to the lead paragraph when a slide has no presenter note", () => {
     render(<ControlDeck />);
 
-    // Slide số 3 (index 2, khuôn nội dung) không có `note` trong data.ts —
-    // ghi chú thuyết trình phải rơi về `lead` của slide đó.
+    // Slide số 3 (khuôn nội dung, giờ ở index 3 vì trang 0 chờ chèn ở đầu) không có `note`
+    // trong data.ts — ghi chú thuyết trình phải rơi về `lead` của slide đó.
+    fireEvent.click(screen.getByRole("button", { name: "Tiếp" }));
     fireEvent.click(screen.getByRole("button", { name: "Tiếp" }));
     fireEvent.click(screen.getByRole("button", { name: "Tiếp" }));
 
-    expect(screen.getByText(`SLIDE 3 / ${SLIDES.length}`)).toBeInTheDocument();
+    expect(screen.getByText("SLIDE 3 / 38")).toBeInTheDocument();
     const notesRegion = screen.getByRole("region", { name: "Ghi chú thuyết trình" });
     expect(within(notesRegion).getByText(/Đoàn trường quản lý 37 chi đoàn/)).toBeInTheDocument();
   });
@@ -111,9 +120,9 @@ describe("ControlDeck", () => {
       fireEvent.click(screen.getByRole("button", { name: "Tiếp" }));
     }
 
-    expect(
-      screen.getByText(`SLIDE ${modelWithVideoIndex + 1} / ${SLIDES.length}`),
-    ).toBeInTheDocument();
+    // `number === index` cho mọi slide từ index 1 trở đi (trang 0 chờ chèn ở đầu không lệch
+    // số trang của các slide còn lại), nên slide mô hình có video hiện đúng SLIDE {index}.
+    expect(screen.getByText(`SLIDE ${modelWithVideoIndex} / 38`)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Phát video" })).toBeEnabled();
     expect(screen.getByRole("button", { name: "Tạm dừng" })).toBeEnabled();
     expect(screen.getByRole("button", { name: "Phát lại" })).toBeEnabled();
@@ -128,10 +137,10 @@ describe("PresentationScreen", () => {
       screen.getByRole("button", { name: "Sẵn sàng trình chiếu" }),
     ).toBeInTheDocument();
     expect(screen.queryByText("GHI CHÚ THUYẾT TRÌNH")).not.toBeInTheDocument();
+    // Mặc định mở ở trang 0 (trang chờ của Thành đoàn Hải Phòng) — trang này chiếu trước
+    // giờ khai mạc và giữa các phần nghỉ.
     expect(
-      screen.getByRole("heading", {
-        name: "BÁO CÁO KẾT QUẢ ĐƠN VỊ ĐĂNG KÝ LÁ CỜ ĐẦU",
-      }),
+      screen.getByRole("heading", { name: "CHƯƠNG TRÌNH KIỂM TRA" }),
     ).toBeInTheDocument();
   });
 });

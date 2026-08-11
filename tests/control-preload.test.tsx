@@ -56,9 +56,11 @@ describe("ControlDeck hiện tiến độ nạp trước ảnh không chặn tha
   it("chuyển slide được ngay cả khi đang nạp ảnh dở", () => {
     render(<ControlDeck />);
 
+    // Mặc định mở ở trang 0 (chờ) — bấm Tiếp hai lần mới sang slide 2 (khuôn phân mục A).
+    fireEvent.click(screen.getByRole("button", { name: "Tiếp" }));
     fireEvent.click(screen.getByRole("button", { name: "Tiếp" }));
 
-    expect(screen.getByText(`SLIDE 2 / ${SLIDES.length}`)).toBeInTheDocument();
+    expect(screen.getByText("SLIDE 2 / 38")).toBeInTheDocument();
   });
 
   it("dòng tiến độ biến mất khi mọi ảnh đã nạp xong", async () => {

@@ -83,15 +83,16 @@ describe("two-window presentation channel", () => {
 
   it("restores the current slide when a projector tab opens later", async () => {
     const control = render(<ControlDeck />);
-    clickNext(2);
+    // Trang 0 (chờ) chèn ở đầu nên slide số 3 (khuôn nội dung, không có `note`) giờ ở index 3.
+    clickNext(3);
 
     const projector = render(<PresentationScreen />);
     const projectorMain = projector.container.querySelector(".presentation-page");
 
     await waitFor(() =>
-      expect(projectorMain?.querySelector('[data-slide-index="2"]')).not.toBeNull(),
+      expect(projectorMain?.querySelector('[data-slide-index="3"]')).not.toBeNull(),
     );
-    // Slide số 3 (index 2) không có `note` trong data.ts — màn điều khiển phải
+    // Slide số 3 (index 3) không có `note` trong data.ts — màn điều khiển phải
     // hiện `lead` thay thế, chứng tỏ hai màn đã đồng bộ đúng slide. Thu hẹp vào
     // đúng khối ghi chú vì cụm chữ này cũng lặp lại trong ô xem trước bên cạnh.
     const notesRegion = within(control.container).getByRole("region", {

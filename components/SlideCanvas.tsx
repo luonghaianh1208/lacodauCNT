@@ -8,6 +8,7 @@ import { DividerSlideView } from "@/components/slides/DividerSlideView";
 import { KpiSlideView } from "@/components/slides/KpiSlideView";
 import { ModelSlideView } from "@/components/slides/ModelSlideView";
 import { OutroSlideView } from "@/components/slides/OutroSlideView";
+import { StandbySlideView } from "@/components/slides/StandbySlideView";
 import { type MotionMode } from "@/lib/motion";
 import { clampIndex, panelSideFor, SLIDES } from "@/lib/slides";
 
@@ -45,6 +46,7 @@ export function SlideCanvas({
 
   return (
     <div className={`slide-shell slide-shell--${mode}`} data-slide-index={safeIndex}>
+      {slide.kind === "standby" ? <StandbySlideView slide={slide} /> : null}
       {slide.kind === "cover" ? <CoverSlideView slide={slide} /> : null}
       {slide.kind === "divider" ? <DividerSlideView slide={slide} /> : null}
       {slide.kind === "content" ? (

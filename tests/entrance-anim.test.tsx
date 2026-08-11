@@ -31,7 +31,7 @@ function renderKind(kind: string) {
   return render(<SlideCanvas index={firstOfKind(kind)} mode="full" />).container;
 }
 
-describe("dàn nhạc vào — cả sáu khuôn đều phát class anim", () => {
+describe("dàn nhạc vào — cả bảy khuôn đều phát class anim", () => {
   it("mọi slide trong bộ đều có ít nhất một phần tử mang class anim", () => {
     for (let index = 0; index < SLIDES.length; index += 1) {
       const { container, unmount } = render(<SlideCanvas index={index} mode="preview" />);
@@ -43,9 +43,9 @@ describe("dàn nhạc vào — cả sáu khuôn đều phát class anim", () => 
     }
   });
 
-  // Thanh cờ mở màn ở MỌI khuôn. Hai khuôn bìa và kết luận không gọi `SlideChrome` mà tự
-  // render thanh cờ, nên đây là chỗ dễ sót nhất — quét cả 38 slide chứ không chỉ một mẫu.
-  it("thanh cờ của cả 38 slide đều dựng từ trên qua a-bar", () => {
+  // Thanh cờ mở màn ở MỌI khuôn. Ba khuôn bìa, kết luận và trang chờ không gọi `SlideChrome`
+  // mà tự render thanh cờ, nên đây là chỗ dễ sót nhất — quét cả 39 slide chứ không chỉ một mẫu.
+  it("thanh cờ của cả 39 slide đều dựng từ trên qua a-bar", () => {
     for (let index = 0; index < SLIDES.length; index += 1) {
       const { container, unmount } = render(<SlideCanvas index={index} mode="preview" />);
       const bar = container.querySelector(".slide-bar");
@@ -53,6 +53,18 @@ describe("dàn nhạc vào — cả sáu khuôn đều phát class anim", () => 
       expect(bar?.className, `slide ${index + 1}: thanh cờ thiếu nhịp`).toContain("a-bar");
       unmount();
     }
+  });
+
+  it("trang chờ: logo → dòng đơn vị → tiêu đề → gạch đỏ → chương trình → địa điểm/ngày tháng", () => {
+    const container = renderKind("standby");
+
+    expect(delayOf(container.querySelector(".standby-logo"))).toBe("80ms");
+    expect(delayOf(container.querySelector(".standby-eyebrow"))).toBe("140ms");
+    expect(delayOf(container.querySelector(".standby-title"))).toBe("200ms");
+    expect(container.querySelector(".standby-rule")?.className).toContain("a-grow");
+    expect(delayOf(container.querySelector(".standby-rule"))).toBe("280ms");
+    expect(delayOf(container.querySelector(".standby-program"))).toBe("340ms");
+    expect(delayOf(container.querySelector(".standby-place"))).toBe("400ms");
   });
 
   it("bìa: logo → dòng dẫn → tiêu đề → gạch đỏ → phụ đề, băng ảnh vào sau cùng", () => {

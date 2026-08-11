@@ -1,4 +1,4 @@
-// Chụp cả 38 slide ở 1280x720 từ bản build tĩnh để soi bằng mắt.
+// Chụp cả 39 slide (38 trang báo cáo + trang 0 chờ) ở 1280x720 từ bản build tĩnh để soi bằng mắt.
 // Chạy sau `npm run build`, vì nó đọc thư mục out/.
 //
 //   node scripts/render-check.mjs            # chụp ảnh
@@ -29,7 +29,7 @@ const SITE_DIR = path.join(ROOT, "out");
 const OUT_DIR = path.join(ROOT, "docs", "superpowers", "references", "render-check");
 const PORT = 4321;
 const DEBUG_PORT = 9333;
-const SLIDE_COUNT = 38;
+const SLIDE_COUNT = 39;
 const WIDTH = 1280;
 const HEIGHT = 720;
 const AUDIT = process.argv.includes("--audit");
@@ -211,7 +211,7 @@ const MEASURE = `(() => {
   /*
    * Chữ bị CẮT: so hình chữ nhật của khối chữ với khối cha gần nhất có overflow ẩn.
    * KHÔNG dùng scrollHeight - clientHeight: chỉ số đó lệch vài pixel ở mọi thẻ h1 vì
-   * làm tròn line-height, nên báo động giả trên cả 38 slide.
+   * làm tròn line-height, nên báo động giả trên cả 39 slide.
    */
   const clipperOf = (node) => {
     for (let parent = node.parentElement; parent && parent !== stage.parentElement; parent = parent.parentElement) {

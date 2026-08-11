@@ -4,15 +4,15 @@ import { CHANNEL_NAME, clampSlideIndex, reducePresentationState } from "@/lib/pr
 import { SLIDES } from "@/lib/slides";
 import type { KpiSlide, ModelSlide, Slide } from "@/lib/slides/types";
 
-// `SLIDES` là tuple `as const` nên phần tử của nó là hợp của 38 kiểu object
+// `SLIDES` là tuple `as const` nên phần tử của nó là hợp của 39 kiểu object
 // literal chính xác, hẹp hơn kiểu `Slide` trừu tượng — .find() với type predicate
 // chỉ thu hẹp đúng khi phần tử mảng đã có kiểu `Slide`. Ép kiểu một lần ở đây.
 const slides: readonly Slide[] = SLIDES;
 
 describe("source-faithful presentation data", () => {
-  it("contains all 38 slides in source order", () => {
+  it("contains all 39 slides (trang 0 chờ + 38 trang báo cáo) in source order", () => {
     expect(SLIDES.map((slide) => slide.number)).toEqual(
-      Array.from({ length: 38 }, (_, index) => index + 1),
+      Array.from({ length: 39 }, (_, index) => index),
     );
     expect(CHANNEL_NAME).toBe("cnt-presentation-demo-v1");
   });
@@ -23,7 +23,8 @@ describe("source-faithful presentation data", () => {
       (slide): slide is ModelSlide => slide.kind === "model" && Boolean(slide.videoSrc),
     );
 
-    expect(SLIDES[0].kind).toBe("cover");
+    expect(SLIDES[0].kind).toBe("standby");
+    expect(SLIDES[1].kind).toBe("cover");
     expect(kpiSlide?.headline).toBe("15/15");
     expect(kpiSlide?.metrics.map((metric) => metric.value)).toEqual([
       "05 · 11",
@@ -40,10 +41,10 @@ describe("source-faithful presentation data", () => {
 });
 
 describe("presentation state", () => {
-  it("clamps navigation to the 38-slide range", () => {
+  it("clamps navigation to the 39-slide range", () => {
     expect(clampSlideIndex(-1)).toBe(0);
     expect(clampSlideIndex(1)).toBe(1);
-    expect(clampSlideIndex(999)).toBe(37);
+    expect(clampSlideIndex(999)).toBe(38);
   });
 
   it("accepts newer state and ignores stale state", () => {

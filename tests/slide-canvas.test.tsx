@@ -7,6 +7,16 @@ import { SLIDES } from "@/lib/slides";
 import type { Slide } from "@/lib/slides/types";
 
 /** Fixture tối giản cho từng `kind` — chỉ cần đủ field để hợp lệ kiểu, không cần dữ liệu thật. */
+const standby: Slide = {
+  kind: "standby",
+  number: 0,
+  density: "vua",
+  eyebrow: ["THÀNH ĐOÀN HẢI PHÒNG"],
+  title: ["CHƯƠNG TRÌNH KIỂM TRA"],
+  program: ["Nội dung chương trình"],
+  place: ["Địa điểm, ngày tháng"],
+};
+
 const cover: Slide = {
   kind: "cover",
   number: 1,
@@ -71,16 +81,21 @@ const outro: Slide = {
 };
 
 describe("SlideCanvas", () => {
-  it("render được cả 38 slide mà không văng lỗi", () => {
+  it("render được cả 39 slide mà không văng lỗi", () => {
     for (let index = 0; index < SLIDES.length; index += 1) {
       const { unmount } = render(<SlideCanvas index={index} mode="preview" />);
       unmount();
     }
-    expect(SLIDES).toHaveLength(38);
+    expect(SLIDES).toHaveLength(39);
   });
 
-  it("slide đầu tiên là bìa và hiện đúng tiêu đề báo cáo", () => {
+  it("slide đầu tiên (trang 0) là trang chờ, slide thứ hai là bìa báo cáo", () => {
     render(<SlideCanvas index={0} mode="full" />);
+    expect(
+      screen.getByRole("heading", { name: "CHƯƠNG TRÌNH KIỂM TRA" }),
+    ).toBeInTheDocument();
+
+    render(<SlideCanvas index={1} mode="full" />);
     expect(
       screen.getByRole("heading", { name: /BÁO CÁO KẾT QUẢ/ }),
     ).toBeInTheDocument();
@@ -94,7 +109,7 @@ describe("transitionKindFor", () => {
 
     expect(count("depth")).toBe(3);
     expect(count("curtain")).toBe(31);
-    expect(count("slide")).toBe(4);
+    expect(count("slide")).toBe(5);
   });
 
   // Test theo từng nhánh, tách khỏi phân bố dữ liệu thật: khoá đúng logic của hàm
@@ -122,5 +137,9 @@ describe("transitionKindFor", () => {
 
   it("kết luận → slide", () => {
     expect(transitionKindFor(outro)).toBe("slide");
+  });
+
+  it("trang chờ → slide", () => {
+    expect(transitionKindFor(standby)).toBe("slide");
   });
 });

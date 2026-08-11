@@ -34,11 +34,11 @@ function allPhrases(value: unknown): Phrases[] {
   return [];
 }
 
-describe("dữ liệu 38 slide", () => {
-  it("có đúng 38 slide, số trang chạy liên tục 1 đến 38", () => {
-    expect(SLIDES).toHaveLength(38);
+describe("dữ liệu 39 slide (38 trang báo cáo + trang 0 chờ)", () => {
+  it("có đúng 39 slide, số trang chạy liên tục 0 đến 38", () => {
+    expect(SLIDES).toHaveLength(39);
     expect(SLIDES.map((s) => s.number)).toEqual(
-      Array.from({ length: 38 }, (_, i) => i + 1),
+      Array.from({ length: 39 }, (_, i) => i),
     );
   });
 

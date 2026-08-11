@@ -570,6 +570,34 @@
 .outro-stat.tone-green { border-top-color: var(--green); }
 .outro-stat.tone-red { border-top-color: var(--red); }
 
+/*
+ * Trang 0 — bìa chờ chiếu xuyên suốt chương trình (trước giờ khai mạc, giữa các phần nghỉ).
+ * Nền navy ĐẶC, không ảnh: trang đứng chiếu lâu, ảnh nền gây nhiễu và mỏi mắt. Chữ căn giữa
+ * theo CẢ HAI chiều (khác coverpage/outro chỉ căn giữa theo chiều ngang), nên không dùng lại
+ * `.coverpage-copy`/`.outro-msg` mà có khối `.standby-wrap` riêng.
+ */
+.standby-stage { color: #fff; background: var(--navy); }
+.standby-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6cqw;
+  text-align: center;
+}
+.standby-logo { height: 5.4cqw; margin-bottom: 1.8cqw; }
+.standby-logo img { width: auto; height: 100%; object-fit: contain; }
+.standby-eyebrow { margin: 0; color: var(--yellow); font-size: 1.12cqw; font-weight: 700; letter-spacing: 0.16em; line-height: 1.45; }
+.standby-title { margin: 1.4cqw 0 0; font-size: 4.8cqw; font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; }
+/* Gạch nằm giữa khối chữ căn giữa nên KHÔNG ép `transform-origin: left` như các khuôn khác
+   — mặc định (tâm) cho gạch nở đều ra hai phía, đúng với bố cục đối xứng của trang này. */
+.standby-rule { width: 7cqw; height: 0.42cqw; margin: 1.8cqw auto; border-radius: 99px; background: var(--red); }
+.standby-program { max-width: 56cqw; margin: 0 auto; color: #cfe0f0; font-size: 1.65cqw; line-height: 1.5; }
+.standby-place { margin: 1.6cqw 0 0; color: #9fb8d1; font-size: 1cqw; letter-spacing: 0.04em; }
+
 html,
 body {
   min-height: 100%;
