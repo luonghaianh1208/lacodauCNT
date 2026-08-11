@@ -52,7 +52,11 @@ function Figure({
       className={className ? `${className} anim a-media` : "anim a-media"}
       style={animDelay(CONTENT_DELAY.mediaBase + CONTENT_DELAY.mediaStep * order)}
     >
-      <div className={video ? "media-video" : undefined} style={video ? { aspectRatio: "16 / 9" } : undefined}>
+      <div
+        className={video ? "media-video" : undefined}
+        style={video ? { aspectRatio: "16 / 9" } : undefined}
+        data-fit={!video && media.fit === "contain" ? "contain" : undefined}
+      >
         {video ? (
           <>
             <video

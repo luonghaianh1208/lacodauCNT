@@ -65,6 +65,23 @@ const model: ModelSlide = {
   footnote: ["Phần C.7 – Mô hình 1."],
 };
 
+// Ảnh dẫn dắt (role "chinh") khai fit="contain" — dùng để kiểm tra khung .model-video gắn
+// đúng data-fit, không đụng đến fixture `model` (đang dùng videoSrc nên không render ảnh).
+const modelWithHeroImage: ModelSlide = {
+  kind: "model", number: 35, density: "day",
+  title: ["2. Mô hình 2 – Nền tảng số", "tư vấn hướng nghiệp"],
+  lead: ["Mô hình kết hợp trắc nghiệm", "hướng nghiệp với AI."],
+  groups: [{ label: ["ĐIỂM MỚI, SÁNG TẠO"], items: [["Tích hợp trắc nghiệm."]] }],
+  images: [
+    {
+      src: "/media/slides/hero.webp",
+      alt: "Bốn khung giới thiệu nền tảng",
+      caption: ["Nền tảng số"],
+      role: "chinh",
+    },
+  ],
+};
+
 const outro: OutroSlide = {
   kind: "outro", number: 44, density: "vua",
   kicker: ["KẾT LUẬN"],
@@ -131,6 +148,26 @@ describe("năm khuôn còn lại", () => {
       "ef anim a-rise",
       "fn anim a-rise",
     ]);
+  });
+
+  // Chặn tái diễn: ảnh dẫn dắt tỉ lệ khác 16:9 (vd. infographic ghép khung, slide 35) bị
+  // object-fit: cover mặc định cắt mất nội dung. fit="contain" phải gắn data-fit lên đúng
+  // khung .model-video để CSS chuyển sang hiện trọn ảnh, không cắt.
+  it("ảnh dẫn dắt khai fit=contain gắn data-fit=contain lên khung .model-video", () => {
+    const { container } = render(
+      <ModelSlideView
+        slide={{
+          ...modelWithHeroImage,
+          images: [{ ...modelWithHeroImage.images[0], fit: "contain" }],
+        }}
+      />,
+    );
+    expect(container.querySelector(".model-video")).toHaveAttribute("data-fit", "contain");
+  });
+
+  it("ảnh dẫn dắt không khai fit thì khung .model-video không gắn data-fit, giữ hành vi cover cũ", () => {
+    const { container } = render(<ModelSlideView slide={modelWithHeroImage} />);
+    expect(container.querySelector(".model-video")).not.toHaveAttribute("data-fit");
   });
 
   it("khuôn kết luận render thông điệp và dải chỉ số", () => {

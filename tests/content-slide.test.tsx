@@ -156,6 +156,25 @@ describe("ContentSlideView", () => {
     expect(img.style.objectPosition).toBe("");
   });
 
+  // Ảnh khai fit="contain" (vd. infographic không được cắt) phải gắn data-fit lên đúng khung
+  // của NÓ để CSS bắt được — ảnh còn lại trong cùng slide không khai fit thì không dính theo.
+  it("ảnh fit=contain gắn data-fit=contain lên khung của nó, ảnh không khai fit thì không", () => {
+    const { container } = render(
+      <ContentSlideView
+        slide={{
+          ...slide,
+          images: [{ ...slide.images[0], fit: "contain" }, makeImages(1)[0]],
+        }}
+        side="right"
+      />,
+    );
+
+    const wraps = container.querySelectorAll(".content-media figure > div");
+    expect(wraps).toHaveLength(2);
+    expect(wraps[0]).toHaveAttribute("data-fit", "contain");
+    expect(wraps[1]).not.toHaveAttribute("data-fit");
+  });
+
   it("số trang và chú thích chân trang luôn cùng bên, ngược bên với panel ảnh", () => {
     const { container: right } = render(<ContentSlideView slide={slide} side="right" />);
     expect((right.querySelector(".slide-stage") as HTMLElement).dataset.side).toBe("right");

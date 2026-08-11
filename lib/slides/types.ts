@@ -17,6 +17,14 @@ export type SlideImage = {
    * định, không toạ độ tự do — dự án này cố ý không cho đặt vị trí tuỳ ý.
    */
   focus?: "top" | "center" | "bottom";
+  /**
+   * Kiểu vừa khung của ảnh (CSS `object-fit`). Không ghi gì thì mặc định `"cover"` — hành vi
+   * cũ, ảnh lấp kín khung, cắt bớt phần thừa. Đặt `"contain"` cho ảnh không được cắt (vd.
+   * infographic ghép khung): ảnh hiện trọn vẹn, phần thừa lấp nền tối `#041424` thay vì để
+   * trắng lệch tông. Xem cách áp ở `.model-video[data-fit]`/`.content-media [data-fit]`
+   * trong app/globals.css.
+   */
+  fit?: "cover" | "contain";
 };
 
 /**

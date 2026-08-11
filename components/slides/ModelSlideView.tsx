@@ -90,7 +90,9 @@ export function ModelSlideView({
             dựng khung video rỗng, để panel navy trơn như khuôn nội dung khi thiếu ảnh. */}
         {slide.videoSrc || hero ? (
           <figure className="anim a-media" style={animDelay(MODEL_DELAY.mediaBase)}>
-            <div className="model-video">
+            {/* `data-fit` chỉ có ý nghĩa khi hiện ảnh (video không có trường `fit`) — CSS bắt
+                thuộc tính này để chuyển ảnh sang object-fit: contain, không cắt. */}
+            <div className="model-video" data-fit={hero?.fit === "contain" ? "contain" : undefined}>
               {slide.videoSrc ? (
                 <video
                   ref={videoRef}

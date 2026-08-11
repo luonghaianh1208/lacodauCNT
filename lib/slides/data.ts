@@ -1819,6 +1819,9 @@ export const SLIDES = [
         alt: "Bốn khung giới thiệu nền tảng PWA tư vấn hướng nghiệp: trang giới thiệu, ba bài trắc nghiệm, phân tích AI và trò chuyện với AI",
         caption: ["Nền tảng số", "tư vấn hướng nghiệp"],
         role: "chinh",
+        // Infographic 4 khung ghép tỉ lệ 3:2, chữ nhỏ: object-fit mặc định "cover" trong
+        // khung 16:9 cắt mất ~15% chiều cao. "contain" giữ trọn nội dung, không cắt.
+        fit: "contain",
       },
     ],
     footnote: [

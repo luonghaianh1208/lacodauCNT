@@ -330,6 +330,14 @@
 .media-solo > div { overflow: hidden; aspect-ratio: 4 / 3; border-top: 0.3cqw solid var(--red); }
 
 /*
+ * `fit="contain"` (xem `SlideImage["fit"]` trong lib/slides/types.ts) — ảnh không được cắt
+ * (vd. infographic ghép khung) hiện trọn vẹn thay vì lấp kín khung bằng `cover`; nền phía
+ * sau lấp màu tối `#041424` (giống `.model-video` bên dưới) để phần thừa không lệch tông trắng.
+ */
+.content-media [data-fit="contain"] { background: #041424; }
+.content-media [data-fit="contain"] img { object-fit: contain; object-position: center; }
+
+/*
  * Ô video trong khuôn nội dung (slide 9 "Phiên toà giả định") — khung 16:9 ép bằng inline
  * style ở ContentSlideView, `overflow: hidden` vẫn kế thừa từ selector của nhánh bố trí
  * (`.media-lead > div`, `.media-grid figure > div`, v.v.) vì đây vẫn là `figure > div` bình
@@ -559,6 +567,10 @@
 /* KHÔNG object-fit: cover trên video — cắt mất hai bên là lỗi đã sửa. */
 .model-video video { display: block; width: 100%; height: 100%; }
 .model-video img { object-fit: cover; }
+/* `fit="contain"` — cùng cơ chế với `.content-media [data-fit="contain"]` ở trên, dùng cho
+   ảnh dẫn dắt (role "chinh") không được cắt, vd. infographic ghép khung (slide 35). Nền
+   `#041424` đã đặt sẵn ở `.model-video` phía trên nên không cần lặp lại ở đây. */
+.model-video[data-fit="contain"] img { object-fit: contain; object-position: center; }
 
 .model-shots { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.4cqw; }
 /*
