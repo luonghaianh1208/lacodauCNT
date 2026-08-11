@@ -1813,9 +1813,14 @@ export const SLIDES = [
         ],
       },
     ],
-    // Cố ý KHÔNG có ảnh: đến trang này người thuyết trình mở thẳng website thật để demo,
-    // ảnh chụp màn hình đặt cạnh sẽ thừa và làm loãng phần trình diễn trực tiếp.
-    images: [],
+    images: [
+      {
+        src: "/media/slides/Nền tảng số tư vấn hướng nghiệp.webp",
+        alt: "Bốn khung giới thiệu nền tảng PWA tư vấn hướng nghiệp: trang giới thiệu, ba bài trắc nghiệm, phân tích AI và trò chuyện với AI",
+        caption: ["Nền tảng số", "tư vấn hướng nghiệp"],
+        role: "chinh",
+      },
+    ],
     footnote: [
       "Phần B.I – Mục 7. Mô hình 2:",
       "Nền tảng số tư vấn hướng nghiệp",
