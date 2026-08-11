@@ -2,7 +2,7 @@
 
 import { SlideCanvas } from "@/components/SlideCanvas";
 import { phrasesToText } from "@/lib/phrases";
-import { SLIDES, type Slide } from "@/lib/slides";
+import { SLIDES, slideHasVideo, type Slide } from "@/lib/slides";
 
 /** Mọi khuôn slide đều có `title` (xem `lib/slides/types.ts`) nên không cần rẽ nhánh theo `kind`. */
 function slideShortTitle(slide: Slide): string {
@@ -54,6 +54,16 @@ export function SlidePickerGrid({ open, currentIndex, onSelect, onClose }: Slide
         <div className="slide-picker-grid">
           {SLIDES.map((slide, index) => {
             const isCurrent = index === currentIndex;
+            /*
+             * Ảnh thu nhỏ của slide có video trông y hệt slide chỉ có ảnh, vì thẻ <video> lúc
+             * chưa phát chỉ hiện ảnh poster. Không có dấu hiệu này thì người thuyết trình
+             * không biết trang nào cần bấm PHÁT VIDEO (slide 40 đã bị bỏ sót đúng vì vậy).
+             */
+            const hasVideo = slideHasVideo(slide);
+            const label =
+              slide.kind === "standby"
+                ? `Trang 0: ${slideShortTitle(slide)}`
+                : `Slide ${slide.number}: ${slideShortTitle(slide)}`;
             return (
               <button
                 key={slide.number}
@@ -61,16 +71,20 @@ export function SlidePickerGrid({ open, currentIndex, onSelect, onClose }: Slide
                 className={
                   isCurrent ? "slide-picker-cell slide-picker-cell--current" : "slide-picker-cell"
                 }
-                aria-label={
-                  slide.kind === "standby"
-                    ? `Trang 0: ${slideShortTitle(slide)}`
-                    : `Slide ${slide.number}: ${slideShortTitle(slide)}`
-                }
+                aria-label={hasVideo ? `${label} — có video` : label}
                 aria-current={isCurrent ? "true" : undefined}
+                data-has-video={hasVideo ? "true" : undefined}
                 onClick={() => onSelect(index)}
               >
                 <span className="slide-picker-thumb">
                   <SlideCanvas index={index} mode="preview" />
+                  {/* aria-hidden: nội dung này đã nằm trong aria-label của nút, đọc lại là thừa. */}
+                  {hasVideo ? (
+                    <span className="slide-picker-video" aria-hidden="true">
+                      <span className="play-triangle" />
+                      VIDEO
+                    </span>
+                  ) : null}
                 </span>
                 <span className="slide-picker-caption">
                   <span className="slide-picker-number">{slide.number}</span>

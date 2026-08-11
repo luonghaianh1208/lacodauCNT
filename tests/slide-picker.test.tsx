@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { ControlDeck } from "@/components/ControlDeck";
-import { SLIDES } from "@/lib/slides";
+import { SLIDES, slideHasVideo } from "@/lib/slides";
 
 /**
  * jsdom không nạp CSS nên không kiểm được hình học (kích thước ô, cuộn, content-visibility).
@@ -62,6 +62,28 @@ describe("Lưới chọn slide", () => {
     // lưới — panel phải chặn nổi bọt sự kiện click lên overlay nền.
     fireEvent.click(screen.getByRole("heading", { name: "CHỌN SLIDE" }));
     expect(container.querySelector(".slide-picker-overlay")).toBeInTheDocument();
+  });
+
+  it("chỉ ô của slide có video mới mang cờ VIDEO, và số ô có cờ khớp dữ liệu", () => {
+    const { container } = render(<ControlDeck />);
+    fireEvent.click(screen.getByRole("button", { name: "Chọn slide" }));
+
+    const cells = [...container.querySelectorAll(".slide-picker-cell")];
+    // Nguồn sự thật là SLIDES, KHÔNG phải hằng số chép tay: thêm/bớt video trong dữ liệu thì
+    // test vẫn đúng mà không phải sửa. Vẫn chặn được lỗi thật vì hai vế đi hai đường khác
+    // nhau — một bên đọc dữ liệu, một bên đọc DOM đã dựng.
+    const expected = SLIDES.map((slide, index) => index).filter((index) =>
+      slideHasVideo(SLIDES[index]),
+    );
+    const flagged = cells
+      .map((cell, index) => (cell.querySelector(".slide-picker-video") ? index : -1))
+      .filter((index) => index >= 0);
+
+    expect(flagged).toEqual(expected);
+    // Bộ slide phải thật sự có video, nếu không phép so sánh trên thành rỗng-bằng-rỗng.
+    expect(flagged.length).toBeGreaterThan(0);
+    expect(cells[expected[0]]).toHaveAttribute("data-has-video", "true");
+    expect(cells[expected[0]].getAttribute("aria-label")).toContain("có video");
   });
 
   it("phím mũi tên vẫn chuyển slide khi lưới đang mở, và ô đánh dấu di chuyển theo", () => {

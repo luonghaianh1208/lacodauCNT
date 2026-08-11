@@ -1122,10 +1122,38 @@ button {
 }
 
 .slide-picker-thumb {
+  position: relative;
   display: block;
   overflow: hidden;
   border: 1px solid #3a5b79;
   background: #020c18;
+}
+
+/* Cờ "VIDEO" góc trên phải ảnh thu nhỏ — xem chú thích ở SlidePickerGrid.tsx. Màu đỏ vì
+   vàng đã dành cho ô đang chiếu, xanh đã là màu nền panel: đỏ là màu duy nhất còn nổi
+   trên mọi ảnh thu nhỏ. */
+.slide-picker-video {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: var(--red);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+}
+
+.slide-picker-video .play-triangle {
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid #fff;
 }
 
 .slide-picker-thumb .slide-shell {
