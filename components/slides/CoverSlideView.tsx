@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { animDelay } from "@/lib/anim";
 import { Phrase } from "@/components/Phrase";
+import { useSlideRenderEager } from "@/lib/slide-render-context";
 import type { CoverSlide } from "@/lib/slides/types";
 
 /**
@@ -31,6 +32,7 @@ const COVER_DELAY = {
 export function CoverSlideView({ slide }: { slide: CoverSlide }) {
   const hero = slide.images.find((image) => image.role === "nen");
   const band = slide.images.filter((image) => image.role !== "nen");
+  const eager = useSlideRenderEager();
 
   return (
     <div className="slide-stage coverpage-stage" data-density={slide.density} data-over-photo="true">
@@ -51,14 +53,14 @@ export function CoverSlideView({ slide }: { slide: CoverSlide }) {
             alt="Logo Trường THPT Chuyên Nguyễn Trãi"
             width={120}
             height={120}
-            priority
+            priority={eager}
           />
           <Image
             src="/media/youth-union-logo.png"
             alt="Logo Đoàn TNCS Hồ Chí Minh"
             width={120}
             height={120}
-            priority
+            priority={eager}
           />
         </div>
         <p className="coverpage-eyebrow anim a-rise" style={animDelay(COVER_DELAY.eyebrow)}>

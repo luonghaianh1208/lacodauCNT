@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { animDelay } from "@/lib/anim";
 import { Phrase } from "@/components/Phrase";
+import { useSlideRenderEager } from "@/lib/slide-render-context";
 import type { Slide } from "@/lib/slides/types";
 
 /**
@@ -26,6 +27,7 @@ export function SlideChrome({
   side?: "left" | "right";
 }) {
   const textSide = side === "left" ? "right" : "left";
+  const eager = useSlideRenderEager();
 
   return (
     <>
@@ -36,14 +38,14 @@ export function SlideChrome({
           alt="Logo Trường THPT Chuyên Nguyễn Trãi"
           width={120}
           height={120}
-          priority
+          priority={eager}
         />
         <Image
           src="/media/youth-union-logo.png"
           alt="Logo Đoàn TNCS Hồ Chí Minh"
           width={120}
           height={120}
-          priority
+          priority={eager}
         />
         <div>
           <strong>

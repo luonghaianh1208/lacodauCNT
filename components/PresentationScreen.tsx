@@ -9,6 +9,7 @@ import {
   type PresentationState,
   type VideoCommand,
 } from "@/lib/presentation";
+import { SlideRenderProvider } from "@/lib/slide-render-context";
 import { clampIndex, slideAt } from "@/lib/slides";
 import { usePresentationChannel } from "@/lib/usePresentationChannel";
 
@@ -139,38 +140,40 @@ export function PresentationScreen() {
   const slide = slideAt(view.slideIndex);
 
   return (
-    <main className="presentation-page">
-      <div
-        className="projector-stage slide-live"
-        data-motion={motion}
-        data-transition={transitionKindFor(slide)}
-        style={{ "--dir": view.direction === "forward" ? "4cqw" : "-4cqw" } as CSSProperties}
-        key={`${view.slideIndex}-${view.sequence}`}
-      >
-        <SlideCanvas
-          index={view.slideIndex}
-          mode="full"
-          motion={motion}
-          videoRef={videoRef}
-          videoBlocked={videoBlocked}
-          onVideoFallback={() => void playVideo(false)}
-        />
-      </div>
-      {!ready ? (
-        <div className="ready-gate">
-          <div className="ready-card">
-            <span className="ready-kicker">MÀN HÌNH TRÌNH CHIẾU</span>
-            <h1>Sẵn sàng cho chế độ toàn màn hình</h1>
-            <p>
-              Nhấn một lần để trình duyệt cho phép phát video có âm thanh. Sau đó thao tác
-              chuyển slide ở màn hình điều khiển.
-            </p>
-            <button type="button" aria-label="Sẵn sàng trình chiếu" onClick={prepareProjector}>
-              SẴN SÀNG TRÌNH CHIẾU
-            </button>
-          </div>
+    <SlideRenderProvider eager>
+      <main className="presentation-page">
+        <div
+          className="projector-stage slide-live"
+          data-motion={motion}
+          data-transition={transitionKindFor(slide)}
+          style={{ "--dir": view.direction === "forward" ? "4cqw" : "-4cqw" } as CSSProperties}
+          key={`${view.slideIndex}-${view.sequence}`}
+        >
+          <SlideCanvas
+            index={view.slideIndex}
+            mode="full"
+            motion={motion}
+            videoRef={videoRef}
+            videoBlocked={videoBlocked}
+            onVideoFallback={() => void playVideo(false)}
+          />
         </div>
-      ) : null}
-    </main>
+        {!ready ? (
+          <div className="ready-gate">
+            <div className="ready-card">
+              <span className="ready-kicker">MÀN HÌNH TRÌNH CHIẾU</span>
+              <h1>Sẵn sàng cho chế độ toàn màn hình</h1>
+              <p>
+                Nhấn một lần để trình duyệt cho phép phát video có âm thanh. Sau đó thao tác
+                chuyển slide ở màn hình điều khiển.
+              </p>
+              <button type="button" aria-label="Sẵn sàng trình chiếu" onClick={prepareProjector}>
+                SẴN SÀNG TRÌNH CHIẾU
+              </button>
+            </div>
+          </div>
+        ) : null}
+      </main>
+    </SlideRenderProvider>
   );
 }

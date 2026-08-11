@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { SlideCanvas } from "@/components/SlideCanvas";
+import { SlidePickerGrid } from "@/components/SlidePickerGrid";
 import { phrasesToText } from "@/lib/phrases";
 import { MOTION_STORAGE_KEY, readMotionMode, type MotionMode } from "@/lib/motion";
 import { type PresentationState, type VideoCommand } from "@/lib/presentation";
@@ -51,6 +52,7 @@ export function ControlDeck() {
   const [state, setState] = useState<PresentationState>({ slideIndex: 0, sequence: 0 });
   const [clock, setClock] = useState(() => formatClock(new Date()));
   const [motion, setMotion] = useState<MotionMode>("force");
+  const [pickerOpen, setPickerOpen] = useState(false);
   const sequenceRef = useRef(0);
   const { projectorConnected, postState, postCommand, postMotion } = usePresentationChannel({
     role: "control",
@@ -69,6 +71,16 @@ export function ControlDeck() {
       postState(next);
     },
     [postState, state.slideIndex],
+  );
+
+  const pickSlide = useCallback(
+    (target: number) => {
+      // Nối thẳng vào `navigate` đã có sẵn — chuyển cảnh khi nhảy từ lưới phải giống hệt
+      // khi bấm Tiếp/Lùi, không viết cơ chế đồng bộ riêng.
+      navigate(target);
+      setPickerOpen(false);
+    },
+    [navigate],
   );
 
   const sendVideoCommand = useCallback(
@@ -117,11 +129,15 @@ export function ControlDeck() {
         event.preventDefault();
         sendVideoCommand("play");
       }
+      if (event.key === "Escape" && pickerOpen) {
+        event.preventDefault();
+        setPickerOpen(false);
+      }
     };
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [navigate, sendVideoCommand, state.slideIndex, videoEnabled]);
+  }, [navigate, pickerOpen, sendVideoCommand, state.slideIndex, videoEnabled]);
 
   const nextIndex = state.slideIndex + 1;
   const nextSlide = SLIDES[nextIndex];
@@ -207,6 +223,14 @@ export function ControlDeck() {
         >
           <span aria-hidden="true">←</span> LÙI
         </button>
+        <button
+          className="control-button control-button--secondary"
+          type="button"
+          aria-label="Chọn slide"
+          onClick={() => setPickerOpen(true)}
+        >
+          <span aria-hidden="true">▦</span> CHỌN SLIDE
+        </button>
         <div className="video-control-group" aria-label="Điều khiển video">
           <button
             className="control-button control-button--primary"
@@ -246,6 +270,13 @@ export function ControlDeck() {
           TIẾP <span aria-hidden="true">→</span>
         </button>
       </footer>
+
+      <SlidePickerGrid
+        open={pickerOpen}
+        currentIndex={state.slideIndex}
+        onSelect={pickSlide}
+        onClose={() => setPickerOpen(false)}
+      />
     </main>
   );
 }
