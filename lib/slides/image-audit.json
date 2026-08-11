@@ -1,66 +1,306 @@
 {
-  "s10_img3.jpg": {
-    "flat": 0.481,
-    "white": 0.009,
+  "12 quần chúng ưu tú kết nạp Đảng đợt 1.jpg": {
+    "flat": 0.354,
+    "white": 0.015,
     "screenshot": false
   },
-  "s29_img6.jpg": {
-    "flat": 0.367,
-    "white": 0.003,
+  "16 quần chúng ưu tú được kết nạp Đảng.jpg": {
+    "flat": 0.382,
+    "white": 0.023,
     "screenshot": false
   },
-  "s2_img3.jpg": {
-    "flat": 0.257,
-    "white": 0.004,
-    "screenshot": false
-  },
-  "s2_img4.jpg": {
-    "flat": 0.462,
-    "white": 0.043,
-    "screenshot": false
-  },
-  "s2_img5.jpg": {
-    "flat": 0.267,
-    "white": 0.008,
-    "screenshot": false
-  },
-  "s2_img6.jpg": {
-    "flat": 0.507,
+  "Bữa cơm nghĩa tình.jpg": {
+    "flat": 0.205,
     "white": 0,
     "screenshot": false
   },
-  "s30_img3.jpg": {
+  "Chuyên đề tư vấn hướng nghiệp.jpg": {
+    "flat": 0.442,
+    "white": 0,
+    "screenshot": false
+  },
+  "Chuyên đề “Mạch nguồn di sản”.jpg": {
+    "flat": 0.236,
+    "white": 0.002,
+    "screenshot": false
+  },
+  "Chuỗi sự kiện “Ước mơ xanh”.jpg": {
+    "flat": 0.306,
+    "white": 0.007,
+    "screenshot": false
+  },
+  "Chào mừng 80 năm Cách mạng tháng Tám.jpg": {
+    "flat": 0.139,
+    "white": 0.079,
+    "screenshot": false
+  },
+  "Chào tân học sinh “New Orbit”.jpg": {
+    "flat": 0.219,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "Chương trình “Ký âm Sol hồng”.jpg": {
+    "flat": 0.336,
+    "white": 0.001,
+    "screenshot": false
+  },
+  "Chương trình “Phi mã khai xuân”.jpg": {
+    "flat": 0.416,
+    "white": 0,
+    "screenshot": false
+  },
+  "CNT's Open Talk.jpg": {
+    "flat": 0.25,
+    "white": 0,
+    "screenshot": false
+  },
+  "Chương trình “Ánh dương soi đường”.jpg": {
+    "flat": 0.411,
+    "white": 0,
+    "screenshot": false
+  },
+  "Cuộc thi Olympia cấp trường.jpg": {
+    "flat": 0.353,
+    "white": 0.136,
+    "screenshot": false
+  },
+  "Cuộc thi “Dưới Ánh Sao Vàng”.jpg": {
+    "flat": 0.167,
+    "white": 0.004,
+    "screenshot": false
+  },
+  "Công trình “Những cánh thư vượt sóng”(2).jpg": {
+    "flat": 0.481,
+    "white": 0.005,
+    "screenshot": false
+  },
+  "Công trình “Những cánh thư vượt sóng”(1).jpg": {
+    "flat": 0.346,
+    "white": 0.12,
+    "screenshot": false
+  },
+  "Công trình “Những cánh thư vượt sóng”(3).jpg": {
+    "flat": 0.429,
+    "white": 0.154,
+    "screenshot": false
+  },
+  "Công trình “Những cánh thư vượt sóng”.jpg": {
+    "flat": 0.132,
+    "white": 0.007,
+    "screenshot": false
+  },
+  "Dâng hương tưởng niệm các Anh hùng Liệt sỹ.jpg": {
+    "flat": 0.287,
+    "white": 0.099,
+    "screenshot": false
+  },
+  "Dâng hương tại đài tưởng niệm.jpg": {
+    "flat": 0.26,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "Dự thi Tin học trẻ cấp thành phố.jpg": {
+    "flat": 0.511,
+    "white": 0,
+    "screenshot": false
+  },
+  "Giao lưu nhân chứng lịch sử.jpg": {
+    "flat": 0.333,
+    "white": 0.057,
+    "screenshot": false
+  },
+  "Diễn đàn “Xây dựng tình bạn đẹp”.png": {
+    "flat": 0.387,
+    "white": 0.312,
+    "screenshot": true
+  },
+  "Giao lưu Robotics.jpg": {
+    "flat": 0.245,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "Giao lưu với đại học quốc tế.jpg": {
+    "flat": 0.316,
+    "white": 0.009,
+    "screenshot": false
+  },
+  "Giải bóng đá CNT Cup.jpg": {
+    "flat": 0.132,
+    "white": 0.018,
+    "screenshot": false
+  },
+  "Giải kéo co.jpg": {
+    "flat": 0.25,
+    "white": 0.032,
+    "screenshot": false
+  },
+  "Giải Nhất Chuyển đổi số, chuyển đổi xanh.jpg": {
+    "flat": 0.343,
+    "white": 0.105,
+    "screenshot": false
+  },
+  "Giải Nhất tuần Đường lên đỉnh Olympia.jpg": {
+    "flat": 0.358,
+    "white": 0,
+    "screenshot": false
+  },
+  "Gói bánh chưng “Gói trọn vị nhà”.jpg": {
+    "flat": 0.311,
+    "white": 0.002,
+    "screenshot": false
+  },
+  "Hoạt động trong điều kiện cơ sở vật chất hiện có.jpg": {
+    "flat": 0.23,
+    "white": 0.002,
+    "screenshot": false
+  },
+  "Hùng biện tiếng Anh Young Voices.jpg": {
+    "flat": 0.238,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "Hướng dẫn kỹ năng lái xe an toàn.jpg": {
+    "flat": 0.179,
+    "white": 0.016,
+    "screenshot": false
+  },
+  "Học sinh tham gia công tác bầu cử.jpg": {
+    "flat": 0.27,
+    "white": 0.002,
+    "screenshot": false
+  },
+  "Học sinh toàn trường chào cờ đầu tuần.jpg": {
+    "flat": 0.226,
+    "white": 0.053,
+    "screenshot": false
+  },
+  "Họp Ban Chấp hành Đoàn trường.jpg": {
+    "flat": 0.231,
+    "white": 0,
+    "screenshot": false
+  },
+  "Hỗ trợ người dân định danh điện tử.jpg": {
+    "flat": 0.216,
+    "white": 0,
+    "screenshot": false
+  },
+  "Hỗ trợ người cao tuổi khám sức khỏe.jpg": {
+    "flat": 0.242,
+    "white": 0.03,
+    "screenshot": false
+  },
+  "Hỗ trợ thân nhân Liệt sỹ.jpg": {
+    "flat": 0.324,
+    "white": 0.015,
+    "screenshot": false
+  },
+  "Hội chợ Tết.jpg": {
+    "flat": 0.173,
+    "white": 0.006,
+    "screenshot": false
+  },
+  "Hội diễn “Khúc ca tri ân”.jpg": {
+    "flat": 0.282,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "Hội nghị tập huấn nâng cao năng lực số.jpg": {
+    "flat": 0.263,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "Lễ kết nạp đoàn viên mới.jpg": {
+    "flat": 0.433,
+    "white": 0.01,
+    "screenshot": false
+  },
+  "Khát vọng cống hiến – Lẽ sống thanh niên.jpg": {
+    "flat": 0.231,
+    "white": 0,
+    "screenshot": false
+  },
+  "Lễ kết nạp Đảng.jpg": {
     "flat": 0.377,
     "white": 0.014,
     "screenshot": false
   },
-  "s30_img4.jpg": {
-    "flat": 0.334,
+  "Lớp tiếng Anh tình nguyện hè(1).jpg": {
+    "flat": 0.394,
+    "white": 0.065,
+    "screenshot": false
+  },
+  "Lớp tiếng Anh tình nguyện hè.jpg": {
+    "flat": 0.384,
+    "white": 0.173,
+    "screenshot": false
+  },
+  "Mô hình HDMUN.jpg": {
+    "flat": 0.365,
+    "white": 0.023,
+    "screenshot": false
+  },
+  "Mỗi ngày một tin tốt, mỗi tuần một chuyện đẹp.jpg": {
+    "flat": 0.27,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "Ngoại khóa phòng cháy chữa cháy.jpg": {
+    "flat": 0.199,
+    "white": 0.046,
+    "screenshot": false
+  },
+  "Ngày hội Chuyên Nguyễn Trãi.jpg": {
+    "flat": 0.314,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "Ngày hội Tư vấn tuyển sinh – Hướng nghiệp(1).jpg": {
+    "flat": 0.292,
+    "white": 0.001,
+    "screenshot": false
+  },
+  "Ngày hội Tư vấn tuyển sinh – Hướng nghiệp.jpg": {
+    "flat": 0.464,
+    "white": 0,
+    "screenshot": false
+  },
+  "Ngày Sách và Văn hóa đọc.jpg": {
+    "flat": 0.355,
+    "white": 0.035,
+    "screenshot": false
+  },
+  "Phiên tòa giả định.jpg": {
+    "flat": 0.235,
+    "white": 0.002,
+    "screenshot": false
+  },
+  "Quyên góp Quỹ “Đông ấm vùng cao”.jpg": {
+    "flat": 0.42,
+    "white": 0,
+    "screenshot": false
+  },
+  "Quyên góp, thăm hỏi nhân dân vùng lũ.jpg": {
+    "flat": 0.343,
+    "white": 0.001,
+    "screenshot": false
+  },
+  "Ra mắt nền tảng số quản lý Đoàn viên, thanh niên.jpg": {
+    "flat": 0.484,
+    "white": 0,
+    "screenshot": false
+  },
+  "Ra quân Chủ nhật Xanh(1).jpg": {
+    "flat": 0.238,
     "white": 0.008,
     "screenshot": false
   },
-  "s30_img5.jpg": {
-    "flat": 0.424,
-    "white": 0.022,
+  "Ra quân Chủ nhật Xanh.jpg": {
+    "flat": 0.316,
+    "white": 0.192,
     "screenshot": false
   },
-  "s33_img3.jpg": {
-    "flat": 0.309,
-    "white": 0,
-    "screenshot": false
-  },
-  "s33_img4.jpg": {
-    "flat": 0.504,
-    "white": 0,
-    "screenshot": false
-  },
-  "s33_img5.jpg": {
-    "flat": 0.448,
-    "white": 0.005,
-    "screenshot": false
-  },
-  "s33_img6.jpg": {
-    "flat": 0.442,
+  "Ra mắt mô hình “Trường học không ma túy”.png": {
+    "flat": 0.384,
     "white": 0,
     "screenshot": false
   },
@@ -84,21 +324,6 @@
     "white": 0.673,
     "screenshot": true
   },
-  "s10_img5.jpg": {
-    "flat": 0.367,
-    "white": 0.055,
-    "screenshot": false
-  },
-  "s10_img6.jpg": {
-    "flat": 0.295,
-    "white": 0,
-    "screenshot": false
-  },
-  "s10_img4.jpg": {
-    "flat": 0.349,
-    "white": 0,
-    "screenshot": false
-  },
   "s35_img4.png": {
     "flat": 0.884,
     "white": 0.905,
@@ -114,474 +339,174 @@
     "white": 0.849,
     "screenshot": true
   },
-  "s36_img3.jpg": {
-    "flat": 0.539,
-    "white": 0.031,
-    "screenshot": false
-  },
-  "s36_img4.jpg": {
-    "flat": 0.428,
-    "white": 0.082,
-    "screenshot": false
-  },
-  "s36_img5.jpg": {
-    "flat": 0.55,
-    "white": 0.003,
-    "screenshot": false
-  },
-  "s36_img6.jpg": {
-    "flat": 0.388,
-    "white": 0,
-    "screenshot": false
-  },
-  "s37_img3.jpg": {
-    "flat": 0.211,
-    "white": 0.011,
-    "screenshot": false
-  },
-  "s37_img4.jpg": {
-    "flat": 0.285,
-    "white": 0.011,
-    "screenshot": false
-  },
-  "s37_img5.jpg": {
-    "flat": 0.296,
-    "white": 0,
-    "screenshot": false
-  },
-  "s37_img6.jpg": {
-    "flat": 0.15,
-    "white": 0.031,
-    "screenshot": false
-  },
-  "s38_img3.jpg": {
-    "flat": 0.317,
-    "white": 0.101,
-    "screenshot": false
-  },
-  "s38_img4.jpg": {
-    "flat": 0.349,
-    "white": 0.071,
-    "screenshot": false
-  },
-  "s38_img5.jpg": {
-    "flat": 0.257,
-    "white": 0.004,
-    "screenshot": false
-  },
-  "s3_img3.jpg": {
-    "flat": 0.257,
-    "white": 0.004,
-    "screenshot": false
-  },
-  "s3_img4.jpg": {
-    "flat": 0.264,
-    "white": 0.072,
-    "screenshot": false
-  },
-  "s3_img5.jpg": {
+  "Sinh hoạt chi đoàn theo chủ điểm.jpg": {
     "flat": 0.367,
-    "white": 0.003,
-    "screenshot": false
-  },
-  "s4_img3.jpg": {
-    "flat": 0.257,
-    "white": 0.004,
-    "screenshot": false
-  },
-  "s4_img4.jpg": {
-    "flat": 0.264,
-    "white": 0.072,
-    "screenshot": false
-  },
-  "s4_img5.jpg": {
-    "flat": 0.367,
-    "white": 0.003,
-    "screenshot": false
-  },
-  "s5_img3.jpg": {
-    "flat": 0.259,
-    "white": 0.014,
-    "screenshot": false
-  },
-  "s5_img4.jpg": {
-    "flat": 0.279,
-    "white": 0.01,
-    "screenshot": false
-  },
-  "s5_img5.jpg": {
-    "flat": 0.349,
-    "white": 0.071,
-    "screenshot": false
-  },
-  "s6_img3.jpg": {
-    "flat": 0.355,
-    "white": 0.035,
-    "screenshot": false
-  },
-  "s6_img4.jpg": {
-    "flat": 0.438,
-    "white": 0.007,
-    "screenshot": false
-  },
-  "s6_img5.jpg": {
-    "flat": 0.467,
-    "white": 0,
-    "screenshot": false
-  },
-  "s11_img4.jpg": {
-    "flat": 0.362,
-    "white": 0.052,
-    "screenshot": false
-  },
-  "s11_img5.jpg": {
-    "flat": 0.253,
-    "white": 0.032,
-    "screenshot": false
-  },
-  "s11_img6.jpg": {
-    "flat": 0.449,
-    "white": 0,
-    "screenshot": false
-  },
-  "s12_img3.jpg": {
-    "flat": 0.283,
-    "white": 0,
-    "screenshot": false
-  },
-  "s12_img4.jpg": {
-    "flat": 0.273,
-    "white": 0.003,
-    "screenshot": false
-  },
-  "s11_img3.jpg": {
-    "flat": 0.462,
-    "white": 0.043,
-    "screenshot": false
-  },
-  "s12_img5.jpg": {
-    "flat": 0.418,
-    "white": 0,
-    "screenshot": false
-  },
-  "s7_img3.jpg": {
-    "flat": 0.541,
-    "white": 0.002,
-    "screenshot": false
-  },
-  "s7_img4.jpg": {
-    "flat": 0.438,
-    "white": 0.007,
-    "screenshot": false
-  },
-  "s8_img3.jpg": {
-    "flat": 0.361,
-    "white": 0.056,
-    "screenshot": false
-  },
-  "s8_img4.jpg": {
-    "flat": 0.387,
-    "white": 0.001,
-    "screenshot": false
-  },
-  "s8_img5.jpg": {
-    "flat": 0.3,
-    "white": 0.105,
-    "screenshot": false
-  },
-  "s9_img3.jpg": {
-    "flat": 0.314,
-    "white": 0.097,
-    "screenshot": false
-  },
-  "s9_img4.jpg": {
-    "flat": 0.481,
-    "white": 0.009,
-    "screenshot": false
-  },
-  "s9_img5.jpg": {
-    "flat": 0.367,
-    "white": 0.055,
-    "screenshot": false
-  },
-  "s13_img3.jpg": {
-    "flat": 0.383,
-    "white": 0.002,
-    "screenshot": false
-  },
-  "s13_img4.jpg": {
-    "flat": 0.462,
-    "white": 0.043,
-    "screenshot": false
-  },
-  "s13_img5.jpg": {
-    "flat": 0.362,
-    "white": 0.052,
-    "screenshot": false
-  },
-  "s13_img6.jpg": {
-    "flat": 0.273,
-    "white": 0.003,
-    "screenshot": false
-  },
-  "s14_img3.jpg": {
-    "flat": 0.096,
-    "white": 0.014,
-    "screenshot": false
-  },
-  "s14_img4.jpg": {
-    "flat": 0.16,
-    "white": 0.03,
-    "screenshot": false
-  },
-  "s14_img5.jpg": {
-    "flat": 0.306,
-    "white": 0.007,
-    "screenshot": false
-  },
-  "s14_img6.jpg": {
-    "flat": 0.169,
-    "white": 0.103,
-    "screenshot": false
-  },
-  "s15_img3.jpg": {
-    "flat": 0.449,
-    "white": 0,
-    "screenshot": false
-  },
-  "s15_img4.jpg": {
-    "flat": 0.209,
-    "white": 0,
-    "screenshot": false
-  },
-  "s15_img5.jpg": {
-    "flat": 0.4,
-    "white": 0.022,
-    "screenshot": false
-  },
-  "s16_img3.jpg": {
-    "flat": 0.507,
-    "white": 0,
-    "screenshot": false
-  },
-  "s16_img4.jpg": {
-    "flat": 0.462,
-    "white": 0.043,
-    "screenshot": false
-  },
-  "s16_img5.jpg": {
-    "flat": 0.253,
-    "white": 0.032,
-    "screenshot": false
-  },
-  "s17_img3.jpg": {
-    "flat": 0.406,
-    "white": 0.059,
-    "screenshot": false
-  },
-  "s17_img4.jpg": {
-    "flat": 0.362,
-    "white": 0.052,
-    "screenshot": false
-  },
-  "s17_img5.jpg": {
-    "flat": 0.462,
-    "white": 0.043,
-    "screenshot": false
-  },
-  "s18_img3.jpg": {
-    "flat": 0.316,
-    "white": 0.107,
-    "screenshot": false
-  },
-  "s18_img4.jpg": {
-    "flat": 0.347,
-    "white": 0.041,
-    "screenshot": false
-  },
-  "s18_img5.jpg": {
-    "flat": 0.359,
-    "white": 0.008,
-    "screenshot": false
-  },
-  "s18_img6.jpg": {
-    "flat": 0.459,
-    "white": 0.012,
-    "screenshot": false
-  },
-  "s19_img3.jpg": {
-    "flat": 0.273,
-    "white": 0,
-    "screenshot": false
-  },
-  "s19_img4.jpg": {
-    "flat": 0.383,
-    "white": 0.022,
-    "screenshot": false
-  },
-  "s19_img5.jpg": {
-    "flat": 0.459,
-    "white": 0.012,
-    "screenshot": false
-  },
-  "s19_img6.jpg": {
-    "flat": 0.316,
-    "white": 0.107,
-    "screenshot": false
-  },
-  "s1_img4.jpg": {
-    "flat": 0.504,
-    "white": 0,
-    "screenshot": false
-  },
-  "s1_img5.jpg": {
-    "flat": 0.448,
     "white": 0.005,
     "screenshot": false
   },
-  "s1_img3.jpg": {
-    "flat": 0.309,
-    "white": 0,
-    "screenshot": false
-  },
-  "s1_img6.png": {
-    "flat": 0.856,
-    "white": 0.673,
-    "screenshot": true
-  },
-  "s20_img3.jpg": {
-    "flat": 0.233,
-    "white": 0,
-    "screenshot": false
-  },
-  "s20_img4.jpg": {
-    "flat": 0.349,
-    "white": 0.119,
-    "screenshot": false
-  },
-  "s20_img5.jpg": {
-    "flat": 0.764,
-    "white": 0,
-    "screenshot": true
-  },
-  "s21_img3.jpg": {
-    "flat": 0.267,
-    "white": 0.008,
-    "screenshot": false
-  },
-  "s21_img4.jpg": {
-    "flat": 0.113,
-    "white": 0.001,
-    "screenshot": false
-  },
-  "s21_img5.jpg": {
-    "flat": 0.335,
-    "white": 0.075,
-    "screenshot": false
-  },
-  "s22_img3.jpg": {
-    "flat": 0.293,
-    "white": 0,
-    "screenshot": false
-  },
-  "s23_img3.jpg": {
-    "flat": 0.292,
-    "white": 0.001,
-    "screenshot": false
-  },
-  "s23_img4.jpg": {
-    "flat": 0.464,
-    "white": 0,
-    "screenshot": false
-  },
-  "s23_img5.jpg": {
-    "flat": 0.402,
-    "white": 0.003,
-    "screenshot": false
-  },
-  "s23_img6.jpg": {
-    "flat": 0.442,
-    "white": 0,
-    "screenshot": false
-  },
-  "s24_img3.jpg": {
-    "flat": 0.194,
-    "white": 0.012,
-    "screenshot": false
-  },
-  "s24_img5.jpg": {
-    "flat": 0.372,
-    "white": 0.02,
-    "screenshot": false
-  },
-  "s24_img6.jpg": {
-    "flat": 0.495,
-    "white": 0.277,
-    "screenshot": true
-  },
-  "s24_img4.jpg": {
-    "flat": 0.424,
-    "white": 0.007,
-    "screenshot": false
-  },
-  "s26_img3.jpg": {
-    "flat": 0.173,
-    "white": 0.001,
-    "screenshot": false
-  },
-  "s26_img4.jpg": {
-    "flat": 0.132,
-    "white": 0.018,
-    "screenshot": false
-  },
-  "s26_img5.jpg": {
-    "flat": 0.253,
-    "white": 0,
-    "screenshot": false
-  },
-  "s27_img3.jpg": {
-    "flat": 0.253,
-    "white": 0,
-    "screenshot": false
-  },
-  "s27_img4.jpg": {
-    "flat": 0.25,
-    "white": 0,
-    "screenshot": false
-  },
-  "s28_img3.jpg": {
-    "flat": 0.275,
-    "white": 0.016,
-    "screenshot": false
-  },
-  "s28_img4.jpg": {
-    "flat": 0.336,
-    "white": 0.007,
-    "screenshot": false
-  },
-  "s28_img5.jpg": {
+  "Sinh hoạt CLB Tiếng Anh(2).jpg": {
     "flat": 0.507,
     "white": 0,
     "screenshot": false
   },
-  "s28_img6.jpg": {
-    "flat": 0.24,
-    "white": 0.009,
+  "Sinh hoạt câu lạc bộ.jpg": {
+    "flat": 0.178,
+    "white": 0.068,
     "screenshot": false
   },
-  "s29_img3.jpg": {
-    "flat": 0.257,
+  "Sinh hoạt Đoàn.jpg": {
+    "flat": 0.408,
+    "white": 0.002,
+    "screenshot": false
+  },
+  "Sinh hoạt CLB Tiếng Anh(1).jpg": {
+    "flat": 0.309,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "Sinh hoạt đầu tuần.jpg": {
+    "flat": 0.248,
+    "white": 0.051,
+    "screenshot": false
+  },
+  "Thăm hỏi cựu chiến binh(1).jpg": {
+    "flat": 0.461,
+    "white": 0.043,
+    "screenshot": false
+  },
+  "Chương trình “Khi tôi 18”.png": {
+    "flat": 0.458,
+    "white": 0,
+    "screenshot": false
+  },
+  "Thăm hỏi cựu chiến binh.jpg": {
+    "flat": 0.343,
+    "white": 0.031,
+    "screenshot": false
+  },
+  "Trao học bổng cho học sinh.jpg": {
+    "flat": 0.386,
+    "white": 0.036,
+    "screenshot": false
+  },
+  "Trao Học bổng Sao Khuê.jpg": {
+    "flat": 0.321,
+    "white": 0,
+    "screenshot": false
+  },
+  "Triển lãm tranh bảo vệ môi trường.jpg": {
+    "flat": 0.138,
+    "white": 0.043,
+    "screenshot": false
+  },
+  "Triển lãm tranh “Độc lập – Tự do – Hạnh phúc”.jpg": {
+    "flat": 0.295,
+    "white": 0.001,
+    "screenshot": false
+  },
+  "Tuyên dương “Học sinh 3 tốt”.jpg": {
+    "flat": 0.349,
+    "white": 0.071,
+    "screenshot": false
+  },
+  "Tuyên truyền phòng, chống mua bán người.jpg": {
+    "flat": 0.194,
+    "white": 0,
+    "screenshot": false
+  },
+  "Trao quà Tết cho học sinh.jpg": {
+    "flat": 0.26,
     "white": 0.004,
     "screenshot": false
   },
-  "s29_img4.jpg": {
-    "flat": 0.264,
-    "white": 0.072,
+  "Tình nguyện viên hỗ trợ thí sinh(1).jpg": {
+    "flat": 0.234,
+    "white": 0.087,
     "screenshot": false
   },
-  "s29_img5.jpg": {
-    "flat": 0.14,
-    "white": 0.004,
+  "Tình nguyện viên hỗ trợ thí sinh(2).jpg": {
+    "flat": 0.258,
+    "white": 0.032,
+    "screenshot": false
+  },
+  "Tình nguyện viên hỗ trợ thí sinh.jpg": {
+    "flat": 0.279,
+    "white": 0.042,
+    "screenshot": false
+  },
+  "Tập thể học sinh toàn trường.jpg": {
+    "flat": 0.18,
+    "white": 0.052,
+    "screenshot": false
+  },
+  "Tổ chức Đoàn của trường.jpg": {
+    "flat": 0.423,
+    "white": 0,
+    "screenshot": false
+  },
+  "Đoàn viên bỏ phiếu.jpg": {
+    "flat": 0.295,
+    "white": 0.002,
+    "screenshot": false
+  },
+  "Đoàn viên ưu tú tuyên thệ.jpg": {
+    "flat": 0.393,
+    "white": 0.196,
+    "screenshot": false
+  },
+  "Đoàn viên, thanh niên hiến máu tình nguyện.jpg": {
+    "flat": 0.288,
+    "white": 0.005,
+    "screenshot": false
+  },
+  "Đại hội Đoàn trường THPT chuyên Nguyễn Trãi.jpg": {
+    "flat": 0.327,
+    "white": 0.013,
+    "screenshot": false
+  },
+  "Đại hội Đoàn trường.jpg": {
+    "flat": 0.304,
+    "white": 0.066,
+    "screenshot": false
+  },
+  "Đồng diễn CNT's Day.jpg": {
+    "flat": 0.171,
+    "white": 0.006,
+    "screenshot": false
+  },
+  "Đội hình tình nguyện Hoa phượng đỏ.jpg": {
+    "flat": 0.237,
+    "white": 0,
+    "screenshot": false
+  },
+  "Đội hình tình nguyện Tiếp sức mùa thi(1).jpg": {
+    "flat": 0.358,
+    "white": 0.044,
+    "screenshot": false
+  },
+  "Đồng hành cùng nạn nhân chất độc da cam.jpg": {
+    "flat": 0.285,
+    "white": 0.006,
+    "screenshot": false
+  },
+  "Đội hình tình nguyện Tiếp sức mùa thi.jpg": {
+    "flat": 0.453,
+    "white": 0.116,
+    "screenshot": false
+  },
+  "Đội tuyển học sinh giỏi quốc gia.jpg": {
+    "flat": 0.146,
+    "white": 0.005,
+    "screenshot": false
+  },
+  "Ủng hộ đồng bào lũ lụt.jpg": {
+    "flat": 0.301,
+    "white": 0.006,
+    "screenshot": false
+  },
+  "Ủng hộ “Đông ấm vùng cao”.jpg": {
+    "flat": 0.217,
+    "white": 0.001,
     "screenshot": false
   }
 }
