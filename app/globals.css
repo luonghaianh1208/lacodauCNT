@@ -513,23 +513,28 @@
 .model-shots figure > div { overflow: hidden; aspect-ratio: 16 / 10; border-top: 0.3cqw solid var(--blue); }
 .model-shots img { object-fit: cover; object-position: top; }
 
-.model-head { position: absolute; top: 8.4cqw; width: 43cqw; }
-.slide-stage[data-side="right"] .model-head { left: 4.6cqw; }
-.slide-stage[data-side="left"] .model-head { right: 3.4cqw; }
+/* Cụm đầu trang và hai danh sách nằm trong CÙNG một cột chảy (.model-col) — xem chú
+   thích ở ModelSlideView. */
+.model-col { position: absolute; top: 8.4cqw; width: 43cqw; }
+.slide-stage[data-side="right"] .model-col { left: 4.6cqw; }
+.slide-stage[data-side="left"] .model-col { right: 3.4cqw; }
 .model-head h1 { margin: 0; font-size: var(--fs-h1); font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; }
 .model-url { margin: 0.9cqw 0 0; font-size: calc(var(--fs-lead) * 1.13); font-weight: 700; color: var(--blue); letter-spacing: -0.01em; }
 .model-sum { margin: 0.8cqw 0 0; color: var(--muted); font-size: var(--fs-lead); line-height: 1.42; }
 
-.model-lists { position: absolute; top: 25.4cqw; width: 43cqw; }
-.slide-stage[data-side="right"] .model-lists { left: 4.6cqw; }
-.slide-stage[data-side="left"] .model-lists { right: 3.4cqw; }
-.model-lists section + section { margin-top: 1.9cqw; }
-.model-lists h2 { margin: 0 0 0.7cqw; font-size: var(--fs-label); font-weight: 800; letter-spacing: 0.12em; }
+.model-lists { margin-top: 1.35cqw; }
+.model-lists section + section { margin-top: 1.3cqw; }
+.model-lists h2 { margin: 0 0 0.5cqw; font-size: var(--fs-label); font-weight: 800; letter-spacing: 0.12em; }
 .model-lists h2.fn { color: var(--blue); }
 .model-lists h2.ef { color: var(--green); }
-.model-lists ul { display: grid; margin: 0; padding: 0; gap: 0.5cqw 1.6cqw; list-style: none; }
+.model-lists ul { display: grid; margin: 0; padding: 0; gap: 0.28cqw 1.6cqw; list-style: none; }
 .model-functions { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: repeat(3, auto); grid-auto-flow: column; }
-.model-lists li { position: relative; padding-left: 1.3cqw; font-size: var(--fs-body); line-height: 1.34; }
+/* 7–8 mục thì nới lên 4 hàng để lưới vẫn chỉ hai cột: giữ 3 hàng thì grid tự đẻ cột
+   thứ ba, mỗi cột hẹp còn một phần ba bề ngang và cụm nowrap tràn ra ngoài. */
+.model-functions[data-count="7"], .model-functions[data-count="8"] { grid-template-rows: repeat(4, auto); }
+/* Chữ danh sách của khuôn mô hình nhỏ hơn chữ thân bài chung 7%: tài liệu 44 slide cho
+   mỗi mô hình 8–11 ý dài, giữ nguyên cỡ thì cột chữ mọc quá chú thích chân trang. */
+.model-lists li { position: relative; padding-left: 1.3cqw; font-size: calc(var(--fs-body) * 0.93); line-height: 1.3; }
 .model-lists li::before { position: absolute; left: 0; top: 0.5em; width: 0.46cqw; height: 0.46cqw; border-radius: 50%; content: ""; }
 .model-functions li::before { background: var(--blue); }
 .model-effects li::before { background: var(--green); }

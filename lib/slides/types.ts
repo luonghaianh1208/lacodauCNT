@@ -20,7 +20,7 @@ export type SlideImage = {
 };
 
 type BaseSlide = {
-  /** Số trang thật trong báo cáo, 1–38 (riêng khuôn "standby" cố định 0). Hiện ở góc slide. */
+  /** Số trang thật trong báo cáo, 1–44 (riêng khuôn "standby" cố định 0). Hiện ở góc slide. */
   number: number;
   density: Density;
   footnote?: Phrases;
@@ -94,7 +94,15 @@ export type ModelSlide = BaseSlide & {
   title: Phrases;
   url?: string;
   lead: Phrases;
+  /**
+   * Nhãn nhóm ý thứ nhất. Bỏ trống thì lấy "CÁC CHỨC NĂNG CHÍNH" — đúng cho ba mô hình
+   * nền tảng số, nhưng năm mô hình còn lại (concert, cuộc thi, công trình, chiến dịch)
+   * gọi nhóm này là "Điểm mới, sáng tạo" nên phải đặt nhãn riêng.
+   */
+  functionsLabel?: Phrases;
   functions: readonly Phrases[];
+  /** Nhãn nhóm ý thứ hai; bỏ trống thì lấy "HIỆU QUẢ". Nhóm rỗng thì cả khối bị ẩn. */
+  effectsLabel?: Phrases;
   effects: readonly Phrases[];
   images: readonly SlideImage[];
   videoSrc?: string;

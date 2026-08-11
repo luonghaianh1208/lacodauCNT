@@ -29,8 +29,9 @@ const MODEL_DELAY = {
 /**
  * Khuôn mô hình + media — panel navy chứa video minh chứng đổi bên qua `side`,
  * văn bản (tiêu đề, URL, hai danh sách) nằm phía đối diện.
- * Không phải slide "model" nào cũng có `videoSrc` (3/4 slide thật chỉ có ảnh),
- * nên khi thiếu video thì hiện ảnh dẫn dắt (`role: "chinh"`) thay thế.
+ * Không phải slide "model" nào cũng có `videoSrc` (chỉ 1/10 slide thật có video),
+ * nên khi thiếu video thì hiện ảnh dẫn dắt (`role: "chinh"`) thay thế; thiếu cả hai
+ * thì panel navy để trơn.
  */
 export function ModelSlideView({
   slide,
@@ -59,39 +60,43 @@ export function ModelSlideView({
       data-on-dark={side === "left" ? "true" : "false"}
     >
       <div className="model-media">
-        <figure className="anim a-media" style={animDelay(MODEL_DELAY.mediaBase)}>
-          <div className="model-video">
-            {slide.videoSrc ? (
-              <video
-                ref={videoRef}
-                data-testid="model-video"
-                src={slide.videoSrc}
-                poster={hero?.src}
-                preload="metadata"
-                playsInline
-              />
-            ) : hero ? (
-              <Image
-                src={hero.src}
-                alt={hero.alt}
-                width={1280}
-                height={720}
-                style={focusStyle(hero)}
-              />
+        {/* Mười slide mô hình có bảy slide còn chờ ảnh và video: không dựng khung video
+            rỗng, để panel navy trơn như khuôn nội dung khi thiếu ảnh. */}
+        {slide.videoSrc || hero ? (
+          <figure className="anim a-media" style={animDelay(MODEL_DELAY.mediaBase)}>
+            <div className="model-video">
+              {slide.videoSrc ? (
+                <video
+                  ref={videoRef}
+                  data-testid="model-video"
+                  src={slide.videoSrc}
+                  poster={hero?.src}
+                  preload="metadata"
+                  playsInline
+                />
+              ) : hero ? (
+                <Image
+                  src={hero.src}
+                  alt={hero.alt}
+                  width={1280}
+                  height={720}
+                  style={focusStyle(hero)}
+                />
+              ) : null}
+              {slide.videoSrc && videoBlocked ? (
+                <button className="video-fallback" type="button" onClick={onVideoFallback}>
+                  <span className="play-triangle" aria-hidden="true" />
+                  NHẤN ĐỂ PHÁT VIDEO
+                </button>
+              ) : null}
+            </div>
+            {hero ? (
+              <figcaption>
+                <Phrase value={hero.caption} />
+              </figcaption>
             ) : null}
-            {slide.videoSrc && videoBlocked ? (
-              <button className="video-fallback" type="button" onClick={onVideoFallback}>
-                <span className="play-triangle" aria-hidden="true" />
-                NHẤN ĐỂ PHÁT VIDEO
-              </button>
-            ) : null}
-          </div>
-          {hero ? (
-            <figcaption>
-              <Phrase value={hero.caption} />
-            </figcaption>
-          ) : null}
-        </figure>
+          </figure>
+        ) : null}
         {/* `data-count` để CSS xếp ba ảnh phụ thành một hàng ba cột; hai cột sẽ thành hai
             hàng, làm ruột panel cao hơn slide và cắt mất chú thích hàng dưới. */}
         {shots.length > 0 ? (
@@ -120,56 +125,67 @@ export function ModelSlideView({
         ) : null}
       </div>
       <SlideChrome slide={slide} side={side} />
-      <div className="model-head">
-        <h1 className="serif anim a-rise" style={animDelay(MODEL_DELAY.title)}>
-          <Phrase value={slide.title} />
-        </h1>
-        {slide.url ? (
-          <p className="model-url anim a-rise" style={animDelay(MODEL_DELAY.url)}>
-            {slide.url}
+      {/* Cột chữ chảy một mạch: hai danh sách nằm NGAY DƯỚI cụm đầu trang chứ không neo ở
+          một mốc `top` cố định. Neo cố định thì mô hình nào có tiêu đề ba dòng kèm địa chỉ
+          web là đè lên nhau, mô hình nào tiêu đề ngắn lại thừa một khoảng trống lớn. */}
+      <div className="model-col">
+        <div className="model-head">
+          <h1 className="serif anim a-rise" style={animDelay(MODEL_DELAY.title)}>
+            <Phrase value={slide.title} />
+          </h1>
+          {slide.url ? (
+            <p className="model-url anim a-rise" style={animDelay(MODEL_DELAY.url)}>
+              {slide.url}
+            </p>
+          ) : null}
+          <p className="model-sum anim a-rise" style={animDelay(MODEL_DELAY.lead)}>
+            <Phrase value={slide.lead} />
           </p>
-        ) : null}
-        <p className="model-sum anim a-rise" style={animDelay(MODEL_DELAY.lead)}>
-          <Phrase value={slide.lead} />
-        </p>
-      </div>
-      <div className="model-lists">
-        <section>
-          <h2 className="fn anim a-rise" style={animDelay(MODEL_DELAY.listHeading)}>
-            <Phrase value={["CÁC CHỨC NĂNG CHÍNH"]} />
-          </h2>
-          <ul className="model-functions">
-            {slide.functions.map((item, index) => (
-              <li
-                key={`${index}-${item[0]}`}
-                className="anim a-rise"
-                style={animDelay(MODEL_DELAY.listBase + MODEL_DELAY.listStep * index)}
-                data-testid="model-function"
+        </div>
+        <div className="model-lists">
+          <section>
+            <h2 className="fn anim a-rise" style={animDelay(MODEL_DELAY.listHeading)}>
+              <Phrase value={slide.functionsLabel ?? ["CÁC CHỨC NĂNG CHÍNH"]} />
+            </h2>
+            {/* `data-count` để CSS nới số hàng khi có 7–8 mục; để mặc định 3 hàng thì lưới
+                tự đẻ cột thứ ba, mỗi cột hẹp còn một phần ba và chữ tràn ngang. */}
+            <ul className="model-functions" data-count={slide.functions.length}>
+              {slide.functions.map((item, index) => (
+                <li
+                  key={`${index}-${item[0]}`}
+                  className="anim a-rise"
+                  style={animDelay(MODEL_DELAY.listBase + MODEL_DELAY.listStep * index)}
+                  data-testid="model-function"
+                >
+                  <Phrase value={item} />
+                </li>
+              ))}
+            </ul>
+          </section>
+          {/* Hai mô hình chỉ có một nhóm ý trong tài liệu nguồn; ẩn hẳn khối thứ hai chứ
+              không để lại một tiêu đề nhóm treo lơ lửng trên danh sách rỗng. */}
+          {slide.effects.length > 0 ? (
+            <section>
+              <h2
+                className="ef anim a-rise"
+                style={animDelay(effectsBase - MODEL_DELAY.listStep)}
               >
-                <Phrase value={item} />
-              </li>
-            ))}
-          </ul>
-        </section>
-        <section>
-          <h2
-            className="ef anim a-rise"
-            style={animDelay(effectsBase - MODEL_DELAY.listStep)}
-          >
-            <Phrase value={["HIỆU QUẢ"]} />
-          </h2>
-          <ul className="model-effects">
-            {slide.effects.map((item, index) => (
-              <li
-                key={`${index}-${item[0]}`}
-                className="anim a-rise"
-                style={animDelay(effectsBase + MODEL_DELAY.listStep * index)}
-              >
-                <Phrase value={item} />
-              </li>
-            ))}
-          </ul>
-        </section>
+                <Phrase value={slide.effectsLabel ?? ["HIỆU QUẢ"]} />
+              </h2>
+              <ul className="model-effects">
+                {slide.effects.map((item, index) => (
+                  <li
+                    key={`${index}-${item[0]}`}
+                    className="anim a-rise"
+                    style={animDelay(effectsBase + MODEL_DELAY.listStep * index)}
+                  >
+                    <Phrase value={item} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+        </div>
       </div>
     </div>
   );
