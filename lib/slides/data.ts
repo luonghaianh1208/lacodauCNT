@@ -453,15 +453,23 @@ export const SLIDES = [
       ["\"Phiên tòa giả định\" về", "phòng, chống bạo lực học đường."],
       ["Hướng dẫn kỹ năng", "lái xe an toàn", "cho gần 1.500 lượt ĐVTN."],
     ],
-    // Tài liệu ghi VIDEO "Phiên toà giả định" làm tư liệu chính của trang này, nhưng khuôn
-    // nội dung chưa có chỗ cho video (chỉ khuôn mô hình mới có `videoSrc`). Tạm dùng ảnh
-    // tĩnh cùng cảnh; xem mục "còn thiếu" trong báo cáo bộ 44 slide.
+    // Tài liệu ghi VIDEO "Phiên toà giả định" làm tư liệu chính của trang này — ô dẫn dắt
+    // giờ nhận video (nén từ 25,3 MB xuống còn ~4,8 MB bằng ffmpeg-static, 1280×720). Ảnh
+    // tĩnh cùng cảnh trước đây đứng ở ô dẫn dắt nay chuyển xuống làm ảnh phụ, không bỏ đi.
     images: [
+      {
+        kind: "video",
+        src: "/media/phien-toa-gia-dinh.mp4",
+        poster: "/media/slides/Phiên tòa giả định.jpg",
+        alt: "Phiên tòa giả định",
+        caption: ["Phiên tòa giả định về", "phòng, chống bạo lực học đường"],
+        role: "chinh",
+      },
       {
         src: "/media/slides/Phiên tòa giả định.jpg",
         alt: "Phiên tòa giả định",
         caption: ["Phiên tòa giả định"],
-        role: "chinh",
+        role: "phu",
       },
       {
         src: "/media/slides/Diễn đàn “Xây dựng tình bạn đẹp”.png",

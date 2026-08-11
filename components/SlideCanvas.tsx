@@ -50,7 +50,13 @@ export function SlideCanvas({
       {slide.kind === "cover" ? <CoverSlideView slide={slide} /> : null}
       {slide.kind === "divider" ? <DividerSlideView slide={slide} /> : null}
       {slide.kind === "content" ? (
-        <ContentSlideView slide={slide} side={panelSideFor(safeIndex)} />
+        <ContentSlideView
+          slide={slide}
+          side={panelSideFor(safeIndex)}
+          videoRef={videoRef}
+          videoBlocked={videoBlocked}
+          onVideoFallback={onVideoFallback}
+        />
       ) : null}
       {slide.kind === "kpi" ? <KpiSlideView slide={slide} animate={animate} /> : null}
       {slide.kind === "model" ? (

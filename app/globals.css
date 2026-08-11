@@ -329,6 +329,16 @@
 .media-grid figure > div { overflow: hidden; aspect-ratio: 3 / 2; border-top: 0.3cqw solid var(--blue); }
 .media-solo > div { overflow: hidden; aspect-ratio: 4 / 3; border-top: 0.3cqw solid var(--red); }
 
+/*
+ * Ô video trong khuôn nội dung (slide 9 "Phiên toà giả định") — khung 16:9 ép bằng inline
+ * style ở ContentSlideView, `overflow: hidden` vẫn kế thừa từ selector của nhánh bố trí
+ * (`.media-lead > div`, `.media-grid figure > div`, v.v.) vì đây vẫn là `figure > div` bình
+ * thường. KHÔNG object-fit: cover trên video — cắt mất hai bên là lỗi đã sửa, xem
+ * `.model-video video` bên dưới; cùng cách xử lý, chỉ khác panel.
+ */
+.media-video { position: relative; }
+.media-video video { display: block; width: 100%; height: 100%; }
+
 /* Khuôn trang phân mục — panel ảnh tràn viền, chữ cái phần cỡ lớn. */
 .divider-stage { color: #fff; background: var(--navy); }
 .divider-bg { position: absolute; inset: 0; }

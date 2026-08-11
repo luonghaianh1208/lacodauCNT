@@ -6,6 +6,7 @@ import { SlideCanvas } from "@/components/SlideCanvas";
 import { ControlDeck } from "@/components/ControlDeck";
 import { PresentationScreen } from "@/components/PresentationScreen";
 import { SLIDES, type Slide } from "@/lib/slides";
+import { isSlideVideo } from "@/lib/slides/types";
 
 const kpiIndex = SLIDES.findIndex((slide) => slide.kind === "kpi");
 const modelWithVideoIndex = SLIDES.findIndex(
@@ -13,6 +14,13 @@ const modelWithVideoIndex = SLIDES.findIndex(
 );
 const modelWithoutNoteIndex = SLIDES.findIndex(
   (slide: Slide) => slide.kind === "model" && !slide.note,
+);
+// Slide 9 "Phiên toà giả định": khuôn nội dung đầu tiên có video trong ô media.
+const contentWithVideoIndex = SLIDES.findIndex(
+  (slide: Slide) => slide.kind === "content" && slide.images.some(isSlideVideo),
+);
+const contentWithoutVideoIndex = SLIDES.findIndex(
+  (slide: Slide) => slide.kind === "content" && !slide.images.some(isSlideVideo),
 );
 
 describe("SlideCanvas", () => {
@@ -57,6 +65,15 @@ describe("SlideCanvas", () => {
       "src",
       "/media/platform-demo.mp4",
     );
+  });
+
+  it("renders the content slide's lead video and forwards videoRef through SlideCanvas", () => {
+    const videoRef = createRef<HTMLVideoElement>();
+    render(<SlideCanvas index={contentWithVideoIndex} mode="full" videoRef={videoRef} />);
+
+    const video = screen.getByTestId("content-video");
+    expect(video).toHaveAttribute("src", "/media/phien-toa-gia-dinh.mp4");
+    expect(videoRef.current).toBe(video);
   });
 });
 
@@ -126,6 +143,34 @@ describe("ControlDeck", () => {
     expect(screen.getByRole("button", { name: "Phát video" })).toBeEnabled();
     expect(screen.getByRole("button", { name: "Tạm dừng" })).toBeEnabled();
     expect(screen.getByRole("button", { name: "Phát lại" })).toBeEnabled();
+  });
+
+  // Khuôn nội dung giờ cũng có thể có video (slide 9 "Phiên toà giả định") — nút phát
+  // phải bật theo BẤT KỲ ô media nào có video, không riêng khuôn mô hình nữa.
+  it("navigates to the content slide with video and enables video actions", () => {
+    render(<ControlDeck />);
+
+    for (let i = 0; i < contentWithVideoIndex; i += 1) {
+      fireEvent.click(screen.getByRole("button", { name: "Tiếp" }));
+    }
+
+    expect(screen.getByText(`SLIDE ${contentWithVideoIndex} / 44`)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Phát video" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: "Tạm dừng" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: "Phát lại" })).toBeEnabled();
+  });
+
+  it("tắt nút phát video ở khuôn nội dung không có video", () => {
+    render(<ControlDeck />);
+
+    for (let i = 0; i < contentWithoutVideoIndex; i += 1) {
+      fireEvent.click(screen.getByRole("button", { name: "Tiếp" }));
+    }
+
+    expect(screen.getByText(`SLIDE ${contentWithoutVideoIndex} / 44`)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Phát video" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Tạm dừng" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Phát lại" })).toBeDisabled();
   });
 });
 

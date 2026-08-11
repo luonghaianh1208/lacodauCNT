@@ -1,5 +1,6 @@
-import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { createRef } from "react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 
 import { ContentSlideView } from "@/components/slides/ContentSlideView";
 import type { ContentSlide, SlideImage } from "@/lib/slides/types";
@@ -165,5 +166,66 @@ describe("ContentSlideView", () => {
     expect((left.querySelector(".slide-stage") as HTMLElement).dataset.side).toBe("left");
     expect(left.querySelector(".slide-num")).toHaveAttribute("data-align", "right");
     expect(left.querySelector(".slide-foot")).toHaveAttribute("data-align", "right");
+  });
+
+  // Ô media dẫn dắt của khuôn nội dung giờ nhận cả video (slide 9 "Phiên toà giả định") —
+  // dùng lại đúng cơ chế của khuôn mô hình: thẻ <video>, poster, ref, nút phát dự phòng.
+  describe("ô media là video", () => {
+    const videoSlide: ContentSlide = {
+      ...slide,
+      images: [
+        {
+          kind: "video",
+          src: "/media/phien-toa-gia-dinh.mp4",
+          poster: "/media/slides/Phiên tòa giả định.jpg",
+          alt: "Phiên tòa giả định",
+          caption: ["Phiên tòa giả định về", "phòng, chống bạo lực học đường"],
+          role: "chinh",
+        },
+        ...makeImages(3),
+      ],
+    };
+
+    it("render thẻ video đúng src và poster thay vì img", () => {
+      const { container } = render(<ContentSlideView slide={videoSlide} side="right" />);
+
+      const video = container.querySelector("video") as HTMLVideoElement;
+      expect(video).not.toBeNull();
+      expect(video).toHaveAttribute("src", "/media/phien-toa-gia-dinh.mp4");
+      expect(video).toHaveAttribute("poster", "/media/slides/Phiên tòa giả định.jpg");
+      // Ba ảnh còn lại vẫn render bằng <img> bình thường (chỉ tính trong panel media,
+      // không tính logo của SlideChrome cũng là <img>).
+      expect(container.querySelectorAll(".content-media img")).toHaveLength(3);
+    });
+
+    it("gắn videoRef đúng vào thẻ video nằm trong khuôn nội dung", () => {
+      const videoRef = createRef<HTMLVideoElement>();
+      render(<ContentSlideView slide={videoSlide} side="right" videoRef={videoRef} />);
+
+      expect(videoRef.current).not.toBeNull();
+      expect(videoRef.current?.tagName).toBe("VIDEO");
+    });
+
+    it("videoBlocked=true hiện nút phát dự phòng, bấm gọi onVideoFallback", () => {
+      const onVideoFallback = vi.fn();
+      render(
+        <ContentSlideView
+          slide={videoSlide}
+          side="right"
+          videoBlocked
+          onVideoFallback={onVideoFallback}
+        />,
+      );
+
+      const fallback = screen.getByRole("button", { name: /NHẤN ĐỂ PHÁT VIDEO/ });
+      fireEvent.click(fallback);
+      expect(onVideoFallback).toHaveBeenCalledTimes(1);
+    });
+
+    it("videoBlocked=false (mặc định) không hiện nút phát dự phòng", () => {
+      render(<ContentSlideView slide={videoSlide} side="right" />);
+
+      expect(screen.queryByRole("button", { name: /NHẤN ĐỂ PHÁT VIDEO/ })).not.toBeInTheDocument();
+    });
   });
 });

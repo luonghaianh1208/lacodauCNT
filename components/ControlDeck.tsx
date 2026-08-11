@@ -7,7 +7,7 @@ import { SlidePickerGrid } from "@/components/SlidePickerGrid";
 import { phrasesToText } from "@/lib/phrases";
 import { MOTION_STORAGE_KEY, readMotionMode, type MotionMode } from "@/lib/motion";
 import { type PresentationState, type VideoCommand } from "@/lib/presentation";
-import { clampIndex, slideAt, SLIDES, type Slide } from "@/lib/slides";
+import { clampIndex, slideAt, slideHasVideo, SLIDES, type Slide } from "@/lib/slides";
 import { useImagePreload } from "@/lib/useImagePreload";
 import { usePresentationChannel } from "@/lib/usePresentationChannel";
 
@@ -126,7 +126,7 @@ export function ControlDeck() {
   };
 
   const slide = slideAt(state.slideIndex);
-  const videoEnabled = slide.kind === "model" && Boolean(slide.videoSrc);
+  const videoEnabled = slideHasVideo(slide);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {

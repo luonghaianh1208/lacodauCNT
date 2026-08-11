@@ -19,6 +19,29 @@ export type SlideImage = {
   focus?: "top" | "center" | "bottom";
 };
 
+/**
+ * Một ô media dạng video, dùng thay `SlideImage` đúng tại vị trí của nó trong `images` —
+ * khuôn nội dung không có template riêng cho video, ô media nào cũng nhận được cả hai loại
+ * (xem `MediaPanel`/`Figure` trong `ContentSlideView`). `kind: "video"` là trường phân biệt
+ * duy nhất; không có trường này thì coi là `SlideImage`, nên 128 ô ảnh hiện có không phải
+ * sửa gì để vẫn hợp lệ.
+ */
+export type SlideVideo = {
+  kind: "video";
+  src: string;
+  /** Khung hình tĩnh hiện trước khi phát — dùng lại ảnh tĩnh cũ của ô này nếu có. */
+  poster?: string;
+  alt: string;
+  caption: Phrases;
+  role: ImageRole;
+};
+
+export type SlideMedia = SlideImage | SlideVideo;
+
+export function isSlideVideo(media: SlideMedia): media is SlideVideo {
+  return "kind" in media && media.kind === "video";
+}
+
 type BaseSlide = {
   /** Số trang thật trong báo cáo, 1–44 (riêng khuôn "standby" cố định 0). Hiện ở góc slide. */
   number: number;
@@ -74,7 +97,8 @@ export type ContentSlide = BaseSlide & {
   title: Phrases;
   lead?: Phrases;
   bullets: readonly Phrases[];
-  images: readonly SlideImage[];
+  /** Ô media là `SlideImage` hoặc `SlideVideo` — xem `isSlideVideo` để phân biệt. */
+  images: readonly SlideMedia[];
   /** Trang thứ hai của một mục trải 2 trang: bỏ `lead`, tiêu đề thêm "(tiếp)". */
   continued?: boolean;
 };

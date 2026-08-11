@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 
 import { MAX_PHRASE_LENGTH, type Phrases } from "@/lib/phrases";
 import { SLIDES } from "@/lib/slides/data";
+import { isSlideVideo } from "@/lib/slides/types";
 
 // Môi trường test là jsdom nên `import.meta.url` không phải URL file:.
 // Vitest luôn chạy với cwd là gốc dự án, chỗ chứa vitest.config.ts.
@@ -15,12 +16,14 @@ const MEDIA_DIR = path.resolve(process.cwd(), "public/media/slides");
 type CheckedImage = { src: string; caption: readonly string[] };
 
 /**
- * Mọi ảnh của một slide, kể cả ảnh nền của khuôn phân mục và khuôn kết luận —
- * chúng nằm ở trường `background` chứ không nằm trong mảng `images`.
+ * Mọi ẢNH của một slide, kể cả ảnh nền của khuôn phân mục và khuôn kết luận —
+ * chúng nằm ở trường `background` chứ không nằm trong mảng `images`. Loại bỏ ô video
+ * (slide 9): file video nằm ở `public/media/`, không phải `public/media/slides/` như
+ * `MEDIA_DIR` bên dưới giả định, và không cần soát trùng chú thích vì chỉ có một bản.
  */
 function imagesOf(slide: (typeof SLIDES)[number]): CheckedImage[] {
   const images: CheckedImage[] = [];
-  if ("images" in slide) images.push(...slide.images);
+  if ("images" in slide) images.push(...slide.images.filter((image) => !isSlideVideo(image)));
   if ("background" in slide && slide.background) images.push(slide.background);
   return images;
 }
