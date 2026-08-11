@@ -16,9 +16,9 @@ export const SLIDES = [
     eyebrow: ["THÀNH ĐOÀN HẢI PHÒNG"],
     title: ["CHƯƠNG TRÌNH KIỂM TRA"],
     program: [
-      "Công tác Đoàn và phong trào",
-      "thanh niên trường học đơn vị",
-      "đăng ký danh hiệu Lá cờ đầu",
+      "Công tác Đoàn",
+      "và phong trào thanh niên trường học",
+      "đơn vị đăng ký danh hiệu Lá cờ đầu",
       "năm học 2025 – 2026",
     ],
     place: ["P. Lê Thanh Nghị,", "ngày 12 tháng 8 năm 2026"],
