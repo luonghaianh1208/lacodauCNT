@@ -1,10 +1,15 @@
 import Image from "next/image";
 
+import { animDelay } from "@/lib/anim";
 import { Phrase } from "@/components/Phrase";
 import type { Slide } from "@/lib/slides/types";
 
 /**
  * Thanh cờ, cụm nhận diện, số trang và chú thích chân trang — giống nhau ở mọi khuôn.
+ *
+ * Hai phần tử đầu mở màn "dàn nhạc vào" (spec §7.1): thanh cờ dựng từ trên, rồi cụm nhận
+ * diện hiện ở 80ms. Số trang và chú thích chân trang KHÔNG vào theo nhịp — mockup 05 để
+ * chúng đứng yên vì đó là chữ tra cứu, nhấp nháy theo chỉ tổ làm rối mắt người xem.
  *
  * `side` là vị trí của PANEL ẢNH (giống hệt prop `side` của khuôn gọi nó), không phải vị
  * trí hiển thị của số trang/chân trang: panel chiếm một bên thì cột chữ — nên cả số trang
@@ -24,8 +29,8 @@ export function SlideChrome({
 
   return (
     <>
-      <div className="slide-bar" />
-      <div className="slide-brand">
+      <div className="slide-bar anim a-bar" />
+      <div className="slide-brand anim a-fade" style={animDelay(80)}>
         <Image
           src="/media/school-logo.png"
           alt="Logo Trường THPT Chuyên Nguyễn Trãi"

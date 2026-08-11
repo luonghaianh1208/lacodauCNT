@@ -1,7 +1,25 @@
 import Image from "next/image";
 
+import { animDelay } from "@/lib/anim";
 import { Phrase } from "@/components/Phrase";
 import type { CoverSlide } from "@/lib/slides/types";
+
+/**
+ * Nhịp "dàn nhạc vào" của khuôn bìa — chép đúng từ mockup đã duyệt
+ * `docs/superpowers/references/mockups/05-chuyen-dong.html`, khối `.cv`.
+ * Tấm đơn vị đăng ký không có trong mockup đó nên được xếp xen giữa tiêu đề và gạch đỏ:
+ * nó là khối phụ ở góc, vào trước phần chữ dẫn thì mắt vẫn bám được dòng tiêu đề.
+ */
+const COVER_DELAY = {
+  logos: 80,
+  eyebrow: 140,
+  title: 200,
+  card: 240,
+  rule: 320,
+  sub: 380,
+  bandBase: 420,
+  bandStep: 90,
+} as const;
 
 /**
  * Khuôn bìa (slide 1) dùng bố cục riêng lấy nguyên từ `01-bia.html` (phương án A):
@@ -18,15 +36,16 @@ export function CoverSlideView({ slide }: { slide: CoverSlide }) {
     <div className="slide-stage coverpage-stage" data-density={slide.density} data-over-photo="true">
       {hero ? (
         <>
-          <div className="coverpage-hero">
+          <div className="coverpage-hero anim a-media">
             <Image src={hero.src} alt={hero.alt} width={1280} height={720} />
           </div>
           <div className="coverpage-veil" />
         </>
       ) : null}
-      <div className="slide-bar" />
+      {/* Khuôn bìa không gọi SlideChrome nên phải tự gắn nhịp cho thanh cờ. */}
+      <div className="slide-bar anim a-bar" />
       <div className="coverpage-copy">
-        <div className="coverpage-logos">
+        <div className="coverpage-logos anim a-fade" style={animDelay(COVER_DELAY.logos)}>
           <Image
             src="/media/school-logo.png"
             alt="Logo Trường THPT Chuyên Nguyễn Trãi"
@@ -42,18 +61,18 @@ export function CoverSlideView({ slide }: { slide: CoverSlide }) {
             priority
           />
         </div>
-        <p className="coverpage-eyebrow">
+        <p className="coverpage-eyebrow anim a-rise" style={animDelay(COVER_DELAY.eyebrow)}>
           <Phrase value={slide.eyebrow} />
         </p>
-        <h1 className="coverpage-title serif">
+        <h1 className="coverpage-title serif anim a-rise" style={animDelay(COVER_DELAY.title)}>
           <Phrase value={slide.title} />
         </h1>
-        <div className="coverpage-rule" />
-        <p className="coverpage-sub">
+        <div className="coverpage-rule anim a-grow" style={animDelay(COVER_DELAY.rule)} />
+        <p className="coverpage-sub anim a-rise" style={animDelay(COVER_DELAY.sub)}>
           <Phrase value={slide.subtitle} />
         </p>
       </div>
-      <div className="coverpage-card">
+      <div className="coverpage-card anim a-rise" style={animDelay(COVER_DELAY.card)}>
         {slide.units.map((unit, index) => (
           <p key={`unit-${index}-${unit[0]}`} className="coverpage-card-unit">
             <span className="coverpage-mark">●</span>
@@ -69,8 +88,12 @@ export function CoverSlideView({ slide }: { slide: CoverSlide }) {
         </p>
       </div>
       <div className="coverpage-band">
-        {band.map((image) => (
-          <figure key={image.src}>
+        {band.map((image, index) => (
+          <figure
+            key={image.src}
+            className="anim a-media"
+            style={animDelay(COVER_DELAY.bandBase + COVER_DELAY.bandStep * index)}
+          >
             <div>
               <Image src={image.src} alt={image.alt} width={1280} height={720} />
             </div>
