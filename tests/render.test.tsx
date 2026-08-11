@@ -32,7 +32,10 @@ describe("SlideCanvas", () => {
   });
 
   it("renders the 15/15 KPI and six approved metrics", () => {
-    render(<SlideCanvas index={kpiIndex} mode="full" />);
+    // `motion="off"` để chốt GIÁ TRỊ NGHỈ của con số chủ đạo: ở chế độ có chuyển động, nó
+    // đếm tăng từ 0 trong 900ms (spec §5.4) nên ngay sau khi gắn nó còn là "0/15". Nhịp đếm
+    // có bộ test riêng ở `tests/kpi-count.test.tsx`; test này chỉ soi nội dung slide.
+    render(<SlideCanvas index={kpiIndex} mode="full" motion="off" />);
 
     expect(screen.getByText("15/15")).toBeInTheDocument();
     expect(screen.getByText("Trên 1.000")).toBeInTheDocument();

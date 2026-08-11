@@ -8,11 +8,19 @@ import { DividerSlideView } from "@/components/slides/DividerSlideView";
 import { KpiSlideView } from "@/components/slides/KpiSlideView";
 import { ModelSlideView } from "@/components/slides/ModelSlideView";
 import { OutroSlideView } from "@/components/slides/OutroSlideView";
+import { type MotionMode } from "@/lib/motion";
 import { clampIndex, panelSideFor, SLIDES } from "@/lib/slides";
 
 type SlideCanvasProps = {
   index: number;
   mode: "full" | "preview";
+  /**
+   * Chế độ chuyển động của màn đang hiển thị. Chỉ dùng để tắt vòng đếm số của khuôn số
+   * liệu: đó là vòng lặp JavaScript nên luật `[data-motion="off"] * { animation: none }`
+   * trong CSS không chạm tới được. Bỏ qua thì ảnh chụp `?capture=1` (vốn ép về "off") bắt
+   * đúng lúc con số còn đang đếm dở.
+   */
+  motion?: MotionMode;
   videoRef?: RefObject<HTMLVideoElement | null>;
   videoBlocked?: boolean;
   onVideoFallback?: () => void;
@@ -26,12 +34,14 @@ type SlideCanvasProps = {
 export function SlideCanvas({
   index,
   mode,
+  motion = "force",
   videoRef,
   videoBlocked = false,
   onVideoFallback,
 }: SlideCanvasProps) {
   const safeIndex = clampIndex(index);
   const slide = SLIDES[safeIndex];
+  const animate = mode === "full" && motion !== "off";
 
   return (
     <div className={`slide-shell slide-shell--${mode}`} data-slide-index={safeIndex}>
@@ -40,7 +50,7 @@ export function SlideCanvas({
       {slide.kind === "content" ? (
         <ContentSlideView slide={slide} side={panelSideFor(safeIndex)} />
       ) : null}
-      {slide.kind === "kpi" ? <KpiSlideView slide={slide} animate={mode === "full"} /> : null}
+      {slide.kind === "kpi" ? <KpiSlideView slide={slide} animate={animate} /> : null}
       {slide.kind === "model" ? (
         <ModelSlideView
           slide={slide}
