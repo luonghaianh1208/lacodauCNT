@@ -1,8 +1,23 @@
 import { SLIDES } from "@/lib/slides/data";
-import type { Density, Slide } from "@/lib/slides/types";
+import { isSlideVideo, type Density, type Slide } from "@/lib/slides/types";
 
 export { SLIDES };
 export type { Slide };
+
+/**
+ * Slide hiện có video ở BẤT KỲ ô media nào — khuôn mô hình qua `videoSrc`, khuôn nội dung
+ * qua một ô trong `images` mang `kind: "video"` (ví dụ slide 9 "Phiên toà giả định"). Dùng
+ * để bật nút phát video và phím Space ở màn điều khiển, không riêng khuôn mô hình nữa.
+ */
+export function slideHasVideo(slide: Slide): boolean {
+  if (slide.kind === "model") {
+    return Boolean(slide.videoSrc);
+  }
+  if (slide.kind === "content") {
+    return slide.images.some(isSlideVideo);
+  }
+  return false;
+}
 
 /** Slide có panel ảnh: khuôn nội dung và khuôn mô hình. */
 function hasPanel(slide: Slide): boolean {

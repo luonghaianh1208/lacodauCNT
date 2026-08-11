@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { SLIDES } from "@/lib/slides";
-import type { Slide } from "@/lib/slides/types";
+import { isSlideVideo, type Slide } from "@/lib/slides/types";
 
 export type ImagePreloadProgress = {
   /** Số ảnh đã nạp xong — kể cả ảnh lỗi, để tiến độ không treo mãi. */
@@ -22,7 +22,15 @@ export function collectImagePaths(slides: readonly Slide[]): string[] {
   const paths = new Set<string>();
   for (const slide of slides) {
     if ("images" in slide) {
-      for (const image of slide.images) paths.add(image.src);
+      for (const media of slide.images) {
+        // Ô video không nạp trước bằng `new Image()` — không phải ảnh, trình duyệt sẽ báo
+        // lỗi giải mã. Chỉ nạp trước khung hình tĩnh (`poster`) nếu ô đó có khai.
+        if (isSlideVideo(media)) {
+          if (media.poster) paths.add(media.poster);
+          continue;
+        }
+        paths.add(media.src);
+      }
     }
     if ("background" in slide && slide.background) {
       paths.add(slide.background.src);

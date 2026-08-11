@@ -18,7 +18,7 @@ type SlidePickerGridProps = {
 
 /**
  * Lưới chọn slide phủ toàn màn — cho người thuyết trình nhảy tới bất kỳ slide nào thay vì
- * chỉ Tiếp/Lùi từng bước. KHÔNG dựng gì khi đóng (return null): 39 ô nghĩa là 39 lần render
+ * chỉ Tiếp/Lùi từng bước. KHÔNG dựng gì khi đóng (return null): 45 ô nghĩa là 45 lần render
  * `SlideCanvas` đầy đủ, để mặc định mount sẵn dù đóng sẽ tốn không cần thiết.
  *
  * Bấm vào ô chỉ gọi `onSelect` — không tự viết cơ chế chuyển slide riêng. `onSelect` ở

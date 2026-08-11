@@ -1,8 +1,28 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
+import { OutroSlideView } from "@/components/slides/OutroSlideView";
 import { SlideCanvas } from "@/components/SlideCanvas";
 import { SLIDES } from "@/lib/slides";
+import type { OutroSlide } from "@/lib/slides/types";
+
+/** Slide kết luận CÓ ảnh nền — dữ liệu thật chưa có ảnh nào nên phải dựng fixture. */
+const outroWithBackground: OutroSlide = {
+  kind: "outro",
+  number: 44,
+  density: "vua",
+  kicker: ["KẾT LUẬN"],
+  title: ["Tuổi trẻ Chuyên Nguyễn Trãi"],
+  slogan: [["Bản lĩnh"]],
+  lead: ["Đoàn trường hoàn thành", "toàn diện nhiệm vụ."],
+  stats: [],
+  background: {
+    src: "/media/slides/s34_img3.jpg",
+    alt: "Ảnh nền",
+    caption: ["Ảnh nền"],
+    role: "nen",
+  },
+};
 
 /**
  * "Dàn nhạc vào" (spec §7.1) sống ở CSS `.slide-live .anim` — jsdom KHÔNG nạp
@@ -44,8 +64,8 @@ describe("dàn nhạc vào — cả bảy khuôn đều phát class anim", () =>
   });
 
   // Thanh cờ mở màn ở MỌI khuôn. Ba khuôn bìa, kết luận và trang chờ không gọi `SlideChrome`
-  // mà tự render thanh cờ, nên đây là chỗ dễ sót nhất — quét cả 39 slide chứ không chỉ một mẫu.
-  it("thanh cờ của cả 39 slide đều dựng từ trên qua a-bar", () => {
+  // mà tự render thanh cờ, nên đây là chỗ dễ sót nhất — quét cả 45 slide chứ không chỉ một mẫu.
+  it("thanh cờ của cả 45 slide đều dựng từ trên qua a-bar", () => {
     for (let index = 0; index < SLIDES.length; index += 1) {
       const { container, unmount } = render(<SlideCanvas index={index} mode="preview" />);
       const bar = container.querySelector(".slide-bar");
@@ -136,7 +156,7 @@ describe("dàn nhạc vào — cả bảy khuôn đều phát class anim", () =>
     });
   });
 
-  it("mô hình: tiêu đề, URL, chữ dẫn rồi hai danh sách chạy tiếp một mạch", () => {
+  it("mô hình: tiêu đề, URL, chữ dẫn rồi mọi nhóm ý chạy tiếp một mạch", () => {
     const index = firstOfKind("model");
     const slide = SLIDES[index];
     if (slide.kind !== "model") throw new Error("fixture sai kind");
@@ -145,19 +165,26 @@ describe("dàn nhạc vào — cả bảy khuôn đều phát class anim", () =>
     expect(delayOf(container.querySelector(".model-head h1"))).toBe("160ms");
     expect(delayOf(container.querySelector(".model-url"))).toBe("230ms");
     expect(delayOf(container.querySelector(".model-sum"))).toBe("300ms");
-    expect(delayOf(container.querySelector(".model-lists h2.fn"))).toBe("345ms");
 
-    const functions = [...container.querySelectorAll(".model-functions li")];
-    functions.forEach((item, order) => {
-      expect(delayOf(item)).toBe(`${400 + 55 * order}ms`);
-    });
+    /*
+     * Một dòng thời gian liên tục cho toàn bộ cụm nhóm ý, bất kể có mấy nhóm: nhãn nhóm ăn
+     * một bước rồi tới các mục của nhóm đó. Nhãn đầu tiên vì thế rơi vào 345ms và mục đầu
+     * tiên vào 400ms, đúng như bản hai danh sách cố định trước đây.
+     */
+    const sections = [...container.querySelectorAll(".model-lists section")];
+    const visibleGroups = slide.groups.filter((group) => group.items.length > 0);
+    expect(sections).toHaveLength(visibleGroups.length);
 
-    // Danh sách hiệu quả nối tiếp: tiêu đề nhóm đứng ngay sau mục chức năng cuối cùng.
-    const headingDelay = 400 + 55 * slide.functions.length;
-    expect(delayOf(container.querySelector(".model-lists h2.ef"))).toBe(`${headingDelay}ms`);
-    const effects = [...container.querySelectorAll(".model-effects li")];
-    effects.forEach((item, order) => {
-      expect(delayOf(item)).toBe(`${headingDelay + 55 * (order + 1)}ms`);
+    let cursor = -1;
+    sections.forEach((section, order) => {
+      expect(delayOf(section.querySelector("h2"))).toBe(`${400 + 55 * cursor}ms`);
+      cursor += 1;
+      const items = [...section.querySelectorAll("li")];
+      expect(items).toHaveLength(visibleGroups[order].items.length);
+      items.forEach((item, position) => {
+        expect(delayOf(item)).toBe(`${400 + 55 * (cursor + position)}ms`);
+      });
+      cursor += items.length;
     });
 
     for (const figure of container.querySelectorAll(".model-media figure")) {
@@ -180,6 +207,12 @@ describe("dàn nhạc vào — cả bảy khuôn đều phát class anim", () =>
       expect(stat.className).toContain("a-rise");
       expect(delayOf(stat)).toBe(`${460 + 70 * index}ms`);
     });
+  });
+
+  it("kết luận có ảnh nền: ảnh nền vào bằng a-media", () => {
+    const { container } = render(<OutroSlideView slide={outroWithBackground} />);
+
+    expect(container.querySelector(".outro-bg")?.className).toContain("a-media");
   });
 
   // Cụm nhận diện dùng chung `SlideChrome` cho bốn khuôn; số trang và chú thích chân trang

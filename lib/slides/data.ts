@@ -1,9 +1,16 @@
 import type { Slide } from "@/lib/slides/types";
 
 /**
- * Dữ liệu 38 slide. Sinh một lần từ tài liệu nguồn bằng
- * scripts/build-slides-data.mjs, sau đó chỉnh tay và là nguồn sự thật.
- * KHÔNG chạy lại script lên file này.
+ * Dữ liệu 44 slide báo cáo + 1 trang chờ. Dựng tay từ tài liệu nguồn
+ * `.tmp/noidung-v3.md`; đây là nguồn sự thật, KHÔNG sinh lại bằng script.
+ *
+ * Ảnh lấy từ thư mục "(CHUẨN) ẢNH BÁO CÁO LÁ CỜ ĐẦU" do nhà trường chọn tay, tên file đã
+ * chuẩn hoá theo Phần 4 của `docs/RA-SOAT-44-SLIDE.md` và chính tên file là chú thích in
+ * lên màn hình. Chủ đề nào trải hai trang thì hai trang chia nhau bộ ảnh, không tấm nào
+ * dùng lại ở cả hai.
+ *
+ * Slide 33–44 mới có chữ, phần ảnh và video nhà trường gửi sau — trừ slide 34 và 36 dùng
+ * lại ảnh giao diện của bộ cũ (`s34_*`, `s35_*`).
  *
  * Mọi mảng cụm từ đã được đọc lại bằng mắt: chỗ ngắt là chỗ người Việt
  * ngắt hơi khi đọc to, không cắt đôi tên riêng, từ ghép hay cụm số + đơn vị.
@@ -52,30 +59,27 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s1_img4.jpg",
-        alt: "Ra mắt công trình thanh niên Nền tảng số quản lý công tác Đoàn",
-        caption: [
-          "Ra mắt công trình thanh niên",
-          "Nền tảng số quản lý công tác Đoàn",
-        ],
+        src: "/media/slides/Chào mừng 80 năm Cách mạng tháng Tám.jpg",
+        alt: "Chào mừng 80 năm Cách mạng tháng Tám",
+        caption: ["Chào mừng 80 năm", "Cách mạng tháng Tám"],
         role: "nen",
       },
       {
-        src: "/media/slides/s1_img3.jpg",
-        alt: "Công trình thanh niên Những cánh thư vượt sóng",
-        caption: ["Công trình thanh niên", "Những cánh thư vượt sóng"],
+        src: "/media/slides/Chương trình “Ký âm Sol hồng”.jpg",
+        alt: "Chương trình Ký âm Sol hồng",
+        caption: ["Chương trình", "“Ký âm Sol hồng”"],
         role: "phu",
       },
       {
-        src: "/media/slides/s1_img5.jpg",
-        alt: "Trao tặng công trình thanh niên Tủ sách cho em",
-        caption: ["Trao tặng công trình thanh niên", "\"Tủ sách cho em\""],
+        src: "/media/slides/Ra mắt nền tảng số quản lý Đoàn viên, thanh niên.jpg",
+        alt: "Ra mắt nền tảng số quản lý Đoàn viên, thanh niên",
+        caption: ["Ra mắt nền tảng số quản lý", "Đoàn viên, thanh niên"],
         role: "phu",
       },
       {
-        src: "/media/slides/s1_img6.png",
-        alt: "Giao diện WebApp Nền nếp CNT",
-        caption: ["Giao diện WebApp", "\"Nền nếp CNT\""],
+        src: "/media/slides/Đồng diễn CNT's Day.jpg",
+        alt: "Đồng diễn CNT's Day",
+        caption: ["Đồng diễn CNT's Day"],
         role: "phu",
       },
     ],
@@ -94,14 +98,12 @@ export const SLIDES = [
       ["1. Tình hình đoàn viên,", "thanh niên"],
       ["2. Thuận lợi, khó khăn"],
     ],
+    // Trang phân mục và trang nội dung ngay sau dùng chung một tấm ảnh là chủ ý: ở đây nó
+    // là nền mờ toàn khung, sang slide 3 nó trở lại làm ảnh thường trong panel.
     background: {
-      src: "/media/slides/s2_img3.jpg",
-      alt: "Tặng hoa chúc mừng BCH Đoàn trường tại Đại hội đại biểu nhiệm kỳ 2025 – 2026",
-      caption: [
-        "Tặng hoa chúc mừng BCH Đoàn trường",
-        "tại Đại hội đại biểu",
-        "nhiệm kỳ 2025 – 2026",
-      ],
+      src: "/media/slides/Học sinh toàn trường chào cờ đầu tuần.jpg",
+      alt: "Học sinh toàn trường chào cờ đầu tuần",
+      caption: ["Học sinh toàn trường", "chào cờ đầu tuần"],
       role: "nen",
     },
     footnote: ["Phần A – Sơ lược đặc điểm,", "tình hình Đoàn trường."],
@@ -135,32 +137,21 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s3_img3.jpg",
-        alt: "Tặng hoa chúc mừng BCH Đoàn trường tại Đại hội đại biểu nhiệm kỳ 2025 – 2026",
-        caption: [
-          "Tặng hoa chúc mừng BCH Đoàn trường",
-          "tại Đại hội đại biểu",
-          "nhiệm kỳ 2025 – 2026",
-        ],
+        src: "/media/slides/Họp Ban Chấp hành Đoàn trường.jpg",
+        alt: "Họp Ban Chấp hành Đoàn trường",
+        caption: ["Họp Ban Chấp hành", "Đoàn trường"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s3_img4.jpg",
-        alt: "Hội nghị tập huấn nghiệp vụ công tác Đoàn cho cán bộ chi đoàn",
-        caption: [
-          "Hội nghị tập huấn nghiệp vụ",
-          "công tác Đoàn cho cán bộ chi đoàn",
-        ],
+        src: "/media/slides/Tổ chức Đoàn của trường.jpg",
+        alt: "Tổ chức Đoàn của trường",
+        caption: ["Tổ chức Đoàn của trường"],
         role: "phu",
       },
       {
-        src: "/media/slides/s3_img5.jpg",
-        alt: "Tập huấn nâng cao nghiệp vụ công tác Đoàn năm học 2025 – 2026",
-        caption: [
-          "Tập huấn nâng cao nghiệp vụ",
-          "công tác Đoàn",
-          "năm học 2025 – 2026",
-        ],
+        src: "/media/slides/Học sinh toàn trường chào cờ đầu tuần.jpg",
+        alt: "Học sinh toàn trường chào cờ đầu tuần",
+        caption: ["Học sinh toàn trường", "chào cờ đầu tuần"],
         role: "phu",
       },
     ],
@@ -203,32 +194,21 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s4_img3.jpg",
-        alt: "Tặng hoa chúc mừng BCH Đoàn trường tại Đại hội đại biểu nhiệm kỳ 2025 – 2026",
-        caption: [
-          "Tặng hoa chúc mừng BCH Đoàn trường",
-          "tại Đại hội đại biểu",
-          "nhiệm kỳ 2025 – 2026",
-        ],
+        src: "/media/slides/Đại hội Đoàn trường.jpg",
+        alt: "Đại hội Đoàn trường",
+        caption: ["Đại hội Đoàn trường"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s4_img4.jpg",
-        alt: "Hội nghị tập huấn nghiệp vụ công tác Đoàn cho cán bộ chi đoàn",
-        caption: [
-          "Hội nghị tập huấn nghiệp vụ",
-          "công tác Đoàn cho cán bộ chi đoàn",
-        ],
+        src: "/media/slides/Hoạt động trong điều kiện cơ sở vật chất hiện có.jpg",
+        alt: "Hoạt động trong điều kiện cơ sở vật chất hiện có",
+        caption: ["Hoạt động trong điều kiện", "cơ sở vật chất hiện có"],
         role: "phu",
       },
       {
-        src: "/media/slides/s4_img5.jpg",
-        alt: "Tập huấn nâng cao nghiệp vụ công tác Đoàn năm học 2025 – 2026",
-        caption: [
-          "Tập huấn nâng cao nghiệp vụ",
-          "công tác Đoàn",
-          "năm học 2025 – 2026",
-        ],
+        src: "/media/slides/Sinh hoạt Đoàn.jpg",
+        alt: "Sinh hoạt Đoàn",
+        caption: ["Sinh hoạt Đoàn"],
         role: "phu",
       },
     ],
@@ -248,14 +228,11 @@ export const SLIDES = [
       ["5. Xây dựng tổ chức Đoàn,", "tham gia xây dựng Đảng"],
       ["6. Kết quả thực hiện", "chỉ tiêu năm học"],
     ],
+    // Như slide 2: ảnh nền ở đây quay lại làm ảnh thường trong panel của slide 6.
     background: {
-      src: "/media/slides/s5_img4.jpg",
-      alt: "Ngoại khóa tuyên truyền pháp luật cho đoàn viên, thanh niên toàn trường",
-      caption: [
-        "Ngoại khóa tuyên truyền",
-        "pháp luật cho đoàn viên,",
-        "thanh niên toàn trường",
-      ],
+      src: "/media/slides/Đội tuyển học sinh giỏi quốc gia.jpg",
+      alt: "Đội tuyển học sinh giỏi quốc gia",
+      caption: ["Đội tuyển học sinh giỏi quốc gia"],
       role: "nen",
     },
     footnote: ["Phần B – Thành tích đạt được", "trong năm học 2025 – 2026."],
@@ -263,9 +240,13 @@ export const SLIDES = [
   },
   {
     kind: "content",
+    // Mật độ "day" chứ không phải "thoang" như số gạch đầu dòng gợi ý: tiêu đề trang này
+    // gánh cả dòng đề mục cấp trên ("1. Công tác giáo dục") nên dài gấp đôi bình thường;
+    // để "thoang" thì tiêu đề chiếm hết cột chữ và đẩy gạch đầu dòng cuối xuống chân trang.
     number: 6,
-    density: "thoang",
+    density: "day",
     title: [
+      "1. Công tác giáo dục",
       "1.1. Học tập và làm theo",
       "tư tưởng, đạo đức,",
       "phong cách Hồ Chí Minh",
@@ -302,21 +283,27 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s6_img3.jpg",
+        src: "/media/slides/Sinh hoạt chi đoàn theo chủ điểm.jpg",
         alt: "Sinh hoạt chi đoàn theo chủ điểm",
         caption: ["Sinh hoạt chi đoàn", "theo chủ điểm"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s6_img4.jpg",
-        alt: "Đoàn viên dự buổi học tập, quán triệt nghị quyết",
-        caption: ["Đoàn viên dự buổi học tập,", "quán triệt nghị quyết"],
+        src: "/media/slides/Đội tuyển học sinh giỏi quốc gia.jpg",
+        alt: "Đội tuyển học sinh giỏi quốc gia",
+        caption: ["Đội tuyển học sinh giỏi quốc gia"],
         role: "phu",
       },
       {
-        src: "/media/slides/s6_img5.jpg",
-        alt: "Giới thiệu sách về Chủ tịch Hồ Chí Minh",
-        caption: ["Giới thiệu sách", "về Chủ tịch Hồ Chí Minh"],
+        src: "/media/slides/Tập thể học sinh toàn trường.jpg",
+        alt: "Tập thể học sinh toàn trường",
+        caption: ["Tập thể học sinh toàn trường"],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Sinh hoạt đầu tuần.jpg",
+        alt: "Sinh hoạt đầu tuần",
+        caption: ["Sinh hoạt đầu tuần"],
         role: "phu",
       },
     ],
@@ -355,15 +342,27 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s7_img3.jpg",
-        alt: "Sân khấu cuộc thi tìm hiểu về Đảng",
-        caption: ["Sân khấu cuộc thi", "tìm hiểu về Đảng"],
+        src: "/media/slides/Chương trình “Khi tôi 18”.png",
+        alt: "Chương trình Khi tôi 18",
+        caption: ["Chương trình “Khi tôi 18”"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s7_img4.jpg",
-        alt: "Đoàn viên dự buổi học tập, quán triệt nghị quyết",
-        caption: ["Đoàn viên dự buổi học tập,", "quán triệt nghị quyết"],
+        src: "/media/slides/Chương trình “Ánh dương soi đường”.jpg",
+        alt: "Chương trình Ánh dương soi đường",
+        caption: ["Chương trình", "“Ánh dương soi đường”"],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Học sinh tham gia công tác bầu cử.jpg",
+        alt: "Học sinh tham gia công tác bầu cử",
+        caption: ["Học sinh tham gia", "công tác bầu cử"],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Khát vọng cống hiến – Lẽ sống thanh niên.jpg",
+        alt: "Khát vọng cống hiến – Lẽ sống thanh niên",
+        caption: ["Khát vọng cống hiến", "– Lẽ sống thanh niên"],
         role: "phu",
       },
     ],
@@ -402,21 +401,27 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s8_img3.jpg",
-        alt: "Triển lãm tranh chủ đề Độc lập – Tự do – Hạnh phúc",
-        caption: ["Triển lãm tranh chủ đề", "\"Độc lập – Tự do – Hạnh phúc\""],
+        src: "/media/slides/Dâng hương tại đài tưởng niệm.jpg",
+        alt: "Dâng hương tại đài tưởng niệm",
+        caption: ["Dâng hương", "tại đài tưởng niệm"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s8_img4.jpg",
-        alt: "Giao lưu nhân chứng lịch sử",
-        caption: ["Giao lưu nhân chứng lịch sử"],
+        src: "/media/slides/Cuộc thi “Dưới Ánh Sao Vàng”.jpg",
+        alt: "Cuộc thi Dưới Ánh Sao Vàng",
+        caption: ["Cuộc thi “Dưới Ánh Sao Vàng”"],
         role: "phu",
       },
       {
-        src: "/media/slides/s8_img5.jpg",
-        alt: "Hoạt động dâng hương tại đài tưởng niệm",
-        caption: ["Hoạt động dâng hương", "tại đài tưởng niệm"],
+        src: "/media/slides/Triển lãm tranh “Độc lập – Tự do – Hạnh phúc”.jpg",
+        alt: "Triển lãm tranh Độc lập – Tự do – Hạnh phúc",
+        caption: ["Triển lãm tranh", "“Độc lập – Tự do – Hạnh phúc”"],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Giao lưu nhân chứng lịch sử.jpg",
+        alt: "Giao lưu nhân chứng lịch sử",
+        caption: ["Giao lưu nhân chứng lịch sử"],
         role: "phu",
       },
     ],
@@ -448,23 +453,34 @@ export const SLIDES = [
       ["\"Phiên tòa giả định\" về", "phòng, chống bạo lực học đường."],
       ["Hướng dẫn kỹ năng", "lái xe an toàn", "cho gần 1.500 lượt ĐVTN."],
     ],
+    // Tài liệu ghi VIDEO "Phiên toà giả định" làm tư liệu chính của trang này — ô dẫn dắt
+    // giờ nhận video (nén từ 25,3 MB xuống còn ~4,8 MB bằng ffmpeg-static, 1280×720). Ảnh
+    // tĩnh cùng cảnh trước đây đứng ở ô dẫn dắt nay chuyển xuống làm ảnh phụ, không bỏ đi.
     images: [
       {
-        src: "/media/slides/s9_img3.jpg",
-        alt: "Phiên tòa giả định về phòng, chống bạo lực học đường",
-        caption: ["\"Phiên tòa giả định\" về", "phòng, chống bạo lực học đường"],
+        kind: "video",
+        src: "/media/phien-toa-gia-dinh.mp4",
+        poster: "/media/slides/Phiên tòa giả định.jpg",
+        alt: "Phiên tòa giả định",
+        caption: ["Phiên tòa giả định về", "phòng, chống bạo lực học đường"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s9_img4.jpg",
-        alt: "Ngoại khóa hướng dẫn kỹ năng lái xe gắn máy an toàn",
-        caption: ["Ngoại khóa hướng dẫn kỹ năng", "lái xe gắn máy an toàn"],
+        src: "/media/slides/Phiên tòa giả định.jpg",
+        alt: "Phiên tòa giả định",
+        caption: ["Phiên tòa giả định"],
         role: "phu",
       },
       {
-        src: "/media/slides/s9_img5.jpg",
-        alt: "Thực hành phòng cháy, chữa cháy và cứu nạn cứu hộ",
-        caption: ["Thực hành phòng cháy,", "chữa cháy", "và cứu nạn cứu hộ"],
+        src: "/media/slides/Diễn đàn “Xây dựng tình bạn đẹp”.png",
+        alt: "Diễn đàn Xây dựng tình bạn đẹp",
+        caption: ["Diễn đàn", "“Xây dựng tình bạn đẹp”"],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Mỗi ngày một tin tốt, mỗi tuần một chuyện đẹp.jpg",
+        alt: "Mỗi ngày một tin tốt, mỗi tuần một chuyện đẹp",
+        caption: ["Mỗi ngày một tin tốt,", "mỗi tuần một chuyện đẹp"],
         role: "phu",
       },
     ],
@@ -495,27 +511,27 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s10_img3.jpg",
-        alt: "Ngoại khóa hướng dẫn kỹ năng lái xe gắn máy an toàn",
-        caption: ["Ngoại khóa hướng dẫn kỹ năng", "lái xe gắn máy an toàn"],
+        src: "/media/slides/Hướng dẫn kỹ năng lái xe an toàn.jpg",
+        alt: "Hướng dẫn kỹ năng lái xe an toàn",
+        caption: ["Hướng dẫn kỹ năng", "lái xe an toàn"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s10_img4.jpg",
-        alt: "Lễ ra mắt mô hình Trường học không ma túy",
-        caption: ["Lễ ra mắt mô hình", "\"Trường học không ma túy\""],
+        src: "/media/slides/Ngoại khóa phòng cháy chữa cháy.jpg",
+        alt: "Ngoại khóa phòng cháy chữa cháy",
+        caption: ["Ngoại khóa", "phòng cháy chữa cháy"],
         role: "phu",
       },
       {
-        src: "/media/slides/s10_img5.jpg",
-        alt: "Thực hành phòng cháy, chữa cháy và cứu nạn cứu hộ",
-        caption: ["Thực hành phòng cháy,", "chữa cháy", "và cứu nạn cứu hộ"],
+        src: "/media/slides/Ra mắt mô hình “Trường học không ma túy”.png",
+        alt: "Ra mắt mô hình Trường học không ma túy",
+        caption: ["Ra mắt mô hình", "“Trường học không ma túy”"],
         role: "phu",
       },
       {
-        src: "/media/slides/s10_img6.jpg",
-        alt: "Đội tuyên truyền phòng, chống mua bán người",
-        caption: ["Đội tuyên truyền phòng,", "chống mua bán người"],
+        src: "/media/slides/Tuyên truyền phòng, chống mua bán người.jpg",
+        alt: "Tuyên truyền phòng, chống mua bán người",
+        caption: ["Tuyên truyền phòng,", "chống mua bán người"],
         role: "phu",
       },
     ],
@@ -527,9 +543,15 @@ export const SLIDES = [
   },
   {
     kind: "content",
+    // Mật độ "day": tiêu đề gánh thêm dòng đề mục cấp trên, xem chú thích ở slide 6.
     number: 11,
-    density: "thoang",
-    title: ["2.1. Phong trào", "\"Thanh niên tình nguyện\""],
+    density: "day",
+    title: [
+      "2. Tổ chức phong trào",
+      "hành động cách mạng",
+      "2.1. Phong trào",
+      "\"Thanh niên tình nguyện\"",
+    ],
     lead: [
       "Trên 1.000 lượt ĐVTN",
       "tham gia tình nguyện",
@@ -550,27 +572,21 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s11_img3.jpg",
-        alt: "Đoàn viên thanh niên trao quà tại gia đình chính sách",
-        caption: ["Đoàn viên thanh niên trao quà", "tại gia đình chính sách"],
+        src: "/media/slides/Đội hình tình nguyện Tiếp sức mùa thi.jpg",
+        alt: "Đội hình tình nguyện Tiếp sức mùa thi",
+        caption: ["Đội hình tình nguyện", "Tiếp sức mùa thi"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s11_img4.jpg",
-        alt: "Tình nguyện viên hỗ trợ người cao tuổi làm thủ tục",
-        caption: ["Tình nguyện viên hỗ trợ", "người cao tuổi làm thủ tục"],
+        src: "/media/slides/Đội hình tình nguyện Hoa phượng đỏ.jpg",
+        alt: "Đội hình tình nguyện Hoa phượng đỏ",
+        caption: ["Đội hình tình nguyện", "Hoa phượng đỏ"],
         role: "phu",
       },
       {
-        src: "/media/slides/s11_img5.jpg",
-        alt: "Hướng dẫn người dân sử dụng điện thoại thông minh",
-        caption: ["Hướng dẫn người dân", "sử dụng điện thoại thông minh"],
-        role: "phu",
-      },
-      {
-        src: "/media/slides/s11_img6.jpg",
-        alt: "Đoàn viên thanh niên chụp ảnh chung trước sân trường",
-        caption: ["Đoàn viên thanh niên", "chụp ảnh chung trước sân trường"],
+        src: "/media/slides/Dâng hương tưởng niệm các Anh hùng Liệt sỹ.jpg",
+        alt: "Dâng hương tưởng niệm các Anh hùng Liệt sỹ",
+        caption: ["Dâng hương tưởng niệm", "các Anh hùng Liệt sỹ"],
         role: "phu",
       },
     ],
@@ -598,27 +614,26 @@ export const SLIDES = [
       ["26.661.000 đồng và 53 suất quà", "hỗ trợ học sinh vùng lũ."],
       ["14.200.000 đồng từ chương trình", "\"Đông ấm vùng cao\"."],
     ],
+    // Ảnh chính lấy tấm "Quyên góp Quỹ" chứ không lấy tấm "Ủng hộ" mà tài liệu ghi: bản
+    // "Ủng hộ" chỉ 720×480, nhỏ hơn cả ô ảnh dẫn dắt nên phóng lên là vỡ. Nhà trường đã
+    // duyệt việc đổi này.
     images: [
       {
-        src: "/media/slides/s12_img3.jpg",
-        alt: "Trao quà hỗ trợ học sinh vùng lũ",
-        caption: ["Trao quà hỗ trợ", "học sinh vùng lũ"],
+        src: "/media/slides/Quyên góp Quỹ “Đông ấm vùng cao”.jpg",
+        alt: "Quyên góp Quỹ Đông ấm vùng cao",
+        caption: ["Quyên góp Quỹ", "“Đông ấm vùng cao”"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s12_img4.jpg",
-        alt: "Trao tặng hiện vật trị giá 25 triệu đồng cho Trung tâm Bảo trợ xã hội Hải Phòng",
-        caption: [
-          "Trao tặng hiện vật trị giá",
-          "25 triệu đồng cho Trung tâm",
-          "Bảo trợ xã hội Hải Phòng",
-        ],
+        src: "/media/slides/Đồng hành cùng nạn nhân chất độc da cam.jpg",
+        alt: "Đồng hành cùng nạn nhân chất độc da cam",
+        caption: ["Đồng hành cùng nạn nhân", "chất độc da cam"],
         role: "phu",
       },
       {
-        src: "/media/slides/s12_img5.jpg",
-        alt: "Trao Đông ấm vùng cao cho phường",
-        caption: ["Trao \"Đông ấm vùng cao\"", "cho phường"],
+        src: "/media/slides/Ủng hộ “Đông ấm vùng cao”.jpg",
+        alt: "Ủng hộ Đông ấm vùng cao",
+        caption: ["Ủng hộ “Đông ấm vùng cao”"],
         role: "phu",
       },
     ],
@@ -644,31 +659,21 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s13_img3.jpg",
-        alt: "Hiến máu tình nguyện",
-        caption: ["Hiến máu tình nguyện"],
+        src: "/media/slides/Quyên góp, thăm hỏi nhân dân vùng lũ.jpg",
+        alt: "Quyên góp, thăm hỏi nhân dân vùng lũ",
+        caption: ["Quyên góp, thăm hỏi", "nhân dân vùng lũ"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s13_img4.jpg",
-        alt: "Đoàn viên thanh niên trao quà tại gia đình chính sách",
-        caption: ["Đoàn viên thanh niên trao quà", "tại gia đình chính sách"],
+        src: "/media/slides/Ủng hộ đồng bào lũ lụt.jpg",
+        alt: "Ủng hộ đồng bào lũ lụt",
+        caption: ["Ủng hộ đồng bào lũ lụt"],
         role: "phu",
       },
       {
-        src: "/media/slides/s13_img5.jpg",
-        alt: "Tình nguyện viên hỗ trợ người cao tuổi làm thủ tục",
-        caption: ["Tình nguyện viên hỗ trợ", "người cao tuổi làm thủ tục"],
-        role: "phu",
-      },
-      {
-        src: "/media/slides/s13_img6.jpg",
-        alt: "Trao tặng hiện vật trị giá 25 triệu đồng cho Trung tâm Bảo trợ xã hội Hải Phòng",
-        caption: [
-          "Trao tặng hiện vật trị giá",
-          "25 triệu đồng cho Trung tâm",
-          "Bảo trợ xã hội Hải Phòng",
-        ],
+        src: "/media/slides/Đoàn viên, thanh niên hiến máu tình nguyện.jpg",
+        alt: "Đoàn viên, thanh niên hiến máu tình nguyện",
+        caption: ["Đoàn viên, thanh niên", "hiến máu tình nguyện"],
         role: "phu",
       },
     ],
@@ -697,34 +702,34 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s14_img3.jpg",
-        alt: "Vệ sinh môi trường trường lớp, cảnh quan",
-        caption: ["Vệ sinh môi trường", "trường lớp, cảnh quan"],
+        src: "/media/slides/Triển lãm tranh bảo vệ môi trường.jpg",
+        alt: "Triển lãm tranh bảo vệ môi trường",
+        caption: ["Triển lãm tranh", "bảo vệ môi trường"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s14_img4.jpg",
-        alt: "Triển lãm ảnh môi trường",
-        caption: ["Triển lãm ảnh môi trường"],
+        src: "/media/slides/Ra quân Chủ nhật Xanh.jpg",
+        alt: "Ra quân Chủ nhật Xanh",
+        caption: ["Ra quân Chủ nhật Xanh"],
         role: "phu",
       },
       {
-        src: "/media/slides/s14_img5.jpg",
-        alt: "Vệ sinh môi trường trong Ngày Chủ nhật xanh",
-        caption: ["Vệ sinh môi trường", "trong Ngày Chủ nhật xanh"],
+        src: "/media/slides/Ra quân Chủ nhật Xanh(1).jpg",
+        alt: "Ra quân Chủ nhật Xanh",
+        caption: ["Ra quân Chủ nhật Xanh"],
         role: "phu",
       },
       {
-        src: "/media/slides/s14_img6.jpg",
-        alt: "Triển lãm ảnh môi trường của học sinh",
-        caption: ["Triển lãm ảnh môi trường", "của học sinh"],
+        src: "/media/slides/Chuỗi sự kiện “Ước mơ xanh”.jpg",
+        alt: "Chuỗi sự kiện Ước mơ xanh",
+        caption: ["Chuỗi sự kiện “Ước mơ xanh”"],
         role: "phu",
       },
     ],
     footnote: [
       "Phần B.I – Mục 2.1.",
       "Phong trào \"Thanh niên tình nguyện\"",
-      "– Môi trường.",
+      "– Môi trường và Tiếp sức mùa thi.",
     ],
   },
   {
@@ -745,28 +750,34 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s15_img3.jpg",
-        alt: "Đoàn viên thanh niên chụp ảnh chung trước sân trường",
-        caption: ["Đoàn viên thanh niên", "chụp ảnh chung trước sân trường"],
+        src: "/media/slides/Tình nguyện viên hỗ trợ thí sinh.jpg",
+        alt: "Tình nguyện viên hỗ trợ thí sinh",
+        caption: ["Tình nguyện viên", "hỗ trợ thí sinh"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s15_img4.jpg",
-        alt: "Chương trình hỗ trợ kỳ thi tuyển sinh lớp 10",
-        caption: ["Chương trình hỗ trợ", "kỳ thi tuyển sinh lớp 10"],
+        src: "/media/slides/Tình nguyện viên hỗ trợ thí sinh(1).jpg",
+        alt: "Tình nguyện viên hỗ trợ thí sinh",
+        caption: ["Tình nguyện viên", "hỗ trợ thí sinh"],
         role: "phu",
       },
       {
-        src: "/media/slides/s15_img5.jpg",
-        alt: "Chương trình hỗ trợ Kỳ thi tốt nghiệp THPT",
-        caption: ["Chương trình hỗ trợ", "Kỳ thi tốt nghiệp THPT"],
+        src: "/media/slides/Tình nguyện viên hỗ trợ thí sinh(2).jpg",
+        alt: "Tình nguyện viên hỗ trợ thí sinh",
+        caption: ["Tình nguyện viên", "hỗ trợ thí sinh"],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Đội hình tình nguyện Tiếp sức mùa thi(1).jpg",
+        alt: "Đội hình tình nguyện Tiếp sức mùa thi",
+        caption: ["Đội hình tình nguyện", "Tiếp sức mùa thi"],
         role: "phu",
       },
     ],
     footnote: [
       "Phần B.I – Mục 2.1.",
       "Phong trào \"Thanh niên tình nguyện\"",
-      "– Tiếp sức mùa thi.",
+      "– Môi trường và Tiếp sức mùa thi.",
     ],
   },
   {
@@ -790,21 +801,29 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s16_img3.jpg",
-        alt: "Poster dự án The unsaid của CLB Tiếng Anh Nguyễn Trãi",
-        caption: ["Poster dự án \"The unsaid\"", "của CLB Tiếng Anh Nguyễn Trãi"],
+        src: "/media/slides/Bữa cơm nghĩa tình.jpg",
+        alt: "Bữa cơm nghĩa tình",
+        caption: ["Bữa cơm nghĩa tình"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s16_img4.jpg",
-        alt: "Đoàn viên thanh niên trao quà tại gia đình chính sách",
-        caption: ["Đoàn viên thanh niên trao quà", "tại gia đình chính sách"],
+        src: "/media/slides/Hỗ trợ người dân định danh điện tử.jpg",
+        alt: "Hỗ trợ người dân định danh điện tử",
+        caption: ["Hỗ trợ người dân", "định danh điện tử"],
         role: "phu",
       },
       {
-        src: "/media/slides/s16_img5.jpg",
-        alt: "Hướng dẫn người dân sử dụng điện thoại thông minh",
-        caption: ["Hướng dẫn người dân", "sử dụng điện thoại thông minh"],
+        src: "/media/slides/Lớp tiếng Anh tình nguyện hè(1).jpg",
+        alt: "Lớp tiếng Anh tình nguyện hè",
+        caption: ["Lớp tiếng Anh tình nguyện hè"],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Hỗ trợ người cao tuổi khám sức khỏe.jpg",
+        alt: "Hỗ trợ người cao tuổi khám sức khỏe",
+        caption: ["Hỗ trợ người cao tuổi", "khám sức khỏe"],
+        // Tấm duy nhất chụp dọc (1536×2048); neo giữa để ô 16:9 không cắt mất đầu người.
+        focus: "center",
         role: "phu",
       },
     ],
@@ -827,21 +846,27 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s17_img3.jpg",
-        alt: "Hoạt động đền ơn đáp nghĩa",
-        caption: ["Hoạt động đền ơn đáp nghĩa"],
+        src: "/media/slides/Lớp tiếng Anh tình nguyện hè.jpg",
+        alt: "Lớp tiếng Anh tình nguyện hè",
+        caption: ["Lớp tiếng Anh tình nguyện hè"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s17_img4.jpg",
-        alt: "Tình nguyện viên hỗ trợ người cao tuổi làm thủ tục",
-        caption: ["Tình nguyện viên hỗ trợ", "người cao tuổi làm thủ tục"],
+        src: "/media/slides/Thăm hỏi cựu chiến binh.jpg",
+        alt: "Thăm hỏi cựu chiến binh",
+        caption: ["Thăm hỏi cựu chiến binh"],
         role: "phu",
       },
       {
-        src: "/media/slides/s17_img5.jpg",
-        alt: "Đoàn viên thanh niên trao quà tại gia đình chính sách",
-        caption: ["Đoàn viên thanh niên trao quà", "tại gia đình chính sách"],
+        src: "/media/slides/Thăm hỏi cựu chiến binh(1).jpg",
+        alt: "Thăm hỏi cựu chiến binh",
+        caption: ["Thăm hỏi cựu chiến binh"],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Hỗ trợ thân nhân Liệt sỹ.jpg",
+        alt: "Hỗ trợ thân nhân Liệt sỹ",
+        caption: ["Hỗ trợ thân nhân Liệt sỹ"],
         role: "phu",
       },
     ],
@@ -877,31 +902,21 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s18_img3.jpg",
-        alt: "Trao giải chung kết cuộc thi Thanh niên Hải Phòng với chuyển đổi số, chuyển đổi xanh",
-        caption: [
-          "Trao giải chung kết cuộc thi",
-          "Thanh niên Hải Phòng với",
-          "chuyển đổi số, chuyển đổi xanh",
-        ],
+        src: "/media/slides/Giải Nhất Chuyển đổi số, chuyển đổi xanh.jpg",
+        alt: "Giải Nhất Chuyển đổi số, chuyển đổi xanh",
+        caption: ["Giải Nhất Chuyển đổi số,", "chuyển đổi xanh"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s18_img4.jpg",
-        alt: "Sản phẩm Hội thi Tin học trẻ",
-        caption: ["Sản phẩm Hội thi Tin học trẻ"],
+        src: "/media/slides/Dự thi Tin học trẻ cấp thành phố.jpg",
+        alt: "Dự thi Tin học trẻ cấp thành phố",
+        caption: ["Dự thi Tin học trẻ", "cấp thành phố"],
         role: "phu",
       },
       {
-        src: "/media/slides/s18_img5.jpg",
-        alt: "Lớp Robotics của nhà trường",
-        caption: ["Lớp Robotics của nhà trường"],
-        role: "phu",
-      },
-      {
-        src: "/media/slides/s18_img6.jpg",
-        alt: "Học sinh nhận giấy chứng nhận cuộc thi khoa học, công nghệ",
-        caption: ["Học sinh nhận giấy chứng nhận", "cuộc thi khoa học, công nghệ"],
+        src: "/media/slides/Giao lưu Robotics.jpg",
+        alt: "Giao lưu Robotics",
+        caption: ["Giao lưu Robotics"],
         role: "phu",
       },
     ],
@@ -937,31 +952,21 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s19_img3.jpg",
-        alt: "Đường lên đỉnh Olympia cấp trường",
-        caption: ["Đường lên đỉnh Olympia", "cấp trường"],
+        src: "/media/slides/Giải Nhất tuần Đường lên đỉnh Olympia.jpg",
+        alt: "Giải Nhất tuần Đường lên đỉnh Olympia",
+        caption: ["Giải Nhất tuần", "Đường lên đỉnh Olympia"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s19_img4.jpg",
-        alt: "Hội nghị mô phỏng Liên Hợp Quốc HDMUN",
-        caption: ["Hội nghị mô phỏng", "Liên Hợp Quốc HDMUN"],
+        src: "/media/slides/Cuộc thi Olympia cấp trường.jpg",
+        alt: "Cuộc thi Olympia cấp trường",
+        caption: ["Cuộc thi Olympia cấp trường"],
         role: "phu",
       },
       {
-        src: "/media/slides/s19_img5.jpg",
-        alt: "Học sinh nhận giấy chứng nhận cuộc thi khoa học, công nghệ",
-        caption: ["Học sinh nhận giấy chứng nhận", "cuộc thi khoa học, công nghệ"],
-        role: "phu",
-      },
-      {
-        src: "/media/slides/s19_img6.jpg",
-        alt: "Trao giải chung kết cuộc thi Thanh niên Hải Phòng với chuyển đổi số, chuyển đổi xanh",
-        caption: [
-          "Trao giải chung kết cuộc thi",
-          "Thanh niên Hải Phòng với",
-          "chuyển đổi số, chuyển đổi xanh",
-        ],
+        src: "/media/slides/Mô hình HDMUN.jpg",
+        alt: "Mô hình HDMUN",
+        caption: ["Mô hình HDMUN"],
         role: "phu",
       },
     ],
@@ -995,23 +1000,31 @@ export const SLIDES = [
       ["Truyền thông quốc phòng,", "an ninh, chủ quyền biển đảo."],
       ["Lễ phát động và ký cam kết", "phòng, chống ma túy."],
     ],
+    // Bốn tấm của công trình này chưa được đặt tên riêng nên chú thích trùng nhau; đợi
+    // nhà trường đặt tên cho từng tấm (xem Phần 4.3 của docs/RA-SOAT-44-SLIDE.md).
     images: [
       {
-        src: "/media/slides/s20_img3.jpg",
-        alt: "Thư, thiệp của đoàn viên gửi tới các đảo",
-        caption: ["Thư, thiệp của đoàn viên", "gửi tới các đảo"],
+        src: "/media/slides/Công trình “Những cánh thư vượt sóng”.jpg",
+        alt: "Công trình Những cánh thư vượt sóng",
+        caption: ["Công trình", "“Những cánh thư vượt sóng”"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s20_img4.jpg",
-        alt: "Cây đào gửi ra đảo và nhà giàn DK1",
-        caption: ["Cây đào gửi ra đảo", "và nhà giàn DK1"],
+        src: "/media/slides/Công trình “Những cánh thư vượt sóng”(1).jpg",
+        alt: "Công trình Những cánh thư vượt sóng",
+        caption: ["Công trình", "“Những cánh thư vượt sóng”"],
         role: "phu",
       },
       {
-        src: "/media/slides/s20_img5.jpg",
-        alt: "Giao lưu với lực lượng vũ trang",
-        caption: ["Giao lưu với lực lượng", "vũ trang"],
+        src: "/media/slides/Công trình “Những cánh thư vượt sóng”(2).jpg",
+        alt: "Công trình Những cánh thư vượt sóng",
+        caption: ["Công trình", "“Những cánh thư vượt sóng”"],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Công trình “Những cánh thư vượt sóng”(3).jpg",
+        alt: "Công trình Những cánh thư vượt sóng",
+        caption: ["Công trình", "“Những cánh thư vượt sóng”"],
         role: "phu",
       },
     ],
@@ -1023,9 +1036,15 @@ export const SLIDES = [
   },
   {
     kind: "content",
+    // Mật độ "day": tiêu đề gánh thêm dòng đề mục cấp trên, xem chú thích ở slide 6.
     number: 21,
-    density: "thoang",
-    title: ["3.1. Đồng hành", "với thanh niên", "trong học tập"],
+    density: "day",
+    title: [
+      "3. Tổ chức các chương trình",
+      "đồng hành với thanh niên",
+      "3.1. Đồng hành với thanh niên",
+      "trong học tập",
+    ],
     lead: [
       "Đoàn trường tuyên dương",
       "29 \"Học sinh 3 tốt\",",
@@ -1040,21 +1059,21 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s21_img3.jpg",
-        alt: "Tuyên dương Học sinh 3 tốt cấp trường",
-        caption: ["Tuyên dương", "\"Học sinh 3 tốt\" cấp trường"],
+        src: "/media/slides/Trao Học bổng Sao Khuê.jpg",
+        alt: "Trao Học bổng Sao Khuê",
+        caption: ["Trao Học bổng Sao Khuê"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s21_img4.jpg",
-        alt: "Trao học bổng cho học sinh",
-        caption: ["Trao học bổng", "cho học sinh"],
+        src: "/media/slides/Tuyên dương “Học sinh 3 tốt”.jpg",
+        alt: "Tuyên dương Học sinh 3 tốt",
+        caption: ["Tuyên dương", "“Học sinh 3 tốt”"],
         role: "phu",
       },
       {
-        src: "/media/slides/s21_img5.jpg",
-        alt: "Lễ kết nạp Đảng cho đoàn viên ưu tú",
-        caption: ["Lễ kết nạp Đảng", "cho đoàn viên ưu tú"],
+        src: "/media/slides/Ngày Sách và Văn hóa đọc.jpg",
+        alt: "Ngày Sách và Văn hóa đọc",
+        caption: ["Ngày Sách và Văn hóa đọc"],
         role: "phu",
       },
     ],
@@ -1081,10 +1100,22 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s22_img3.jpg",
-        alt: "Trao quà tặng dịp Tết cho học sinh",
-        caption: ["Trao quà tặng dịp Tết", "cho học sinh"],
+        src: "/media/slides/Lễ kết nạp Đảng.jpg",
+        alt: "Lễ kết nạp Đảng",
+        caption: ["Lễ kết nạp Đảng"],
         role: "chinh",
+      },
+      {
+        src: "/media/slides/Trao học bổng cho học sinh.jpg",
+        alt: "Trao học bổng cho học sinh",
+        caption: ["Trao học bổng cho học sinh"],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Trao quà Tết cho học sinh.jpg",
+        alt: "Trao quà Tết cho học sinh",
+        caption: ["Trao quà Tết cho học sinh"],
+        role: "phu",
       },
     ],
     footnote: [
@@ -1130,27 +1161,27 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s23_img3.jpg",
+        src: "/media/slides/Ngày hội Tư vấn tuyển sinh – Hướng nghiệp.jpg",
         alt: "Ngày hội Tư vấn tuyển sinh – Hướng nghiệp",
         caption: ["Ngày hội Tư vấn tuyển sinh", "– Hướng nghiệp"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s23_img4.jpg",
-        alt: "Giao lưu với trường đại học quốc tế",
-        caption: ["Giao lưu với trường", "đại học quốc tế"],
+        src: "/media/slides/Ngày hội Tư vấn tuyển sinh – Hướng nghiệp(1).jpg",
+        alt: "Ngày hội Tư vấn tuyển sinh – Hướng nghiệp",
+        caption: ["Ngày hội Tư vấn tuyển sinh", "– Hướng nghiệp"],
         role: "phu",
       },
       {
-        src: "/media/slides/s23_img5.jpg",
-        alt: "Thuyết trình tại cuộc thi Business Case",
-        caption: ["Thuyết trình", "tại cuộc thi Business Case"],
+        src: "/media/slides/Giao lưu với đại học quốc tế.jpg",
+        alt: "Giao lưu với đại học quốc tế",
+        caption: ["Giao lưu với đại học quốc tế"],
         role: "phu",
       },
       {
-        src: "/media/slides/s23_img6.jpg",
-        alt: "Chương trình tư vấn hướng nghiệp cho học sinh",
-        caption: ["Chương trình tư vấn", "hướng nghiệp cho học sinh"],
+        src: "/media/slides/Chuyên đề tư vấn hướng nghiệp.jpg",
+        alt: "Chuyên đề tư vấn hướng nghiệp",
+        caption: ["Chuyên đề tư vấn hướng nghiệp"],
         role: "phu",
       },
     ],
@@ -1180,27 +1211,27 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s24_img3.jpg",
-        alt: "Chương trình chào Tân học sinh New Orbit",
-        caption: ["Chương trình chào Tân học sinh", "\"New Orbit\""],
+        src: "/media/slides/Chương trình “Phi mã khai xuân”.jpg",
+        alt: "Chương trình Phi mã khai xuân",
+        caption: ["Chương trình", "“Phi mã khai xuân”"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s24_img4.jpg",
-        alt: "Tiết mục nghệ thuật Chèo trong Mạch nguồn di sản",
-        caption: ["Tiết mục nghệ thuật Chèo", "trong \"Mạch nguồn di sản\""],
+        src: "/media/slides/Chào tân học sinh “New Orbit”.jpg",
+        alt: "Chào tân học sinh New Orbit",
+        caption: ["Chào tân học sinh", "“New Orbit”"],
         role: "phu",
       },
       {
-        src: "/media/slides/s24_img5.jpg",
-        alt: "Hội trại truyền thống của học sinh",
-        caption: ["Hội trại truyền thống", "của học sinh"],
+        src: "/media/slides/Hội diễn “Khúc ca tri ân”.jpg",
+        alt: "Hội diễn Khúc ca tri ân",
+        caption: ["Hội diễn “Khúc ca tri ân”"],
         role: "phu",
       },
       {
-        src: "/media/slides/s24_img6.jpg",
-        alt: "Gói bánh chưng Gói trọn vị nhà",
-        caption: ["Gói bánh chưng", "\"Gói trọn vị nhà\""],
+        src: "/media/slides/Chuyên đề “Mạch nguồn di sản”.jpg",
+        alt: "Chuyên đề Mạch nguồn di sản",
+        caption: ["Chuyên đề", "“Mạch nguồn di sản”"],
         role: "phu",
       },
     ],
@@ -1225,11 +1256,26 @@ export const SLIDES = [
         "và thể thao.",
       ],
     ],
-    // Bản gốc không có ảnh nào cho trang này (bộ ảnh trích từ PPTX không có file s25_*)
-    // nên panel navy trống trơn nửa slide — xem mục "còn tồn đọng" trong
-    // docs/superpowers/references/render-check/NOTES.md. Không tự lấy ảnh của trang khác
-    // sang: ứng viên duy nhất khớp chú thích (s24_img6) lại là ảnh có chú thích sai.
-    images: [],
+    images: [
+      {
+        src: "/media/slides/Gói bánh chưng “Gói trọn vị nhà”.jpg",
+        alt: "Gói bánh chưng Gói trọn vị nhà",
+        caption: ["Gói bánh chưng", "“Gói trọn vị nhà”"],
+        role: "chinh",
+      },
+      {
+        src: "/media/slides/Hội chợ Tết.jpg",
+        alt: "Hội chợ Tết",
+        caption: ["Hội chợ Tết"],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Ngày hội Chuyên Nguyễn Trãi.jpg",
+        alt: "Ngày hội Chuyên Nguyễn Trãi",
+        caption: ["Ngày hội Chuyên Nguyễn Trãi"],
+        role: "phu",
+      },
+    ],
     footnote: [
       "Phần B.I – Mục 3.3.",
       "Đồng hành rèn luyện kỹ năng,",
@@ -1264,21 +1310,15 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s26_img3.jpg",
-        alt: "Giải thể thao cấp trường",
-        caption: ["Giải thể thao cấp trường"],
+        src: "/media/slides/CNT's Open Talk.jpg",
+        alt: "CNT's Open Talk",
+        caption: ["CNT's Open Talk"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s26_img4.jpg",
-        alt: "Giải kéo co trong ngày hội thể thao",
-        caption: ["Giải kéo co", "trong ngày hội thể thao"],
-        role: "phu",
-      },
-      {
-        src: "/media/slides/s26_img5.jpg",
-        alt: "Chương trình đối thoại CNT's Open Talk",
-        caption: ["Chương trình đối thoại", "\"CNT's Open Talk\""],
+        src: "/media/slides/Giải kéo co.jpg",
+        alt: "Giải kéo co",
+        caption: ["Giải kéo co"],
         role: "phu",
       },
     ],
@@ -1306,15 +1346,15 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s27_img3.jpg",
-        alt: "Chương trình đối thoại CNT's Open Talk",
-        caption: ["Chương trình đối thoại", "\"CNT's Open Talk\""],
+        src: "/media/slides/Giải bóng đá CNT Cup.jpg",
+        alt: "Giải bóng đá CNT Cup",
+        caption: ["Giải bóng đá CNT Cup"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s27_img4.jpg",
-        alt: "Chương trình đối thoại học sinh – nhà trường",
-        caption: ["Chương trình đối thoại", "học sinh – nhà trường"],
+        src: "/media/slides/Sinh hoạt câu lạc bộ.jpg",
+        alt: "Sinh hoạt câu lạc bộ",
+        caption: ["Sinh hoạt câu lạc bộ"],
         role: "phu",
       },
     ],
@@ -1360,34 +1400,29 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s28_img3.jpg",
-        alt: "Học sinh thi hùng biện tiếng Anh",
-        caption: ["Học sinh thi hùng biện", "tiếng Anh"],
+        src: "/media/slides/Hùng biện tiếng Anh Young Voices.jpg",
+        alt: "Hùng biện tiếng Anh Young Voices",
+        caption: ["Hùng biện tiếng Anh", "Young Voices"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s28_img4.jpg",
-        alt: "Workshop ngôn ngữ của câu lạc bộ",
-        caption: ["Workshop ngôn ngữ", "của câu lạc bộ"],
+        src: "/media/slides/Sinh hoạt CLB Tiếng Anh(1).jpg",
+        alt: "Sinh hoạt CLB Tiếng Anh",
+        caption: ["Sinh hoạt CLB Tiếng Anh"],
         role: "phu",
       },
       {
-        src: "/media/slides/s28_img5.jpg",
-        alt: "Poster dự án The unsaid của CLB Tiếng Anh Nguyễn Trãi",
-        caption: ["Poster dự án \"The unsaid\"", "của CLB Tiếng Anh Nguyễn Trãi"],
-        role: "phu",
-      },
-      {
-        src: "/media/slides/s28_img6.jpg",
-        alt: "Đại biểu mô phỏng hội nghị quốc tế",
-        caption: ["Đại biểu mô phỏng", "hội nghị quốc tế"],
+        src: "/media/slides/Sinh hoạt CLB Tiếng Anh(2).jpg",
+        alt: "Sinh hoạt CLB Tiếng Anh",
+        caption: ["Sinh hoạt CLB Tiếng Anh"],
         role: "phu",
       },
     ],
     footnote: [
       "Phần B.I – Mục 4.",
-      "Hỗ trợ thanh niên trường học",
-      "chủ động hội nhập quốc tế.",
+      "Các hoạt động hỗ trợ thanh niên",
+      "trường học chủ động",
+      "hội nhập quốc tế.",
     ],
   },
   {
@@ -1417,38 +1452,27 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s29_img3.jpg",
-        alt: "Tặng hoa chúc mừng BCH Đoàn trường tại Đại hội đại biểu nhiệm kỳ 2025 – 2026",
-        caption: [
-          "Tặng hoa chúc mừng BCH Đoàn trường",
-          "tại Đại hội đại biểu",
-          "nhiệm kỳ 2025 – 2026",
-        ],
+        src: "/media/slides/Lễ kết nạp đoàn viên mới.jpg",
+        alt: "Lễ kết nạp đoàn viên mới",
+        caption: ["Lễ kết nạp đoàn viên mới"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s29_img4.jpg",
-        alt: "Hội nghị tập huấn nghiệp vụ công tác Đoàn cho cán bộ chi đoàn",
-        caption: [
-          "Hội nghị tập huấn nghiệp vụ",
-          "công tác Đoàn cho cán bộ chi đoàn",
-        ],
+        src: "/media/slides/Hội nghị tập huấn nâng cao năng lực số.jpg",
+        alt: "Hội nghị tập huấn nâng cao năng lực số",
+        caption: ["Hội nghị tập huấn", "nâng cao năng lực số"],
         role: "phu",
       },
       {
-        src: "/media/slides/s29_img5.jpg",
-        alt: "Lễ kết nạp đoàn viên mới",
-        caption: ["Lễ kết nạp đoàn viên mới"],
+        src: "/media/slides/Đoàn viên bỏ phiếu.jpg",
+        alt: "Đoàn viên bỏ phiếu",
+        caption: ["Đoàn viên bỏ phiếu"],
         role: "phu",
       },
       {
-        src: "/media/slides/s29_img6.jpg",
-        alt: "Tập huấn nâng cao nghiệp vụ công tác Đoàn năm học 2025 – 2026",
-        caption: [
-          "Tập huấn nâng cao nghiệp vụ",
-          "công tác Đoàn",
-          "năm học 2025 – 2026",
-        ],
+        src: "/media/slides/Đại hội Đoàn trường THPT chuyên Nguyễn Trãi.jpg",
+        alt: "Đại hội Đoàn trường THPT chuyên Nguyễn Trãi",
+        caption: ["Đại hội Đoàn trường", "THPT chuyên Nguyễn Trãi"],
         role: "phu",
       },
     ],
@@ -1487,21 +1511,21 @@ export const SLIDES = [
     ],
     images: [
       {
-        src: "/media/slides/s30_img3.jpg",
-        alt: "Lễ kết nạp Đảng cho đoàn viên ưu tú",
-        caption: ["Lễ kết nạp Đảng", "cho đoàn viên ưu tú"],
+        src: "/media/slides/Đoàn viên ưu tú tuyên thệ.jpg",
+        alt: "Đoàn viên ưu tú tuyên thệ",
+        caption: ["Đoàn viên ưu tú tuyên thệ"],
         role: "chinh",
       },
       {
-        src: "/media/slides/s30_img4.jpg",
-        alt: "Đoàn viên ưu tú tuyên thệ",
-        caption: ["Đoàn viên ưu tú tuyên thệ"],
+        src: "/media/slides/12 quần chúng ưu tú kết nạp Đảng đợt 1.jpg",
+        alt: "12 quần chúng ưu tú kết nạp Đảng đợt 1",
+        caption: ["12 quần chúng ưu tú", "kết nạp Đảng đợt 1"],
         role: "phu",
       },
       {
-        src: "/media/slides/s30_img5.jpg",
-        alt: "Họp Ban Chấp hành giới thiệu nguồn kết nạp",
-        caption: ["Họp Ban Chấp hành", "giới thiệu nguồn kết nạp"],
+        src: "/media/slides/16 quần chúng ưu tú được kết nạp Đảng.jpg",
+        alt: "16 quần chúng ưu tú được kết nạp Đảng",
+        caption: ["16 quần chúng ưu tú", "được kết nạp Đảng"],
         role: "phu",
       },
     ],
@@ -1596,53 +1620,110 @@ export const SLIDES = [
     number: 33,
     density: "vua",
     part: "C",
-    title: ["CÁC MÔ HÌNH HAY,", "CÁCH LÀM SÁNG TẠO"],
+    title: ["MỘT SỐ MÔ HÌNH HAY,", "CÁCH LÀM SÁNG TẠO"],
     toc: [
-      ["Mô hình 1 – Nền tảng số", "quản lý công tác Đoàn"],
-      ["Mô hình 2 – WebApp", "\"Nền nếp CNT\""],
-      ["Mô hình 3 – Concert", "\"Ký âm Sol hồng\""],
-      ["Mô hình 4 – CNT Mind Challenges", "– Đấu trường trí tuệ"],
+      ["1. Nền tảng số quản lý Đoàn"],
+      ["2. Nền tảng tư vấn hướng nghiệp"],
+      ["3. WebApp \"Nền nếp CNT\""],
+      ["4. Concert \"Ký âm Sol hồng\""],
+      ["5. CNT Mind Challenges"],
+      ["6. \"Những cánh thư vượt sóng\""],
+      ["7. \"Eco Vision – Ước mơ xanh\""],
+      ["8. Chuỗi \"Sao Tháng Tám\""],
+    ],
+    lead: [
+      "Năm học 2025 – 2026,",
+      "Đoàn trường xây dựng nhiều mô hình",
+      "mới theo hướng chuyển đổi số,",
+      "phát huy thế mạnh học sinh chuyên,",
+      "tăng tính trải nghiệm và gắn",
+      "với nhu cầu thực tiễn.",
+    ],
+    points: [
+      ["08 mô hình tiêu biểu", "trên nhiều lĩnh vực."],
+      [
+        "Kết hợp công nghệ, học thuật,",
+        "nghệ thuật, môi trường,",
+        "hướng nghiệp và",
+        "giáo dục truyền thống.",
+      ],
+      [
+        "ĐVTN trực tiếp tham gia",
+        "từ khâu lên ý tưởng, thiết kế,",
+        "tổ chức đến vận hành sản phẩm.",
+      ],
+      [
+        "Nhiều mô hình tạo ra",
+        "sản phẩm cụ thể, có khả năng",
+        "duy trì và nhân rộng.",
+      ],
     ],
     background: {
-      src: "/media/slides/s33_img5.jpg",
-      alt: "Trao tặng công trình thanh niên Tủ sách cho em",
-      caption: ["Trao tặng công trình thanh niên", "\"Tủ sách cho em\""],
+      src: "/media/slides/Đội hình 12 khối chuyên.jpg",
+      alt: "Đội hình 12 khối chuyên tại Đấu trường trí tuệ",
+      caption: ["Đội hình 12 khối chuyên", "tại Đấu trường trí tuệ"],
       role: "nen",
     },
-    footnote: ["Phần C.7 – Các mô hình hay,", "cách làm sáng tạo."],
-    note: ["Vào phần C:", "bốn mô hình tiêu biểu", "có khả năng nhân rộng."],
+    footnote: [
+      "Phần B.I – Mục 7.",
+      "Một số mô hình hay,",
+      "cách làm sáng tạo.",
+    ],
+    note: [
+      "Năm học 2025 – 2026,",
+      "Đoàn trường xây dựng 08 mô hình mới",
+      "theo hướng chuyển đổi số,",
+      "phát huy thế mạnh học sinh chuyên",
+      "và gắn với nhu cầu thực tiễn.",
+    ],
   },
   {
     kind: "model",
     number: 34,
     density: "day",
-    title: ["Mô hình 1 – Nền tảng số", "quản lý công tác Đoàn"],
+    title: ["Mô hình 1 – Nền tảng số", "quản lý công tác Đoàn", "khối THPT"],
     url: "https://doantruong.chuyennguyentrai.edu.vn",
     lead: [
       "Nền tảng tích hợp",
-      "06 nhóm chức năng,",
-      "hỗ trợ quản lý tập trung",
-      "và giảm đáng kể khối lượng",
-      "tổng hợp thủ công.",
+      "06 nhóm nội dung",
+      "trên một hệ thống,",
+      "chuyển nhiều công việc Đoàn",
+      "sang môi trường số,",
+      "có sự tham gia của 100%",
+      "cán bộ Đoàn trường.",
     ],
-    functions: [
-      ["Quản lý nền nếp."],
-      ["Khen thưởng."],
-      ["Quản lý đoàn viên."],
-      ["Ngoại khóa – sự kiện."],
-      ["Hoạt động câu lạc bộ."],
-      ["Cập nhật cuộc thi,", "chương trình đang triển khai."],
+    groups: [
+      {
+        label: ["ĐIỂM MỚI, SÁNG TẠO"],
+        items: [
+          [
+            "Tích hợp trên cùng",
+            "một nền tảng: nền nếp,",
+            "khen thưởng, đoàn viên,",
+            "ngoại khóa – sự kiện,",
+            "CLB và các cuộc thi.",
+          ],
+          ["Thay thế quản lý dữ liệu", "phân tán bằng hệ thống", "tập trung."],
+          ["Dữ liệu được cập nhật,", "tổng hợp và theo dõi", "thuận tiện."],
+          ["Gắn quản lý đoàn viên", "với hoạt động thực tế", "của học sinh."],
+          [
+            "Được xây dựng từ nhu cầu",
+            "điều hành công tác Đoàn",
+            "tại trường THPT.",
+          ],
+        ],
+      },
+      {
+        label: ["HIỆU QUẢ"],
+        items: [
+          ["Giảm khối lượng tổng hợp thủ công."],
+          ["Tăng tính chính xác, minh bạch."],
+          ["Hỗ trợ BCH theo dõi và điều hành", "hoạt động khoa học hơn."],
+          ["Có khả năng tiếp tục hoàn thiện,", "phát triển và nhân rộng."],
+        ],
+      },
     ],
-    effects: [
-      ["Dữ liệu được cập nhật tập trung."],
-      ["Tăng tính chính xác, minh bạch."],
-      ["Hỗ trợ BCH theo dõi", "và điều hành theo thời gian thực."],
-      [
-        "Có khả năng phát triển",
-        "thành công cụ dùng chung",
-        "cho khối THPT.",
-      ],
-    ],
+    // Ảnh giao diện lấy lại từ bộ cũ (`s34_*`); nhà trường chụp lại màn hình mới sau.
     images: [
       {
         src: "/media/slides/s34_img3.jpg",
@@ -1668,12 +1749,12 @@ export const SLIDES = [
     ],
     videoSrc: "/media/platform-demo.mp4",
     note: [
-      "Giới thiệu 06 nhóm chức năng;",
+      "Giới thiệu 06 nhóm nội dung;",
       "phát clip ngắn để minh họa",
       "giao diện và cách vận hành.",
     ],
     footnote: [
-      "Phần C.7 – Mô hình 1:",
+      "Phần B.I – Mục 7. Mô hình 1:",
       "Nền tảng số quản lý",
       "công tác Đoàn khối THPT.",
     ],
@@ -1682,30 +1763,110 @@ export const SLIDES = [
     kind: "model",
     number: 35,
     density: "day",
-    title: ["Mô hình 2 – WebApp", "\"Nền nếp CNT\""],
+    title: ["Mô hình 2 – Nền tảng số", "tư vấn hướng nghiệp", "cho đoàn viên, thanh niên"],
+    url: "https://tuvanhuongnghiep-cnt.netlify.app/",
+    lead: [
+      "Mô hình kết hợp",
+      "03 bộ trắc nghiệm hướng nghiệp",
+      "với công cụ phân tích AI,",
+      "chuyển tư vấn hướng nghiệp",
+      "từ thông tin đại trà",
+      "sang định hướng cá nhân hóa.",
+    ],
+    groups: [
+      {
+        label: ["ĐIỂM MỚI, SÁNG TẠO"],
+        items: [
+          ["Tích hợp Holland RIASEC,", "MBTI và DISC", "trên cùng một nền tảng."],
+          [
+            "Kết hợp kết quả",
+            "trắc nghiệm với công cụ",
+            "phân tích ứng dụng",
+            "trí tuệ nhân tạo.",
+          ],
+          [
+            "Gợi ý định hướng dựa trên",
+            "năng lực, sở thích",
+            "và đặc điểm cá nhân",
+            "của học sinh.",
+          ],
+          ["Học sinh chủ động", "trải nghiệm, tìm hiểu", "bản thân mọi lúc, mọi nơi."],
+          [
+            "Đưa chuyển đổi số và AI",
+            "vào hoạt động đồng hành,",
+            "hướng nghiệp của",
+            "Đoàn trường.",
+          ],
+        ],
+      },
+      {
+        label: ["HIỆU QUẢ"],
+        items: [
+          ["Giúp học sinh hình thành", "tư duy định hướng nghề nghiệp", "từ sớm."],
+          ["Tăng khả năng tiếp cận", "thông tin hướng nghiệp."],
+          ["Hỗ trợ học sinh lựa chọn", "ngành học phù hợp hơn", "với bản thân."],
+          [
+            "Có khả năng tiếp tục cập nhật",
+            "dữ liệu ngành nghề",
+            "và thị trường lao động.",
+          ],
+        ],
+      },
+    ],
+    // Cố ý KHÔNG có ảnh: đến trang này người thuyết trình mở thẳng website thật để demo,
+    // ảnh chụp màn hình đặt cạnh sẽ thừa và làm loãng phần trình diễn trực tiếp.
+    images: [],
+    footnote: [
+      "Phần B.I – Mục 7. Mô hình 2:",
+      "Nền tảng số tư vấn hướng nghiệp",
+      "cho đoàn viên, thanh niên.",
+    ],
+  },
+  {
+    kind: "model",
+    number: 36,
+    density: "day",
+    title: ["Mô hình 3 – WebApp", "\"Nền nếp CNT\""],
     url: "https://nennepcnt.netlify.app/",
     lead: [
-      "WebApp số hóa toàn bộ quy trình",
-      "ghi nhận, thống kê",
-      "và xếp hạng nền nếp",
-      "theo tuần, tháng, học kỳ.",
+      "WebApp số hóa quy trình",
+      "theo dõi nền nếp,",
+      "tự động thống kê,",
+      "trực quan hóa và xếp hạng thi đua",
+      "theo tuần, tháng và học kỳ.",
     ],
-    functions: [
-      ["Theo dõi vi phạm và thành tích", "theo lớp, học sinh, thời gian."],
-      ["Tự động thống kê, phân tích", "và trực quan hóa dữ liệu."],
-      ["Bảng xếp hạng được cập nhật", "công khai, minh bạch."],
-      [
-        "Phân quyền cho lãnh đạo,",
-        "giáo viên, BCH Đoàn trường",
-        "và cờ đỏ.",
-      ],
-      ["Sử dụng thuận tiện", "trên nhiều thiết bị."],
+    groups: [
+      {
+        label: ["ĐIỂM MỚI, SÁNG TẠO"],
+        items: [
+          ["Ghi nhận đồng thời", "vi phạm và thành tích", "của từng lớp."],
+          [
+            "Tra cứu dữ liệu theo",
+            "học sinh, lớp, thời gian",
+            "và nhóm tiêu chí.",
+          ],
+          ["Tự động phân tích", "và trực quan hóa số liệu."],
+          ["Bảng xếp hạng được", "cập nhật thường xuyên,", "công khai."],
+          [
+            "Phân quyền cho lãnh đạo",
+            "nhà trường, giáo viên,",
+            "BCH Đoàn trường",
+            "và đội ngũ cờ đỏ.",
+          ],
+          ["Vận hành thuận tiện", "trên nhiều thiết bị."],
+        ],
+      },
+      {
+        label: ["HIỆU QUẢ"],
+        items: [
+          ["Giảm sai sót", "và thời gian tổng hợp."],
+          ["Tăng tính công khai, minh bạch", "trong thi đua."],
+          ["Hỗ trợ GVCN và BCH Đoàn trường", "phát hiện vấn đề kịp thời."],
+          ["Biến dữ liệu nền nếp", "thành công cụ", "hỗ trợ giáo dục học sinh."],
+        ],
+      },
     ],
-    effects: [
-      ["Giảm sai sót", "và thời gian tổng hợp."],
-      ["Hỗ trợ GVCN theo dõi lớp."],
-      ["Kịp thời biểu dương", "hoặc nhắc nhở các tập thể."],
-    ],
+    // Ảnh giao diện lấy lại từ bộ cũ (`s35_*`); nhà trường chụp lại màn hình mới sau.
     images: [
       {
         src: "/media/slides/s35_img3.png",
@@ -1732,134 +1893,568 @@ export const SLIDES = [
         role: "phu",
       },
     ],
-    footnote: ["Phần C.7 – Mô hình 2:", "WebApp \"Nền nếp CNT\"."],
-  },
-  {
-    kind: "model",
-    number: 36,
-    density: "day",
-    title: ["Mô hình 3 – Concert", "\"Ký âm Sol hồng\""],
-    lead: [
-      "Mô hình nghệ thuật gây quỹ",
-      "huy động hơn 100 ĐVTN,",
-      "gần 1.000 khán giả",
-      "và trao tặng 60.700.000 đồng",
-      "cho cộng đồng.",
-    ],
-    functions: [
-      ["Gần 30 tiết mục."],
-      ["Tổ chức tại", "Trung tâm Hội nghị Âu Cơ."],
-      [
-        "Huy động học sinh tham gia",
-        "biểu diễn, hậu cần,",
-        "truyền thông",
-        "và vận động nguồn lực.",
-      ],
-      ["Toàn bộ nguồn thu", "được sử dụng", "cho hoạt động an sinh."],
-    ],
-    effects: [
-      ["Kết hợp văn hóa, nghệ thuật", "với trách nhiệm xã hội."],
-      ["Phát huy năng khiếu", "và năng lực tổ chức sự kiện."],
-      ["Tạo sức lan tỏa rộng", "trong cộng đồng."],
-      ["Có thể tiếp tục phát triển", "thành chương trình thường niên."],
-    ],
-    images: [
-      {
-        src: "/media/slides/s36_img3.jpg",
-        alt: "Toàn cảnh sân khấu concert Ký âm Sol hồng",
-        caption: ["Toàn cảnh sân khấu concert", "\"Ký âm Sol hồng\""],
-        role: "chinh",
-      },
-      {
-        src: "/media/slides/s36_img4.jpg",
-        alt: "Khán giả tại concert",
-        caption: ["Khán giả tại concert"],
-        role: "phu",
-      },
-      {
-        src: "/media/slides/s36_img5.jpg",
-        alt: "Trao biển hỗ trợ trên sân khấu",
-        caption: ["Trao biển hỗ trợ", "trên sân khấu"],
-        role: "phu",
-      },
-      {
-        src: "/media/slides/s36_img6.jpg",
-        alt: "Tiết mục biểu diễn trên sân khấu concert",
-        caption: ["Tiết mục biểu diễn", "trên sân khấu concert"],
-        role: "phu",
-      },
-    ],
     footnote: [
-      "Phần C.7 – Mô hình 3:",
-      "Chương trình nghệ thuật",
-      "Concert \"Ký âm Sol hồng\".",
+      "Phần B.I – Mục 7. Mô hình 3:",
+      "WebApp \"Nền nếp CNT\".",
     ],
   },
   {
     kind: "model",
     number: 37,
     density: "day",
-    title: ["Mô hình 4 – CNT Mind Challenges", "– Đấu trường trí tuệ"],
+    title: ["Mô hình 4 – Concert", "\"Ký âm Sol hồng\""],
     lead: [
-      "Sân chơi trí tuệ quy tụ",
-      "12 đội đại diện",
-      "12 khối chuyên,",
-      "kết hợp kiến thức liên môn,",
-      "phản xạ, chiến thuật",
-      "và tinh thần đồng đội.",
+      "Chương trình nghệ thuật quy mô lớn",
+      "với hơn 100 ĐVTN,",
+      "gần 30 tiết mục",
+      "và gần 1.000 khán giả,",
+      "đưa năng khiếu nghệ thuật",
+      "thành nguồn lực phục vụ cộng đồng.",
     ],
-    functions: [
-      ["Thi đấu theo mô hình", "\"đường đua trí tuệ\"."],
-      ["Các vòng thi", "có tính loại trực tiếp,", "tạo kịch tính."],
-      ["Câu hỏi thuộc nhiều lĩnh vực", "học thuật và đời sống."],
-      ["Giáo viên tham gia", "vòng cứu trợ."],
-      [
-        "Mỗi đội thể hiện màu sắc,",
-        "cờ và bản sắc riêng",
-        "của khối chuyên.",
-      ],
+    groups: [
+      {
+        label: ["ĐIỂM MỚI, SÁNG TẠO"],
+        items: [
+          [
+            "Không tổ chức",
+            "văn nghệ đơn thuần",
+            "mà xây dựng theo mô hình",
+            "Concert gây quỹ xã hội.",
+          ],
+          [
+            "Học sinh tham gia",
+            "nhiều khâu: biểu diễn,",
+            "nội dung, sân khấu,",
+            "hậu cần, truyền thông",
+            "và vận động nguồn lực.",
+          ],
+          [
+            "Kết hợp kỷ niệm 10 năm",
+            "CLB Âm nhạc DIVA",
+            "với hoạt động vì nạn nhân",
+            "chất độc da cam.",
+          ],
+          [
+            "Tổ chức tại Trung tâm",
+            "Hội nghị Âu Cơ,",
+            "mở rộng hoạt động Đoàn",
+            "ra ngoài không gian",
+            "trường học.",
+          ],
+          ["Biến tài năng nghệ thuật", "của học sinh thành", "giá trị xã hội cụ thể."],
+        ],
+      },
+      {
+        label: ["QUY MÔ"],
+        items: [
+          ["Hơn 100 ĐVTN tham gia."],
+          ["Gần 30 tiết mục."],
+          ["Gần 1.000 lượt khán giả."],
+        ],
+      },
     ],
-    effects: [
-      ["Tăng khả năng phối hợp", "và phân công nhiệm vụ."],
-      ["Phát triển tư duy phản biện", "và phản xạ nhanh."],
-      ["Tạo không khí", "thi đua học tập sôi nổi."],
-      ["Khẳng định đặc trưng học thuật", "của học sinh trường chuyên."],
-    ],
+    // Bốn ảnh của thư mục "Trang 37". Ba ảnh trao quà nằm ở slide 38 và KHÔNG dùng lại ở
+    // đây: hai trang cùng nói về Mô hình 4 nên không được trùng tấm nào.
     images: [
       {
-        src: "/media/slides/s37_img3.jpg",
-        alt: "Toàn cảnh 12 đội thi đại diện 12 khối chuyên",
-        caption: ["Toàn cảnh 12 đội thi", "đại diện 12 khối chuyên"],
+        src: "/media/slides/Quang cảnh đêm diễn Ký âm Sol hồng.jpg",
+        alt: "Quang cảnh đêm diễn Concert Ký âm Sol hồng",
+        caption: ["Quang cảnh đêm diễn", "Concert \"Ký âm Sol hồng\""],
         role: "chinh",
       },
       {
-        src: "/media/slides/s37_img4.jpg",
-        alt: "Đường đua trí tuệ trên sân khấu",
-        caption: ["Đường đua trí tuệ", "trên sân khấu"],
+        src: "/media/slides/Ký âm Sol hồng.jpg",
+        alt: "Poster Concert Ký âm Sol hồng",
+        caption: ["Poster Concert", "\"Ký âm Sol hồng\""],
         role: "phu",
       },
       {
-        src: "/media/slides/s37_img5.jpg",
-        alt: "Cờ của các khối chuyên",
-        caption: ["Cờ của các khối chuyên"],
+        src: "/media/slides/Biểu diễn Ký âm Sol hồng.jpg",
+        alt: "Tiết mục biểu diễn tại Concert Ký âm Sol hồng",
+        caption: ["Tiết mục biểu diễn", "tại \"Ký âm Sol hồng\""],
         role: "phu",
       },
       {
-        src: "/media/slides/s37_img6.jpg",
-        alt: "Vòng cứu trợ có giáo viên tham gia",
-        caption: ["Vòng cứu trợ", "có giáo viên tham gia"],
+        src: "/media/slides/Văn nghệ tập thể Ký âm Sol hồng.jpg",
+        alt: "Tiết mục văn nghệ tập thể tại Concert Ký âm Sol hồng",
+        caption: ["Văn nghệ tập thể", "tại \"Ký âm Sol hồng\""],
         role: "phu",
       },
     ],
     footnote: [
-      "Phần C.7 – Mô hình 4:",
+      "Phần B.I – Mục 7. Mô hình 4:",
+      "Chương trình nghệ thuật",
+      "Concert \"Ký âm Sol hồng\".",
+    ],
+  },
+  {
+    kind: "model",
+    number: 38,
+    // Mật độ "day" chứ không phải "vua" như số gạch đầu dòng gợi ý: tiêu đề bốn cụm cộng
+    // đoạn dẫn năm dòng đẩy hai danh sách xuống quá chú thích chân trang khi để "vua".
+    density: "day",
+    title: [
+      "Mô hình 4 – Concert",
+      "\"Ký âm Sol hồng\":",
+      "nghệ thuật gắn với",
+      "trách nhiệm cộng đồng",
+    ],
+    lead: [
+      "100% nguồn thu từ bán vé",
+      "và vận động ủng hộ",
+      "được dùng cho hoạt động an sinh,",
+      "với tổng kinh phí quyên góp",
+      "và trao tặng 60.700.000 đồng.",
+    ],
+    groups: [
+      {
+        label: ["GIÁ TRỊ VÀ SỨC LAN TỎA"],
+        items: [
+          ["Kết nối nghệ thuật", "với giáo dục lòng nhân ái", "và trách nhiệm xã hội."],
+          [
+            "Tạo môi trường thực tế",
+            "để học sinh rèn kỹ năng",
+            "tổ chức sự kiện",
+            "quy mô lớn.",
+          ],
+          [
+            "Phát huy năng lực",
+            "biểu diễn, truyền thông,",
+            "làm việc nhóm",
+            "và vận động cộng đồng.",
+          ],
+          ["Thu hút sự đồng hành", "của khán giả", "và các lực lượng xã hội."],
+          [
+            "Tạo mô hình văn hóa",
+            "– nghệ thuật có khả năng",
+            "tiếp tục duy trì",
+            "theo hướng thường niên.",
+          ],
+        ],
+      },
+      {
+        label: ["CON SỐ NỔI BẬT"],
+        items: [
+          ["60.700.000 ĐỒNG."],
+          ["100% NGUỒN THU DÀNH CHO", "AN SINH XÃ HỘI."],
+        ],
+      },
+    ],
+    // Ba ảnh của thư mục "Trang 38", không trùng tấm nào với slide 37. Chú thích dùng chung
+    // theo yêu cầu của nhà trường vì ba tên file chỉ khác nhau ở con số cuối.
+    images: [
+      {
+        src: "/media/slides/Trao biển hỗ trợ Ký âm Sol hồng 1.jpg",
+        alt: "Trao biển hỗ trợ tại Concert Ký âm Sol hồng",
+        caption: ["Trao biển hỗ trợ tại Concert", "\"Ký âm Sol hồng\""],
+        role: "chinh",
+      },
+      {
+        src: "/media/slides/Trao biển hỗ trợ Ký âm Sol hồng 2.jpg",
+        alt: "Thăm hỏi, trao hỗ trợ an sinh tận gia đình từ nguồn quỹ chương trình",
+        caption: ["Hoạt động an sinh", "từ nguồn quỹ chương trình"],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Trao biển hỗ trợ Ký âm Sol hồng 3.jpg",
+        alt: "Thăm hỏi, trao hỗ trợ an sinh tận gia đình từ nguồn quỹ chương trình",
+        caption: ["Hoạt động an sinh", "từ nguồn quỹ chương trình"],
+        role: "phu",
+      },
+    ],
+    footnote: [
+      "Phần B.I – Mục 7. Mô hình 4:",
+      "Chương trình nghệ thuật",
+      "Concert \"Ký âm Sol hồng\".",
+    ],
+  },
+  {
+    kind: "model",
+    number: 39,
+    density: "vua",
+    title: ["Mô hình 5 – CNT Mind", "Challenges – Đấu trường trí tuệ"],
+    lead: [
+      "Sân chơi quy tụ 12 đội",
+      "đại diện 12 khối chuyên,",
+      "biến kiến thức liên môn",
+      "thành một \"đường đua trí tuệ\"",
+      "kết hợp phản xạ, chiến thuật,",
+      "bản lĩnh và tinh thần đồng đội.",
+    ],
+    // Tài liệu chỉ nêu một nhóm ý cho trang này; không có nhóm thứ hai.
+    groups: [
+      {
+        label: ["ĐIỂM MỚI, SÁNG TẠO"],
+        items: [
+          [
+            "Xây dựng mô hình thi đấu",
+            "theo \"đường đua\"",
+            "thay cho hỏi – đáp",
+            "kiến thức thông thường.",
+          ],
+          ["Gồm 03 vòng: Xuất phát", "– Tăng tốc – Về đích."],
+          ["Kiến thức trải rộng", "nhiều lĩnh vực học thuật", "và đời sống."],
+          ["Kết hợp tư duy cá nhân", "với phối hợp chiến thuật", "của cả đội."],
+          ["Có yếu tố loại trực tiếp,", "tạo kịch tính và hấp dẫn."],
+          [
+            "Giáo viên tham gia",
+            "vòng cứu trợ,",
+            "tăng tương tác giữa",
+            "thầy cô và học sinh.",
+          ],
+          ["12 đội sử dụng màu sắc,", "cờ và bản sắc riêng", "của từng khối chuyên."],
+        ],
+      },
+    ],
+    // Hai trong ba ảnh của thư mục "Trang 39+40"; tấm còn lại thuộc về slide 40 cùng video,
+    // hai trang cùng nói về Mô hình 5 nên không được trùng tấm nào.
+    images: [
+      {
+        src: "/media/slides/Toàn cảnh cuộc thi Đấu trường trí tuệ.jpg",
+        alt: "Toàn cảnh cuộc thi Đấu trường trí tuệ",
+        caption: ["Toàn cảnh cuộc thi", "Đấu trường trí tuệ"],
+        role: "chinh",
+      },
+      {
+        src: "/media/slides/Đường đua Trí tuệ.jpg",
+        alt: "12 đội mang cờ khối chuyên trên đường đua trí tuệ",
+        caption: ["12 đội trên đường đua trí tuệ"],
+        role: "phu",
+      },
+    ],
+    footnote: [
+      "Phần B.I – Mục 7. Mô hình 5:",
       "Cuộc thi Đấu trường trí tuệ",
       "– CNT Mind Challenges.",
     ],
   },
   {
+    kind: "model",
+    number: 40,
+    density: "vua",
+    title: [
+      "Mô hình 5 – CNT Mind",
+      "Challenges: khẳng định",
+      "bản sắc học thuật",
+      "của trường chuyên",
+    ],
+    lead: [
+      "Cuộc thi chuyển thế mạnh học thuật",
+      "của học sinh trường chuyên",
+      "thành một sân chơi tập thể,",
+      "nơi kiến thức gắn với tư duy",
+      "phản biện, tốc độ, chiến thuật",
+      "và bản lĩnh sân khấu.",
+    ],
+    groups: [
+      {
+        label: ["GIÁ TRỊ MÔ HÌNH"],
+        items: [
+          ["Phát triển tư duy liên môn", "và khả năng phản xạ nhanh."],
+          ["Rèn kỹ năng phân công,", "phối hợp và ra quyết định."],
+          [
+            "Tạo cơ hội để mỗi",
+            "khối chuyên thể hiện",
+            "thế mạnh, bản sắc",
+            "và \"màu cờ sắc áo\".",
+          ],
+          ["Làm mới hình thức thi", "kiến thức truyền thống."],
+          ["Tăng tính tương tác", "và sức hấp dẫn đối với", "học sinh toàn trường."],
+          [
+            "Góp phần xây dựng",
+            "môi trường thi đua",
+            "học tập sôi nổi, đặc trưng",
+            "của Chuyên Nguyễn Trãi.",
+          ],
+        ],
+      },
+    ],
+    // Tài liệu đặt video CNT Mind Challenges ở trang này. Ảnh dẫn dắt chỉ đóng vai poster
+    // của video; đây là tấm thứ ba của thư mục "Trang 39+40", slide 39 không dùng tấm này.
+    images: [
+      {
+        src: "/media/slides/Phần thi Đấu trường trí tuệ.jpg",
+        alt: "Học sinh giơ đáp án trong phần thi Đấu trường trí tuệ",
+        caption: ["Phần thi tại Đấu trường trí tuệ"],
+        role: "chinh",
+      },
+    ],
+    videoSrc: "/media/mind-challenges.mp4",
+    footnote: [
+      "Phần B.I – Mục 7. Mô hình 5:",
+      "Cuộc thi Đấu trường trí tuệ",
+      "– CNT Mind Challenges.",
+    ],
+  },
+  {
+    kind: "model",
+    number: 41,
+    density: "day",
+    title: [
+      "Mô hình 6 – Công trình thanh niên",
+      "\"Những cánh thư vượt sóng\"",
+    ],
+    lead: [
+      "Gần 400 thư, thiệp gửi tới",
+      "04 đảo và 02 Nhà giàn DK1,",
+      "biến nội dung giáo dục",
+      "chủ quyền biển đảo",
+      "thành hoạt động sáng tạo",
+      "mà mỗi học sinh trực tiếp",
+      "làm ra sản phẩm của mình.",
+    ],
+    groups: [
+      {
+        label: ["ĐIỂM MỚI, SÁNG TẠO"],
+        items: [
+          ["Không dừng ở tuyên truyền,", "nghe nói chuyện", "về biển đảo."],
+          [
+            "ĐVTN trực tiếp sáng tác",
+            "nội dung, viết thư,",
+            "thiết kế và hoàn thiện",
+            "thiệp.",
+          ],
+          [
+            "Kết hợp giáo dục",
+            "quốc phòng – an ninh",
+            "với mỹ thuật",
+            "và sáng tạo cá nhân.",
+          ],
+          ["Mỗi sản phẩm mang dấu ấn,", "tình cảm riêng", "của học sinh."],
+          ["Huy động sự tham gia", "của nhiều chi đoàn", "và lực lượng CLB."],
+          ["Có thiệp lớn gửi", "đảo Phan Vinh A", "đạt giải đặc biệt."],
+        ],
+      },
+      {
+        label: ["KẾT QUẢ"],
+        items: [
+          ["Gần 400 thư, thiệp."],
+          ["04 đảo."],
+          ["02 Nhà giàn DK1."],
+          ["Cùng nhiều phần quà ý nghĩa."],
+        ],
+      },
+    ],
+    images: [
+      {
+        src: "/media/slides/Những cánh thư vượt sóng 1.jpg",
+        alt: "Đoàn viên, thanh niên với thư và thiệp gửi biển đảo",
+        caption: ["ĐVTN với thư, thiệp", "gửi biển đảo"],
+        role: "chinh",
+      },
+      {
+        src: "/media/slides/Những cánh thư vượt sóng 2.jpg",
+        alt: "Đoàn viên, thanh niên vẽ thiệp gửi chiến sĩ hải quân",
+        caption: ["ĐVTN vẽ thiệp gửi", "chiến sĩ hải quân"],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Những cánh thư vượt sóng 5.jpg",
+        alt: "Cán bộ, chiến sĩ hải quân mang quà Tết ra đảo",
+        caption: ["Quà Tết đến với", "cán bộ, chiến sĩ hải quân"],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Những cánh thư vượt sóng 7.jpg",
+        alt: "Trao thiệp của học sinh tới Nhà giàn DK1",
+        caption: ["Trao thiệp tới Nhà giàn DK1"],
+        role: "phu",
+      },
+    ],
+    footnote: [
+      "Phần B.I – Mục 7. Mô hình 6:",
+      "Công trình thanh niên",
+      "\"Những cánh thư vượt sóng\".",
+    ],
+  },
+  {
+    kind: "model",
+    number: 42,
+    density: "day",
+    title: ["Mô hình 7 – Chiến dịch", "\"Eco Vision – Ước mơ xanh\""],
+    lead: [
+      "Mô hình sáng tạo theo chuỗi",
+      "tái sử dụng tài nguyên",
+      "– gây quỹ, huy động sách",
+      "– tạo công trình an sinh,",
+      "biến hoạt động bảo vệ môi trường",
+      "thành giá trị trực tiếp",
+      "cho thiếu nhi.",
+    ],
+    groups: [
+      {
+        label: ["ĐIỂM MỚI, SÁNG TẠO"],
+        items: [
+          [
+            "Kết hợp bảo vệ môi trường",
+            "với an sinh xã hội",
+            "trong cùng một chiến dịch.",
+          ],
+          [
+            "Tổ chức \"Góp giấy",
+            "– Gieo mầm xanh\",",
+            "thu gom và tái sử dụng",
+            "tài nguyên.",
+          ],
+          ["Quyên góp sách, truyện", "cho bệnh nhi", "có hoàn cảnh khó khăn."],
+          ["Không dừng ở tuyên truyền", "mà tạo ra công trình", "thanh niên hữu hình."],
+          [
+            "Học sinh trực tiếp",
+            "tham gia thu gom,",
+            "lựa chọn, chuẩn bị",
+            "và trao tặng sách.",
+          ],
+          ["Lan tỏa đồng thời", "lối sống xanh", "và văn hóa đọc."],
+        ],
+      },
+      {
+        label: ["KẾT QUẢ NỔI BẬT"],
+        items: [
+          ["03 tủ sách."],
+          ["Hơn 1.100 cuốn sách."],
+          ["Tổng trị giá công trình", "gần 30 triệu đồng."],
+        ],
+      },
+    ],
+    // Bốn ảnh của thư mục "Trang 42" chỉ khác nhau ở hậu tố (1)(2)(3)(4) nên nhà trường
+    // chốt dùng chung một chú thích.
+    images: [
+      {
+        src: "/media/slides/Chiến dịch Eco Vision – Ước mơ xanh (1).jpg",
+        alt: "Chiến dịch Eco Vision – Ước mơ xanh",
+        caption: ["Chiến dịch", "\"Eco Vision – Ước mơ xanh\""],
+        role: "chinh",
+      },
+      {
+        src: "/media/slides/Chiến dịch Eco Vision – Ước mơ xanh (2).jpg",
+        alt: "Chiến dịch Eco Vision – Ước mơ xanh",
+        caption: ["Chiến dịch", "\"Eco Vision – Ước mơ xanh\""],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Chiến dịch Eco Vision – Ước mơ xanh (3).jpg",
+        alt: "Chiến dịch Eco Vision – Ước mơ xanh",
+        caption: ["Chiến dịch", "\"Eco Vision – Ước mơ xanh\""],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Chiến dịch Eco Vision – Ước mơ xanh (4).jpg",
+        alt: "Chiến dịch Eco Vision – Ước mơ xanh",
+        caption: ["Chiến dịch", "\"Eco Vision – Ước mơ xanh\""],
+        role: "phu",
+      },
+    ],
+    footnote: [
+      "Phần B.I – Mục 7. Mô hình 7:",
+      "Chiến dịch",
+      "\"Eco Vision – Ước mơ xanh\".",
+    ],
+  },
+  {
+    kind: "model",
+    number: 43,
+    density: "day",
+    title: ["Mô hình 8 – Chuỗi hoạt động", "\"Sao Tháng Tám\""],
+    lead: [
+      "Một sự kiện lịch sử",
+      "được chuyển thành chuỗi trải nghiệm",
+      "đa phương tiện: hội họa,",
+      "kiến thức, âm nhạc, vận động,",
+      "điện ảnh, triển lãm, truyền thông,",
+      "làm mới cách giáo dục lịch sử.",
+    ],
+    groups: [
+      {
+        label: ["ĐIỂM MỚI, SÁNG TẠO"],
+        items: [
+          [
+            "Không tổ chức",
+            "một ngoại khóa đơn lẻ",
+            "mà xây dựng thành",
+            "chuỗi hoạt động liên hoàn.",
+          ],
+          [
+            "Cuộc thi vẽ tranh",
+            "với 03 chủ đề \"Độc lập\"",
+            "– \"Tự do\" – \"Hạnh phúc\",",
+            "hơn 35 tác phẩm.",
+          ],
+          [
+            "Cuộc thi",
+            "\"Dưới Ánh Sao Vàng\"",
+            "kết hợp kiến thức lịch sử,",
+            "âm nhạc cách mạng,",
+            "đuổi hình bắt chữ",
+            "và vận động đồng đội.",
+          ],
+          [
+            "Trang trí, khánh tiết",
+            "và triển lãm tạo",
+            "không gian lịch sử",
+            "trong toàn trường.",
+          ],
+          ["Chuỗi truyền thông", "giúp mở rộng", "phạm vi tiếp cận."],
+          [
+            "Phim ngắn",
+            "\"Mùa gió ngược\" dùng",
+            "ngôn ngữ điện ảnh",
+            "truyền tải giá trị",
+            "hòa bình tới người trẻ.",
+          ],
+        ],
+      },
+      {
+        label: ["GIÁ TRỊ MÔ HÌNH"],
+        items: [
+          [
+            "Học sinh không chỉ \"học lịch sử\"",
+            "mà trực tiếp sáng tạo, trải nghiệm",
+            "và kể lại lịch sử",
+            "bằng ngôn ngữ của thế hệ mình.",
+          ],
+          [
+            "Bồi đắp lòng yêu nước,",
+            "niềm tự hào dân tộc",
+            "và trách nhiệm của tuổi trẻ.",
+          ],
+        ],
+      },
+    ],
+    images: [
+      {
+        src: "/media/slides/Sao Tháng Tám 1.jpg",
+        alt: "Triển lãm tranh Độc lập – Tự do – Hạnh phúc",
+        caption: ["Triển lãm tranh", "\"Độc lập – Tự do – Hạnh phúc\""],
+        role: "chinh",
+      },
+      {
+        src: "/media/slides/Sao Tháng Tám 2.jpg",
+        alt: "Tiết mục tại chương trình Dưới Ánh Sao Vàng",
+        caption: ["Tiết mục tại", "\"Dưới Ánh Sao Vàng\""],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Sao Tháng Tám 4.jpg",
+        alt: "Trao giải cuộc thi vẽ tranh Sao Tháng Tám",
+        caption: ["Trao giải cuộc thi vẽ tranh"],
+        role: "phu",
+      },
+      {
+        src: "/media/slides/Sao Tháng Tám 6.jpg",
+        alt: "Phần thi đuổi hình bắt chữ tại Dưới Ánh Sao Vàng",
+        caption: ["Phần thi đuổi hình bắt chữ"],
+        role: "phu",
+      },
+    ],
+    footnote: [
+      "Phần B.I – Mục 7. Mô hình 8:",
+      "Chuỗi hoạt động",
+      "\"Sao Tháng Tám\".",
+    ],
+  },
+  {
     kind: "outro",
-    number: 38,
+    number: 44,
     density: "vua",
     kicker: ["KẾT LUẬN"],
     title: ["TUỔI TRẺ", "CHUYÊN NGUYỄN TRÃI"],
@@ -1900,19 +2495,18 @@ export const SLIDES = [
         tone: "red",
       },
     ],
+    // Một trong năm ảnh của thư mục "Trang 44": chọn ảnh tập thể ĐVTN vì bốn tấm còn lại
+    // đều là ảnh trao bằng khen, đặt làm nền cho trang kết luận thì đọc thành khoe thành tích.
     background: {
-      src: "/media/slides/s38_img3.jpg",
-      alt: "Tổng kết công tác Đoàn – Hội – Đội và khen thưởng tập thể, cá nhân",
-      caption: [
-        "Tổng kết công tác Đoàn – Hội – Đội",
-        "và khen thưởng tập thể, cá nhân",
-      ],
+      src: "/media/slides/Đội hình tình nguyện biểu thị quyết tâm.jpg",
+      alt: "Đội hình tình nguyện biểu thị quyết tâm",
+      caption: ["Đội hình tình nguyện", "biểu thị quyết tâm"],
       role: "nen",
     },
     note: [
       "Chốt lại thành tích năm học",
-      "và khẳng định phương hướng",
-      "tiếp tục nhân rộng mô hình.",
+      "và khẳng định nhiều mô hình mới",
+      "có hiệu quả, có khả năng nhân rộng.",
     ],
     footnote: [
       "Kết luận Báo cáo công tác Đoàn",

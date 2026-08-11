@@ -10,7 +10,7 @@ import {
   type VideoCommand,
 } from "@/lib/presentation";
 import { SlideRenderProvider } from "@/lib/slide-render-context";
-import { clampIndex, slideAt } from "@/lib/slides";
+import { clampIndex, slideAt, slideHasVideo } from "@/lib/slides";
 import { useImagePreload } from "@/lib/useImagePreload";
 import { usePresentationChannel } from "@/lib/usePresentationChannel";
 
@@ -35,11 +35,11 @@ export function PresentationScreen() {
   const preload = useImagePreload();
 
   const applyState = useCallback((incoming: PresentationState) => {
-    // Chỉ slide mô hình có video mới cần khoá "video bị chặn"; dựa vào slide
-    // SẮP hiện ra (incoming), không phải chỉ số cố định như bản demo 3 slide cũ.
+    // Chỉ slide có video (khuôn mô hình qua `videoSrc`, khuôn nội dung qua một ô `images`)
+    // mới cần khoá "video bị chặn"; dựa vào slide SẮP hiện ra (incoming), không phải chỉ số
+    // cố định như bản demo 3 slide cũ.
     const incomingSlide = slideAt(incoming.slideIndex);
-    const incomingHasVideo = incomingSlide.kind === "model" && Boolean(incomingSlide.videoSrc);
-    if (!incomingHasVideo) {
+    if (!slideHasVideo(incomingSlide)) {
       setVideoBlocked(false);
     }
     setView((current) => {

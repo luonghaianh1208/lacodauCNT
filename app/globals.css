@@ -329,6 +329,16 @@
 .media-grid figure > div { overflow: hidden; aspect-ratio: 3 / 2; border-top: 0.3cqw solid var(--blue); }
 .media-solo > div { overflow: hidden; aspect-ratio: 4 / 3; border-top: 0.3cqw solid var(--red); }
 
+/*
+ * Ô video trong khuôn nội dung (slide 9 "Phiên toà giả định") — khung 16:9 ép bằng inline
+ * style ở ContentSlideView, `overflow: hidden` vẫn kế thừa từ selector của nhánh bố trí
+ * (`.media-lead > div`, `.media-grid figure > div`, v.v.) vì đây vẫn là `figure > div` bình
+ * thường. KHÔNG object-fit: cover trên video — cắt mất hai bên là lỗi đã sửa, xem
+ * `.model-video video` bên dưới; cùng cách xử lý, chỉ khác panel.
+ */
+.media-video { position: relative; }
+.media-video video { display: block; width: 100%; height: 100%; }
+
 /* Khuôn trang phân mục — panel ảnh tràn viền, chữ cái phần cỡ lớn. */
 .divider-stage { color: #fff; background: var(--navy); }
 .divider-bg { position: absolute; inset: 0; }
@@ -352,6 +362,49 @@
   flex-direction: column;
   justify-content: center;
 }
+.divider-main { display: flex; flex-direction: column; }
+/*
+ * Trang phân mục có khối ý chi tiết (slide 33): chia đôi khung theo chiều ngang. Nửa phải
+ * của khuôn này vốn bỏ trống, và các ý xếp nối tiếp dưới mục lục thì tổng chiều cao vượt
+ * quá khoảng trống giữa cụm nhận diện và chú thích chân trang.
+ */
+.divider-wrap[data-points="true"] {
+  flex-direction: row;
+  align-items: center;
+  gap: 3.2cqw;
+}
+.divider-wrap[data-points="true"] .divider-main { flex: 1 1 0; min-width: 0; }
+.divider-wrap[data-points="true"] h1 { max-width: 100%; font-size: 3.9cqw; }
+.divider-wrap[data-points="true"] .divider-part b { font-size: 8.4cqw; }
+.divider-points {
+  flex: 0 0 34cqw;
+  display: grid;
+  margin: 0;
+  padding: 1.8cqw 2cqw;
+  gap: 1.1cqw;
+  border-left: 0.35cqw solid var(--yellow);
+  /* Nền tối riêng cho cột chữ: lớp veil nhạt dần về bên phải (xuống 0.46) nên chữ trắng
+     đặt thẳng lên ảnh ở nửa phải là mất tương phản. */
+  background: rgba(4, 20, 38, 0.62);
+  list-style: none;
+}
+.divider-points li {
+  position: relative;
+  padding-left: 1.5cqw;
+  color: #e2edf8;
+  font-size: 1.5cqw;
+  line-height: 1.42;
+}
+.divider-points li::before {
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.5cqw;
+  height: 0.5cqw;
+  border-radius: 50%;
+  background: var(--yellow);
+  content: "";
+}
 .divider-part { display: flex; flex-direction: column; align-items: flex-start; gap: 0.6cqw; }
 .divider-part span { color: #e4eef8; font-size: 1.5cqw; font-weight: 800; letter-spacing: 0.28em; text-shadow: 0 0.1cqw 0.45cqw rgba(3, 14, 28, 0.7); }
 .divider-part b { color: var(--yellow); font-size: 11cqw; font-weight: 700; line-height: 0.8; text-shadow: 0 0.2cqw 0.9cqw rgba(3, 14, 28, 0.6); }
@@ -360,7 +413,11 @@
    dù có max-width; nới vừa đủ để chữ nằm gọn mà tiêu đề vẫn giữ ba dòng như thiết kế. */
 .divider-wrap h1 { max-width: 66cqw; margin: 2.4cqw 0 0; font-size: 4.4cqw; font-weight: 700; line-height: 1.06; text-shadow: 0 0.12cqw 0.5cqw rgba(3, 14, 28, 0.55); }
 .divider-rule { width: 9cqw; height: 0.5cqw; margin: 2.4cqw 0 1.8cqw; border-radius: 99px; background: var(--red); transform-origin: left; }
+.divider-sum { max-width: 58cqw; margin: 0 0 1.4cqw; color: #e4eef8; font-size: 1.62cqw; line-height: 1.46; text-shadow: 0 0.1cqw 0.4cqw rgba(3, 14, 28, 0.6); }
 .divider-toc { max-width: 58cqw; margin: 0; color: #d4e4f2; font-size: 1.7cqw; line-height: 1.5; text-shadow: 0 0.1cqw 0.4cqw rgba(3, 14, 28, 0.6); }
+.divider-wrap[data-points="true"] .divider-sum,
+.divider-wrap[data-points="true"] .divider-toc { max-width: 100%; }
+.divider-wrap[data-points="true"] .divider-toc { font-size: 1.45cqw; }
 
 /* Khuôn bìa (slide 1) — bố cục riêng, không dùng chung .content-* hay .divider-*. */
 .coverpage-stage { color: #fff; background: var(--navy); }
@@ -510,29 +567,47 @@
  * diện (slide 35, 36, 37). Ba ảnh thì xếp một hàng ba cột.
  */
 .model-shots[data-count="3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+/*
+ * Một ảnh phụ duy nhất (slide 39): để nguyên lưới hai cột thì ảnh dính lề trái và bỏ trống
+ * nửa panel; kéo full chiều ngang thì ruột panel cao ~731px, vượt 720px của slide. 62% và
+ * căn giữa là mức vừa đủ để ảnh cân với ảnh dẫn dắt phía trên mà không tràn.
+ */
+.model-shots[data-count="1"] { grid-template-columns: 62%; justify-content: center; }
 .model-shots figure > div { overflow: hidden; aspect-ratio: 16 / 10; border-top: 0.3cqw solid var(--blue); }
 .model-shots img { object-fit: cover; object-position: top; }
 
-.model-head { position: absolute; top: 8.4cqw; width: 43cqw; }
-.slide-stage[data-side="right"] .model-head { left: 4.6cqw; }
-.slide-stage[data-side="left"] .model-head { right: 3.4cqw; }
+/* Cụm đầu trang và hai danh sách nằm trong CÙNG một cột chảy (.model-col) — xem chú
+   thích ở ModelSlideView. */
+.model-col { position: absolute; top: 8.4cqw; width: 43cqw; }
+.slide-stage[data-side="right"] .model-col { left: 4.6cqw; }
+.slide-stage[data-side="left"] .model-col { right: 3.4cqw; }
 .model-head h1 { margin: 0; font-size: var(--fs-h1); font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; }
 .model-url { margin: 0.9cqw 0 0; font-size: calc(var(--fs-lead) * 1.13); font-weight: 700; color: var(--blue); letter-spacing: -0.01em; }
 .model-sum { margin: 0.8cqw 0 0; color: var(--muted); font-size: var(--fs-lead); line-height: 1.42; }
 
-.model-lists { position: absolute; top: 25.4cqw; width: 43cqw; }
-.slide-stage[data-side="right"] .model-lists { left: 4.6cqw; }
-.slide-stage[data-side="left"] .model-lists { right: 3.4cqw; }
-.model-lists section + section { margin-top: 1.9cqw; }
-.model-lists h2 { margin: 0 0 0.7cqw; font-size: var(--fs-label); font-weight: 800; letter-spacing: 0.12em; }
+.model-lists { margin-top: 1.35cqw; }
+.model-lists section + section { margin-top: 1.3cqw; }
+.model-lists h2 { margin: 0 0 0.5cqw; font-size: var(--fs-label); font-weight: 800; letter-spacing: 0.12em; }
 .model-lists h2.fn { color: var(--blue); }
 .model-lists h2.ef { color: var(--green); }
-.model-lists ul { display: grid; margin: 0; padding: 0; gap: 0.5cqw 1.6cqw; list-style: none; }
-.model-functions { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: repeat(3, auto); grid-auto-flow: column; }
-.model-lists li { position: relative; padding-left: 1.3cqw; font-size: var(--fs-body); line-height: 1.34; }
+.model-group { display: grid; margin: 0; padding: 0; gap: 0.28cqw 1.6cqw; list-style: none; }
+/*
+ * Số hàng do `--rows` quyết định (ModelSlideView tính = ceil(số mục / 2)) chứ không liệt kê
+ * từng `data-count` trong CSS: khuôn này nhận số nhóm và số mục tuỳ ý nên không liệt kê hết
+ * được. Phải ghim số hàng, vì để grid tự đẻ hàng thì nó đẻ CỘT thứ ba, mỗi cột hẹp còn một
+ * phần ba bề ngang và cụm nowrap tràn ra ngoài.
+ */
+.model-group[data-columns="2"] {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: repeat(var(--rows), auto);
+  grid-auto-flow: column;
+}
+/* Chữ danh sách của khuôn mô hình nhỏ hơn chữ thân bài chung 7%: tài liệu 44 slide cho
+   mỗi mô hình 8–11 ý dài, giữ nguyên cỡ thì cột chữ mọc quá chú thích chân trang. */
+.model-lists li { position: relative; padding-left: 1.3cqw; font-size: calc(var(--fs-body) * 0.93); line-height: 1.3; }
 .model-lists li::before { position: absolute; left: 0; top: 0.5em; width: 0.46cqw; height: 0.46cqw; border-radius: 50%; content: ""; }
-.model-functions li::before { background: var(--blue); }
-.model-effects li::before { background: var(--green); }
+.model-group[data-tone="fn"] li::before { background: var(--blue); }
+.model-group[data-tone="ef"] li::before { background: var(--green); }
 
 /* Khuôn kết luận (slide 38) — như bìa, không có slide-brand; tái dùng .slide-bar/.slide-num/.slide-foot dùng chung. */
 .outro-stage { color: #fff; background: var(--navy); }

@@ -1,6 +1,7 @@
 # Bản kê ảnh — dùng để thay ảnh chốt
 
-Ảnh hiện tại là **ảnh tạm** rút từ file PPTX. Để thay bằng ảnh chốt:
+Ảnh lấy từ thư mục "(CHUẨN) ẢNH BÁO CÁO LÁ CỜ ĐẦU" do nhà trường chọn tay; TÊN FILE
+CHÍNH LÀ CHÚ THÍCH in lên màn hình. Để bổ sung hoặc thay ảnh:
 
 1. Đặt file mới vào `public/media/slides/` với **đúng tên file** trong bảng dưới, hoặc
 2. Đổi trường `src` của ảnh tương ứng trong `lib/slides/data.ts`.
@@ -11,153 +12,161 @@ Sau khi thay, chạy lại `node scripts/audit-images.mjs` để đo lại, rồ
 File này do `scripts/build-image-manifest.mjs` sinh tự động từ `lib/slides/data.ts` —
 đừng sửa tay ở đây, sửa dữ liệu nguồn rồi chạy lại script để sinh lại.
 
-## Ba việc cần ưu tiên khi gửi ảnh mới
+## Hai việc cần ưu tiên khi gửi ảnh mới
 
 ### 1. Slide chưa có ảnh nào (ưu tiên cao nhất)
 
-Slide 25 đang để trống `images` — bộ ảnh trích từ PPTX gốc không có file `s25_*` nào tương ứng, nên panel ảnh của trang này trống trơn.
+- Slide 35 chưa có ô ảnh nào; panel ảnh của trang này để navy trơn.
 
-### 2. Bốn chú thích đang ghi sai nội dung ảnh thật
+### 2. Nhiều ô ảnh đang dùng lại đúng một tấm ảnh
 
-| Slide | File | Chú thích đang dùng | Ảnh thật vẽ gì |
-|---|---|---|---|
-| 9 | `s9_img3.jpg` | "Phiên tòa giả định" về phòng, chống bạo lực học đường | Băng rôn "CHƯƠNG TRÌNH NGOẠI KHÓA – XÂY DỰNG TÌNH BẠN ĐẸP, NÓI KHÔNG VỚI BẠO LỰC HỌC ĐƯỜNG" |
-| 20 | `s20_img5.jpg` | Giao lưu với lực lượng vũ trang | Tranh đồ họa "Cách mạng màu" |
-| 24 | `s24_img6.jpg` | Gói bánh chưng "Gói trọn vị nhà" | Poster "MỞ ĐƠN ĐĂNG KÝ CÂU LẠC BỘ – ĐỢT I (2026-2027)" |
-| 36 | `s36_img4.jpg`, `s36_img5.jpg`, `s36_img6.jpg` | Khán giả tại concert / Trao biển hỗ trợ trên sân khấu / Tiết mục biểu diễn trên sân khấu concert | Lần lượt là poster gây quỹ, ảnh trao quà trong nhà dân, ảnh trao quà trong nhà dân |
-
-Khi gửi ảnh mới cho các slide 9, 20, 24, 36, kiểm tra lại luôn cả phần chữ chú
-thích đi kèm trong `lib/slides/data.ts` — đổi ảnh mà giữ nguyên chú thích cũ
-(hoặc ngược lại, đổi chú thích mà giữ ảnh cũ) vẫn tiếp tục sai.
-
-### 3. Nhiều ô ảnh đang dùng lại đúng một tấm ảnh
-
-Trong 107 ô ảnh của 38 slide, chỉ có 82 tấm ảnh mang nội dung
+Trong 128 ô ảnh của 44 slide, chỉ có 126 tấm ảnh mang nội dung
 file thật sự khác nhau (so khớp bằng băm md5, không theo tên file) — nghĩa là
-25 ô ảnh đang dùng lại một tấm đã xuất hiện ở slide khác. Dùng chung nhiều nhất hiện nay là slide 3, 4, 29, cùng lấy đúng 3 tấm ảnh giống hệt nhau.
+2 ô ảnh đang dùng lại một tấm đã xuất hiện ở slide khác. Dùng chung nhiều nhất hiện nay là slide 2, 3, cùng lấy đúng 1 tấm ảnh giống hệt nhau.
 Nếu chỉ gửi được một phần ảnh mới trước, nên ưu tiên các slide đang dùng ảnh
 riêng (không có cờ "Dùng chung..." trong bảng dưới), để không nhân bản cùng một
 lỗi ra nhiều trang.
 
 ---
 
-## Bảng đầy đủ 107 ô ảnh
+## Bảng đầy đủ 128 ô ảnh
 
 Cột "Ghi chú" đánh dấu ảnh màn hình phần mềm (đo bằng `scripts/audit-images.mjs`,
 không nên dùng cho vai trò ảnh nền `nen`) và ảnh đang dùng chung với slide khác.
-Slide 25 không có dòng nào ở đây vì không có ảnh nào cả — xem mục 1 ở trên.
+Slide 35 không có dòng nào ở đây vì không có ảnh nào cả — xem mục 1 ở trên.
 
 | Slide | Tiêu đề slide | File ảnh | Vai trò | Chú thích hiện tại | Ghi chú |
 |---|---|---|---|---|---|
-| 1 | báo cáo kết quả đơn vị đăng ký lá cờ đầu | `s1_img4.jpg` | `nen` | Ra mắt công trình thanh niên Nền tảng số quản lý công tác Đoàn | Dùng chung với slide 34 |
-| 1 | báo cáo kết quả đơn vị đăng ký lá cờ đầu | `s1_img3.jpg` | `phu` | Công trình thanh niên Những cánh thư vượt sóng | — |
-| 1 | báo cáo kết quả đơn vị đăng ký lá cờ đầu | `s1_img5.jpg` | `phu` | Trao tặng công trình thanh niên "Tủ sách cho em" | Dùng chung với slide 33 |
-| 1 | báo cáo kết quả đơn vị đăng ký lá cờ đầu | `s1_img6.png` | `phu` | Giao diện WebApp "Nền nếp CNT" | ẢNH MÀN HÌNH — không dùng cho vai trò `nen`; Dùng chung với slide 35 |
-| 2 | sơ lược đặc điểm, tình hình đoàn trường thpt chuyên nguyễn trãi | `s2_img3.jpg` | `nen` | Tặng hoa chúc mừng BCH Đoàn trường tại Đại hội đại biểu nhiệm kỳ 2025 – 2026 | Dùng chung với slide 3, 4, 29 |
-| 3 | 1. tình hình đoàn viên, thanh niên | `s3_img3.jpg` | `chinh` | Tặng hoa chúc mừng BCH Đoàn trường tại Đại hội đại biểu nhiệm kỳ 2025 – 2026 | Dùng chung với slide 2, 4, 29 |
-| 3 | 1. tình hình đoàn viên, thanh niên | `s3_img4.jpg` | `phu` | Hội nghị tập huấn nghiệp vụ công tác Đoàn cho cán bộ chi đoàn | Dùng chung với slide 4, 29 |
-| 3 | 1. tình hình đoàn viên, thanh niên | `s3_img5.jpg` | `phu` | Tập huấn nâng cao nghiệp vụ công tác Đoàn năm học 2025 – 2026 | Dùng chung với slide 4, 29 |
-| 4 | 2. thuận lợi, khó khăn | `s4_img3.jpg` | `chinh` | Tặng hoa chúc mừng BCH Đoàn trường tại Đại hội đại biểu nhiệm kỳ 2025 – 2026 | Dùng chung với slide 2, 3, 29 |
-| 4 | 2. thuận lợi, khó khăn | `s4_img4.jpg` | `phu` | Hội nghị tập huấn nghiệp vụ công tác Đoàn cho cán bộ chi đoàn | Dùng chung với slide 3, 29 |
-| 4 | 2. thuận lợi, khó khăn | `s4_img5.jpg` | `phu` | Tập huấn nâng cao nghiệp vụ công tác Đoàn năm học 2025 – 2026 | Dùng chung với slide 3, 29 |
-| 5 | thành tích đạt được trong năm học 2025 – 2026 | `s5_img4.jpg` | `nen` | Ngoại khóa tuyên truyền pháp luật cho đoàn viên, thanh niên toàn trường | — |
-| 6 | 1.1. học tập và làm theo tư tưởng, đạo đức, phong cách hồ chí minh | `s6_img3.jpg` | `chinh` | Sinh hoạt chi đoàn theo chủ điểm | — |
-| 6 | 1.1. học tập và làm theo tư tưởng, đạo đức, phong cách hồ chí minh | `s6_img4.jpg` | `phu` | Đoàn viên dự buổi học tập, quán triệt nghị quyết | Dùng chung với slide 7 |
-| 6 | 1.1. học tập và làm theo tư tưởng, đạo đức, phong cách hồ chí minh | `s6_img5.jpg` | `phu` | Giới thiệu sách về Chủ tịch Hồ Chí Minh | — |
-| 7 | 1.2. giáo dục chính trị, tư tưởng | `s7_img3.jpg` | `chinh` | Sân khấu cuộc thi tìm hiểu về Đảng | — |
-| 7 | 1.2. giáo dục chính trị, tư tưởng | `s7_img4.jpg` | `phu` | Đoàn viên dự buổi học tập, quán triệt nghị quyết | Dùng chung với slide 6 |
-| 8 | 1.3. giáo dục truyền thống cách mạng, lòng yêu nước | `s8_img3.jpg` | `chinh` | Triển lãm tranh chủ đề "Độc lập – Tự do – Hạnh phúc" | — |
-| 8 | 1.3. giáo dục truyền thống cách mạng, lòng yêu nước | `s8_img4.jpg` | `phu` | Giao lưu nhân chứng lịch sử | — |
-| 8 | 1.3. giáo dục truyền thống cách mạng, lòng yêu nước | `s8_img5.jpg` | `phu` | Hoạt động dâng hương tại đài tưởng niệm | — |
-| 9 | 1.4. giáo dục đạo đức, lối sống văn hóa và pháp luật | `s9_img3.jpg` | `chinh` | "Phiên tòa giả định" về phòng, chống bạo lực học đường | — |
-| 9 | 1.4. giáo dục đạo đức, lối sống văn hóa và pháp luật | `s9_img4.jpg` | `phu` | Ngoại khóa hướng dẫn kỹ năng lái xe gắn máy an toàn | Dùng chung với slide 10 |
-| 9 | 1.4. giáo dục đạo đức, lối sống văn hóa và pháp luật | `s9_img5.jpg` | `phu` | Thực hành phòng cháy, chữa cháy và cứu nạn cứu hộ | Dùng chung với slide 10 |
-| 10 | 1.4. giáo dục đạo đức, lối sống văn hóa và pháp luật | `s10_img3.jpg` | `chinh` | Ngoại khóa hướng dẫn kỹ năng lái xe gắn máy an toàn | Dùng chung với slide 9 |
-| 10 | 1.4. giáo dục đạo đức, lối sống văn hóa và pháp luật | `s10_img4.jpg` | `phu` | Lễ ra mắt mô hình "Trường học không ma túy" | — |
-| 10 | 1.4. giáo dục đạo đức, lối sống văn hóa và pháp luật | `s10_img5.jpg` | `phu` | Thực hành phòng cháy, chữa cháy và cứu nạn cứu hộ | Dùng chung với slide 9 |
-| 10 | 1.4. giáo dục đạo đức, lối sống văn hóa và pháp luật | `s10_img6.jpg` | `phu` | Đội tuyên truyền phòng, chống mua bán người | — |
-| 11 | 2.1. phong trào "thanh niên tình nguyện" | `s11_img3.jpg` | `chinh` | Đoàn viên thanh niên trao quà tại gia đình chính sách | Dùng chung với slide 13, 16, 17 |
-| 11 | 2.1. phong trào "thanh niên tình nguyện" | `s11_img4.jpg` | `phu` | Tình nguyện viên hỗ trợ người cao tuổi làm thủ tục | Dùng chung với slide 13, 17 |
-| 11 | 2.1. phong trào "thanh niên tình nguyện" | `s11_img5.jpg` | `phu` | Hướng dẫn người dân sử dụng điện thoại thông minh | Dùng chung với slide 16 |
-| 11 | 2.1. phong trào "thanh niên tình nguyện" | `s11_img6.jpg` | `phu` | Đoàn viên thanh niên chụp ảnh chung trước sân trường | Dùng chung với slide 15 |
-| 12 | hoạt động an sinh xã hội | `s12_img3.jpg` | `chinh` | Trao quà hỗ trợ học sinh vùng lũ | — |
-| 12 | hoạt động an sinh xã hội | `s12_img4.jpg` | `phu` | Trao tặng hiện vật trị giá 25 triệu đồng cho Trung tâm Bảo trợ xã hội Hải Phòng | Dùng chung với slide 13 |
-| 12 | hoạt động an sinh xã hội | `s12_img5.jpg` | `phu` | Trao "Đông ấm vùng cao" cho phường | — |
-| 13 | hoạt động an sinh xã hội | `s13_img3.jpg` | `chinh` | Hiến máu tình nguyện | — |
-| 13 | hoạt động an sinh xã hội | `s13_img4.jpg` | `phu` | Đoàn viên thanh niên trao quà tại gia đình chính sách | Dùng chung với slide 11, 16, 17 |
-| 13 | hoạt động an sinh xã hội | `s13_img5.jpg` | `phu` | Tình nguyện viên hỗ trợ người cao tuổi làm thủ tục | Dùng chung với slide 11, 17 |
-| 13 | hoạt động an sinh xã hội | `s13_img6.jpg` | `phu` | Trao tặng hiện vật trị giá 25 triệu đồng cho Trung tâm Bảo trợ xã hội Hải Phòng | Dùng chung với slide 12 |
-| 14 | các hoạt động bảo vệ môi trường | `s14_img3.jpg` | `chinh` | Vệ sinh môi trường trường lớp, cảnh quan | — |
-| 14 | các hoạt động bảo vệ môi trường | `s14_img4.jpg` | `phu` | Triển lãm ảnh môi trường | — |
-| 14 | các hoạt động bảo vệ môi trường | `s14_img5.jpg` | `phu` | Vệ sinh môi trường trong Ngày Chủ nhật xanh | — |
-| 14 | các hoạt động bảo vệ môi trường | `s14_img6.jpg` | `phu` | Triển lãm ảnh môi trường của học sinh | — |
-| 15 | chương trình tiếp sức mùa thi | `s15_img3.jpg` | `chinh` | Đoàn viên thanh niên chụp ảnh chung trước sân trường | Dùng chung với slide 11 |
-| 15 | chương trình tiếp sức mùa thi | `s15_img4.jpg` | `phu` | Chương trình hỗ trợ kỳ thi tuyển sinh lớp 10 | — |
-| 15 | chương trình tiếp sức mùa thi | `s15_img5.jpg` | `phu` | Chương trình hỗ trợ Kỳ thi tốt nghiệp THPT | — |
-| 16 | chiến dịch hoa phượng đỏ | `s16_img3.jpg` | `chinh` | Poster dự án "The unsaid" của CLB Tiếng Anh Nguyễn Trãi | Dùng chung với slide 28 |
-| 16 | chiến dịch hoa phượng đỏ | `s16_img4.jpg` | `phu` | Đoàn viên thanh niên trao quà tại gia đình chính sách | Dùng chung với slide 11, 13, 17 |
-| 16 | chiến dịch hoa phượng đỏ | `s16_img5.jpg` | `phu` | Hướng dẫn người dân sử dụng điện thoại thông minh | Dùng chung với slide 11 |
-| 17 | chiến dịch hoa phượng đỏ | `s17_img3.jpg` | `chinh` | Hoạt động đền ơn đáp nghĩa | — |
-| 17 | chiến dịch hoa phượng đỏ | `s17_img4.jpg` | `phu` | Tình nguyện viên hỗ trợ người cao tuổi làm thủ tục | Dùng chung với slide 11, 13 |
-| 17 | chiến dịch hoa phượng đỏ | `s17_img5.jpg` | `phu` | Đoàn viên thanh niên trao quà tại gia đình chính sách | Dùng chung với slide 11, 13, 16 |
-| 18 | 2.2. phong trào "tuổi trẻ sáng tạo" | `s18_img3.jpg` | `chinh` | Trao giải chung kết cuộc thi Thanh niên Hải Phòng với chuyển đổi số, chuyển đổi xanh | Dùng chung với slide 19 |
-| 18 | 2.2. phong trào "tuổi trẻ sáng tạo" | `s18_img4.jpg` | `phu` | Sản phẩm Hội thi Tin học trẻ | — |
-| 18 | 2.2. phong trào "tuổi trẻ sáng tạo" | `s18_img5.jpg` | `phu` | Lớp Robotics của nhà trường | — |
-| 18 | 2.2. phong trào "tuổi trẻ sáng tạo" | `s18_img6.jpg` | `phu` | Học sinh nhận giấy chứng nhận cuộc thi khoa học, công nghệ | Dùng chung với slide 19 |
-| 19 | sân chơi học thuật và sáng tạo | `s19_img3.jpg` | `chinh` | Đường lên đỉnh Olympia cấp trường | — |
-| 19 | sân chơi học thuật và sáng tạo | `s19_img4.jpg` | `phu` | Hội nghị mô phỏng Liên Hợp Quốc HDMUN | — |
-| 19 | sân chơi học thuật và sáng tạo | `s19_img5.jpg` | `phu` | Học sinh nhận giấy chứng nhận cuộc thi khoa học, công nghệ | Dùng chung với slide 18 |
-| 19 | sân chơi học thuật và sáng tạo | `s19_img6.jpg` | `phu` | Trao giải chung kết cuộc thi Thanh niên Hải Phòng với chuyển đổi số, chuyển đổi xanh | Dùng chung với slide 18 |
-| 20 | 2.3. phong trào "tuổi trẻ xung kích bảo vệ tổ quốc" | `s20_img3.jpg` | `chinh` | Thư, thiệp của đoàn viên gửi tới các đảo | — |
-| 20 | 2.3. phong trào "tuổi trẻ xung kích bảo vệ tổ quốc" | `s20_img4.jpg` | `phu` | Cây đào gửi ra đảo và nhà giàn DK1 | — |
-| 20 | 2.3. phong trào "tuổi trẻ xung kích bảo vệ tổ quốc" | `s20_img5.jpg` | `phu` | Giao lưu với lực lượng vũ trang | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
-| 21 | 3.1. đồng hành với thanh niên trong học tập | `s21_img3.jpg` | `chinh` | Tuyên dương "Học sinh 3 tốt" cấp trường | — |
-| 21 | 3.1. đồng hành với thanh niên trong học tập | `s21_img4.jpg` | `phu` | Trao học bổng cho học sinh | — |
-| 21 | 3.1. đồng hành với thanh niên trong học tập | `s21_img5.jpg` | `phu` | Lễ kết nạp Đảng cho đoàn viên ưu tú | — |
-| 22 | 3.1. đồng hành với thanh niên trong học tập | `s22_img3.jpg` | `chinh` | Trao quà tặng dịp Tết cho học sinh | — |
-| 23 | 3.2. đồng hành với thanh niên khởi nghiệp, lập nghiệp | `s23_img3.jpg` | `chinh` | Ngày hội Tư vấn tuyển sinh – Hướng nghiệp | — |
-| 23 | 3.2. đồng hành với thanh niên khởi nghiệp, lập nghiệp | `s23_img4.jpg` | `phu` | Giao lưu với trường đại học quốc tế | — |
-| 23 | 3.2. đồng hành với thanh niên khởi nghiệp, lập nghiệp | `s23_img5.jpg` | `phu` | Thuyết trình tại cuộc thi Business Case | — |
-| 23 | 3.2. đồng hành với thanh niên khởi nghiệp, lập nghiệp | `s23_img6.jpg` | `phu` | Chương trình tư vấn hướng nghiệp cho học sinh | — |
-| 24 | đa dạng các loại hình hoạt động văn hóa, nghệ thuật | `s24_img3.jpg` | `chinh` | Chương trình chào Tân học sinh "New Orbit" | — |
-| 24 | đa dạng các loại hình hoạt động văn hóa, nghệ thuật | `s24_img4.jpg` | `phu` | Tiết mục nghệ thuật Chèo trong "Mạch nguồn di sản" | — |
-| 24 | đa dạng các loại hình hoạt động văn hóa, nghệ thuật | `s24_img5.jpg` | `phu` | Hội trại truyền thống của học sinh | — |
-| 24 | đa dạng các loại hình hoạt động văn hóa, nghệ thuật | `s24_img6.jpg` | `phu` | Gói bánh chưng "Gói trọn vị nhà" | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
-| 26 | rèn luyện thể chất, hoạt động clb và chăm sóc tinh thần | `s26_img3.jpg` | `chinh` | Giải thể thao cấp trường | — |
-| 26 | rèn luyện thể chất, hoạt động clb và chăm sóc tinh thần | `s26_img4.jpg` | `phu` | Giải kéo co trong ngày hội thể thao | — |
-| 26 | rèn luyện thể chất, hoạt động clb và chăm sóc tinh thần | `s26_img5.jpg` | `phu` | Chương trình đối thoại "CNT's Open Talk" | Dùng chung với slide 27 |
-| 27 | rèn luyện thể chất, hoạt động clb và chăm sóc tinh thần | `s27_img3.jpg` | `chinh` | Chương trình đối thoại "CNT's Open Talk" | Dùng chung với slide 26 |
-| 27 | rèn luyện thể chất, hoạt động clb và chăm sóc tinh thần | `s27_img4.jpg` | `phu` | Chương trình đối thoại học sinh – nhà trường | — |
-| 28 | 4. hội nhập quốc tế và phát triển ngoại ngữ | `s28_img3.jpg` | `chinh` | Học sinh thi hùng biện tiếng Anh | — |
-| 28 | 4. hội nhập quốc tế và phát triển ngoại ngữ | `s28_img4.jpg` | `phu` | Workshop ngôn ngữ của câu lạc bộ | — |
-| 28 | 4. hội nhập quốc tế và phát triển ngoại ngữ | `s28_img5.jpg` | `phu` | Poster dự án "The unsaid" của CLB Tiếng Anh Nguyễn Trãi | Dùng chung với slide 16 |
-| 28 | 4. hội nhập quốc tế và phát triển ngoại ngữ | `s28_img6.jpg` | `phu` | Đại biểu mô phỏng hội nghị quốc tế | — |
-| 29 | 5. xây dựng tổ chức đoàn vững mạnh | `s29_img3.jpg` | `chinh` | Tặng hoa chúc mừng BCH Đoàn trường tại Đại hội đại biểu nhiệm kỳ 2025 – 2026 | Dùng chung với slide 2, 3, 4 |
-| 29 | 5. xây dựng tổ chức đoàn vững mạnh | `s29_img4.jpg` | `phu` | Hội nghị tập huấn nghiệp vụ công tác Đoàn cho cán bộ chi đoàn | Dùng chung với slide 3, 4 |
-| 29 | 5. xây dựng tổ chức đoàn vững mạnh | `s29_img5.jpg` | `phu` | Lễ kết nạp đoàn viên mới | — |
-| 29 | 5. xây dựng tổ chức đoàn vững mạnh | `s29_img6.jpg` | `phu` | Tập huấn nâng cao nghiệp vụ công tác Đoàn năm học 2025 – 2026 | Dùng chung với slide 3, 4 |
-| 30 | đoàn tham gia xây dựng đảng | `s30_img3.jpg` | `chinh` | Lễ kết nạp Đảng cho đoàn viên ưu tú | — |
-| 30 | đoàn tham gia xây dựng đảng | `s30_img4.jpg` | `phu` | Đoàn viên ưu tú tuyên thệ | — |
-| 30 | đoàn tham gia xây dựng đảng | `s30_img5.jpg` | `phu` | Họp Ban Chấp hành giới thiệu nguồn kết nạp | — |
-| 33 | các mô hình hay, cách làm sáng tạo | `s33_img5.jpg` | `nen` | Trao tặng công trình thanh niên "Tủ sách cho em" | Dùng chung với slide 1 |
-| 34 | mô hình 1 – nền tảng số quản lý công tác đoàn | `s34_img3.jpg` | `chinh` | Ra mắt công trình thanh niên Nền tảng số quản lý công tác Đoàn | Dùng chung với slide 1 |
-| 34 | mô hình 1 – nền tảng số quản lý công tác đoàn | `s34_img4.png` | `phu` | Giao diện quản lý đoàn viên | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
-| 34 | mô hình 1 – nền tảng số quản lý công tác đoàn | `s34_img5.png` | `phu` | Giao diện trang chủ quản lý công tác Đoàn | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
-| 35 | mô hình 2 – webapp "nền nếp cnt" | `s35_img3.png` | `chinh` | Giao diện WebApp "Nền nếp CNT" | ẢNH MÀN HÌNH — không dùng cho vai trò `nen`; Dùng chung với slide 1 |
-| 35 | mô hình 2 – webapp "nền nếp cnt" | `s35_img4.png` | `phu` | Biểu đồ thống kê nền nếp | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
-| 35 | mô hình 2 – webapp "nền nếp cnt" | `s35_img5.png` | `phu` | Bảng xếp hạng nền nếp theo lớp | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
-| 35 | mô hình 2 – webapp "nền nếp cnt" | `s35_img6.png` | `phu` | Dashboard tổng hợp dữ liệu nền nếp | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
-| 36 | mô hình 3 – concert "ký âm sol hồng" | `s36_img3.jpg` | `chinh` | Toàn cảnh sân khấu concert "Ký âm Sol hồng" | — |
-| 36 | mô hình 3 – concert "ký âm sol hồng" | `s36_img4.jpg` | `phu` | Khán giả tại concert | — |
-| 36 | mô hình 3 – concert "ký âm sol hồng" | `s36_img5.jpg` | `phu` | Trao biển hỗ trợ trên sân khấu | — |
-| 36 | mô hình 3 – concert "ký âm sol hồng" | `s36_img6.jpg` | `phu` | Tiết mục biểu diễn trên sân khấu concert | — |
-| 37 | mô hình 4 – cnt mind challenges – đấu trường trí tuệ | `s37_img3.jpg` | `chinh` | Toàn cảnh 12 đội thi đại diện 12 khối chuyên | — |
-| 37 | mô hình 4 – cnt mind challenges – đấu trường trí tuệ | `s37_img4.jpg` | `phu` | Đường đua trí tuệ trên sân khấu | — |
-| 37 | mô hình 4 – cnt mind challenges – đấu trường trí tuệ | `s37_img5.jpg` | `phu` | Cờ của các khối chuyên | — |
-| 37 | mô hình 4 – cnt mind challenges – đấu trường trí tuệ | `s37_img6.jpg` | `phu` | Vòng cứu trợ có giáo viên tham gia | — |
-| 38 | tuổi trẻ chuyên nguyễn trãi | `s38_img3.jpg` | `nen` | Tổng kết công tác Đoàn – Hội – Đội và khen thưởng tập thể, cá nhân | — |
+| 1 | báo cáo kết quả đơn vị đăng ký lá cờ đầu | `Chào mừng 80 năm Cách mạng tháng Tám.jpg` | `nen` | Chào mừng 80 năm Cách mạng tháng Tám | — |
+| 1 | báo cáo kết quả đơn vị đăng ký lá cờ đầu | `Chương trình “Ký âm Sol hồng”.jpg` | `phu` | Chương trình “Ký âm Sol hồng” | — |
+| 1 | báo cáo kết quả đơn vị đăng ký lá cờ đầu | `Ra mắt nền tảng số quản lý Đoàn viên, thanh niên.jpg` | `phu` | Ra mắt nền tảng số quản lý Đoàn viên, thanh niên | — |
+| 1 | báo cáo kết quả đơn vị đăng ký lá cờ đầu | `Đồng diễn CNT's Day.jpg` | `phu` | Đồng diễn CNT's Day | — |
+| 2 | sơ lược đặc điểm, tình hình đoàn trường thpt chuyên nguyễn trãi | `Học sinh toàn trường chào cờ đầu tuần.jpg` | `nen` | Học sinh toàn trường chào cờ đầu tuần | Dùng chung với slide 3 |
+| 3 | 1. tình hình đoàn viên, thanh niên | `Họp Ban Chấp hành Đoàn trường.jpg` | `chinh` | Họp Ban Chấp hành Đoàn trường | — |
+| 3 | 1. tình hình đoàn viên, thanh niên | `Tổ chức Đoàn của trường.jpg` | `phu` | Tổ chức Đoàn của trường | — |
+| 3 | 1. tình hình đoàn viên, thanh niên | `Học sinh toàn trường chào cờ đầu tuần.jpg` | `phu` | Học sinh toàn trường chào cờ đầu tuần | Dùng chung với slide 2 |
+| 4 | 2. thuận lợi, khó khăn | `Đại hội Đoàn trường.jpg` | `chinh` | Đại hội Đoàn trường | — |
+| 4 | 2. thuận lợi, khó khăn | `Hoạt động trong điều kiện cơ sở vật chất hiện có.jpg` | `phu` | Hoạt động trong điều kiện cơ sở vật chất hiện có | — |
+| 4 | 2. thuận lợi, khó khăn | `Sinh hoạt Đoàn.jpg` | `phu` | Sinh hoạt Đoàn | — |
+| 5 | thành tích đạt được trong năm học 2025 – 2026 | `Đội tuyển học sinh giỏi quốc gia.jpg` | `nen` | Đội tuyển học sinh giỏi quốc gia | Dùng chung với slide 6 |
+| 6 | 1. công tác giáo dục 1.1. học tập và làm theo tư tưởng, đạo đức, phong cách hồ chí minh | `Sinh hoạt chi đoàn theo chủ điểm.jpg` | `chinh` | Sinh hoạt chi đoàn theo chủ điểm | — |
+| 6 | 1. công tác giáo dục 1.1. học tập và làm theo tư tưởng, đạo đức, phong cách hồ chí minh | `Đội tuyển học sinh giỏi quốc gia.jpg` | `phu` | Đội tuyển học sinh giỏi quốc gia | Dùng chung với slide 5 |
+| 6 | 1. công tác giáo dục 1.1. học tập và làm theo tư tưởng, đạo đức, phong cách hồ chí minh | `Tập thể học sinh toàn trường.jpg` | `phu` | Tập thể học sinh toàn trường | — |
+| 6 | 1. công tác giáo dục 1.1. học tập và làm theo tư tưởng, đạo đức, phong cách hồ chí minh | `Sinh hoạt đầu tuần.jpg` | `phu` | Sinh hoạt đầu tuần | — |
+| 7 | 1.2. giáo dục chính trị, tư tưởng | `Chương trình “Khi tôi 18”.png` | `chinh` | Chương trình “Khi tôi 18” | — |
+| 7 | 1.2. giáo dục chính trị, tư tưởng | `Chương trình “Ánh dương soi đường”.jpg` | `phu` | Chương trình “Ánh dương soi đường” | — |
+| 7 | 1.2. giáo dục chính trị, tư tưởng | `Học sinh tham gia công tác bầu cử.jpg` | `phu` | Học sinh tham gia công tác bầu cử | — |
+| 7 | 1.2. giáo dục chính trị, tư tưởng | `Khát vọng cống hiến – Lẽ sống thanh niên.jpg` | `phu` | Khát vọng cống hiến – Lẽ sống thanh niên | — |
+| 8 | 1.3. giáo dục truyền thống cách mạng, lòng yêu nước | `Dâng hương tại đài tưởng niệm.jpg` | `chinh` | Dâng hương tại đài tưởng niệm | — |
+| 8 | 1.3. giáo dục truyền thống cách mạng, lòng yêu nước | `Cuộc thi “Dưới Ánh Sao Vàng”.jpg` | `phu` | Cuộc thi “Dưới Ánh Sao Vàng” | — |
+| 8 | 1.3. giáo dục truyền thống cách mạng, lòng yêu nước | `Triển lãm tranh “Độc lập – Tự do – Hạnh phúc”.jpg` | `phu` | Triển lãm tranh “Độc lập – Tự do – Hạnh phúc” | — |
+| 8 | 1.3. giáo dục truyền thống cách mạng, lòng yêu nước | `Giao lưu nhân chứng lịch sử.jpg` | `phu` | Giao lưu nhân chứng lịch sử | — |
+| 9 | 1.4. giáo dục đạo đức, lối sống văn hóa và pháp luật | `Phiên tòa giả định.jpg` | `chinh` | Phiên tòa giả định | — |
+| 9 | 1.4. giáo dục đạo đức, lối sống văn hóa và pháp luật | `Diễn đàn “Xây dựng tình bạn đẹp”.png` | `phu` | Diễn đàn “Xây dựng tình bạn đẹp” | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
+| 9 | 1.4. giáo dục đạo đức, lối sống văn hóa và pháp luật | `Mỗi ngày một tin tốt, mỗi tuần một chuyện đẹp.jpg` | `phu` | Mỗi ngày một tin tốt, mỗi tuần một chuyện đẹp | — |
+| 10 | 1.4. giáo dục đạo đức, lối sống văn hóa và pháp luật | `Hướng dẫn kỹ năng lái xe an toàn.jpg` | `chinh` | Hướng dẫn kỹ năng lái xe an toàn | — |
+| 10 | 1.4. giáo dục đạo đức, lối sống văn hóa và pháp luật | `Ngoại khóa phòng cháy chữa cháy.jpg` | `phu` | Ngoại khóa phòng cháy chữa cháy | — |
+| 10 | 1.4. giáo dục đạo đức, lối sống văn hóa và pháp luật | `Ra mắt mô hình “Trường học không ma túy”.png` | `phu` | Ra mắt mô hình “Trường học không ma túy” | — |
+| 10 | 1.4. giáo dục đạo đức, lối sống văn hóa và pháp luật | `Tuyên truyền phòng, chống mua bán người.jpg` | `phu` | Tuyên truyền phòng, chống mua bán người | — |
+| 11 | 2. tổ chức phong trào hành động cách mạng 2.1. phong trào "thanh niên tình nguyện" | `Đội hình tình nguyện Tiếp sức mùa thi.jpg` | `chinh` | Đội hình tình nguyện Tiếp sức mùa thi | — |
+| 11 | 2. tổ chức phong trào hành động cách mạng 2.1. phong trào "thanh niên tình nguyện" | `Đội hình tình nguyện Hoa phượng đỏ.jpg` | `phu` | Đội hình tình nguyện Hoa phượng đỏ | — |
+| 11 | 2. tổ chức phong trào hành động cách mạng 2.1. phong trào "thanh niên tình nguyện" | `Dâng hương tưởng niệm các Anh hùng Liệt sỹ.jpg` | `phu` | Dâng hương tưởng niệm các Anh hùng Liệt sỹ | — |
+| 12 | hoạt động an sinh xã hội | `Quyên góp Quỹ “Đông ấm vùng cao”.jpg` | `chinh` | Quyên góp Quỹ “Đông ấm vùng cao” | — |
+| 12 | hoạt động an sinh xã hội | `Đồng hành cùng nạn nhân chất độc da cam.jpg` | `phu` | Đồng hành cùng nạn nhân chất độc da cam | — |
+| 12 | hoạt động an sinh xã hội | `Ủng hộ “Đông ấm vùng cao”.jpg` | `phu` | Ủng hộ “Đông ấm vùng cao” | — |
+| 13 | hoạt động an sinh xã hội | `Quyên góp, thăm hỏi nhân dân vùng lũ.jpg` | `chinh` | Quyên góp, thăm hỏi nhân dân vùng lũ | — |
+| 13 | hoạt động an sinh xã hội | `Ủng hộ đồng bào lũ lụt.jpg` | `phu` | Ủng hộ đồng bào lũ lụt | — |
+| 13 | hoạt động an sinh xã hội | `Đoàn viên, thanh niên hiến máu tình nguyện.jpg` | `phu` | Đoàn viên, thanh niên hiến máu tình nguyện | — |
+| 14 | các hoạt động bảo vệ môi trường | `Triển lãm tranh bảo vệ môi trường.jpg` | `chinh` | Triển lãm tranh bảo vệ môi trường | — |
+| 14 | các hoạt động bảo vệ môi trường | `Ra quân Chủ nhật Xanh.jpg` | `phu` | Ra quân Chủ nhật Xanh | — |
+| 14 | các hoạt động bảo vệ môi trường | `Ra quân Chủ nhật Xanh(1).jpg` | `phu` | Ra quân Chủ nhật Xanh | — |
+| 14 | các hoạt động bảo vệ môi trường | `Chuỗi sự kiện “Ước mơ xanh”.jpg` | `phu` | Chuỗi sự kiện “Ước mơ xanh” | — |
+| 15 | chương trình tiếp sức mùa thi | `Tình nguyện viên hỗ trợ thí sinh.jpg` | `chinh` | Tình nguyện viên hỗ trợ thí sinh | — |
+| 15 | chương trình tiếp sức mùa thi | `Tình nguyện viên hỗ trợ thí sinh(1).jpg` | `phu` | Tình nguyện viên hỗ trợ thí sinh | — |
+| 15 | chương trình tiếp sức mùa thi | `Tình nguyện viên hỗ trợ thí sinh(2).jpg` | `phu` | Tình nguyện viên hỗ trợ thí sinh | — |
+| 15 | chương trình tiếp sức mùa thi | `Đội hình tình nguyện Tiếp sức mùa thi(1).jpg` | `phu` | Đội hình tình nguyện Tiếp sức mùa thi | — |
+| 16 | chiến dịch hoa phượng đỏ | `Bữa cơm nghĩa tình.jpg` | `chinh` | Bữa cơm nghĩa tình | — |
+| 16 | chiến dịch hoa phượng đỏ | `Hỗ trợ người dân định danh điện tử.jpg` | `phu` | Hỗ trợ người dân định danh điện tử | — |
+| 16 | chiến dịch hoa phượng đỏ | `Lớp tiếng Anh tình nguyện hè(1).jpg` | `phu` | Lớp tiếng Anh tình nguyện hè | — |
+| 16 | chiến dịch hoa phượng đỏ | `Hỗ trợ người cao tuổi khám sức khỏe.jpg` | `phu` | Hỗ trợ người cao tuổi khám sức khỏe | — |
+| 17 | chiến dịch hoa phượng đỏ | `Lớp tiếng Anh tình nguyện hè.jpg` | `chinh` | Lớp tiếng Anh tình nguyện hè | — |
+| 17 | chiến dịch hoa phượng đỏ | `Thăm hỏi cựu chiến binh.jpg` | `phu` | Thăm hỏi cựu chiến binh | — |
+| 17 | chiến dịch hoa phượng đỏ | `Thăm hỏi cựu chiến binh(1).jpg` | `phu` | Thăm hỏi cựu chiến binh | — |
+| 17 | chiến dịch hoa phượng đỏ | `Hỗ trợ thân nhân Liệt sỹ.jpg` | `phu` | Hỗ trợ thân nhân Liệt sỹ | — |
+| 18 | 2.2. phong trào "tuổi trẻ sáng tạo" | `Giải Nhất Chuyển đổi số, chuyển đổi xanh.jpg` | `chinh` | Giải Nhất Chuyển đổi số, chuyển đổi xanh | — |
+| 18 | 2.2. phong trào "tuổi trẻ sáng tạo" | `Dự thi Tin học trẻ cấp thành phố.jpg` | `phu` | Dự thi Tin học trẻ cấp thành phố | — |
+| 18 | 2.2. phong trào "tuổi trẻ sáng tạo" | `Giao lưu Robotics.jpg` | `phu` | Giao lưu Robotics | — |
+| 19 | sân chơi học thuật và sáng tạo | `Giải Nhất tuần Đường lên đỉnh Olympia.jpg` | `chinh` | Giải Nhất tuần Đường lên đỉnh Olympia | — |
+| 19 | sân chơi học thuật và sáng tạo | `Cuộc thi Olympia cấp trường.jpg` | `phu` | Cuộc thi Olympia cấp trường | — |
+| 19 | sân chơi học thuật và sáng tạo | `Mô hình HDMUN.jpg` | `phu` | Mô hình HDMUN | — |
+| 20 | 2.3. phong trào "tuổi trẻ xung kích bảo vệ tổ quốc" | `Công trình “Những cánh thư vượt sóng”.jpg` | `chinh` | Công trình “Những cánh thư vượt sóng” | — |
+| 20 | 2.3. phong trào "tuổi trẻ xung kích bảo vệ tổ quốc" | `Công trình “Những cánh thư vượt sóng”(1).jpg` | `phu` | Công trình “Những cánh thư vượt sóng” | — |
+| 20 | 2.3. phong trào "tuổi trẻ xung kích bảo vệ tổ quốc" | `Công trình “Những cánh thư vượt sóng”(2).jpg` | `phu` | Công trình “Những cánh thư vượt sóng” | — |
+| 20 | 2.3. phong trào "tuổi trẻ xung kích bảo vệ tổ quốc" | `Công trình “Những cánh thư vượt sóng”(3).jpg` | `phu` | Công trình “Những cánh thư vượt sóng” | — |
+| 21 | 3. tổ chức các chương trình đồng hành với thanh niên 3.1. đồng hành với thanh niên trong học tập | `Trao Học bổng Sao Khuê.jpg` | `chinh` | Trao Học bổng Sao Khuê | — |
+| 21 | 3. tổ chức các chương trình đồng hành với thanh niên 3.1. đồng hành với thanh niên trong học tập | `Tuyên dương “Học sinh 3 tốt”.jpg` | `phu` | Tuyên dương “Học sinh 3 tốt” | — |
+| 21 | 3. tổ chức các chương trình đồng hành với thanh niên 3.1. đồng hành với thanh niên trong học tập | `Ngày Sách và Văn hóa đọc.jpg` | `phu` | Ngày Sách và Văn hóa đọc | — |
+| 22 | 3.1. đồng hành với thanh niên trong học tập | `Lễ kết nạp Đảng.jpg` | `chinh` | Lễ kết nạp Đảng | — |
+| 22 | 3.1. đồng hành với thanh niên trong học tập | `Trao học bổng cho học sinh.jpg` | `phu` | Trao học bổng cho học sinh | — |
+| 22 | 3.1. đồng hành với thanh niên trong học tập | `Trao quà Tết cho học sinh.jpg` | `phu` | Trao quà Tết cho học sinh | — |
+| 23 | 3.2. đồng hành với thanh niên khởi nghiệp, lập nghiệp | `Ngày hội Tư vấn tuyển sinh – Hướng nghiệp.jpg` | `chinh` | Ngày hội Tư vấn tuyển sinh – Hướng nghiệp | — |
+| 23 | 3.2. đồng hành với thanh niên khởi nghiệp, lập nghiệp | `Ngày hội Tư vấn tuyển sinh – Hướng nghiệp(1).jpg` | `phu` | Ngày hội Tư vấn tuyển sinh – Hướng nghiệp | — |
+| 23 | 3.2. đồng hành với thanh niên khởi nghiệp, lập nghiệp | `Giao lưu với đại học quốc tế.jpg` | `phu` | Giao lưu với đại học quốc tế | — |
+| 23 | 3.2. đồng hành với thanh niên khởi nghiệp, lập nghiệp | `Chuyên đề tư vấn hướng nghiệp.jpg` | `phu` | Chuyên đề tư vấn hướng nghiệp | — |
+| 24 | đa dạng các loại hình hoạt động văn hóa, nghệ thuật | `Chương trình “Phi mã khai xuân”.jpg` | `chinh` | Chương trình “Phi mã khai xuân” | — |
+| 24 | đa dạng các loại hình hoạt động văn hóa, nghệ thuật | `Chào tân học sinh “New Orbit”.jpg` | `phu` | Chào tân học sinh “New Orbit” | — |
+| 24 | đa dạng các loại hình hoạt động văn hóa, nghệ thuật | `Hội diễn “Khúc ca tri ân”.jpg` | `phu` | Hội diễn “Khúc ca tri ân” | — |
+| 24 | đa dạng các loại hình hoạt động văn hóa, nghệ thuật | `Chuyên đề “Mạch nguồn di sản”.jpg` | `phu` | Chuyên đề “Mạch nguồn di sản” | — |
+| 25 | đa dạng các loại hình hoạt động văn hóa, nghệ thuật | `Gói bánh chưng “Gói trọn vị nhà”.jpg` | `chinh` | Gói bánh chưng “Gói trọn vị nhà” | — |
+| 25 | đa dạng các loại hình hoạt động văn hóa, nghệ thuật | `Hội chợ Tết.jpg` | `phu` | Hội chợ Tết | — |
+| 25 | đa dạng các loại hình hoạt động văn hóa, nghệ thuật | `Ngày hội Chuyên Nguyễn Trãi.jpg` | `phu` | Ngày hội Chuyên Nguyễn Trãi | — |
+| 26 | rèn luyện thể chất, hoạt động clb và chăm sóc tinh thần | `CNT's Open Talk.jpg` | `chinh` | CNT's Open Talk | — |
+| 26 | rèn luyện thể chất, hoạt động clb và chăm sóc tinh thần | `Giải kéo co.jpg` | `phu` | Giải kéo co | — |
+| 27 | rèn luyện thể chất, hoạt động clb và chăm sóc tinh thần | `Giải bóng đá CNT Cup.jpg` | `chinh` | Giải bóng đá CNT Cup | — |
+| 27 | rèn luyện thể chất, hoạt động clb và chăm sóc tinh thần | `Sinh hoạt câu lạc bộ.jpg` | `phu` | Sinh hoạt câu lạc bộ | — |
+| 28 | 4. hội nhập quốc tế và phát triển ngoại ngữ | `Hùng biện tiếng Anh Young Voices.jpg` | `chinh` | Hùng biện tiếng Anh Young Voices | — |
+| 28 | 4. hội nhập quốc tế và phát triển ngoại ngữ | `Sinh hoạt CLB Tiếng Anh(1).jpg` | `phu` | Sinh hoạt CLB Tiếng Anh | — |
+| 28 | 4. hội nhập quốc tế và phát triển ngoại ngữ | `Sinh hoạt CLB Tiếng Anh(2).jpg` | `phu` | Sinh hoạt CLB Tiếng Anh | — |
+| 29 | 5. xây dựng tổ chức đoàn vững mạnh | `Lễ kết nạp đoàn viên mới.jpg` | `chinh` | Lễ kết nạp đoàn viên mới | — |
+| 29 | 5. xây dựng tổ chức đoàn vững mạnh | `Hội nghị tập huấn nâng cao năng lực số.jpg` | `phu` | Hội nghị tập huấn nâng cao năng lực số | — |
+| 29 | 5. xây dựng tổ chức đoàn vững mạnh | `Đoàn viên bỏ phiếu.jpg` | `phu` | Đoàn viên bỏ phiếu | — |
+| 29 | 5. xây dựng tổ chức đoàn vững mạnh | `Đại hội Đoàn trường THPT chuyên Nguyễn Trãi.jpg` | `phu` | Đại hội Đoàn trường THPT chuyên Nguyễn Trãi | — |
+| 30 | đoàn tham gia xây dựng đảng | `Đoàn viên ưu tú tuyên thệ.jpg` | `chinh` | Đoàn viên ưu tú tuyên thệ | — |
+| 30 | đoàn tham gia xây dựng đảng | `12 quần chúng ưu tú kết nạp Đảng đợt 1.jpg` | `phu` | 12 quần chúng ưu tú kết nạp Đảng đợt 1 | — |
+| 30 | đoàn tham gia xây dựng đảng | `16 quần chúng ưu tú được kết nạp Đảng.jpg` | `phu` | 16 quần chúng ưu tú được kết nạp Đảng | — |
+| 33 | một số mô hình hay, cách làm sáng tạo | `Đội hình 12 khối chuyên.jpg` | `nen` | Đội hình 12 khối chuyên tại Đấu trường trí tuệ | — |
+| 34 | mô hình 1 – nền tảng số quản lý công tác đoàn khối thpt | `s34_img3.jpg` | `chinh` | Ra mắt công trình thanh niên Nền tảng số quản lý công tác Đoàn | — |
+| 34 | mô hình 1 – nền tảng số quản lý công tác đoàn khối thpt | `s34_img4.png` | `phu` | Giao diện quản lý đoàn viên | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
+| 34 | mô hình 1 – nền tảng số quản lý công tác đoàn khối thpt | `s34_img5.png` | `phu` | Giao diện trang chủ quản lý công tác Đoàn | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
+| 36 | mô hình 3 – webapp "nền nếp cnt" | `s35_img3.png` | `chinh` | Giao diện WebApp "Nền nếp CNT" | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
+| 36 | mô hình 3 – webapp "nền nếp cnt" | `s35_img4.png` | `phu` | Biểu đồ thống kê nền nếp | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
+| 36 | mô hình 3 – webapp "nền nếp cnt" | `s35_img5.png` | `phu` | Bảng xếp hạng nền nếp theo lớp | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
+| 36 | mô hình 3 – webapp "nền nếp cnt" | `s35_img6.png` | `phu` | Dashboard tổng hợp dữ liệu nền nếp | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
+| 37 | mô hình 4 – concert "ký âm sol hồng" | `Quang cảnh đêm diễn Ký âm Sol hồng.jpg` | `chinh` | Quang cảnh đêm diễn Concert "Ký âm Sol hồng" | — |
+| 37 | mô hình 4 – concert "ký âm sol hồng" | `Ký âm Sol hồng.jpg` | `phu` | Poster Concert "Ký âm Sol hồng" | — |
+| 37 | mô hình 4 – concert "ký âm sol hồng" | `Biểu diễn Ký âm Sol hồng.jpg` | `phu` | Tiết mục biểu diễn tại "Ký âm Sol hồng" | — |
+| 37 | mô hình 4 – concert "ký âm sol hồng" | `Văn nghệ tập thể Ký âm Sol hồng.jpg` | `phu` | Văn nghệ tập thể tại "Ký âm Sol hồng" | — |
+| 38 | mô hình 4 – concert "ký âm sol hồng": nghệ thuật gắn với trách nhiệm cộng đồng | `Trao biển hỗ trợ Ký âm Sol hồng 1.jpg` | `chinh` | Trao biển hỗ trợ tại Concert "Ký âm Sol hồng" | — |
+| 38 | mô hình 4 – concert "ký âm sol hồng": nghệ thuật gắn với trách nhiệm cộng đồng | `Trao biển hỗ trợ Ký âm Sol hồng 2.jpg` | `phu` | Trao biển hỗ trợ tại Concert "Ký âm Sol hồng" | — |
+| 38 | mô hình 4 – concert "ký âm sol hồng": nghệ thuật gắn với trách nhiệm cộng đồng | `Trao biển hỗ trợ Ký âm Sol hồng 3.jpg` | `phu` | Trao biển hỗ trợ tại Concert "Ký âm Sol hồng" | — |
+| 39 | mô hình 5 – cnt mind challenges – đấu trường trí tuệ | `Toàn cảnh cuộc thi Đấu trường trí tuệ.jpg` | `chinh` | Toàn cảnh cuộc thi Đấu trường trí tuệ | — |
+| 39 | mô hình 5 – cnt mind challenges – đấu trường trí tuệ | `Đường đua Trí tuệ.jpg` | `phu` | 12 đội trên đường đua trí tuệ | — |
+| 40 | mô hình 5 – cnt mind challenges: khẳng định bản sắc học thuật của trường chuyên | `Phần thi Đấu trường trí tuệ.jpg` | `chinh` | Phần thi tại Đấu trường trí tuệ | — |
+| 41 | mô hình 6 – công trình thanh niên "những cánh thư vượt sóng" | `Những cánh thư vượt sóng 1.jpg` | `chinh` | ĐVTN với thư, thiệp gửi biển đảo | — |
+| 41 | mô hình 6 – công trình thanh niên "những cánh thư vượt sóng" | `Những cánh thư vượt sóng 2.jpg` | `phu` | ĐVTN vẽ thiệp gửi chiến sĩ hải quân | — |
+| 41 | mô hình 6 – công trình thanh niên "những cánh thư vượt sóng" | `Những cánh thư vượt sóng 5.jpg` | `phu` | Quà Tết đến với cán bộ, chiến sĩ hải quân | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
+| 41 | mô hình 6 – công trình thanh niên "những cánh thư vượt sóng" | `Những cánh thư vượt sóng 7.jpg` | `phu` | Trao thiệp tới Nhà giàn DK1 | — |
+| 42 | mô hình 7 – chiến dịch "eco vision – ước mơ xanh" | `Chiến dịch Eco Vision – Ước mơ xanh (1).jpg` | `chinh` | Chiến dịch "Eco Vision – Ước mơ xanh" | — |
+| 42 | mô hình 7 – chiến dịch "eco vision – ước mơ xanh" | `Chiến dịch Eco Vision – Ước mơ xanh (2).jpg` | `phu` | Chiến dịch "Eco Vision – Ước mơ xanh" | — |
+| 42 | mô hình 7 – chiến dịch "eco vision – ước mơ xanh" | `Chiến dịch Eco Vision – Ước mơ xanh (3).jpg` | `phu` | Chiến dịch "Eco Vision – Ước mơ xanh" | — |
+| 42 | mô hình 7 – chiến dịch "eco vision – ước mơ xanh" | `Chiến dịch Eco Vision – Ước mơ xanh (4).jpg` | `phu` | Chiến dịch "Eco Vision – Ước mơ xanh" | — |
+| 43 | mô hình 8 – chuỗi hoạt động "sao tháng tám" | `Sao Tháng Tám 1.jpg` | `chinh` | Triển lãm tranh "Độc lập – Tự do – Hạnh phúc" | — |
+| 43 | mô hình 8 – chuỗi hoạt động "sao tháng tám" | `Sao Tháng Tám 2.jpg` | `phu` | Tiết mục tại "Dưới Ánh Sao Vàng" | — |
+| 43 | mô hình 8 – chuỗi hoạt động "sao tháng tám" | `Sao Tháng Tám 4.jpg` | `phu` | Trao giải cuộc thi vẽ tranh | — |
+| 43 | mô hình 8 – chuỗi hoạt động "sao tháng tám" | `Sao Tháng Tám 6.jpg` | `phu` | Phần thi đuổi hình bắt chữ | — |
+| 44 | tuổi trẻ chuyên nguyễn trãi | `Đội hình tình nguyện biểu thị quyết tâm.jpg` | `nen` | Đội hình tình nguyện biểu thị quyết tâm | — |
 
 ---
 
-_Bảng trên có 107 dòng, khớp tổng số ô ảnh (`images` + `background`) trong
+_Bảng trên có 128 dòng, khớp tổng số ô ảnh (`images` + `background`) trong
 `lib/slides/data.ts` tại thời điểm sinh file này._

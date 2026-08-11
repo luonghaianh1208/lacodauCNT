@@ -1,5 +1,5 @@
-// Sinh docs/BAN-KE-ANH.md: bản kê từng ô ảnh của 38 slide, dùng khi thay ảnh tạm
-// (rút từ file PPTX gốc) bằng ảnh chốt thật. Đọc lib/slides/data.ts (ảnh đang dùng),
+// Sinh docs/BAN-KE-ANH.md: bản kê từng ô ảnh của 44 slide, dùng khi bổ sung ảnh còn
+// thiếu và khi soát chú thích. Đọc lib/slides/data.ts (ảnh đang dùng),
 // lib/slides/image-audit.json (cờ ảnh chụp màn hình) và băm md5 từng file trong
 // public/media/slides để phát hiện ảnh dùng chung giữa nhiều slide.
 //
@@ -15,38 +15,6 @@ const DATA_TS = path.join(ROOT, "lib/slides/data.ts");
 const AUDIT_JSON = path.join(ROOT, "lib/slides/image-audit.json");
 const MEDIA_DIR = path.join(ROOT, "public/media/slides");
 const OUT_MD = path.join(ROOT, "docs/BAN-KE-ANH.md");
-
-// Bốn chú thích đã soi bằng mắt và xác nhận sai so với nội dung ảnh thật — không
-// suy ra được bằng máy nên ghi tay tại đây, nguồn:
-// docs/superpowers/references/render-check/NOTES.md (mục "Còn tồn đọng" > B).
-const KNOWN_CAPTION_MISMATCHES = [
-  {
-    slide: 9,
-    files: ["s9_img3.jpg"],
-    captionNow: '"Phiên tòa giả định" về phòng, chống bạo lực học đường',
-    actual:
-      'Băng rôn "CHƯƠNG TRÌNH NGOẠI KHÓA – XÂY DỰNG TÌNH BẠN ĐẸP, NÓI KHÔNG VỚI BẠO LỰC HỌC ĐƯỜNG"',
-  },
-  {
-    slide: 20,
-    files: ["s20_img5.jpg"],
-    captionNow: "Giao lưu với lực lượng vũ trang",
-    actual: 'Tranh đồ họa "Cách mạng màu"',
-  },
-  {
-    slide: 24,
-    files: ["s24_img6.jpg"],
-    captionNow: 'Gói bánh chưng "Gói trọn vị nhà"',
-    actual: 'Poster "MỞ ĐƠN ĐĂNG KÝ CÂU LẠC BỘ – ĐỢT I (2026-2027)"',
-  },
-  {
-    slide: 36,
-    files: ["s36_img4.jpg", "s36_img5.jpg", "s36_img6.jpg"],
-    captionNow:
-      "Khán giả tại concert / Trao biển hỗ trợ trên sân khấu / Tiết mục biểu diễn trên sân khấu concert",
-    actual: "Lần lượt là poster gây quỹ, ảnh trao quà trong nhà dân, ảnh trao quà trong nhà dân",
-  },
-];
 
 /**
  * data.ts dùng cú pháp TypeScript (`as const satisfies`). Node cần cờ
@@ -114,18 +82,6 @@ function heaviestSharedCluster(slidesByHash) {
     }
   }
   return best;
-}
-
-function renderMismatchTable() {
-  const rows = KNOWN_CAPTION_MISMATCHES.map((m) => {
-    const files = m.files.map((f) => `\`${f}\``).join(", ");
-    return `| ${m.slide} | ${files} | ${escapeCell(m.captionNow)} | ${escapeCell(m.actual)} |`;
-  });
-  return [
-    "| Slide | File | Chú thích đang dùng | Ảnh thật vẽ gì |",
-    "|---|---|---|---|",
-    ...rows,
-  ].join("\n");
 }
 
 function renderManifestTable(cells) {
@@ -203,7 +159,7 @@ async function main() {
   // tính động thay vì ghi cứng số 25, để bản kê tự cập nhật nếu dữ liệu đổi.
   const slidesWithCells = new Set(cells.map((c) => c.slideNumber));
   const slidesWithNoImages = SLIDES.filter(
-    (s) => s.kind !== "kpi" && !slidesWithCells.has(s.number),
+    (s) => s.kind !== "kpi" && s.kind !== "standby" && !slidesWithCells.has(s.number),
   ).map((s) => s.number);
 
   const uniqueHashes = slidesByHash.size;
@@ -211,11 +167,7 @@ async function main() {
   const heaviest = heaviestSharedCluster(slidesByHash);
 
   const noImageSection = slidesWithNoImages
-    .map(
-      (n) =>
-        `Slide ${n} đang để trống \`images\` — bộ ảnh trích từ PPTX gốc không có file ` +
-        `\`s${n}_*\` nào tương ứng, nên panel ảnh của trang này trống trơn.`,
-    )
+    .map((n) => `- Slide ${n} chưa có ô ảnh nào; panel ảnh của trang này để navy trơn.`)
     .join("\n");
 
   const heaviestText = heaviest
@@ -226,7 +178,8 @@ async function main() {
 
   const md = `# Bản kê ảnh — dùng để thay ảnh chốt
 
-Ảnh hiện tại là **ảnh tạm** rút từ file PPTX. Để thay bằng ảnh chốt:
+Ảnh lấy từ thư mục "(CHUẨN) ẢNH BÁO CÁO LÁ CỜ ĐẦU" do nhà trường chọn tay; TÊN FILE
+CHÍNH LÀ CHÚ THÍCH in lên màn hình. Để bổ sung hoặc thay ảnh:
 
 1. Đặt file mới vào \`public/media/slides/\` với **đúng tên file** trong bảng dưới, hoặc
 2. Đổi trường \`src\` của ảnh tương ứng trong \`lib/slides/data.ts\`.
@@ -237,23 +190,15 @@ Sau khi thay, chạy lại \`node scripts/audit-images.mjs\` để đo lại, r�
 File này do \`scripts/build-image-manifest.mjs\` sinh tự động từ \`lib/slides/data.ts\` —
 đừng sửa tay ở đây, sửa dữ liệu nguồn rồi chạy lại script để sinh lại.
 
-## Ba việc cần ưu tiên khi gửi ảnh mới
+## Hai việc cần ưu tiên khi gửi ảnh mới
 
 ### 1. Slide chưa có ảnh nào (ưu tiên cao nhất)
 
 ${noImageSection || "Hiện mọi slide đều có ít nhất một ảnh."}
 
-### 2. Bốn chú thích đang ghi sai nội dung ảnh thật
+### 2. Nhiều ô ảnh đang dùng lại đúng một tấm ảnh
 
-${renderMismatchTable()}
-
-Khi gửi ảnh mới cho các slide 9, 20, 24, 36, kiểm tra lại luôn cả phần chữ chú
-thích đi kèm trong \`lib/slides/data.ts\` — đổi ảnh mà giữ nguyên chú thích cũ
-(hoặc ngược lại, đổi chú thích mà giữ ảnh cũ) vẫn tiếp tục sai.
-
-### 3. Nhiều ô ảnh đang dùng lại đúng một tấm ảnh
-
-Trong ${cells.length} ô ảnh của 38 slide, chỉ có ${uniqueHashes} tấm ảnh mang nội dung
+Trong ${cells.length} ô ảnh của 44 slide, chỉ có ${uniqueHashes} tấm ảnh mang nội dung
 file thật sự khác nhau (so khớp bằng băm md5, không theo tên file) — nghĩa là
 ${reusedCells} ô ảnh đang dùng lại một tấm đã xuất hiện ở slide khác. ${heaviestText}
 Nếu chỉ gửi được một phần ảnh mới trước, nên ưu tiên các slide đang dùng ảnh

@@ -22,7 +22,7 @@ const OUTRO_DELAY = {
 } as const;
 
 /**
- * Khuôn kết luận (slide 38) — như trang bìa, đây là khuôn "hai đầu sổ" của bộ slide
+ * Khuôn kết luận (slide 44) — như trang bìa, đây là khuôn "hai đầu sổ" của bộ slide
  * nên KHÔNG có `slide-brand` (mockup `.O` không có `.brand`). Tái dùng trực tiếp các
  * class dùng chung `.slide-bar` / `.slide-num` / `.slide-foot` thay vì gọi `SlideChrome`
  * (vốn luôn kèm khối brand) để khớp đúng bố cục đã duyệt.

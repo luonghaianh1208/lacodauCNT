@@ -14,14 +14,18 @@ describe("bộ lọc ảnh màn hình", () => {
     }
   });
 
-  describe("neo giá trị đo từ 8 ảnh mẫu hiệu chuẩn", () => {
-    // Bốn số neo dưới KHÔNG chép từ `image-audit.json` (như vậy thì test chỉ là phép lặp
+  describe("neo giá trị đo từ ảnh mẫu hiệu chuẩn", () => {
+    // Hai số neo dưới KHÔNG chép từ `image-audit.json` (như vậy thì test chỉ là phép lặp
     // thừa): chúng đo ở giai đoạn thiết kế bằng một script KHÁC, trên đúng những file ảnh
     // này — đã đối chiếu md5 để chắc file lúc đó và file trong repo là một. Nhờ vậy chúng
     // là nguồn đối chứng độc lập, bắt được cả lỗi của script sinh ra `image-audit.json`.
+    //
+    // Bộ 44 slide thay toàn bộ ảnh chụp hoạt động bằng bộ ảnh mới của nhà trường, nên hai
+    // neo phía "ảnh chụp" (s8_img3.jpg, s9_img3.jpg) không còn file để đo. Không thay bằng
+    // ảnh mới: giá trị của chúng chỉ có thể chép lại từ chính `image-audit.json` nên sẽ
+    // không còn là đối chứng độc lập nữa. Phía "ảnh chụp" hiện được canh gác bằng test
+    // "mọi ảnh đều đo được" và bằng test ảnh nền ở tests/slides-data.test.ts.
     const anchors = {
-      "s8_img3.jpg": { flat: 0.361, white: 0.056, screenshot: false },
-      "s9_img3.jpg": { flat: 0.314, white: 0.097, screenshot: false },
       "s34_img4.png": { flat: 0.717, white: 0.654, screenshot: true },
       "s35_img3.png": { flat: 0.856, white: 0.673, screenshot: true },
     };
@@ -55,7 +59,15 @@ describe("bộ lọc ảnh màn hình", () => {
       return whiteDistance < 0.05 || flatDistance < 0.05;
     });
 
+    /*
+     * Đúng một tấm nằm sát biên và đã mở ra nhìn tận mắt: ảnh chiến sĩ hải quân mang quà
+     * Tết ra đảo, chụp dưới trời trắng xoá không mây nên white = 0,285, vượt ngưỡng 0,25
+     * và bị gắn nhầm cờ ảnh màn hình. KHÔNG nới ngưỡng vì một tấm: ảnh này chỉ đóng vai
+     * ảnh phụ ở slide 41, mà cờ ảnh màn hình chỉ chặn vai trò ảnh NỀN nên không ảnh hưởng.
+     */
     const nearBoundaryFiles = nearBoundary.map(([f]) => f);
-    expect(nearBoundaryFiles, "Số lượng ảnh sát biên thay đổi").toEqual(["s24_img6.jpg"]);
+    expect(nearBoundaryFiles, "Số lượng ảnh sát biên thay đổi").toEqual([
+      "Những cánh thư vượt sóng 5.jpg",
+    ]);
   });
 });

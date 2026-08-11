@@ -1,10 +1,12 @@
 import Image from "next/image";
+import { type RefObject } from "react";
 
 import { animDelay } from "@/lib/anim";
 import { Phrase } from "@/components/Phrase";
 import { SlideChrome } from "@/components/SlideChrome";
 import { focusStyle } from "@/lib/image-focus";
-import type { ContentSlide, SlideImage } from "@/lib/slides/types";
+import { isSlideVideo } from "@/lib/slides/types";
+import type { ContentSlide, SlideMedia } from "@/lib/slides/types";
 
 /**
  * Nhịp "dàn nhạc vào" của khuôn nội dung — chép đúng từ mockup đã duyệt
@@ -24,47 +26,91 @@ const CONTENT_DELAY = {
 /**
  * `order` là thứ tự ảnh trong panel (0 là ảnh dẫn dắt), dùng để so le nhịp hiện ảnh 90ms
  * — không phải chỉ số mảng của riêng từng nhánh bố trí.
+ *
+ * Ô video dùng lại đúng khung của ảnh (class theo nhánh bố trí ở `MediaPanel` không đổi),
+ * chỉ ép riêng khung video về 16:9 bằng inline style — không đụng CSS của các ô ảnh khác.
+ * KHÔNG dùng `object-fit: cover` trên video, xem chú thích ở app/globals.css.
  */
 function Figure({
-  image,
+  media,
   order,
   className,
+  videoRef,
+  videoBlocked = false,
+  onVideoFallback,
 }: {
-  image: SlideImage;
+  media: SlideMedia;
   order: number;
   className?: string;
+  videoRef?: RefObject<HTMLVideoElement | null>;
+  videoBlocked?: boolean;
+  onVideoFallback?: () => void;
 }) {
+  const video = isSlideVideo(media);
   return (
     <figure
       className={className ? `${className} anim a-media` : "anim a-media"}
       style={animDelay(CONTENT_DELAY.mediaBase + CONTENT_DELAY.mediaStep * order)}
     >
-      <div>
-        <Image
-          src={image.src}
-          alt={image.alt}
-          width={1280}
-          height={720}
-          style={focusStyle(image)}
-        />
+      <div className={video ? "media-video" : undefined} style={video ? { aspectRatio: "16 / 9" } : undefined}>
+        {video ? (
+          <>
+            <video
+              ref={videoRef}
+              data-testid="content-video"
+              src={media.src}
+              poster={media.poster}
+              preload="metadata"
+              playsInline
+            />
+            {videoBlocked ? (
+              <button className="video-fallback" type="button" onClick={onVideoFallback}>
+                <span className="play-triangle" aria-hidden="true" />
+                NHẤN ĐỂ PHÁT VIDEO
+              </button>
+            ) : null}
+          </>
+        ) : (
+          <Image
+            src={media.src}
+            alt={media.alt}
+            width={1280}
+            height={720}
+            style={focusStyle(media)}
+          />
+        )}
       </div>
       <figcaption>
-        <Phrase value={image.caption} />
+        <Phrase value={media.caption} />
       </figcaption>
     </figure>
   );
 }
 
+/** Ô video truyền chung xuống mọi `Figure` — vô hại với ô ảnh, `Figure` chỉ dùng khi là video. */
+type VideoSlotProps = {
+  videoRef?: RefObject<HTMLVideoElement | null>;
+  videoBlocked?: boolean;
+  onVideoFallback?: () => void;
+};
+
 /**
- * Ruột panel đổi theo số ảnh: 1 ảnh tràn kín, 2 ảnh xếp dọc,
- * 3 ảnh là 1 lớn + 2 nhỏ, từ 4 ảnh trở lên là lưới 2 cột.
+ * Ruột panel đổi theo số ô media: 1 ô tràn kín, 2 ô xếp dọc,
+ * 3 ô là 1 lớn + 2 nhỏ, từ 4 ô trở lên là lưới 2 cột. Nhánh bố trí này chỉ tính theo SỐ
+ * LƯỢNG, không phân biệt ảnh hay video — video chỉ đổi thứ render bên trong ô của nó.
  */
-function MediaPanel({ images }: { images: readonly SlideImage[] }) {
+function MediaPanel({
+  images,
+  videoRef,
+  videoBlocked,
+  onVideoFallback,
+}: { images: readonly SlideMedia[] } & VideoSlotProps) {
+  const slot = { videoRef, videoBlocked, onVideoFallback };
   if (images.length === 0) return <div className="content-media" />;
   if (images.length === 1) {
     return (
       <div className="content-media">
-        <Figure image={images[0]} order={0} className="media-solo" />
+        <Figure media={images[0]} order={0} className="media-solo" {...slot} />
       </div>
     );
   }
@@ -73,18 +119,18 @@ function MediaPanel({ images }: { images: readonly SlideImage[] }) {
     // theo tỉ lệ gốc sẽ cao gần kín slide và đẩy ảnh lên đè cụm nhận diện.
     return (
       <div className="content-media content-media--duo">
-        <Figure image={images[0]} order={0} className="media-lead" />
-        <Figure image={images[1]} order={1} className="media-lead" />
+        <Figure media={images[0]} order={0} className="media-lead" {...slot} />
+        <Figure media={images[1]} order={1} className="media-lead" {...slot} />
       </div>
     );
   }
   if (images.length === 3) {
     return (
       <div className="content-media">
-        <Figure image={images[0]} order={0} className="media-lead" />
+        <Figure media={images[0]} order={0} className="media-lead" {...slot} />
         <div className="media-pair">
-          <Figure image={images[1]} order={1} />
-          <Figure image={images[2]} order={2} />
+          <Figure media={images[1]} order={1} {...slot} />
+          <Figure media={images[2]} order={2} {...slot} />
         </div>
       </div>
     );
@@ -92,8 +138,8 @@ function MediaPanel({ images }: { images: readonly SlideImage[] }) {
   return (
     <div className="content-media">
       <div className="media-grid">
-        {images.map((image, index) => (
-          <Figure key={image.src} image={image} order={index} />
+        {images.map((media, index) => (
+          <Figure key={media.src} media={media} order={index} {...slot} />
         ))}
       </div>
     </div>
@@ -103,10 +149,13 @@ function MediaPanel({ images }: { images: readonly SlideImage[] }) {
 export function ContentSlideView({
   slide,
   side,
+  videoRef,
+  videoBlocked,
+  onVideoFallback,
 }: {
   slide: ContentSlide;
   side: "left" | "right";
-}) {
+} & VideoSlotProps) {
   return (
     <div
       className="slide-stage"
@@ -114,7 +163,12 @@ export function ContentSlideView({
       data-side={side}
       data-on-dark={side === "left" ? "true" : "false"}
     >
-      <MediaPanel images={slide.images} />
+      <MediaPanel
+        images={slide.images}
+        videoRef={videoRef}
+        videoBlocked={videoBlocked}
+        onVideoFallback={onVideoFallback}
+      />
       <SlideChrome slide={slide} side={side} />
       <div className="content-text">
         <h1 className="content-title serif anim a-rise" style={animDelay(CONTENT_DELAY.title)}>
