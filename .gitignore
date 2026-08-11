@@ -6,6 +6,7 @@ coverage/
 .superpowers/
 .tmp/
 *.log
+tsconfig.tsbuildinfo
 # Ảnh chụp kiểm tra thị giác (sinh lại bằng `node scripts/render-check.mjs`).
 # Bỏ qua theo FILE chứ không theo thư mục: git không cho phép bỏ-qua-lại một file nằm
 # trong thư mục đã bị bỏ qua, mà NOTES.md trong đó chính là kết quả cần giữ.

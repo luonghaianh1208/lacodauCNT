@@ -15,6 +15,10 @@ describe("bộ lọc ảnh màn hình", () => {
   });
 
   describe("neo giá trị đo từ 8 ảnh mẫu hiệu chuẩn", () => {
+    // Bốn số neo dưới KHÔNG chép từ `image-audit.json` (như vậy thì test chỉ là phép lặp
+    // thừa): chúng đo ở giai đoạn thiết kế bằng một script KHÁC, trên đúng những file ảnh
+    // này — đã đối chiếu md5 để chắc file lúc đó và file trong repo là một. Nhờ vậy chúng
+    // là nguồn đối chứng độc lập, bắt được cả lỗi của script sinh ra `image-audit.json`.
     const anchors = {
       "s8_img3.jpg": { flat: 0.361, white: 0.056, screenshot: false },
       "s9_img3.jpg": { flat: 0.314, white: 0.097, screenshot: false },
