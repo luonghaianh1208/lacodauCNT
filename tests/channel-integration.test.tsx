@@ -42,6 +42,9 @@ class FakeBroadcastChannel {
 describe("two-window presentation channel", () => {
   beforeEach(() => {
     FakeBroadcastChannel.rooms.clear();
+    // Chế độ chuyển động lưu ở localStorage và giờ được CẢ HAI màn đọc lúc khởi tạo, nên
+    // rác từ test trước sẽ làm test sau phụ thuộc thứ tự chạy. Dọn trước mỗi test.
+    window.localStorage.clear();
     vi.stubGlobal("BroadcastChannel", FakeBroadcastChannel);
   });
 
@@ -118,5 +121,37 @@ describe("two-window presentation channel", () => {
     await waitFor(() => expect(readMotion()).toBe("auto"));
 
     expect(window.localStorage.getItem("cnt-motion-mode")).toBe("auto");
+  });
+
+  /*
+   * Chặn tái diễn: bắt tay qua kênh chỉ trả về `STATE` (slide đang mở), KHÔNG kèm chế độ
+   * chuyển động. Người thuyết trình chọn TẮT ở phiên trước rồi đóng và mở lại cửa sổ
+   * `/present/` thì nút màn điều khiển ghi TẮT trong khi màn chiếu chạy BẬT — phải bấm hết
+   * một vòng ba trạng thái mới khớp lại. Màn trình chiếu phải tự đọc lựa chọn đã lưu.
+   */
+  it("màn trình chiếu mở lại tự đọc chế độ chuyển động đã lưu, không cần màn điều khiển", async () => {
+    window.localStorage.setItem("cnt-motion-mode", "off");
+
+    const projector = render(<PresentationScreen />);
+    const readMotion = () =>
+      (projector.container.querySelector(".projector-stage") as HTMLElement).dataset.motion;
+
+    await waitFor(() => expect(readMotion()).toBe("off"));
+  });
+
+  it("màn trình chiếu mở lại một mình vẫn khớp với nút của màn điều khiển", async () => {
+    window.localStorage.setItem("cnt-motion-mode", "auto");
+
+    const control = render(<ControlDeck />);
+    const projector = render(<PresentationScreen />);
+
+    await waitFor(() =>
+      expect(
+        (projector.container.querySelector(".projector-stage") as HTMLElement).dataset.motion,
+      ).toBe("auto"),
+    );
+    expect(
+      within(control.container).getByRole("button", { name: "Chế độ chuyển động" }),
+    ).toHaveTextContent("CHUYỂN ĐỘNG: THEO MÁY");
   });
 });

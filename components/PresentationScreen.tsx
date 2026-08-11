@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 
 import { SlideCanvas } from "@/components/SlideCanvas";
-import { transitionKindFor, type MotionMode } from "@/lib/motion";
+import { readMotionMode, transitionKindFor, type MotionMode } from "@/lib/motion";
 import {
   reducePresentationState,
   type PresentationState,
@@ -82,8 +82,15 @@ export function PresentationScreen() {
   }, []);
 
   /**
-   * Mở thẳng một slide qua `?slide=N` (0-based) và, khi có thêm `?capture=1`, bỏ lớp che
-   * "SẴN SÀNG TRÌNH CHIẾU" rồi tắt chuyển động để chụp ảnh kiểm tra thị giác.
+   * Đọc lựa chọn chuyển động đã lưu, mở thẳng một slide qua `?slide=N` (0-based) và, khi có
+   * thêm `?capture=1`, bỏ lớp che "SẴN SÀNG TRÌNH CHIẾU" rồi tắt chuyển động để chụp ảnh
+   * kiểm tra thị giác.
+   *
+   * Màn trình chiếu PHẢI tự đọc `localStorage`, không chờ màn điều khiển gửi sang: cái bắt
+   * tay qua kênh chỉ trả về `STATE` (slide đang mở), không kèm chế độ chuyển động. Đóng rồi
+   * mở lại cửa sổ `/present/` sau khi đã chọn TẮT thì nút trên màn điều khiển vẫn ghi TẮT
+   * trong khi màn chiếu chạy BẬT, phải bấm hết một vòng ba trạng thái mới khớp lại. Hai màn
+   * cùng origin nên đọc thẳng chỗ màn điều khiển đã ghi là cách gọn nhất.
    *
    * Hai tham số TÁCH RỜI nhau có chủ đích: lớp che tồn tại để một cú nhấn của người dùng
    * mở khoá quyền phát video kèm tiếng, nên không được tự bỏ chỉ vì có `?slide=` — người
@@ -95,13 +102,15 @@ export function PresentationScreen() {
    * trong lần render đầu sẽ lệch với HTML đã render sẵn lúc build (hydration).
    */
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMotion(readMotionMode());
+
     const params = new URLSearchParams(window.location.search);
     const raw = params.get("slide");
     if (raw !== null) {
       const parsed = Number.parseInt(raw, 10);
       if (Number.isFinite(parsed)) {
         // Kẹp về biên: `?slide=-5` ra trang đầu, `?slide=999` ra trang cuối.
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setView({ slideIndex: clampIndex(parsed), sequence: -1, direction: "forward" });
       }
     }
@@ -141,6 +150,7 @@ export function PresentationScreen() {
         <SlideCanvas
           index={view.slideIndex}
           mode="full"
+          motion={motion}
           videoRef={videoRef}
           videoBlocked={videoBlocked}
           onVideoFallback={() => void playVideo(false)}
