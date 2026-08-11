@@ -2051,14 +2051,14 @@ export const SLIDES = [
       },
       {
         src: "/media/slides/Trao biển hỗ trợ Ký âm Sol hồng 2.jpg",
-        alt: "Trao biển hỗ trợ tại Concert Ký âm Sol hồng",
-        caption: ["Trao biển hỗ trợ tại Concert", "\"Ký âm Sol hồng\""],
+        alt: "Thăm hỏi, trao hỗ trợ an sinh tận gia đình từ nguồn quỹ chương trình",
+        caption: ["Hoạt động an sinh", "từ nguồn quỹ chương trình"],
         role: "phu",
       },
       {
         src: "/media/slides/Trao biển hỗ trợ Ký âm Sol hồng 3.jpg",
-        alt: "Trao biển hỗ trợ tại Concert Ký âm Sol hồng",
-        caption: ["Trao biển hỗ trợ tại Concert", "\"Ký âm Sol hồng\""],
+        alt: "Thăm hỏi, trao hỗ trợ an sinh tận gia đình từ nguồn quỹ chương trình",
+        caption: ["Hoạt động an sinh", "từ nguồn quỹ chương trình"],
         role: "phu",
       },
     ],
