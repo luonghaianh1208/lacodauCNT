@@ -11,6 +11,7 @@ import {
 } from "@/lib/presentation";
 import { SlideRenderProvider } from "@/lib/slide-render-context";
 import { clampIndex, slideAt } from "@/lib/slides";
+import { useImagePreload } from "@/lib/useImagePreload";
 import { usePresentationChannel } from "@/lib/usePresentationChannel";
 
 type ProjectorState = PresentationState & {
@@ -27,6 +28,11 @@ export function PresentationScreen() {
   const [videoBlocked, setVideoBlocked] = useState(false);
   const [motion, setMotion] = useState<MotionMode>("force");
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  // Nạp trước toàn bộ ảnh của bộ slide trước khi cho phép người thuyết trình bấm nút: một
+  // ô ảnh trắng hiện ra giữa lúc đang nói trước hội đồng là không chấp nhận được. `?capture=1`
+  // bên dưới đi tắt qua `ready` nên không chờ tiến độ này — giữ đúng hành vi cho
+  // `scripts/render-check.mjs`.
+  const preload = useImagePreload();
 
   const applyState = useCallback((incoming: PresentationState) => {
     // Chỉ slide mô hình có video mới cần khoá "video bị chặn"; dựa vào slide
@@ -167,7 +173,17 @@ export function PresentationScreen() {
                 Nhấn một lần để trình duyệt cho phép phát video có âm thanh. Sau đó thao tác
                 chuyển slide ở màn hình điều khiển.
               </p>
-              <button type="button" aria-label="Sẵn sàng trình chiếu" onClick={prepareProjector}>
+              {!preload.done ? (
+                <p className="ready-progress" aria-live="polite">
+                  Đang tải {preload.loaded}/{preload.total} ảnh
+                </p>
+              ) : null}
+              <button
+                type="button"
+                aria-label="Sẵn sàng trình chiếu"
+                onClick={prepareProjector}
+                disabled={!preload.done}
+              >
                 SẴN SÀNG TRÌNH CHIẾU
               </button>
             </div>

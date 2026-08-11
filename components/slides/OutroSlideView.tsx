@@ -3,6 +3,7 @@ import { Fragment } from "react";
 
 import { animDelay } from "@/lib/anim";
 import { Phrase } from "@/components/Phrase";
+import { focusStyle } from "@/lib/image-focus";
 import type { OutroSlide } from "@/lib/slides/types";
 
 /**
@@ -42,6 +43,7 @@ export function OutroSlideView({ slide }: { slide: OutroSlide }) {
               alt={slide.background.alt}
               width={1280}
               height={720}
+              style={focusStyle(slide.background)}
             />
           </div>
           <div className="outro-veil" />

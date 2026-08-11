@@ -11,6 +11,12 @@ export type SlideImage = {
   alt: string;
   caption: Phrases;
   role: ImageRole;
+  /**
+   * Ép vị trí cắt ảnh (CSS `object-position`) khi mặc định "lệch lên trên" (xem
+   * `.slide-stage img` trong app/globals.css) không hợp cho ảnh này. Chỉ ba lựa chọn cố
+   * định, không toạ độ tự do — dự án này cố ý không cho đặt vị trí tuỳ ý.
+   */
+  focus?: "top" | "center" | "bottom";
 };
 
 type BaseSlide = {

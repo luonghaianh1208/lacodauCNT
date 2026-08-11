@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { animDelay } from "@/lib/anim";
 import { Phrase } from "@/components/Phrase";
+import { focusStyle } from "@/lib/image-focus";
 import { useSlideRenderEager } from "@/lib/slide-render-context";
 import type { CoverSlide } from "@/lib/slides/types";
 
@@ -39,7 +40,13 @@ export function CoverSlideView({ slide }: { slide: CoverSlide }) {
       {hero ? (
         <>
           <div className="coverpage-hero anim a-media">
-            <Image src={hero.src} alt={hero.alt} width={1280} height={720} />
+            <Image
+              src={hero.src}
+              alt={hero.alt}
+              width={1280}
+              height={720}
+              style={focusStyle(hero)}
+            />
           </div>
           <div className="coverpage-veil" />
         </>
@@ -97,7 +104,13 @@ export function CoverSlideView({ slide }: { slide: CoverSlide }) {
             style={animDelay(COVER_DELAY.bandBase + COVER_DELAY.bandStep * index)}
           >
             <div>
-              <Image src={image.src} alt={image.alt} width={1280} height={720} />
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={1280}
+                height={720}
+                style={focusStyle(image)}
+              />
             </div>
             <figcaption>
               <Phrase value={image.caption} />

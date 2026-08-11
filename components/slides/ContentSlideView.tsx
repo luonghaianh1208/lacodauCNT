@@ -3,6 +3,7 @@ import Image from "next/image";
 import { animDelay } from "@/lib/anim";
 import { Phrase } from "@/components/Phrase";
 import { SlideChrome } from "@/components/SlideChrome";
+import { focusStyle } from "@/lib/image-focus";
 import type { ContentSlide, SlideImage } from "@/lib/slides/types";
 
 /**
@@ -39,7 +40,13 @@ function Figure({
       style={animDelay(CONTENT_DELAY.mediaBase + CONTENT_DELAY.mediaStep * order)}
     >
       <div>
-        <Image src={image.src} alt={image.alt} width={1280} height={720} />
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={1280}
+          height={720}
+          style={focusStyle(image)}
+        />
       </div>
       <figcaption>
         <Phrase value={image.caption} />

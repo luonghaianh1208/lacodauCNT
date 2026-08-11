@@ -8,6 +8,7 @@ import { phrasesToText } from "@/lib/phrases";
 import { MOTION_STORAGE_KEY, readMotionMode, type MotionMode } from "@/lib/motion";
 import { type PresentationState, type VideoCommand } from "@/lib/presentation";
 import { clampIndex, slideAt, SLIDES, type Slide } from "@/lib/slides";
+import { useImagePreload } from "@/lib/useImagePreload";
 import { usePresentationChannel } from "@/lib/usePresentationChannel";
 
 const MOTION_LABELS: Record<MotionMode, string> = {
@@ -54,6 +55,9 @@ export function ControlDeck() {
   const [motion, setMotion] = useState<MotionMode>("force");
   const [pickerOpen, setPickerOpen] = useState(false);
   const sequenceRef = useRef(0);
+  // Chỉ để HIỆN tiến độ nạp trước ảnh cho người bấm máy biết — KHÔNG chặn thao tác nào ở
+  // màn này, khác với lớp che bên màn trình chiếu (PresentationScreen).
+  const preload = useImagePreload();
   const { projectorConnected, postState, postCommand, postMotion } = usePresentationChannel({
     role: "control",
     currentState: state,
@@ -154,6 +158,11 @@ export function ControlDeck() {
         </div>
         <div className="control-progress">SLIDE {state.slideIndex + 1} / {SLIDES.length}</div>
         <div className="control-status">
+          {!preload.done ? (
+            <span className="control-preload" aria-live="polite">
+              Đang tải {preload.loaded}/{preload.total} ảnh
+            </span>
+          ) : null}
           <time>{clock}</time>
           <span className={projectorConnected ? "status-dot status-dot--live" : "status-dot"} />
           <span>{projectorConnected ? "ĐÃ KẾT NỐI" : "ĐANG CHỜ MÀN CHIẾU"}</span>

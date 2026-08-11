@@ -4,6 +4,7 @@ import { type RefObject } from "react";
 import { animDelay } from "@/lib/anim";
 import { Phrase } from "@/components/Phrase";
 import { SlideChrome } from "@/components/SlideChrome";
+import { focusStyle } from "@/lib/image-focus";
 import type { ModelSlide } from "@/lib/slides/types";
 
 /**
@@ -70,7 +71,13 @@ export function ModelSlideView({
                 playsInline
               />
             ) : hero ? (
-              <Image src={hero.src} alt={hero.alt} width={1280} height={720} />
+              <Image
+                src={hero.src}
+                alt={hero.alt}
+                width={1280}
+                height={720}
+                style={focusStyle(hero)}
+              />
             ) : null}
             {slide.videoSrc && videoBlocked ? (
               <button className="video-fallback" type="button" onClick={onVideoFallback}>
@@ -96,7 +103,13 @@ export function ModelSlideView({
                 style={animDelay(MODEL_DELAY.shotBase + MODEL_DELAY.shotStep * index)}
               >
                 <div>
-                  <Image src={image.src} alt={image.alt} width={1280} height={720} />
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={1280}
+                    height={720}
+                    style={focusStyle(image)}
+                  />
                 </div>
                 <figcaption>
                   <Phrase value={image.caption} />

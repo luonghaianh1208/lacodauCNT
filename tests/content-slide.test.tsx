@@ -134,6 +134,27 @@ describe("ContentSlideView", () => {
   // Chặn tái diễn: số trang từng đè lên panel ảnh (side="right") hoặc lẫn màu với panel
   // (side="left") vì không đổi bên theo panel như chú thích chân trang đã làm. Giờ cả hai
   // phải luôn cùng bên, và bên đó luôn ngược với bên của panel ảnh.
+  it("ảnh có focus thì ép object-position tương ứng lên thẻ img", () => {
+    const { container } = render(
+      <ContentSlideView
+        slide={{ ...slide, images: [{ ...slide.images[0], focus: "top" }] }}
+        side="right"
+      />,
+    );
+
+    const img = container.querySelector("img") as HTMLImageElement;
+    expect(img.style.objectPosition).toBe("center top");
+  });
+
+  it("ảnh không khai focus thì không ép style riêng, để CSS mặc định áp dụng", () => {
+    const { container } = render(
+      <ContentSlideView slide={{ ...slide, images: makeImages(1) }} side="right" />,
+    );
+
+    const img = container.querySelector("img") as HTMLImageElement;
+    expect(img.style.objectPosition).toBe("");
+  });
+
   it("số trang và chú thích chân trang luôn cùng bên, ngược bên với panel ảnh", () => {
     const { container: right } = render(<ContentSlideView slide={slide} side="right" />);
     expect((right.querySelector(".slide-stage") as HTMLElement).dataset.side).toBe("right");
