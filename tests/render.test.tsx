@@ -44,14 +44,14 @@ describe("SlideCanvas", () => {
     expect(screen.getAllByTestId("kpi-metric")).toHaveLength(6);
   });
 
-  it("renders the model slide's URL, functions, images, and embedded clip", () => {
+  it("renders the model slide's URL, group items, images, and embedded clip", () => {
     const videoRef = createRef<HTMLVideoElement>();
     render(<SlideCanvas index={modelWithVideoIndex} mode="full" videoRef={videoRef} />);
 
     expect(
       screen.getByText("https://doantruong.chuyennguyentrai.edu.vn"),
     ).toBeInTheDocument();
-    expect(screen.getAllByTestId("model-function")).toHaveLength(5);
+    expect(screen.getAllByTestId("model-item")).toHaveLength(9);
     expect(screen.getByAltText("Giao diện quản lý đoàn viên")).toBeInTheDocument();
     expect(screen.getByTestId("model-video")).toHaveAttribute(
       "src",

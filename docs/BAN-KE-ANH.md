@@ -16,20 +16,11 @@ File này do `scripts/build-image-manifest.mjs` sinh tự động từ `lib/slid
 
 ### 1. Slide chưa có ảnh nào (ưu tiên cao nhất)
 
-- Slide 33 chưa có ô ảnh nào; panel ảnh của trang này để navy trơn.
 - Slide 35 chưa có ô ảnh nào; panel ảnh của trang này để navy trơn.
-- Slide 37 chưa có ô ảnh nào; panel ảnh của trang này để navy trơn.
-- Slide 38 chưa có ô ảnh nào; panel ảnh của trang này để navy trơn.
-- Slide 39 chưa có ô ảnh nào; panel ảnh của trang này để navy trơn.
-- Slide 40 chưa có ô ảnh nào; panel ảnh của trang này để navy trơn.
-- Slide 41 chưa có ô ảnh nào; panel ảnh của trang này để navy trơn.
-- Slide 42 chưa có ô ảnh nào; panel ảnh của trang này để navy trơn.
-- Slide 43 chưa có ô ảnh nào; panel ảnh của trang này để navy trơn.
-- Slide 44 chưa có ô ảnh nào; panel ảnh của trang này để navy trơn.
 
 ### 2. Nhiều ô ảnh đang dùng lại đúng một tấm ảnh
 
-Trong 104 ô ảnh của 44 slide, chỉ có 102 tấm ảnh mang nội dung
+Trong 128 ô ảnh của 44 slide, chỉ có 126 tấm ảnh mang nội dung
 file thật sự khác nhau (so khớp bằng băm md5, không theo tên file) — nghĩa là
 2 ô ảnh đang dùng lại một tấm đã xuất hiện ở slide khác. Dùng chung nhiều nhất hiện nay là slide 2, 3, cùng lấy đúng 1 tấm ảnh giống hệt nhau.
 Nếu chỉ gửi được một phần ảnh mới trước, nên ưu tiên các slide đang dùng ảnh
@@ -38,11 +29,11 @@ lỗi ra nhiều trang.
 
 ---
 
-## Bảng đầy đủ 104 ô ảnh
+## Bảng đầy đủ 128 ô ảnh
 
 Cột "Ghi chú" đánh dấu ảnh màn hình phần mềm (đo bằng `scripts/audit-images.mjs`,
 không nên dùng cho vai trò ảnh nền `nen`) và ảnh đang dùng chung với slide khác.
-Slide 33, 35, 37, 38, 39, 40, 41, 42, 43, 44 không có dòng nào ở đây vì không có ảnh nào cả — xem mục 1 ở trên.
+Slide 35 không có dòng nào ở đây vì không có ảnh nào cả — xem mục 1 ở trên.
 
 | Slide | Tiêu đề slide | File ảnh | Vai trò | Chú thích hiện tại | Ghi chú |
 |---|---|---|---|---|---|
@@ -143,6 +134,7 @@ Slide 33, 35, 37, 38, 39, 40, 41, 42, 43, 44 không có dòng nào ở đây vì
 | 30 | đoàn tham gia xây dựng đảng | `Đoàn viên ưu tú tuyên thệ.jpg` | `chinh` | Đoàn viên ưu tú tuyên thệ | — |
 | 30 | đoàn tham gia xây dựng đảng | `12 quần chúng ưu tú kết nạp Đảng đợt 1.jpg` | `phu` | 12 quần chúng ưu tú kết nạp Đảng đợt 1 | — |
 | 30 | đoàn tham gia xây dựng đảng | `16 quần chúng ưu tú được kết nạp Đảng.jpg` | `phu` | 16 quần chúng ưu tú được kết nạp Đảng | — |
+| 33 | một số mô hình hay, cách làm sáng tạo | `Đội hình 12 khối chuyên.jpg` | `nen` | Đội hình 12 khối chuyên tại Đấu trường trí tuệ | — |
 | 34 | mô hình 1 – nền tảng số quản lý công tác đoàn khối thpt | `s34_img3.jpg` | `chinh` | Ra mắt công trình thanh niên Nền tảng số quản lý công tác Đoàn | — |
 | 34 | mô hình 1 – nền tảng số quản lý công tác đoàn khối thpt | `s34_img4.png` | `phu` | Giao diện quản lý đoàn viên | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
 | 34 | mô hình 1 – nền tảng số quản lý công tác đoàn khối thpt | `s34_img5.png` | `phu` | Giao diện trang chủ quản lý công tác Đoàn | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
@@ -150,8 +142,31 @@ Slide 33, 35, 37, 38, 39, 40, 41, 42, 43, 44 không có dòng nào ở đây vì
 | 36 | mô hình 3 – webapp "nền nếp cnt" | `s35_img4.png` | `phu` | Biểu đồ thống kê nền nếp | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
 | 36 | mô hình 3 – webapp "nền nếp cnt" | `s35_img5.png` | `phu` | Bảng xếp hạng nền nếp theo lớp | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
 | 36 | mô hình 3 – webapp "nền nếp cnt" | `s35_img6.png` | `phu` | Dashboard tổng hợp dữ liệu nền nếp | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
+| 37 | mô hình 4 – concert "ký âm sol hồng" | `Quang cảnh đêm diễn Ký âm Sol hồng.jpg` | `chinh` | Quang cảnh đêm diễn Concert "Ký âm Sol hồng" | — |
+| 37 | mô hình 4 – concert "ký âm sol hồng" | `Ký âm Sol hồng.jpg` | `phu` | Poster Concert "Ký âm Sol hồng" | — |
+| 37 | mô hình 4 – concert "ký âm sol hồng" | `Biểu diễn Ký âm Sol hồng.jpg` | `phu` | Tiết mục biểu diễn tại "Ký âm Sol hồng" | — |
+| 37 | mô hình 4 – concert "ký âm sol hồng" | `Văn nghệ tập thể Ký âm Sol hồng.jpg` | `phu` | Văn nghệ tập thể tại "Ký âm Sol hồng" | — |
+| 38 | mô hình 4 – concert "ký âm sol hồng": nghệ thuật gắn với trách nhiệm cộng đồng | `Trao biển hỗ trợ Ký âm Sol hồng 1.jpg` | `chinh` | Trao biển hỗ trợ tại Concert "Ký âm Sol hồng" | — |
+| 38 | mô hình 4 – concert "ký âm sol hồng": nghệ thuật gắn với trách nhiệm cộng đồng | `Trao biển hỗ trợ Ký âm Sol hồng 2.jpg` | `phu` | Trao biển hỗ trợ tại Concert "Ký âm Sol hồng" | — |
+| 38 | mô hình 4 – concert "ký âm sol hồng": nghệ thuật gắn với trách nhiệm cộng đồng | `Trao biển hỗ trợ Ký âm Sol hồng 3.jpg` | `phu` | Trao biển hỗ trợ tại Concert "Ký âm Sol hồng" | — |
+| 39 | mô hình 5 – cnt mind challenges – đấu trường trí tuệ | `Toàn cảnh cuộc thi Đấu trường trí tuệ.jpg` | `chinh` | Toàn cảnh cuộc thi Đấu trường trí tuệ | — |
+| 39 | mô hình 5 – cnt mind challenges – đấu trường trí tuệ | `Đường đua Trí tuệ.jpg` | `phu` | 12 đội trên đường đua trí tuệ | — |
+| 40 | mô hình 5 – cnt mind challenges: khẳng định bản sắc học thuật của trường chuyên | `Phần thi Đấu trường trí tuệ.jpg` | `chinh` | Phần thi tại Đấu trường trí tuệ | — |
+| 41 | mô hình 6 – công trình thanh niên "những cánh thư vượt sóng" | `Những cánh thư vượt sóng 1.jpg` | `chinh` | ĐVTN với thư, thiệp gửi biển đảo | — |
+| 41 | mô hình 6 – công trình thanh niên "những cánh thư vượt sóng" | `Những cánh thư vượt sóng 2.jpg` | `phu` | ĐVTN vẽ thiệp gửi chiến sĩ hải quân | — |
+| 41 | mô hình 6 – công trình thanh niên "những cánh thư vượt sóng" | `Những cánh thư vượt sóng 5.jpg` | `phu` | Quà Tết đến với cán bộ, chiến sĩ hải quân | ẢNH MÀN HÌNH — không dùng cho vai trò `nen` |
+| 41 | mô hình 6 – công trình thanh niên "những cánh thư vượt sóng" | `Những cánh thư vượt sóng 7.jpg` | `phu` | Trao thiệp tới Nhà giàn DK1 | — |
+| 42 | mô hình 7 – chiến dịch "eco vision – ước mơ xanh" | `Chiến dịch Eco Vision – Ước mơ xanh (1).jpg` | `chinh` | Chiến dịch "Eco Vision – Ước mơ xanh" | — |
+| 42 | mô hình 7 – chiến dịch "eco vision – ước mơ xanh" | `Chiến dịch Eco Vision – Ước mơ xanh (2).jpg` | `phu` | Chiến dịch "Eco Vision – Ước mơ xanh" | — |
+| 42 | mô hình 7 – chiến dịch "eco vision – ước mơ xanh" | `Chiến dịch Eco Vision – Ước mơ xanh (3).jpg` | `phu` | Chiến dịch "Eco Vision – Ước mơ xanh" | — |
+| 42 | mô hình 7 – chiến dịch "eco vision – ước mơ xanh" | `Chiến dịch Eco Vision – Ước mơ xanh (4).jpg` | `phu` | Chiến dịch "Eco Vision – Ước mơ xanh" | — |
+| 43 | mô hình 8 – chuỗi hoạt động "sao tháng tám" | `Sao Tháng Tám 1.jpg` | `chinh` | Triển lãm tranh "Độc lập – Tự do – Hạnh phúc" | — |
+| 43 | mô hình 8 – chuỗi hoạt động "sao tháng tám" | `Sao Tháng Tám 2.jpg` | `phu` | Tiết mục tại "Dưới Ánh Sao Vàng" | — |
+| 43 | mô hình 8 – chuỗi hoạt động "sao tháng tám" | `Sao Tháng Tám 4.jpg` | `phu` | Trao giải cuộc thi vẽ tranh | — |
+| 43 | mô hình 8 – chuỗi hoạt động "sao tháng tám" | `Sao Tháng Tám 6.jpg` | `phu` | Phần thi đuổi hình bắt chữ | — |
+| 44 | tuổi trẻ chuyên nguyễn trãi | `Đội hình tình nguyện biểu thị quyết tâm.jpg` | `nen` | Đội hình tình nguyện biểu thị quyết tâm | — |
 
 ---
 
-_Bảng trên có 104 dòng, khớp tổng số ô ảnh (`images` + `background`) trong
+_Bảng trên có 128 dòng, khớp tổng số ô ảnh (`images` + `background`) trong
 `lib/slides/data.ts` tại thời điểm sinh file này._

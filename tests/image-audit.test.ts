@@ -59,9 +59,15 @@ describe("bộ lọc ảnh màn hình", () => {
       return whiteDistance < 0.05 || flatDistance < 0.05;
     });
 
-    // Bộ ảnh mới của nhà trường không còn tấm nào rơi vào vùng sát biên: ảnh chụp hoạt
-    // động nằm hẳn phía dưới, ảnh giao diện nằm hẳn phía trên hai ngưỡng.
+    /*
+     * Đúng một tấm nằm sát biên và đã mở ra nhìn tận mắt: ảnh chiến sĩ hải quân mang quà
+     * Tết ra đảo, chụp dưới trời trắng xoá không mây nên white = 0,285, vượt ngưỡng 0,25
+     * và bị gắn nhầm cờ ảnh màn hình. KHÔNG nới ngưỡng vì một tấm: ảnh này chỉ đóng vai
+     * ảnh phụ ở slide 41, mà cờ ảnh màn hình chỉ chặn vai trò ảnh NỀN nên không ảnh hưởng.
+     */
     const nearBoundaryFiles = nearBoundary.map(([f]) => f);
-    expect(nearBoundaryFiles, "Số lượng ảnh sát biên thay đổi").toEqual([]);
+    expect(nearBoundaryFiles, "Số lượng ảnh sát biên thay đổi").toEqual([
+      "Những cánh thư vượt sóng 5.jpg",
+    ]);
   });
 });

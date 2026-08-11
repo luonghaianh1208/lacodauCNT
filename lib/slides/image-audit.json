@@ -4,146 +4,6 @@
     "white": 0.015,
     "screenshot": false
   },
-  "16 quần chúng ưu tú được kết nạp Đảng.jpg": {
-    "flat": 0.382,
-    "white": 0.023,
-    "screenshot": false
-  },
-  "Bữa cơm nghĩa tình.jpg": {
-    "flat": 0.205,
-    "white": 0,
-    "screenshot": false
-  },
-  "Chuyên đề tư vấn hướng nghiệp.jpg": {
-    "flat": 0.442,
-    "white": 0,
-    "screenshot": false
-  },
-  "Chuyên đề “Mạch nguồn di sản”.jpg": {
-    "flat": 0.236,
-    "white": 0.002,
-    "screenshot": false
-  },
-  "Chuỗi sự kiện “Ước mơ xanh”.jpg": {
-    "flat": 0.306,
-    "white": 0.007,
-    "screenshot": false
-  },
-  "Chào mừng 80 năm Cách mạng tháng Tám.jpg": {
-    "flat": 0.139,
-    "white": 0.079,
-    "screenshot": false
-  },
-  "Chào tân học sinh “New Orbit”.jpg": {
-    "flat": 0.219,
-    "white": 0.003,
-    "screenshot": false
-  },
-  "Chương trình “Ký âm Sol hồng”.jpg": {
-    "flat": 0.336,
-    "white": 0.001,
-    "screenshot": false
-  },
-  "Chương trình “Phi mã khai xuân”.jpg": {
-    "flat": 0.416,
-    "white": 0,
-    "screenshot": false
-  },
-  "CNT's Open Talk.jpg": {
-    "flat": 0.25,
-    "white": 0,
-    "screenshot": false
-  },
-  "Chương trình “Ánh dương soi đường”.jpg": {
-    "flat": 0.411,
-    "white": 0,
-    "screenshot": false
-  },
-  "Cuộc thi Olympia cấp trường.jpg": {
-    "flat": 0.353,
-    "white": 0.136,
-    "screenshot": false
-  },
-  "Cuộc thi “Dưới Ánh Sao Vàng”.jpg": {
-    "flat": 0.167,
-    "white": 0.004,
-    "screenshot": false
-  },
-  "Công trình “Những cánh thư vượt sóng”(2).jpg": {
-    "flat": 0.481,
-    "white": 0.005,
-    "screenshot": false
-  },
-  "Công trình “Những cánh thư vượt sóng”(1).jpg": {
-    "flat": 0.346,
-    "white": 0.12,
-    "screenshot": false
-  },
-  "Công trình “Những cánh thư vượt sóng”(3).jpg": {
-    "flat": 0.429,
-    "white": 0.154,
-    "screenshot": false
-  },
-  "Công trình “Những cánh thư vượt sóng”.jpg": {
-    "flat": 0.132,
-    "white": 0.007,
-    "screenshot": false
-  },
-  "Dâng hương tưởng niệm các Anh hùng Liệt sỹ.jpg": {
-    "flat": 0.287,
-    "white": 0.099,
-    "screenshot": false
-  },
-  "Dâng hương tại đài tưởng niệm.jpg": {
-    "flat": 0.26,
-    "white": 0.003,
-    "screenshot": false
-  },
-  "Dự thi Tin học trẻ cấp thành phố.jpg": {
-    "flat": 0.511,
-    "white": 0,
-    "screenshot": false
-  },
-  "Giao lưu nhân chứng lịch sử.jpg": {
-    "flat": 0.333,
-    "white": 0.057,
-    "screenshot": false
-  },
-  "Diễn đàn “Xây dựng tình bạn đẹp”.png": {
-    "flat": 0.387,
-    "white": 0.312,
-    "screenshot": true
-  },
-  "Giao lưu Robotics.jpg": {
-    "flat": 0.245,
-    "white": 0.003,
-    "screenshot": false
-  },
-  "Giao lưu với đại học quốc tế.jpg": {
-    "flat": 0.316,
-    "white": 0.009,
-    "screenshot": false
-  },
-  "Giải bóng đá CNT Cup.jpg": {
-    "flat": 0.132,
-    "white": 0.018,
-    "screenshot": false
-  },
-  "Giải kéo co.jpg": {
-    "flat": 0.25,
-    "white": 0.032,
-    "screenshot": false
-  },
-  "Giải Nhất Chuyển đổi số, chuyển đổi xanh.jpg": {
-    "flat": 0.343,
-    "white": 0.105,
-    "screenshot": false
-  },
-  "Giải Nhất tuần Đường lên đỉnh Olympia.jpg": {
-    "flat": 0.358,
-    "white": 0,
-    "screenshot": false
-  },
   "Gói bánh chưng “Gói trọn vị nhà”.jpg": {
     "flat": 0.311,
     "white": 0.002,
@@ -179,14 +39,14 @@
     "white": 0,
     "screenshot": false
   },
-  "Hỗ trợ người dân định danh điện tử.jpg": {
-    "flat": 0.216,
-    "white": 0,
-    "screenshot": false
-  },
   "Hỗ trợ người cao tuổi khám sức khỏe.jpg": {
     "flat": 0.242,
     "white": 0.03,
+    "screenshot": false
+  },
+  "Hỗ trợ người dân định danh điện tử.jpg": {
+    "flat": 0.216,
+    "white": 0,
     "screenshot": false
   },
   "Hỗ trợ thân nhân Liệt sỹ.jpg": {
@@ -209,14 +69,19 @@
     "white": 0.003,
     "screenshot": false
   },
-  "Lễ kết nạp đoàn viên mới.jpg": {
-    "flat": 0.433,
-    "white": 0.01,
-    "screenshot": false
-  },
   "Khát vọng cống hiến – Lẽ sống thanh niên.jpg": {
     "flat": 0.231,
     "white": 0,
+    "screenshot": false
+  },
+  "Ký âm Sol hồng.jpg": {
+    "flat": 0.465,
+    "white": 0.065,
+    "screenshot": false
+  },
+  "Lễ kết nạp đoàn viên mới.jpg": {
+    "flat": 0.433,
+    "white": 0.01,
     "screenshot": false
   },
   "Lễ kết nạp Đảng.jpg": {
@@ -269,9 +134,34 @@
     "white": 0.035,
     "screenshot": false
   },
+  "Những cánh thư vượt sóng 1.jpg": {
+    "flat": 0.147,
+    "white": 0.03,
+    "screenshot": false
+  },
+  "Những cánh thư vượt sóng 2.jpg": {
+    "flat": 0.233,
+    "white": 0,
+    "screenshot": false
+  },
+  "Những cánh thư vượt sóng 5.jpg": {
+    "flat": 0.253,
+    "white": 0.285,
+    "screenshot": true
+  },
   "Phiên tòa giả định.jpg": {
     "flat": 0.235,
     "white": 0.002,
+    "screenshot": false
+  },
+  "Phần thi Đấu trường trí tuệ.jpg": {
+    "flat": 0.236,
+    "white": 0.059,
+    "screenshot": false
+  },
+  "Quang cảnh đêm diễn Ký âm Sol hồng.jpg": {
+    "flat": 0.363,
+    "white": 0.001,
     "screenshot": false
   },
   "Quyên góp Quỹ “Đông ấm vùng cao”.jpg": {
@@ -297,11 +187,6 @@
   "Ra quân Chủ nhật Xanh.jpg": {
     "flat": 0.316,
     "white": 0.192,
-    "screenshot": false
-  },
-  "Ra mắt mô hình “Trường học không ma túy”.png": {
-    "flat": 0.384,
-    "white": 0,
     "screenshot": false
   },
   "s34_img3.jpg": {
@@ -339,9 +224,34 @@
     "white": 0.849,
     "screenshot": true
   },
+  "Sao Tháng Tám 1.jpg": {
+    "flat": 0.311,
+    "white": 0.001,
+    "screenshot": false
+  },
+  "Sao Tháng Tám 2.jpg": {
+    "flat": 0.215,
+    "white": 0,
+    "screenshot": false
+  },
+  "Sao Tháng Tám 4.jpg": {
+    "flat": 0.226,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "Sao Tháng Tám 6.jpg": {
+    "flat": 0.315,
+    "white": 0.047,
+    "screenshot": false
+  },
   "Sinh hoạt chi đoàn theo chủ điểm.jpg": {
     "flat": 0.367,
     "white": 0.005,
+    "screenshot": false
+  },
+  "Sinh hoạt CLB Tiếng Anh(1).jpg": {
+    "flat": 0.309,
+    "white": 0.003,
     "screenshot": false
   },
   "Sinh hoạt CLB Tiếng Anh(2).jpg": {
@@ -359,14 +269,14 @@
     "white": 0.002,
     "screenshot": false
   },
-  "Sinh hoạt CLB Tiếng Anh(1).jpg": {
-    "flat": 0.309,
-    "white": 0.003,
-    "screenshot": false
-  },
   "Sinh hoạt đầu tuần.jpg": {
     "flat": 0.248,
     "white": 0.051,
+    "screenshot": false
+  },
+  "16 quần chúng ưu tú được kết nạp Đảng.jpg": {
+    "flat": 0.382,
+    "white": 0.023,
     "screenshot": false
   },
   "Thăm hỏi cựu chiến binh(1).jpg": {
@@ -374,14 +284,34 @@
     "white": 0.043,
     "screenshot": false
   },
-  "Chương trình “Khi tôi 18”.png": {
-    "flat": 0.458,
-    "white": 0,
-    "screenshot": false
-  },
   "Thăm hỏi cựu chiến binh.jpg": {
     "flat": 0.343,
     "white": 0.031,
+    "screenshot": false
+  },
+  "Toàn cảnh cuộc thi Đấu trường trí tuệ.jpg": {
+    "flat": 0.13,
+    "white": 0.023,
+    "screenshot": false
+  },
+  "Trao biển hỗ trợ Ký âm Sol hồng 1.jpg": {
+    "flat": 0.284,
+    "white": 0.006,
+    "screenshot": false
+  },
+  "Trao biển hỗ trợ Ký âm Sol hồng 2.jpg": {
+    "flat": 0.55,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "Biểu diễn Ký âm Sol hồng.jpg": {
+    "flat": 0.353,
+    "white": 0.045,
+    "screenshot": false
+  },
+  "Trao biển hỗ trợ Ký âm Sol hồng 3.jpg": {
+    "flat": 0.278,
+    "white": 0,
     "screenshot": false
   },
   "Trao học bổng cho học sinh.jpg": {
@@ -392,6 +322,11 @@
   "Trao Học bổng Sao Khuê.jpg": {
     "flat": 0.321,
     "white": 0,
+    "screenshot": false
+  },
+  "Trao quà Tết cho học sinh.jpg": {
+    "flat": 0.26,
+    "white": 0.004,
     "screenshot": false
   },
   "Triển lãm tranh bảo vệ môi trường.jpg": {
@@ -414,11 +349,6 @@
     "white": 0,
     "screenshot": false
   },
-  "Trao quà Tết cho học sinh.jpg": {
-    "flat": 0.26,
-    "white": 0.004,
-    "screenshot": false
-  },
   "Tình nguyện viên hỗ trợ thí sinh(1).jpg": {
     "flat": 0.234,
     "white": 0.087,
@@ -429,9 +359,74 @@
     "white": 0.032,
     "screenshot": false
   },
+  "Chiến dịch Eco Vision – Ước mơ xanh (1).jpg": {
+    "flat": 0.273,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "Bữa cơm nghĩa tình.jpg": {
+    "flat": 0.205,
+    "white": 0,
+    "screenshot": false
+  },
+  "Chiến dịch Eco Vision – Ước mơ xanh (3).jpg": {
+    "flat": 0.501,
+    "white": 0.053,
+    "screenshot": false
+  },
+  "Chiến dịch Eco Vision – Ước mơ xanh (4).jpg": {
+    "flat": 0.153,
+    "white": 0.079,
+    "screenshot": false
+  },
+  "Chiến dịch Eco Vision – Ước mơ xanh (2).jpg": {
+    "flat": 0.325,
+    "white": 0.006,
+    "screenshot": false
+  },
+  "Chuyên đề tư vấn hướng nghiệp.jpg": {
+    "flat": 0.442,
+    "white": 0,
+    "screenshot": false
+  },
   "Tình nguyện viên hỗ trợ thí sinh.jpg": {
     "flat": 0.279,
     "white": 0.042,
+    "screenshot": false
+  },
+  "Chuyên đề “Mạch nguồn di sản”.jpg": {
+    "flat": 0.236,
+    "white": 0.002,
+    "screenshot": false
+  },
+  "Chào mừng 80 năm Cách mạng tháng Tám.jpg": {
+    "flat": 0.139,
+    "white": 0.079,
+    "screenshot": false
+  },
+  "Chào tân học sinh “New Orbit”.jpg": {
+    "flat": 0.219,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "Chương trình “Ký âm Sol hồng”.jpg": {
+    "flat": 0.336,
+    "white": 0.001,
+    "screenshot": false
+  },
+  "Chương trình “Phi mã khai xuân”.jpg": {
+    "flat": 0.416,
+    "white": 0,
+    "screenshot": false
+  },
+  "Chương trình “Ánh dương soi đường”.jpg": {
+    "flat": 0.411,
+    "white": 0,
+    "screenshot": false
+  },
+  "CNT's Open Talk.jpg": {
+    "flat": 0.25,
+    "white": 0,
     "screenshot": false
   },
   "Tập thể học sinh toàn trường.jpg": {
@@ -439,9 +434,89 @@
     "white": 0.052,
     "screenshot": false
   },
+  "Chuỗi sự kiện “Ước mơ xanh”.jpg": {
+    "flat": 0.306,
+    "white": 0.007,
+    "screenshot": false
+  },
+  "Cuộc thi Olympia cấp trường.jpg": {
+    "flat": 0.353,
+    "white": 0.136,
+    "screenshot": false
+  },
+  "Cuộc thi “Dưới Ánh Sao Vàng”.jpg": {
+    "flat": 0.167,
+    "white": 0.004,
+    "screenshot": false
+  },
+  "Công trình “Những cánh thư vượt sóng”(2).jpg": {
+    "flat": 0.481,
+    "white": 0.005,
+    "screenshot": false
+  },
+  "Công trình “Những cánh thư vượt sóng”(3).jpg": {
+    "flat": 0.429,
+    "white": 0.154,
+    "screenshot": false
+  },
+  "Công trình “Những cánh thư vượt sóng”.jpg": {
+    "flat": 0.132,
+    "white": 0.007,
+    "screenshot": false
+  },
+  "Công trình “Những cánh thư vượt sóng”(1).jpg": {
+    "flat": 0.346,
+    "white": 0.12,
+    "screenshot": false
+  },
   "Tổ chức Đoàn của trường.jpg": {
     "flat": 0.423,
     "white": 0,
+    "screenshot": false
+  },
+  "Văn nghệ tập thể Ký âm Sol hồng.jpg": {
+    "flat": 0.28,
+    "white": 0,
+    "screenshot": false
+  },
+  "Dâng hương tưởng niệm các Anh hùng Liệt sỹ.jpg": {
+    "flat": 0.287,
+    "white": 0.099,
+    "screenshot": false
+  },
+  "Dâng hương tại đài tưởng niệm.jpg": {
+    "flat": 0.26,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "Giao lưu nhân chứng lịch sử.jpg": {
+    "flat": 0.333,
+    "white": 0.057,
+    "screenshot": false
+  },
+  "Giao lưu với đại học quốc tế.jpg": {
+    "flat": 0.316,
+    "white": 0.009,
+    "screenshot": false
+  },
+  "Dự thi Tin học trẻ cấp thành phố.jpg": {
+    "flat": 0.511,
+    "white": 0,
+    "screenshot": false
+  },
+  "Giao lưu Robotics.jpg": {
+    "flat": 0.245,
+    "white": 0.003,
+    "screenshot": false
+  },
+  "Giải bóng đá CNT Cup.jpg": {
+    "flat": 0.132,
+    "white": 0.018,
+    "screenshot": false
+  },
+  "Giải kéo co.jpg": {
+    "flat": 0.25,
+    "white": 0.032,
     "screenshot": false
   },
   "Đoàn viên bỏ phiếu.jpg": {
@@ -449,14 +524,29 @@
     "white": 0.002,
     "screenshot": false
   },
+  "Giải Nhất Chuyển đổi số, chuyển đổi xanh.jpg": {
+    "flat": 0.343,
+    "white": 0.105,
+    "screenshot": false
+  },
   "Đoàn viên ưu tú tuyên thệ.jpg": {
     "flat": 0.393,
     "white": 0.196,
     "screenshot": false
   },
+  "Giải Nhất tuần Đường lên đỉnh Olympia.jpg": {
+    "flat": 0.358,
+    "white": 0,
+    "screenshot": false
+  },
   "Đoàn viên, thanh niên hiến máu tình nguyện.jpg": {
     "flat": 0.288,
     "white": 0.005,
+    "screenshot": false
+  },
+  "Đường đua Trí tuệ.jpg": {
+    "flat": 0.233,
+    "white": 0.048,
     "screenshot": false
   },
   "Đại hội Đoàn trường THPT chuyên Nguyễn Trãi.jpg": {
@@ -474,6 +564,21 @@
     "white": 0.006,
     "screenshot": false
   },
+  "Đồng hành cùng nạn nhân chất độc da cam.jpg": {
+    "flat": 0.285,
+    "white": 0.006,
+    "screenshot": false
+  },
+  "Đội hình 12 khối chuyên.jpg": {
+    "flat": 0.149,
+    "white": 0.005,
+    "screenshot": false
+  },
+  "Đội hình tình nguyện biểu thị quyết tâm.jpg": {
+    "flat": 0.353,
+    "white": 0.007,
+    "screenshot": false
+  },
   "Đội hình tình nguyện Hoa phượng đỏ.jpg": {
     "flat": 0.237,
     "white": 0,
@@ -482,11 +587,6 @@
   "Đội hình tình nguyện Tiếp sức mùa thi(1).jpg": {
     "flat": 0.358,
     "white": 0.044,
-    "screenshot": false
-  },
-  "Đồng hành cùng nạn nhân chất độc da cam.jpg": {
-    "flat": 0.285,
-    "white": 0.006,
     "screenshot": false
   },
   "Đội hình tình nguyện Tiếp sức mùa thi.jpg": {
@@ -508,5 +608,25 @@
     "flat": 0.217,
     "white": 0.001,
     "screenshot": false
+  },
+  "Những cánh thư vượt sóng 7.jpg": {
+    "flat": 0.31,
+    "white": 0.001,
+    "screenshot": false
+  },
+  "Ra mắt mô hình “Trường học không ma túy”.png": {
+    "flat": 0.384,
+    "white": 0,
+    "screenshot": false
+  },
+  "Chương trình “Khi tôi 18”.png": {
+    "flat": 0.458,
+    "white": 0,
+    "screenshot": false
+  },
+  "Diễn đàn “Xây dựng tình bạn đẹp”.png": {
+    "flat": 0.387,
+    "white": 0.312,
+    "screenshot": true
   }
 }

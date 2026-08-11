@@ -64,8 +64,7 @@ const model: Slide = {
   density: "vua",
   title: ["Tiêu đề mô hình"],
   lead: ["Tóm tắt"],
-  functions: [],
-  effects: [],
+  groups: [],
   images: [],
 };
 

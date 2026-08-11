@@ -35,8 +35,11 @@ describe("source-faithful presentation data", () => {
       "80 · 27",
     ]);
     expect(modelSlide?.url).toBe("https://doantruong.chuyennguyentrai.edu.vn");
-    expect(modelSlide?.functions).toHaveLength(5);
-    expect(modelSlide?.effects).toHaveLength(4);
+    expect(modelSlide?.groups.map((group) => group.label.join(" "))).toEqual([
+      "ĐIỂM MỚI, SÁNG TẠO",
+      "HIỆU QUẢ",
+    ]);
+    expect(modelSlide?.groups.map((group) => group.items.length)).toEqual([5, 4]);
   });
 });
 

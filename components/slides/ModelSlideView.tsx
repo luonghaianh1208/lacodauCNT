@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { type RefObject } from "react";
+import { type CSSProperties, type RefObject } from "react";
 
 import { animDelay } from "@/lib/anim";
 import { Phrase } from "@/components/Phrase";
@@ -10,7 +10,7 @@ import type { ModelSlide } from "@/lib/slides/types";
 /**
  * Nhịp "dàn nhạc vào" của khuôn mô hình. Mockup `05-chuyen-dong.html` không dựng khuôn này
  * nên nhịp được suy ra theo đúng tinh thần khuôn nội dung: khung → tiêu đề → chữ dẫn →
- * nội dung chi tiết → ảnh. Riêng hai danh sách chạy tiếp một mạch (bước 55ms thay vì 70ms
+ * nội dung chi tiết → ảnh. Riêng các danh sách chạy tiếp một mạch (bước 55ms thay vì 70ms
  * như gạch đầu dòng khuôn nội dung) vì tổng có tới chín mục; giữ 70ms thì mục cuối rơi quá
  * xa mốc ~900ms mà spec §7.1 đặt ra.
  */
@@ -18,7 +18,6 @@ const MODEL_DELAY = {
   title: 160,
   url: 230,
   lead: 300,
-  listHeading: 345,
   listBase: 400,
   listStep: 55,
   mediaBase: 260,
@@ -27,9 +26,21 @@ const MODEL_DELAY = {
 } as const;
 
 /**
+ * Từ 5 mục trở lên thì danh sách xếp hai cột — dưới ngưỡng đó, hai cột để lại một cột
+ * gần rỗng nên xếp một cột đọc gọn hơn. Số hàng phải tính sẵn ở đây rồi truyền xuống CSS:
+ * để lưới tự đẻ hàng thì nó đẻ thêm CỘT thứ ba, mỗi cột hẹp còn một phần ba và chữ tràn.
+ */
+const TWO_COLUMN_MIN = 5;
+
+/** Nhóm đầu tô xanh dương, nhóm sau tô xanh lá, rồi lặp lại — giữ đúng cặp màu cũ. */
+function toneOf(index: number): "fn" | "ef" {
+  return index % 2 === 0 ? "fn" : "ef";
+}
+
+/**
  * Khuôn mô hình + media — panel navy chứa video minh chứng đổi bên qua `side`,
- * văn bản (tiêu đề, URL, hai danh sách) nằm phía đối diện.
- * Không phải slide "model" nào cũng có `videoSrc` (chỉ 1/10 slide thật có video),
+ * văn bản (tiêu đề, URL, các nhóm ý) nằm phía đối diện.
+ * Không phải slide "model" nào cũng có `videoSrc` (chỉ 2/10 slide thật có video),
  * nên khi thiếu video thì hiện ảnh dẫn dắt (`role: "chinh"`) thay thế; thiếu cả hai
  * thì panel navy để trơn.
  */
@@ -48,9 +59,24 @@ export function ModelSlideView({
 }) {
   const hero = slide.images.find((image) => image.role === "chinh");
   const shots = slide.images.filter((image) => image.role !== "chinh");
-  // Danh sách hiệu quả nối tiếp danh sách chức năng: cộng thêm một bước cho tiêu đề nhóm.
-  const effectsBase =
-    MODEL_DELAY.listBase + MODEL_DELAY.listStep * (slide.functions.length + 1);
+
+  /*
+   * Cả cụm nhóm ý chạy trên MỘT dòng thời gian liên tục: mỗi nhãn nhóm ăn một bước, rồi
+   * đến các mục của nhóm đó. Chỗ đứng của một nhóm vì thế là tổng (1 nhãn + số mục) của
+   * các nhóm trước nó; nhãn lùi lại một bước để nhãn đầu tiên rơi đúng mốc 345ms như bản
+   * hai danh sách cố định trước đây, còn mục đầu tiên vẫn ở 400ms.
+   */
+  const visibleGroups = slide.groups.filter((group) => group.items.length > 0);
+  const groups = visibleGroups.map((group, index) => {
+    const stepsBefore = visibleGroups
+      .slice(0, index)
+      .reduce((total, earlier) => total + earlier.items.length + 1, 0);
+    return {
+      ...group,
+      labelDelay: MODEL_DELAY.listBase + MODEL_DELAY.listStep * (stepsBefore - 1),
+      itemBase: MODEL_DELAY.listBase + MODEL_DELAY.listStep * stepsBefore,
+    };
+  });
 
   return (
     <div
@@ -60,8 +86,8 @@ export function ModelSlideView({
       data-on-dark={side === "left" ? "true" : "false"}
     >
       <div className="model-media">
-        {/* Mười slide mô hình có bảy slide còn chờ ảnh và video: không dựng khung video
-            rỗng, để panel navy trơn như khuôn nội dung khi thiếu ảnh. */}
+        {/* Slide 35 cố ý không có ảnh (người thuyết trình mở website thật để demo): không
+            dựng khung video rỗng, để panel navy trơn như khuôn nội dung khi thiếu ảnh. */}
         {slide.videoSrc || hero ? (
           <figure className="anim a-media" style={animDelay(MODEL_DELAY.mediaBase)}>
             <div className="model-video">
@@ -142,49 +168,45 @@ export function ModelSlideView({
             <Phrase value={slide.lead} />
           </p>
         </div>
+        {/* Nhóm rỗng đã bị lọc bỏ ở trên: không để lại một nhãn nhóm treo lơ lửng trên
+            danh sách không có mục nào. */}
         <div className="model-lists">
-          <section>
-            <h2 className="fn anim a-rise" style={animDelay(MODEL_DELAY.listHeading)}>
-              <Phrase value={slide.functionsLabel ?? ["CÁC CHỨC NĂNG CHÍNH"]} />
-            </h2>
-            {/* `data-count` để CSS nới số hàng khi có 7–8 mục; để mặc định 3 hàng thì lưới
-                tự đẻ cột thứ ba, mỗi cột hẹp còn một phần ba và chữ tràn ngang. */}
-            <ul className="model-functions" data-count={slide.functions.length}>
-              {slide.functions.map((item, index) => (
-                <li
-                  key={`${index}-${item[0]}`}
-                  className="anim a-rise"
-                  style={animDelay(MODEL_DELAY.listBase + MODEL_DELAY.listStep * index)}
-                  data-testid="model-function"
+          {groups.map((group, index) => {
+            const twoColumns = group.items.length >= TWO_COLUMN_MIN;
+            return (
+              <section key={`${index}-${group.label[0]}`}>
+                <h2
+                  className={`${toneOf(index)} anim a-rise`}
+                  style={animDelay(group.labelDelay)}
                 >
-                  <Phrase value={item} />
-                </li>
-              ))}
-            </ul>
-          </section>
-          {/* Hai mô hình chỉ có một nhóm ý trong tài liệu nguồn; ẩn hẳn khối thứ hai chứ
-              không để lại một tiêu đề nhóm treo lơ lửng trên danh sách rỗng. */}
-          {slide.effects.length > 0 ? (
-            <section>
-              <h2
-                className="ef anim a-rise"
-                style={animDelay(effectsBase - MODEL_DELAY.listStep)}
-              >
-                <Phrase value={slide.effectsLabel ?? ["HIỆU QUẢ"]} />
-              </h2>
-              <ul className="model-effects">
-                {slide.effects.map((item, index) => (
-                  <li
-                    key={`${index}-${item[0]}`}
-                    className="anim a-rise"
-                    style={animDelay(effectsBase + MODEL_DELAY.listStep * index)}
-                  >
-                    <Phrase value={item} />
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ) : null}
+                  <Phrase value={group.label} />
+                </h2>
+                <ul
+                  className="model-group"
+                  data-tone={toneOf(index)}
+                  data-columns={twoColumns ? 2 : 1}
+                  style={
+                    twoColumns
+                      ? ({
+                          "--rows": Math.ceil(group.items.length / 2),
+                        } as CSSProperties)
+                      : undefined
+                  }
+                >
+                  {group.items.map((item, order) => (
+                    <li
+                      key={`${order}-${item[0]}`}
+                      className="anim a-rise"
+                      style={animDelay(group.itemBase + MODEL_DELAY.listStep * order)}
+                      data-testid="model-item"
+                    >
+                      <Phrase value={item} />
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            );
+          })}
         </div>
       </div>
     </div>

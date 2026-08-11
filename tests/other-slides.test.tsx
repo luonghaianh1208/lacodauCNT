@@ -54,8 +54,12 @@ const model: ModelSlide = {
   title: ["1. Mô hình 1 – Nền tảng số"],
   url: "https://doantruong.chuyennguyentrai.edu.vn",
   lead: ["Nền tảng tích hợp", "06 nhóm chức năng."],
-  functions: [["Quản lý nền nếp."], ["Khen thưởng."]],
-  effects: [["Dữ liệu tập trung."]],
+  groups: [
+    { label: ["ĐIỂM MỚI, SÁNG TẠO"], items: [["Quản lý nền nếp."], ["Khen thưởng."]] },
+    { label: ["HIỆU QUẢ"], items: [["Dữ liệu tập trung."]] },
+    // Nhóm rỗng phải bị ẩn cả nhãn, không để nhãn treo trên danh sách không có mục nào.
+    { label: ["NHÓM RỖNG"], items: [] },
+  ],
   images: [{ src: "/media/slides/f.png", alt: "Giao diện", caption: ["Giao diện"], role: "phu" }],
   videoSrc: "/media/platform-demo.mp4",
   footnote: ["Phần C.7 – Mô hình 1."],
@@ -95,11 +99,38 @@ describe("năm khuôn còn lại", () => {
     expect(screen.getAllByTestId("kpi-metric")).toHaveLength(2);
   });
 
-  it("khuôn mô hình render URL, danh sách và thẻ video", () => {
-    render(<ModelSlideView slide={model} />);
+  it("khuôn mô hình render URL, các nhóm ý và thẻ video", () => {
+    const { container } = render(<ModelSlideView slide={model} />);
     expect(screen.getByText("https://doantruong.chuyennguyentrai.edu.vn")).toBeInTheDocument();
-    expect(screen.getAllByTestId("model-function")).toHaveLength(2);
+    expect(screen.getAllByTestId("model-item")).toHaveLength(3);
+    expect(container.querySelectorAll(".model-group")).toHaveLength(2);
+    expect(screen.queryByText("NHÓM RỖNG")).not.toBeInTheDocument();
     expect(screen.getByTestId("model-video")).toHaveAttribute("src", "/media/platform-demo.mp4");
+  });
+
+  // Khuôn nhận số nhóm tuỳ ý, không đóng cứng hai khối như bản trước.
+  it("khuôn mô hình render đủ ba nhóm ý khi tài liệu chia ba nhóm", () => {
+    const { container } = render(
+      <ModelSlideView
+        slide={{
+          ...model,
+          groups: [
+            { label: ["ĐIỂM MỚI, SÁNG TẠO"], items: [["Một."], ["Hai."]] },
+            { label: ["QUY MÔ"], items: [["Ba."]] },
+            { label: ["KẾT QUẢ"], items: [["Bốn."]] },
+          ],
+        }}
+      />,
+    );
+    expect(container.querySelectorAll(".model-group")).toHaveLength(3);
+    expect(screen.getByText("QUY MÔ")).toBeInTheDocument();
+    expect(screen.getByText("KẾT QUẢ")).toBeInTheDocument();
+    // Màu luân phiên: nhóm 1 và 3 xanh dương, nhóm 2 xanh lá.
+    expect([...container.querySelectorAll(".model-lists h2")].map((h) => h.className)).toEqual([
+      "fn anim a-rise",
+      "ef anim a-rise",
+      "fn anim a-rise",
+    ]);
   });
 
   it("khuôn kết luận render thông điệp và dải chỉ số", () => {

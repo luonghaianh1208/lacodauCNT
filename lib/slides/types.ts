@@ -59,6 +59,13 @@ export type DividerSlide = BaseSlide & {
   part: string;
   title: Phrases;
   toc: readonly Phrases[];
+  /** Dòng khái quát của phần; chỉ trang phân mục nào tài liệu có ghi mới đặt. */
+  lead?: Phrases;
+  /**
+   * Các ý chi tiết của phần. Có `points` thì khuôn chuyển sang hai cột (cụm tiêu đề bên
+   * trái, các ý bên phải); không có thì giữ nguyên một cột như hai trang phân mục kia.
+   */
+  points?: readonly Phrases[];
   background?: SlideImage;
 };
 
@@ -89,21 +96,27 @@ export type KpiSlide = BaseSlide & {
   continued?: boolean;
 };
 
+/**
+ * Một nhóm ý của khuôn mô hình: nhãn lấy nguyên từ tài liệu nguồn ("Điểm mới, sáng tạo",
+ * "Hiệu quả", "Quy mô", "Kết quả nổi bật"…) kèm các gạch đầu dòng thuộc nhóm đó.
+ * Nhóm rỗng (`items` không có mục nào) bị ẩn hẳn, kể cả nhãn.
+ */
+export type ModelGroup = {
+  label: Phrases;
+  items: readonly Phrases[];
+};
+
 export type ModelSlide = BaseSlide & {
   kind: "model";
   title: Phrases;
   url?: string;
   lead: Phrases;
   /**
-   * Nhãn nhóm ý thứ nhất. Bỏ trống thì lấy "CÁC CHỨC NĂNG CHÍNH" — đúng cho ba mô hình
-   * nền tảng số, nhưng năm mô hình còn lại (concert, cuộc thi, công trình, chiến dịch)
-   * gọi nhóm này là "Điểm mới, sáng tạo" nên phải đặt nhãn riêng.
+   * Số nhóm ý là tuỳ ý, không cố định hai khối: tám mô hình mới mỗi mô hình chia nhóm một
+   * kiểu (có mô hình chỉ một nhóm, có mô hình hai nhóm với nhãn hoàn toàn khác nhau) nên
+   * khuôn nhận thẳng danh sách nhóm thay vì hai trường `functions`/`effects` đóng cứng.
    */
-  functionsLabel?: Phrases;
-  functions: readonly Phrases[];
-  /** Nhãn nhóm ý thứ hai; bỏ trống thì lấy "HIỆU QUẢ". Nhóm rỗng thì cả khối bị ẩn. */
-  effectsLabel?: Phrases;
-  effects: readonly Phrases[];
+  groups: readonly ModelGroup[];
   images: readonly SlideImage[];
   videoSrc?: string;
 };
