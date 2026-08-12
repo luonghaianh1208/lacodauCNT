@@ -684,13 +684,19 @@
 }
 .standby-logo { height: 5.4cqw; margin-bottom: 1.8cqw; }
 .standby-logo img { width: auto; height: 100%; object-fit: contain; }
-.standby-eyebrow { margin: 0; color: var(--yellow); font-size: 1.12cqw; font-weight: 700; letter-spacing: 0.16em; line-height: 1.45; }
+/* Dòng đơn vị nằm TRÊN logo và cỡ chữ lớn hẳn — đây là trang đứng chiếu suốt buổi kiểm tra
+   nên tên đơn vị chủ trì phải đọc được từ cuối phòng. Vẫn giữ dưới `.standby-title` (2.6 so
+   với 4.8cqw) để tiêu đề chương trình còn là chữ lớn nhất trang. */
+.standby-eyebrow { margin: 0 0 1.5cqw; color: var(--yellow); font-size: 2.6cqw; font-weight: 800; letter-spacing: 0.1em; line-height: 1.25; }
 .standby-title { margin: 1.4cqw 0 0; font-size: 4.8cqw; font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; }
 /* Gạch nằm giữa khối chữ căn giữa nên KHÔNG ép `transform-origin: left` như các khuôn khác
    — mặc định (tâm) cho gạch nở đều ra hai phía, đúng với bố cục đối xứng của trang này. */
 .standby-rule { width: 7cqw; height: 0.42cqw; margin: 1.8cqw auto; border-radius: 99px; background: var(--red); }
 .standby-program { max-width: 56cqw; margin: 0 auto; color: #cfe0f0; font-size: 1.65cqw; line-height: 1.5; }
-.standby-place { margin: 1.6cqw 0 0; color: #9fb8d1; font-size: 1cqw; letter-spacing: 0.04em; }
+/* Dòng địa điểm/ngày tháng to lên theo dòng đơn vị, nhưng vẫn dưới `.standby-program`
+   (1.45 so với 1.65cqw) để thứ bậc đọc không đảo: nội dung chương trình trước, thông tin
+   thời gian địa điểm sau. */
+.standby-place { margin: 1.6cqw 0 0; color: #b9cfe4; font-size: 1.45cqw; letter-spacing: 0.03em; }
 
 html,
 body {

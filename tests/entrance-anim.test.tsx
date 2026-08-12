@@ -75,11 +75,17 @@ describe("dàn nhạc vào — cả bảy khuôn đều phát class anim", () =>
     }
   });
 
-  it("trang chờ: logo → dòng đơn vị → tiêu đề → gạch đỏ → chương trình → địa điểm/ngày tháng", () => {
+  it("trang chờ: dòng đơn vị → logo → tiêu đề → gạch đỏ → chương trình → địa điểm/ngày tháng", () => {
     const container = renderKind("standby");
 
-    expect(delayOf(container.querySelector(".standby-logo"))).toBe("80ms");
-    expect(delayOf(container.querySelector(".standby-eyebrow"))).toBe("140ms");
+    // Dòng đơn vị nằm TRÊN logo trong bố cục nên phải hiện ra TRƯỚC logo — khoá luôn cả thứ
+    // tự trong DOM, vì chỉ khoá mốc thời gian thì đảo chỗ hai khối mà quên đổi mốc sẽ lọt.
+    const wrap = container.querySelector(".standby-wrap");
+    const order = [...(wrap?.children ?? [])].map((child) => child.className.split(" ")[0]);
+    expect(order.slice(0, 3)).toEqual(["standby-eyebrow", "standby-logo", "standby-title"]);
+
+    expect(delayOf(container.querySelector(".standby-eyebrow"))).toBe("80ms");
+    expect(delayOf(container.querySelector(".standby-logo"))).toBe("140ms");
     expect(delayOf(container.querySelector(".standby-title"))).toBe("200ms");
     expect(container.querySelector(".standby-rule")?.className).toContain("a-grow");
     expect(delayOf(container.querySelector(".standby-rule"))).toBe("280ms");

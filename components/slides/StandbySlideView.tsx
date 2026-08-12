@@ -7,12 +7,13 @@ import type { StandbySlide } from "@/lib/slides/types";
 
 /**
  * Nhịp "dàn nhạc vào" của trang chờ — suy theo tinh thần khuôn bìa (cùng là khuôn nền navy
- * đặc, chữ căn giữa): logo → dòng đơn vị → tiêu đề → gạch đỏ → dòng chương trình → dòng
- * địa điểm/ngày tháng.
+ * đặc, chữ căn giữa): dòng đơn vị → logo → tiêu đề → gạch đỏ → dòng chương trình → dòng
+ * địa điểm/ngày tháng. Thứ tự hiện ra bám đúng thứ tự TỪ TRÊN XUỐNG của bố cục, nên khi
+ * dòng đơn vị chuyển lên trên logo thì hai mốc thời gian đổi chỗ theo.
  */
 const STANDBY_DELAY = {
-  logo: 80,
-  eyebrow: 140,
+  eyebrow: 80,
+  logo: 140,
   title: 200,
   rule: 280,
   program: 340,
@@ -34,6 +35,9 @@ export function StandbySlideView({ slide }: { slide: StandbySlide }) {
     <div className="slide-stage standby-stage" data-density={slide.density} data-on-dark="true">
       <div className="slide-bar anim a-bar" />
       <div className="standby-wrap">
+        <p className="standby-eyebrow anim a-rise" style={animDelay(STANDBY_DELAY.eyebrow)}>
+          <Phrase value={slide.eyebrow} />
+        </p>
         <div className="standby-logo anim a-fade" style={animDelay(STANDBY_DELAY.logo)}>
           <Image
             src="/media/youth-union-logo.png"
@@ -43,9 +47,6 @@ export function StandbySlideView({ slide }: { slide: StandbySlide }) {
             priority={eager}
           />
         </div>
-        <p className="standby-eyebrow anim a-rise" style={animDelay(STANDBY_DELAY.eyebrow)}>
-          <Phrase value={slide.eyebrow} />
-        </p>
         <h1 className="standby-title serif anim a-rise" style={animDelay(STANDBY_DELAY.title)}>
           <Phrase value={slide.title} />
         </h1>
